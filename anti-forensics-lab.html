@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مختبر Anti-Forensics والـ Metadata</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[onclick]{cursor:pointer}
+input,select,textarea,button{font-size:16px;touch-action:manipulation}
+button{touch-action:manipulation}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#0d1b2a,#1a0d2e);padding:20px 30px;border-bottom:2px solid #8b5cf6;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.header h1{font-size:1.4rem;color:#8b5cf6}
+.tabs{display:flex;gap:0;background:#071020;border-bottom:1px solid #1e3a5c;padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:12px 16px;cursor:pointer;color:#7ab3d4;border-bottom:3px solid transparent;white-space:nowrap;font-size:.85rem;transition:all .2s;user-select:none}
+.tab.active{color:#8b5cf6;border-bottom-color:#8b5cf6}
+.panel{display:none;padding:20px;max-width:960px;margin:0 auto}
+.panel.active{display:block}
+h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
+.sub{color:#7ab3d4;font-size:.85rem;margin-bottom:18px;line-height:1.7}
+.card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:20px;margin-bottom:16px}
+.card h3{color:#8b5cf6;margin-bottom:12px;font-size:.95rem}
+.terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.78rem;margin:10px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.prompt{color:#00ff88}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
+.alert{padding:11px 14px;border-radius:6px;margin:8px 0;font-size:.85rem;line-height:1.6}
+.alert-purple{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);color:#c084fc}
+.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
+.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
+.alert-danger{background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);color:#ff8888}
+.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
+.btn{padding:9px 18px;border:none;border-radius:6px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s;touch-action:manipulation}
+.btn-purple{background:#8b5cf6;color:#fff}.btn-purple:hover{background:#7c3aed}
+.btn-outline{background:transparent;border:1px solid #8b5cf6;color:#8b5cf6}
+.btn-outline:hover{background:#8b5cf6;color:#fff}
+.btn-sm{padding:6px 12px;font-size:.78rem}
+.btn-red{background:#ff4444;color:#fff}
+.data-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.data-table th{background:#1a0d2e;color:#8b5cf6;padding:8px;text-align:right;border-bottom:2px solid #2d1a5c}
+.data-table td{padding:8px;border-bottom:1px solid #1e3a5c;color:#aab8c8}
+.data-table tr.tampered td{background:rgba(255,68,68,.07);color:#ff8888}
+.data-table tr.original td{background:rgba(0,255,136,.04);color:#00ff88}
+.quiz-box{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:16px;margin:12px 0}
+.quiz-box h4{color:#8b5cf6;margin-bottom:10px;font-size:.9rem}
+.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#071020;border:1px solid #1e3a5c;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
+.options label.correct{border-color:#00ff88;background:rgba(0,255,136,.08);color:#00ff88}
+.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
+.options input{accent-color:#8b5cf6;flex-shrink:0}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
+.badge-red{background:rgba(255,68,68,.2);color:#ff8888}
+.badge-green{background:rgba(0,255,136,.2);color:#00ff88}
+.badge-orange{background:rgba(255,170,0,.2);color:#ffaa00}
+.badge-purple{background:rgba(139,92,246,.2);color:#c084fc}
+.technique-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
+.technique-card{background:#1a0d2e;border:1px solid #2d1a5c;border-radius:8px;padding:14px;cursor:pointer;transition:all .2s}
+.technique-card:hover{border-color:#8b5cf6;background:#200d3a}
+.technique-card.selected{border-color:#8b5cf6;background:#200d3a}
+.technique-card .ticon{font-size:1.8rem;margin-bottom:6px}
+.technique-card h4{color:#8b5cf6;font-size:.85rem;margin-bottom:4px}
+.technique-card p{color:#7ab3d4;font-size:.75rem;line-height:1.4}
+.timeline-wrap{position:relative;padding-right:20px}
+.timeline-line{position:absolute;right:0;top:0;bottom:0;width:2px;background:#2d1a5c}
+.tl-item{display:flex;gap:14px;margin-bottom:14px;position:relative}
+.tl-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid #0d1b2a;box-shadow:0 0 0 2px currentColor}
+.tl-dot.normal{color:#22c55e;background:#22c55e}
+.tl-dot.suspicious{color:#ff4444;background:#ff4444}
+.tl-dot.warning{color:#ffaa00;background:#ffaa00}
+.tl-content{flex:1}
+.tl-time{font-family:monospace;font-size:.75rem;color:#7ab3d4}
+.tl-desc{font-size:.85rem;color:#aab8c8;margin-top:2px}
+.tl-source{font-size:.72rem;color:#556070;margin-top:2px}
+.metadata-field{display:flex;justify-content:space-between;padding:7px 10px;border-bottom:1px solid #1e3a5c;font-size:.82rem;gap:10px}
+.metadata-field:hover{background:rgba(139,92,246,.04)}
+.mf-key{color:#8b5cf6;min-width:180px;font-size:.8rem}
+.mf-val{color:#aab8c8;text-align:left;font-family:monospace;font-size:.76rem;word-break:break-all}
+.mf-val.suspicious{color:#ff4444}
+.mf-val.ok{color:#00ff88}
+.wipe-demo{display:grid;grid-template-columns:repeat(16,1fr);gap:2px;margin:12px 0}
+.wipe-block{height:20px;border-radius:2px;cursor:pointer;transition:all .3s}
+.wipe-block.data{background:#8b5cf6}
+.wipe-block.wiped{background:#1e3a5c}
+.wipe-block.residual{background:#ff4444}
+.diff-view{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.diff-pane{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.8}
+.diff-added{background:rgba(0,255,136,.1);color:#00ff88}
+.diff-removed{background:rgba(255,68,68,.1);color:#ff8888}
+.diff-same{color:#aab8c8}
+.stepper{display:flex;gap:0;margin-bottom:16px;overflow-x:auto}
+.step-btn{padding:8px 14px;background:#1e3a5c;border:none;color:#7ab3d4;font-size:.82rem;cursor:pointer;white-space:nowrap;touch-action:manipulation;transition:all .2s}
+.step-btn.active{background:#8b5cf6;color:#fff}
+.step-btn:first-child{border-radius:6px 0 0 6px}
+.step-btn:last-child{border-radius:0 6px 6px 0}
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="font-size:2rem">🕵️</div>
+  <div>
+    <h1>مختبر مكافحة الجنائيات وتحليل البيانات الوصفية</h1>
+    <div style="color:#7c3aed;font-size:.82rem">Anti-Forensics · Metadata Analysis · Incident Timeline</div>
+  </div>
+  <a href="lab.html" style="margin-right:auto;color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← المختبر الرئيسي</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('antiforensics')">🙈 Anti-Forensics</div>
+  <div class="tab" onclick="showTab('timestomp')">⏰ Timestomping</div>
+  <div class="tab" onclick="showTab('wiping')">🗑️ Wiping & Shredding</div>
+  <div class="tab" onclick="showTab('metadata')">📄 Metadata Analysis</div>
+  <div class="tab" onclick="showTab('timeline')">📅 بناء Timeline</div>
+</div>
+
+<!-- ANTI-FORENSICS OVERVIEW -->
+<div class="panel active" id="tab-antiforensics">
+  <h2>🙈 مكافحة الجنائيات (Anti-Forensics)</h2>
+  <p class="sub">تقنيات يستخدمها الجناة لإخفاء آثارهم وتدمير الأدلة وإرباك المحققين. فهمها يُمكّن المحقق من اكتشافها والتحايل عليها.</p>
+
+  <div class="card">
+    <h3>📋 أنواع تقنيات Anti-Forensics — اضغط لمعرفة التفاصيل</h3>
+    <div class="technique-grid">
+      <div class="technique-card" onclick="showTechnique(this,'timestamps')">
+        <div class="ticon">⏰</div><h4>Timestomping</h4><p>تعديل تواريخ الملفات لإرباك الجدول الزمني</p>
+      </div>
+      <div class="technique-card" onclick="showTechnique(this,'wiping')">
+        <div class="ticon">🧹</div><h4>File Wiping</h4><p>الكتابة فوق البيانات لمنع الاسترداد</p>
+      </div>
+      <div class="technique-card" onclick="showTechnique(this,'encryption')">
+        <div class="ticon">🔐</div><h4>Encryption</h4><p>تشفير الملفات لمنع قراءتها</p>
+      </div>
+      <div class="technique-card" onclick="showTechnique(this,'steganography')">
+        <div class="ticon">🖼️</div><h4>Steganography</h4><p>إخفاء البيانات داخل ملفات عادية</p>
+      </div>
+      <div class="technique-card" onclick="showTechnique(this,'logclearing')">
+        <div class="ticon">🗒️</div><h4>Log Clearing</h4><p>حذف أو تعديل السجلات</p>
+      </div>
+      <div class="technique-card" onclick="showTechnique(this,'renaming')">
+        <div class="ticon">✏️</div><h4>File Renaming</h4><p>تغيير امتداد الملف لإخفاء نوعه</p>
+      </div>
+      <div class="technique-card" onclick="showTechnique(this,'slack')">
+        <div class="ticon">🕳️</div><h4>Slack Space</h4><p>إخفاء بيانات في المساحة الضائعة</p>
+      </div>
+      <div class="technique-card" onclick="showTechnique(this,'tor')">
+        <div class="ticon">🧅</div><h4>Anonymization</h4><p>Tor / VPN / Proxy لإخفاء الهوية</p>
+      </div>
+    </div>
+    <div id="technique-detail" style="margin-top:14px"></div>
+  </div>
+
+  <div class="card">
+    <h3>⚔️ الهجوم مقابل الدفاع — الجاني vs المحقق</h3>
+    <div style="overflow-x:auto">
+    <table class="data-table" style="font-family:inherit">
+      <tr><th>تقنية Anti-Forensics</th><th>ما يفعله الجاني</th><th>كيف يكشفه المحقق</th></tr>
+      <tr>
+        <td>Timestomping</td>
+        <td style="color:#ff8888">يُعدّل تواريخ الملفات</td>
+        <td style="color:#00ff88">يقارن MACE times بسجل MFT وأحداث USN Journal</td>
+      </tr>
+      <tr>
+        <td>Log Clearing</td>
+        <td style="color:#ff8888">يحذف Windows Event Logs</td>
+        <td style="color:#00ff88">يُلاحظ ثغرة في تسلسل Event IDs + يفحص Shadow Copies</td>
+      </tr>
+      <tr>
+        <td>Secure Delete</td>
+        <td style="color:#ff8888">يستخدم shred أو Eraser</td>
+        <td style="color:#00ff88">يبحث في Slack Space والـ $LogFile وأجزاء لم تُكتب فوقها</td>
+      </tr>
+      <tr>
+        <td>File Extension Spoofing</td>
+        <td style="color:#ff8888">يسمي malware.exe كـ report.docx</td>
+        <td style="color:#00ff88">يفحص Magic Bytes بدل الامتداد</td>
+      </tr>
+      <tr>
+        <td>Encryption</td>
+        <td style="color:#ff8888">يشفّر القرص بـ VeraCrypt</td>
+        <td style="color:#00ff88">يستخرج مفتاح التشفير من صورة RAM</td>
+      </tr>
+      <tr>
+        <td>Slack Space Hiding</td>
+        <td style="color:#ff8888">يخفي بيانات في File Slack</td>
+        <td style="color:#00ff88">يفحص Slack Space بأدوات مثل Autopsy</td>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="quiz-box">
+    <h4>❓ المحقق يرى أن Windows Event Log يبدأ فجأة من Event ID 1000 بعد Event ID 4999 — ماذا يعني الانقطاع؟</h4>
+    <div class="options" id="q-af">
+      <label><input type="radio" name="q-af" value="a"> السجل يعيد الترقيم تلقائياً عند امتلائه</label>
+      <label><input type="radio" name="q-af" value="b"> أحداث 2000–4998 حُذفت — دليل على Log Clearing لإخفاء نشاط مشبوه</label>
+      <label><input type="radio" name="q-af" value="c"> خطأ في Windows</label>
+      <label><input type="radio" name="q-af" value="d"> الجهاز أُعيد تشغيله</label>
+    </div>
+    <button class="btn btn-purple" style="margin-top:10px" onclick="checkQ('q-af','b','af-res',15)">إرسال</button>
+    <div id="af-res"></div>
+  </div>
+</div>
+
+<!-- TIMESTOMPING -->
+<div class="panel" id="tab-timestomp">
+  <h2>⏰ Timestomping — تزوير تواريخ الملفات</h2>
+  <p class="sub">Timestomping هي تعديل تواريخ MACE (Modified, Accessed, Created, Entry Modified) لملف ما، لإرباك الجدول الزمني للتحقيق وإخفاء وقت الجريمة الحقيقي.</p>
+
+  <div class="card">
+    <h3>🕐 فهم تواريخ MACE في NTFS</h3>
+    <div style="display:grid;gap:8px;margin-bottom:14px">
+      <div class="alert alert-info"><strong>M — Modified:</strong> آخر تعديل لمحتوى الملف</div>
+      <div class="alert alert-info"><strong>A — Accessed:</strong> آخر فتح أو قراءة للملف</div>
+      <div class="alert alert-info"><strong>C — Created:</strong> تاريخ إنشاء الملف</div>
+      <div class="alert alert-info"><strong>E — Entry Modified:</strong> آخر تعديل لإدخال MFT نفسه (لا يستطيع المهاجم تغييره بسهولة!)</div>
+    </div>
+    <div class="alert alert-purple">🔑 <strong>السر:</strong> في NTFS كل ملف له مجموعتان من التواريخ — واحدة في <code>$STANDARD_INFORMATION</code> (يمكن تعديلها) وأخرى في <code>$FILE_NAME</code> (أصعب في التعديل). مقارنتهما تكشف الـ Timestomping.</div>
+  </div>
+
+  <div class="card">
+    <h3>🧪 كشف Timestomping — محاكاة حية</h3>
+    <div style="margin-bottom:12px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+        <button class="btn btn-outline btn-sm" onclick="showTimestamp('original')">📄 الملف الأصلي</button>
+        <button class="btn btn-red btn-sm" onclick="showTimestamp('tampered')">⚠️ بعد Timestomping</button>
+        <button class="btn btn-purple btn-sm" onclick="showTimestamp('detection')">🔍 كشف التزوير</button>
+      </div>
+      <div id="timestamp-display"></div>
+    </div>
+    <div class="quiz-box">
+      <h4>❓ ملف Created date = 2024-03-20 لكن $FILE_NAME entry تقول Created = 2024-03-15. ماذا يعني هذا؟</h4>
+      <div class="options" id="q-ts">
+        <label><input type="radio" name="q-ts" value="a"> خطأ في نظام الملفات</label>
+        <label><input type="radio" name="q-ts" value="b"> الـ $STANDARD_INFORMATION عُدِّل (Timestomping) — الملف أُنشئ 15 مارس لكن المهاجم غيّر التاريخ إلى 20 مارس</label>
+        <label><input type="radio" name="q-ts" value="c"> الملف نُسخ من مكان آخر</label>
+        <label><input type="radio" name="q-ts" value="d"> التواريخ في NTFS دائماً غير دقيقة</label>
+      </div>
+      <button class="btn btn-purple" style="margin-top:10px" onclick="checkQ('q-ts','b','ts-res',15)">إرسال</button>
+      <div id="ts-res"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🛠️ أدوات كشف Timestomping</h3>
+    <div class="terminal">
+      <div class="prompt">analyst@forensics:~$ <span class="cmd">python3 analyzeMFT.py -f disk.img | grep "timestomp"</span></div>
+      <div class="out">Checking timestamps for inconsistencies...
+<span style="color:#ff4444">[ALERT] secret_transfer.xlsx: $SI Created=2024-03-20 but $FN Created=2024-03-15 → TIMESTOMPED!</span>
+<span style="color:#ff4444">[ALERT] payload.exe: $SI nanoseconds=000000000 (zeroed) → Classic Timestomp signature!</span>
+<span style="color:#00ff88">[OK] report.docx: timestamps consistent</span></div>
+    </div>
+    <div class="alert alert-warn">💡 أداة Timestomp الشهيرة تُصفّر nanoseconds — الـ NTFS يحفظ الوقت بدقة 100 نانوثانية، وجود أصفار كاملة نادر جداً ويدل على التزوير.</div>
+  </div>
+</div>
+
+<!-- WIPING -->
+<div class="panel" id="tab-wiping">
+  <h2>🗑️ محو البيانات (Wiping & Shredding)</h2>
+  <p class="sub">الحذف العادي لا يمحو البيانات — فقط يعلّم المساحة "فارغة". الـ Wiping الحقيقي يكتب فوق البيانات بأنماط محددة. المحقق يبحث عما تبقّى.</p>
+
+  <div class="card">
+    <h3>🔬 الفرق بين الحذف العادي والـ Secure Wipe</h3>
+    <div class="diff-view">
+      <div>
+        <div style="color:#ffaa00;font-size:.82rem;margin-bottom:6px">🗑️ حذف عادي (Del / rm)</div>
+        <div class="diff-pane">
+<span class="diff-same">القرص قبل الحذف:</span>
+<span class="diff-same">[████ INVOICE.pdf ████]</span>
+<span class="diff-same">[████ SECRET.xlsx ████]</span>
+
+<span class="diff-same">بعد: rm SECRET.xlsx</span>
+<span class="diff-removed">[████ SECRET.xlsx ████] ← يُعلَّم "حر"</span>
+<span class="diff-same">لكن البيانات لا تزال موجودة!</span>
+<span style="color:#00ff88">→ قابل للاسترداد بـ Autopsy</span>
+        </div>
+      </div>
+      <div>
+        <div style="color:#ff4444;font-size:.82rem;margin-bottom:6px">🧹 Secure Wipe (shred -n 3)</div>
+        <div class="diff-pane">
+<span class="diff-same">القرص قبل المحو:</span>
+<span class="diff-same">[████ SECRET.xlsx ████]</span>
+
+<span class="diff-same">التمريرة الأولى:</span>
+<span class="diff-removed">[0101010101010101010101]</span>
+<span class="diff-same">التمريرة الثانية:</span>
+<span class="diff-removed">[1010101010101010101010]</span>
+<span class="diff-same">التمريرة الثالثة (أصفار):</span>
+<span class="diff-removed">[0000000000000000000000]</span>
+<span style="color:#ff4444">→ صعب الاسترداد على HDD</span>
+<span style="color:#00ff88">→ SSD: بقايا في NAND!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💡 محاكاة تمريرات الـ Wipe</h3>
+    <div class="stepper">
+      <button class="step-btn active" onclick="wipeStep(0,this)">قبل المحو</button>
+      <button class="step-btn" onclick="wipeStep(1,this)">تمريرة 1 (0x00)</button>
+      <button class="step-btn" onclick="wipeStep(2,this)">تمريرة 2 (0xFF)</button>
+      <button class="step-btn" onclick="wipeStep(3,this)">تمريرة 3 (عشوائي)</button>
+      <button class="step-btn" onclick="wipeStep(4,this)">SSD — بقايا!</button>
+    </div>
+    <div class="wipe-demo" id="wipe-demo"></div>
+    <div id="wipe-desc" style="margin-top:8px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔍 ما يجده المحقق بعد الـ Wipe</h3>
+    <div style="display:grid;gap:10px">
+      <div class="alert alert-warn">📋 <strong>MFT Entry:</strong> إدخال MFT الخاص بالملف المحذوف لا يزال موجوداً — يُثبت وجود الملف وبياناته الوصفية (اسم، حجم، تاريخ) حتى لو لا يمكن استرداد المحتوى.</div>
+      <div class="alert alert-warn">🗞️ <strong>USN Journal ($UsnJrnl):</strong> سجل جميع العمليات على الملفات في NTFS — حذف أو إنشاء أو تعديل — يُبقي أثراً حتى لو مُحيت البيانات.</div>
+      <div class="alert alert-warn">📸 <strong>Volume Shadow Copies:</strong> Windows ينشئ نقاط استعادة تلقائياً — قد تحتوي نسخة من الملف قبل المحو!</div>
+      <div class="alert alert-info">💾 <strong>SSD خصوصية:</strong> TRIM command تجعل المحو أكثر فاعلية على SSD — لكن بيانات في NAND Flash قد تبقى في over-provisioned area.</div>
+    </div>
+    <div class="terminal">
+      <div class="prompt">analyst@forensics:~$ <span class="cmd">fsutil usn readjournal C: csv | grep "secret_transfer"</span></div>
+      <div class="out">MajorVersion,Reason,Timestamp,FileName
+2,DATA_OVERWRITE,2024-03-20T14:28:44,secret_transfer.xlsx
+2,DATA_TRUNCATION,2024-03-20T14:29:01,secret_transfer.xlsx
+<span style="color:#ff4444">2,FILE_DELETE,2024-03-20T14:30:22,secret_transfer.xlsx</span>
+[*] USN Journal confirms file existed and was deleted at 14:30:22</div>
+    </div>
+    <div class="quiz-box">
+      <h4>❓ المجرم استخدم shred -vfz -n 7 لمحو ملف. ما الذي يمكن للمحقق إثباته رغم ذلك؟</h4>
+      <div class="options" id="q-wipe">
+        <label><input type="radio" name="q-wipe" value="a"> لا شيء — المحو الكامل يمنع أي إثبات</label>
+        <label><input type="radio" name="q-wipe" value="b"> يُثبت من USN Journal و MFT أن الملف كان موجوداً واسمه وحجمه وتاريخ حذفه — حتى لو لا يستطيع استرداد محتواه</label>
+        <label><input type="radio" name="q-wipe" value="c"> يمكن استرداد المحتوى بالكامل</label>
+        <label><input type="radio" name="q-wipe" value="d"> فقط حجم الملف</label>
+      </div>
+      <button class="btn btn-purple" style="margin-top:10px" onclick="checkQ('q-wipe','b','wipe-res',15)">إرسال</button>
+      <div id="wipe-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- METADATA -->
+<div class="panel" id="tab-metadata">
+  <h2>📄 تحليل البيانات الوصفية (Metadata Analysis)</h2>
+  <p class="sub">Metadata هي بيانات داخل البيانات — تكشف من أنشأ الملف، متى، بأي برنامج، وأحياناً أين (GPS). يستخدمها المجرمون لإخفاء هويتهم ويكتشفها المحققون.</p>
+
+  <div class="card">
+    <h3>📝 Metadata في ملف Word — من كتب هذا التقرير؟</h3>
+    <button class="btn btn-purple" onclick="showWordMeta()">🔍 استخراج Metadata</button>
+    <div id="word-meta" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>📸 EXIF Metadata في الصور — من التقط هذه الصورة؟</h3>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+      <div style="background:#071020;border-radius:8px;padding:10px;text-align:center">
+        <div style="width:140px;height:100px;background:linear-gradient(135deg,#1e3a5c,#2d1a5c);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:8px">🌃</div>
+        <div style="font-size:.72rem;color:#556070">image_evidence.jpg</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <button class="btn btn-purple btn-sm" onclick="showImageEXIF()">🔍 فحص EXIF</button>
+        <div id="exif-meta" style="margin-top:10px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🧹 كيف يُخفي المجرمون الـ Metadata</h3>
+    <div style="display:grid;gap:8px">
+      <div class="alert alert-warn">🔧 <strong>ExifTool:</strong> <code>exiftool -all= suspicious.jpg</code> يمسح كل الـ EXIF — لكن يترك أثراً في MFT (تعديل الملف)</div>
+      <div class="alert alert-warn">📱 <strong>تطبيقات الخصوصية:</strong> Signal وبعض تطبيقات المراسلة تمسح الـ EXIF تلقائياً قبل الإرسال</div>
+      <div class="alert alert-warn">🖼️ <strong>Metadata Scrubbing:</strong> أدوات مثل MAT2 تُزيل metadata من ملفات متعددة — لكن قد تُغيّر Hash الملف!</div>
+    </div>
+    <div class="alert alert-purple" style="margin-top:10px">🕵️ <strong>للمحقق:</strong> حتى لو مُسح الـ EXIF، فحص Magic Bytes + حجم الملف + التواريخ في MFT + أي نسخ في Backup أو Cloud يُثبت أصل الملف.</div>
+    <div class="quiz-box">
+      <h4>❓ محقق يفحص صورة لا تحتوي أي EXIF. كيف يحدد كاميرا التقاطها؟</h4>
+      <div class="options" id="q-meta">
+        <label><input type="radio" name="q-meta" value="a"> مستحيل — إذا حُذف EXIF فلا طريقة</label>
+        <label><input type="radio" name="q-meta" value="b"> تحليل ضوضاء الكاميرا (Photo Response Non-Uniformity / PRNU) — بصمة فريدة لكل كاميرا في بكسلات الصورة</label>
+        <label><input type="radio" name="q-meta" value="c"> تخمين من جودة الصورة</label>
+        <label><input type="radio" name="q-meta" value="d"> فحص اسم الملف فقط</label>
+      </div>
+      <button class="btn btn-purple" style="margin-top:10px" onclick="checkQ('q-meta','b','meta-res',15)">إرسال</button>
+      <div id="meta-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="panel" id="tab-timeline">
+  <h2>📅 بناء الجدول الزمني للحادثة (Incident Timeline)</h2>
+  <p class="sub">المحقق يجمع أحداثاً من مصادر متعددة في جدول زمني موحّد يُثبت تسلسل الجريمة. هذا الجدول هو العمود الفقري لأي تقرير جنائي.</p>
+
+  <div class="card">
+    <h3>📚 مصادر الأحداث للجدول الزمني</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px">
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+        <div style="color:#8b5cf6;margin-bottom:6px">🗂️ MFT / USN Journal</div>
+        <div style="color:#7ab3d4">إنشاء/تعديل/حذف الملفات بدقة 100ns</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+        <div style="color:#8b5cf6;margin-bottom:6px">📋 Windows Event Log</div>
+        <div style="color:#7ab3d4">تسجيل دخول، تشغيل برامج، أخطاء النظام</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+        <div style="color:#8b5cf6;margin-bottom:6px">🌐 Firewall / Proxy Logs</div>
+        <div style="color:#7ab3d4">الاتصالات الشبكية الداخلة والخارجة</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+        <div style="color:#8b5cf6;margin-bottom:6px">📶 Cell Tower Records</div>
+        <div style="color:#7ab3d4">موقع الهاتف بالتقريب كل دقيقة</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+        <div style="color:#8b5cf6;margin-bottom:6px">📸 CCTV / بطاقة الدخول</div>
+        <div style="color:#7ab3d4">من دخل الغرفة ومتى بالضبط</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+        <div style="color:#8b5cf6;margin-bottom:6px">💬 WhatsApp / Email</div>
+        <div style="color:#7ab3d4">توقيت الرسائل والاتصالات</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🕒 الجدول الزمني الموحّد — قضية خالد</h3>
+    <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+      <button class="btn btn-outline btn-sm" onclick="filterTimeline('all')">📋 الكل</button>
+      <button class="btn btn-outline btn-sm" onclick="filterTimeline('file')">🗂️ الملفات</button>
+      <button class="btn btn-outline btn-sm" onclick="filterTimeline('network')">🌐 الشبكة</button>
+      <button class="btn btn-outline btn-sm" onclick="filterTimeline('phone')">📱 الهاتف</button>
+      <button class="btn btn-outline btn-sm" onclick="filterTimeline('suspicious')">🚨 المشبوه فقط</button>
+    </div>
+    <div class="timeline-wrap">
+      <div class="timeline-line"></div>
+      <div id="timeline-items"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⚠️ تعارض الأدلة — كشف التلاعب في الجدول الزمني</h3>
+    <div class="alert alert-danger">🚨 تناقض مكتشف: الـ CCTV يُثبت أن خالد غادر المبنى الساعة 15:00، لكن Windows Event Log يُظهر تسجيل دخول على حسابه الساعة 15:30. ماذا يعني هذا؟</div>
+    <button class="btn btn-purple" onclick="analyzeConflict()">🔍 تحليل التناقض</button>
+    <div id="conflict-analysis" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function fixTap(){
+    document.querySelectorAll('[onclick]').forEach(function(el){
+      el.style.cursor='pointer';
+      el.style.webkitUserSelect='none';
+      el.style.userSelect='none';
+      el.style.touchAction='manipulation';
+    });
+  }
+  fixTap();
+  new MutationObserver(fixTap).observe(document.body,{childList:true,subtree:true});
+  var moved=false;
+  document.addEventListener('touchstart',function(){moved=false;},{passive:true});
+  document.addEventListener('touchmove',function(){moved=true;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(moved)return;
+    var el=e.target;
+    while(el&&el!==document.body){
+      if(el.hasAttribute('onclick')){e.preventDefault();el.click();return;}
+      el=el.parentElement;
+    }
+  },false);
+})();
+
+// Techniques
+const techniqueData={
+  timestamps:{title:'⏰ Timestomping',desc:'تعديل تواريخ MACE للملفات باستخدام أدوات مثل Timestomp.exe أو PowerShell: <code>$(Get-Item file).LastWriteTime="01/01/2020"</code>. الهدف: جعل الملف يبدو قديماً أو جعل وقت إنشائه مختلفاً عن وقت الجريمة.',detect:'مقارنة $STANDARD_INFORMATION مع $FILE_NAME — الثانية أصعب تعديلاً'},
+  wiping:{title:'🧹 File Wiping',desc:'الكتابة فوق بيانات الملف بأنماط من الأصفار والواحدات قبل حذفه. أدوات: shred (Linux)، Eraser، SDelete (Sysinternals). معيار DoD 5220.22-M يحدد 7 تمريرات.',detect:'MFT entries تُثبت وجود الملف، USN Journal يُثبت الحذف، Shadow Copies قد تحتوي نسخة'},
+  encryption:{title:'🔐 Encryption',desc:'تشفير الملفات أو القرص كاملاً: VeraCrypt، BitLocker، AES. حتى لو وُجد الملف، لا يمكن قراءته بدون المفتاح. الـ RAM dump قد يحتوي المفتاح.',detect:'استخراج مفتاح التشفير من RAM dump بـ Volatility أو Elcomsoft'},
+  steganography:{title:'🖼️ Steganography',desc:'إخفاء بيانات سرية داخل صور أو ملفات صوتية أو فيديو. موضح في مختبر التشفير — الـ LSB technique تُغيّر البكسلات بشكل لا يُرى.',detect:'StegSolve، Binwalk، تحليل Chi-Square للتوزيع الإحصائي'},
+  logclearing:{title:'🗒️ Log Clearing',desc:'حذف أو تعديل سجلات النظام: Windows Event Log (wevtutil cl Security)، auth.log (shred). الهدف: إخفاء آثار الدخول والأوامر المنفذة.',detect:'فجوات في Event IDs، journald في Linux غير قابل للتعديل بسهولة، Shadow Copies'},
+  renaming:{title:'✏️ File Renaming',desc:'تغيير امتداد الملف: malware.exe → update.docx. أو حذف الامتداد كلياً. يخدع المستخدمين ومكافح الفيروسات البسيط.',detect:'فحص Magic Bytes (أول بايتات الملف) بدل الامتداد — JPEG دائماً FF D8 FF بغض النظر عن الاسم'},
+  slack:{title:'🕳️ Slack Space Hiding',desc:'كل Cluster في NTFS حجمه ثابت (4KB عادةً). إذا كان الملف أصغر، تبقى مساحة فارغة (File Slack). يمكن إخفاء بيانات فيها بأدوات متخصصة.',detect:'Autopsy وأدوات جنائية تفحص Slack Space تلقائياً'},
+  tor:{title:'🧅 Anonymization',desc:'استخدام Tor لإخفاء الـ IP الحقيقي، أو VPN لتحويل الاتصال لبلد آخر، أو Proxy chains. يُعقّد تتبع المهاجم.',detect:'IP في سجلات شبكة الشركة + مطابقته مع قوائم Tor Exit Nodes المعروفة، VPN leak tests'},
+};
+
+function showTechnique(el,type){
+  document.querySelectorAll('.technique-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const d=techniqueData[type];
+  document.getElementById('technique-detail').innerHTML=`
+  <div style="background:#1a0d2e;border:1px solid #2d1a5c;border-radius:8px;padding:16px">
+    <h4 style="color:#8b5cf6;margin-bottom:10px">${d.title}</h4>
+    <p style="color:#aab8c8;font-size:.85rem;line-height:1.8;margin-bottom:10px">${d.desc}</p>
+    <div class="alert alert-success" style="font-size:.82rem">🔍 <strong>كيف يكتشفه المحقق:</strong> ${d.detect}</div>
+  </div>`;
+}
+
+// Timestomping
+function showTimestamp(mode){
+  const views={
+    original:`<div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:monospace;font-size:.78rem;line-height:2">
+    <div style="color:#8b5cf6;margin-bottom:8px">── $STANDARD_INFORMATION (قابل للتعديل) ──</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> 2024-03-15 09:22:11.4829831</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Modified:</span> 2024-03-20 14:28:44.1234567</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Accessed:</span> 2024-03-20 14:28:50.9876543</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">MFT Modified:</span> 2024-03-20 14:30:22.5432198</div>
+    <div style="color:#8b5cf6;margin-top:10px;margin-bottom:8px">── $FILE_NAME (أصعب تعديلاً) ──</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> 2024-03-15 09:22:11.4829831</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Modified:</span> 2024-03-20 14:28:44.1234567</div>
+    </div><div class="alert alert-success" style="margin-top:10px">✅ التواريخ متطابقة — لا يوجد Timestomping</div>`,
+    tampered:`<div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:monospace;font-size:.78rem;line-height:2">
+    <div style="color:#8b5cf6;margin-bottom:8px">── $STANDARD_INFORMATION (بعد Timestomping) ──</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Modified:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Accessed:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Nanoseconds:</span> <span style="color:#ff4444">000000000 ← كلها أصفار — علامة Timestomp!</span></div>
+    <div style="color:#8b5cf6;margin-top:10px;margin-bottom:8px">── $FILE_NAME (لم يتغير) ──</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> <span style="color:#00ff88">2024-03-15 09:22:11.4829831 ← الحقيقي</span></div>
+    </div><div class="alert alert-danger" style="margin-top:10px">🚨 تناقض واضح بين $SI و $FN = Timestomping مؤكد!</div>`,
+    detection:`<div class="terminal">
+    <div class="prompt">analyst@forensics:~$ <span class="cmd">python3 MFTECmd.py -f $MFT --csv mft_output.csv && python3 detect_timestomp.py mft_output.csv</span></div>
+    <div class="out"><span style="color:#ff4444">[TIMESTOMPED] secret_transfer.xlsx
+  $SI Created:  2020-01-01 00:00:00 ← مزوّر
+  $FN Created:  2024-03-15 09:22:11 ← حقيقي
+  Nanoseconds:  000000000 ← Timestomp signature
+  VERDICT: File was created 2024-03-15, timestamps tampered on 2024-03-20 14:29</span>
+<span style="color:#00ff88">[OK] quarterly_report.docx — timestamps consistent</span></div>
+    </div>`
+  };
+  document.getElementById('timestamp-display').innerHTML=views[mode]||'';
+}
+
+// Wipe Demo
+let wipeBlocks=[];
+function buildWipeDemo(){
+  const demo=document.getElementById('wipe-demo');
+  demo.innerHTML='';
+  wipeBlocks=[];
+  for(let i=0;i<32;i++){
+    const el=document.createElement('div');
+    el.className='wipe-block data';
+    demo.appendChild(el);
+    wipeBlocks.push(el);
+  }
+  document.getElementById('wipe-desc').innerHTML='<div class="alert alert-purple">32 block من بيانات سرية على القرص</div>';
+}
+
+function wipeStep(step,btn){
+  document.querySelectorAll('.step-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const desc={
+    0:'<div class="alert alert-purple">📦 البيانات الأصلية — 32 block كلها تحتوي بيانات حساسة</div>',
+    1:'<div class="alert alert-info">⬛ التمريرة الأولى: الكتابة بـ 0x00 فوق كل الـ blocks</div>',
+    2:'<div class="alert alert-info">⬜ التمريرة الثانية: الكتابة بـ 0xFF عكس الأولى</div>',
+    3:'<div class="alert alert-warn">🔀 التمريرة الثالثة: بيانات عشوائية — يجعل الاسترداد شبه مستحيل على HDD</div>',
+    4:'<div class="alert alert-danger">💾 SSD خصوصية: رغم الـ Wipe، قد تبقى بيانات في Over-Provisioned NAND. <span style="color:#ff4444">البقايا المحمّرة = بيانات قابلة للاسترداد من Chip-Off!</span></div>',
+  };
+  const colors={0:'#8b5cf6',1:'#1e3a5c',2:'#7ab3d4',3:'#556070',4:'mixed'};
+  wipeBlocks.forEach((b,i)=>{
+    b.className='wipe-block';
+    if(step===0){b.style.background='#8b5cf6'}
+    else if(step===1){b.style.background='#1e3a5c'}
+    else if(step===2){b.style.background='#7ab3d4'}
+    else if(step===3){b.style.background='#556070'}
+    else{
+      // SSD — some blocks residual
+      if(i%5===0||i%7===0){b.style.background='#ff4444';b.className='wipe-block residual'}
+      else{b.style.background='#1e3a5c'}
+    }
+  });
+  document.getElementById('wipe-desc').innerHTML=desc[step];
+}
+
+// Metadata
+function showWordMeta(){
+  document.getElementById('word-meta').innerHTML=`
+  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px">
+    <div style="color:#8b5cf6;margin-bottom:8px">── report_final.docx — Office Metadata ──</div>
+    <div class="metadata-field"><span class="mf-key">Author:</span><span class="mf-val suspicious">DESKTOP-KH4L1D\khalid ← اسم الجهاز والمستخدم!</span></div>
+    <div class="metadata-field"><span class="mf-key">Last Modified By:</span><span class="mf-val suspicious">khalid.ahmed@company.sa</span></div>
+    <div class="metadata-field"><span class="mf-key">Created:</span><span class="mf-val">2024-03-15 09:22:11</span></div>
+    <div class="metadata-field"><span class="mf-key">Last Modified:</span><span class="mf-val suspicious">2024-03-20 14:25:30 ← في وقت الحادثة!</span></div>
+    <div class="metadata-field"><span class="mf-key">Total Edit Time:</span><span class="mf-val">47 دقيقة</span></div>
+    <div class="metadata-field"><span class="mf-key">Revision Number:</span><span class="mf-val">8</span></div>
+    <div class="metadata-field"><span class="mf-key">Application:</span><span class="mf-val">Microsoft Office Word 2021</span></div>
+    <div class="metadata-field"><span class="mf-key">Company:</span><span class="mf-val suspicious">الشركة المستهدفة — موظف داخلي</span></div>
+    <div class="metadata-field" style="border:none"><span class="mf-key">Template:</span><span class="mf-val">company_template_confidential.dotx</span></div>
+  </div>
+  <div class="alert alert-danger" style="margin-top:10px">🚨 الـ Metadata تُثبت أن خالد أنشأ هذا الملف وعدّله في وقت الحادثة من جهازه الشخصي!</div>`;
+}
+
+function showImageEXIF(){
+  document.getElementById('exif-meta').innerHTML=`
+  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:monospace;font-size:.76rem;line-height:1.9">
+    <div style="color:#8b5cf6;margin-bottom:8px">── image_evidence.jpg — EXIF Data ──</div>
+    <div class="metadata-field"><span class="mf-key">Camera Make:</span><span class="mf-val ok">Samsung</span></div>
+    <div class="metadata-field"><span class="mf-key">Camera Model:</span><span class="mf-val ok">SM-A546E (Galaxy A54)</span></div>
+    <div class="metadata-field"><span class="mf-key">Software:</span><span class="mf-val">A546EXXS3CXC2</span></div>
+    <div class="metadata-field"><span class="mf-key">DateTime Original:</span><span class="mf-val suspicious">2024:03:20 14:32:18 ← وقت الجريمة!</span></div>
+    <div class="metadata-field"><span class="mf-key">GPS Latitude:</span><span class="mf-val suspicious">24° 43' 37.92" N</span></div>
+    <div class="metadata-field"><span class="mf-key">GPS Longitude:</span><span class="mf-val suspicious">46° 40' 28.44" E → مبنى الشركة!</span></div>
+    <div class="metadata-field"><span class="mf-key">GPS Altitude:</span><span class="mf-val">614m</span></div>
+    <div class="metadata-field" style="border:none"><span class="mf-key">Thumbnail:</span><span class="mf-val ok">موجود (128×96px)</span></div>
+  </div>
+  <div class="alert alert-danger" style="margin-top:8px">🚨 الصورة التُقطت داخل مبنى الشركة الساعة 14:32:18 — موقع GPS دقيق!</div>`;
+}
+
+// Timeline
+const timelineData=[
+  {time:'2024-03-19 22:15',desc:'مكالمة هاتفية مع +7903xxxxxxxx (روسيا) مدة 4:23 دقيقة',source:'سجل المكالمات — SIM',type:'suspicious',cat:'phone'},
+  {time:'2024-03-20 08:30',desc:'تسجيل دخول بطاقة خالد — مدخل المبنى الرئيسي',source:'نظام الدخول — Access Control',type:'normal',cat:'file'},
+  {time:'2024-03-20 09:00',desc:'تشغيل الكمبيوتر — Windows Event ID 4624',source:'Windows Event Log',type:'normal',cat:'file'},
+  {time:'2024-03-20 13:55',desc:'اتصال SSH إلى 185.220.101.42 من هاتف خالد',source:'سجل الشبكة — Firewall Log',type:'suspicious',cat:'network'},
+  {time:'2024-03-20 14:20',desc:'USB SanDisk Ultra متصل — USBSTOR Registry',source:'Windows Registry',type:'suspicious',cat:'file'},
+  {time:'2024-03-20 14:25',desc:'نسخ secret_transfer.xlsx إلى USB — File System Events',source:'USN Journal',type:'suspicious',cat:'file'},
+  {time:'2024-03-20 14:28',desc:'HTTP POST إلى secretupload.ru — 1.2MB مرفوع',source:'Proxy Log / Firewall',type:'suspicious',cat:'network'},
+  {time:'2024-03-20 14:30',desc:'حذف secret_transfer.xlsx و company_data.zip',source:'MFT + USN Journal',type:'suspicious',cat:'file'},
+  {time:'2024-03-20 14:31',desc:'WhatsApp: "المهمة اكتملت، الملفات أُرسلت"',source:'WhatsApp msgstore.db',type:'suspicious',cat:'phone'},
+  {time:'2024-03-20 14:32',desc:'صورة التُقطت داخل غرفة الخوادم (EXIF GPS)',source:'EXIF Metadata',type:'suspicious',cat:'phone'},
+  {time:'2024-03-20 15:00',desc:'خروج خالد من المبنى — بطاقة الدخول',source:'نظام الدخول',type:'normal',cat:'file'},
+  {time:'2024-03-20 15:30',desc:'محاولة تسجيل دخول على حساب خالد من IP خارجي ← تناقض!',source:'Windows Event Log 4625',type:'suspicious',cat:'network'},
+];
+
+function renderTimeline(items){
+  document.getElementById('timeline-items').innerHTML=items.map(e=>`
+  <div class="tl-item">
+    <div class="tl-dot ${e.type}"></div>
+    <div class="tl-content">
+      <div class="tl-time">${e.time}</div>
+      <div class="tl-desc" style="color:${e.type==='suspicious'?'#ff8888':'#aab8c8'}">${e.desc}</div>
+      <div class="tl-source">📌 المصدر: ${e.source}</div>
+    </div>
+  </div>`).join('');
+}
+
+function filterTimeline(cat){
+  if(cat==='all') return renderTimeline(timelineData);
+  if(cat==='suspicious') return renderTimeline(timelineData.filter(e=>e.type==='suspicious'));
+  renderTimeline(timelineData.filter(e=>e.cat===cat));
+}
+
+function analyzeConflict(){
+  document.getElementById('conflict-analysis').innerHTML=`
+  <div class="alert alert-danger">
+    <strong>🔍 التحليل:</strong><br>
+    CCTV → خالد غادر 15:00<br>
+    Event Log → تسجيل دخول 15:30 على حساب خالد<br><br>
+    <strong>الاستنتاج:</strong> شخص آخر استخدم بيانات خالد بعد مغادرته — إما:<br>
+    1️⃣ كلمة المرور مُسرَّبة لشريك في الجريمة<br>
+    2️⃣ Session مسروقة (Session Hijacking)<br>
+    3️⃣ Remote Access باستخدام VPN أو RDP<br><br>
+    → يجب فحص الـ IP الذي استخدم للتسجيل من سجل Event ID 4624
+  </div>`;
+}
+
+// Quiz
+const answered={};
+function checkQ(qId,correct,resId,pts){
+  if(answered[qId])return;
+  const sel=document.querySelector(`input[name="${qId}"]:checked`);
+  if(!sel){alert('اختر إجابة أولاً!');return}
+  answered[qId]=true;
+  document.querySelectorAll(`#${qId} label`).forEach(l=>{
+    const v=l.querySelector('input').value;
+    if(v===correct)l.classList.add('correct');
+    else if(l.querySelector('input').checked)l.classList.add('wrong');
+  });
+  document.getElementById(resId).innerHTML=sel.value===correct
+    ?`<div class="alert alert-success">✅ إجابة صحيحة! +${pts} نقطة</div>`
+    :`<div class="alert alert-warn">❌ إجابة خاطئة — راجع الشرح.</div>`;
+}
+
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['antiforensics','timestomp','wiping','metadata','timeline'];
+  document.querySelectorAll('.tab')[tabs.indexOf(id)].classList.add('active');
+}
+
+window.addEventListener('load',()=>{
+  buildWipeDemo();
+  renderTimeline(timelineData);
+  showTimestamp('original');
+});
+</script>
+</body>
+</html>

