@@ -137,9 +137,38 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0
 .chain-step .step-info{flex:1}
 .chain-step .step-info h4{font-size:.9rem;color:#7ab3d4}
 .chain-step .step-info p{font-size:.8rem;color:#556070;margin-top:3px}
+.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#475569;flex-wrap:wrap;gap:6px}
+.site-topbar .author-tag{color:#f59e0b;font-weight:700}
+.site-header-bar{background:linear-gradient(135deg,#0a1628 0%,#0d2145 100%);border-bottom:3px solid #2563eb;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.site-logo-box{width:52px;height:52px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 4px 15px rgba(37,99,235,.35)}
+.site-lab-info{flex:1;min-width:0}
+.site-lab-info h2{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 2px;line-height:1.3}
+.site-lab-info span{font-size:.7rem;color:#93c5fd;letter-spacing:.5px}
+.site-author-block{text-align:left;border-right:1px solid rgba(255,255,255,.08);padding-right:18px;flex-shrink:0}
+.site-author-block .aname{font-size:.95rem;font-weight:700;color:#f59e0b;line-height:1.4}
+.site-author-block .abook{font-size:.68rem;color:#64748b;margin-top:1px}
+.site-footer-bar{background:#04080f;border-top:2px solid #0f2040;padding:24px 30px;text-align:center;margin-top:30px}
+.site-footer-bar p{color:#475569;font-size:.78rem;line-height:2;margin:0}
+.site-footer-bar strong{color:#f59e0b}
+@media(max-width:600px){.site-author-block{border:none;padding:0;text-align:right}.site-header-bar{gap:10px}}
 </style>
 </head>
 <body>
+<div class="site-topbar">
+  <span>🔒 بيئة تدريبية — للاستخدام الأكاديمي فقط &nbsp;|&nbsp; CHFI Interactive Lab</span>
+  <span class="author-tag">م. عبدالله الأسمري &nbsp;·&nbsp; Eng. Abdullah Alasmari</span>
+</div>
+<div class="site-header-bar">
+  <div class="site-logo-box">🔬</div>
+  <div class="site-lab-info">
+    <h2>مختبرات التحليل الجنائي الرقمي</h2>
+    <span>CHFI · Digital Forensics Interactive Labs</span>
+  </div>
+  <div class="site-author-block">
+    <div class="aname">م. عبدالله الأسمري</div>
+    <div class="abook">استناداً إلى كتاب: التحليل الجنائي الرقمي — د. جميل حسين تويلح</div>
+  </div>
+</div>
 
 <div class="header">
   <div>🔍</div>
@@ -957,5 +986,10 @@ function submitReport(){
   updateStats();
 }
 </script>
+<div class="site-footer-bar">
+  <p>صُمِّمت بواسطة <strong>م. عبدالله الأسمري — Eng. Abdullah Alasmari</strong></p>
+  <p>مستناداً إلى كتاب: <strong>التحليل الجنائي الرقمي</strong> — د. جميل حسين تويلح</p>
+  <p style="font-size:.7rem;color:#334155;margin-top:4px">© 2025 · جميع المحتوى لأغراض تعليمية أكاديمية</p>
+</div>
 </body>
 </html>
