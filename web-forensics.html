@@ -472,7 +472,7 @@ const logData=[
   {ip:'185.220.101.42',time:'14:20:23',method:'GET',path:'/config.php.bak',code:404,size:0,type:'scan'},
   {ip:'10.0.0.5',time:'14:20:30',method:'POST',path:'/upload.php',code:200,size:1280542,type:'normal'},
   {ip:'185.220.101.42',time:'14:20:45',method:'POST',path:'/login.php',code:200,size:892,type:'sql'},
-  {ip:'185.220.101.42',time:'14:21:00',method:'GET',path:"/search?q=<script>alert(1)</script>",code:200,size:1200,type:'xss'},
+  {ip:'185.220.101.42',time:'14:21:00',method:'GET',path:"/search?q=\x3Cscript\x3Ealert(1)\x3C/script\x3E",code:200,size:1200,type:'xss'},
 ];
 
 function getLogLine(e){
