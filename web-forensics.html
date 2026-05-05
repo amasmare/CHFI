@@ -83,9 +83,9 @@ input:focus{outline:none;border-color:#f59e0b}
   <div style="font-size:2rem">🌐</div>
   <div>
     <h1>مختبر جنائيات الويب والبريد الإلكتروني</h1>
-    <div style="color:#d97706;font-size:.82rem">Web & Email Forensics — الفصل الثامن</div>
+    <div style="color:#d97706;font-size:.82rem">Web & Email Forensics — الفصل الخامس</div>
   </div>
-  <a href="lab.html" style="margin-right:auto;color:#7ab3d4;font-size:.85rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 14px;border-radius:6px">← المختبر الرئيسي</a>
+  <a href="index.html" style="margin-right:auto;color:#7ab3d4;font-size:.85rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 14px;border-radius:6px">← الصفحة الرئيسية</a>
 </div>
 
 <div class="tabs">
@@ -448,11 +448,11 @@ div.textContent = userInput;</div>
   }
   fixTap();
   new MutationObserver(fixTap).observe(document.body,{childList:true,subtree:true});
-  var moved=false;
-  document.addEventListener('touchstart',function(){moved=false;},{passive:true});
-  document.addEventListener('touchmove',function(){moved=true;},{passive:true});
+  var sx=0,sy=0;
+  document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
   document.addEventListener('touchend',function(e){
-    if(moved)return;
+    var dx=Math.abs(e.changedTouches[0].clientX-sx),dy=Math.abs(e.changedTouches[0].clientY-sy);
+    if(dx>10||dy>10)return;
     var el=e.target;
     while(el&&el!==document.body){
       if(el.hasAttribute('onclick')){e.preventDefault();el.click();return;}

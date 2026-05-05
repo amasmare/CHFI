@@ -98,7 +98,7 @@ h2{color:#22c55e;margin-bottom:6px;font-size:1.15rem}
     <h1>مختبر الذاكرة العشوائية والأقراص الصلبة</h1>
     <div style="color:#16a34a;font-size:.82rem">RAM Forensics · Disk Structure · Linux Forensics — الفصلان الأول والخامس</div>
   </div>
-  <a href="lab.html" style="margin-right:auto;color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← المختبر الرئيسي</a>
+  <a href="index.html" style="margin-right:auto;color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← الصفحة الرئيسية</a>
 </div>
 
 <div class="tabs">
@@ -535,11 +535,11 @@ Mar 20 09:15:23 server sshd[2341]: pam_unix(sshd:session): session opened for us
   }
   fixTap();
   new MutationObserver(fixTap).observe(document.body,{childList:true,subtree:true});
-  var moved=false;
-  document.addEventListener('touchstart',function(){moved=false;},{passive:true});
-  document.addEventListener('touchmove',function(){moved=true;},{passive:true});
+  var sx=0,sy=0;
+  document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
   document.addEventListener('touchend',function(e){
-    if(moved)return;
+    var dx=Math.abs(e.changedTouches[0].clientX-sx),dy=Math.abs(e.changedTouches[0].clientY-sy);
+    if(dx>10||dy>10)return;
     var el=e.target;
     while(el&&el!==document.body){
       if(el.hasAttribute('onclick')){e.preventDefault();el.click();return;}
