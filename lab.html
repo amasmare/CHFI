@@ -147,9 +147,12 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0
     <h1>مختبر التحليل الجنائي الرقمي التدريبي</h1>
     <div style="color:#7ab3d4;font-size:.8rem">Digital Forensics Training Lab — بناءً على كتاب د. جميل طويلة</div>
   </div>
-  <div style="margin-right:auto;display:flex;gap:10px;align-items:center">
+  <div style="margin-right:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
     <span class="badge">🔴 LIVE</span>
     <span style="color:#7ab3d4;font-size:.85rem" id="clock"></span>
+    <span id="prog-badge" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);border-radius:20px;padding:4px 12px;font-size:.78rem;color:#00d4ff;white-space:nowrap">🏆 0/100 نقطة</span>
+    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:4px 8px;font-size:.72rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
+    <a href="index.html" style="color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:5px 12px;border-radius:6px;white-space:nowrap">← الرئيسية</a>
   </div>
 </div>
 
@@ -766,7 +769,21 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0
 })();
 
 // State
+const LAB_KEY='chfi_lab1',LAB_TOTAL=100;
 const state = {score:0, completed:[], labScores:{}};
+function saveLabScore(){
+  localStorage.setItem(LAB_KEY,JSON.stringify({score:state.score,total:LAB_TOTAL}));
+  const el=document.getElementById('prog-badge');
+  if(el)el.textContent=`🏆 ${state.score}/${LAB_TOTAL} نقطة`;
+}
+function resetProg(){
+  if(!confirm('هل تريد مسح تقدمك وإعادة المحاولة؟'))return;
+  localStorage.removeItem(LAB_KEY);location.reload();
+}
+(function loadLabScore(){
+  const d=JSON.parse(localStorage.getItem(LAB_KEY)||'{}');
+  if(d.score){state.score=d.score;}
+})();
 const packetDetails = {
   1: `Frame 1: DNS Query
   Source: 192.168.1.105 (Khalid-PC)
@@ -870,6 +887,7 @@ function checkQuiz(qId,correct,badgeId,pts){
 function addScore(pts){
   state.score+=pts;
   updateStats();
+  saveLabScore();
 }
 
 function updateStats(){

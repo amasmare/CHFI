@@ -99,7 +99,11 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
     <h1>مختبر مكافحة الجنائيات وتحليل البيانات الوصفية</h1>
     <div style="color:#7c3aed;font-size:.82rem">Anti-Forensics · Metadata Analysis · Incident Timeline</div>
   </div>
-  <a href="index.html" style="margin-right:auto;color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← الصفحة الرئيسية</a>
+  <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+    <span id="prog-badge" style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#a78bfa;white-space:nowrap">🏆 0/60 نقطة</span>
+    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
+    <a href="index.html" style="color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← الرئيسية</a>
+  </div>
 </div>
 
 <div class="tabs">
@@ -646,18 +650,49 @@ function analyzeConflict(){
 }
 
 // Quiz
+const LAB_KEY='chfi_antiforensics',LAB_TOTAL=60;
 const answered={};
+function saveProg(qId,resId,ok,pts){
+  const d=JSON.parse(localStorage.getItem(LAB_KEY)||'{"q":{}}');
+  if(!d.q)d.q={};
+  d.q[qId]={res:resId,ok:ok,pts:ok?pts:0};
+  localStorage.setItem(LAB_KEY,JSON.stringify(d));
+  updateBadge();
+}
+function updateBadge(){
+  const d=JSON.parse(localStorage.getItem(LAB_KEY)||'{}');
+  const score=Object.values(d.q||{}).reduce((s,q)=>s+(q.pts||0),0);
+  const el=document.getElementById('prog-badge');
+  if(el)el.textContent=`🏆 ${score}/${LAB_TOTAL} نقطة`;
+}
+function loadProg(){
+  const d=JSON.parse(localStorage.getItem(LAB_KEY)||'{}');
+  Object.entries(d.q||{}).forEach(([qId,r])=>{
+    answered[qId]=true;
+    const el=document.getElementById(r.res);
+    if(el&&!el.innerHTML)el.innerHTML=r.ok
+      ?`<div class="alert alert-success">✅ أجبت صحيحاً — ${r.pts} نقطة</div>`
+      :`<div class="alert alert-warn">❌ أجبت خطأ في المحاولة السابقة</div>`;
+  });
+  updateBadge();
+}
+function resetProg(){
+  if(!confirm('هل تريد مسح تقدمك وإعادة المحاولة؟'))return;
+  localStorage.removeItem(LAB_KEY);location.reload();
+}
 function checkQ(qId,correct,resId,pts){
   if(answered[qId])return;
   const sel=document.querySelector(`input[name="${qId}"]:checked`);
   if(!sel){alert('اختر إجابة أولاً!');return}
   answered[qId]=true;
+  const ok=sel.value===correct;
+  saveProg(qId,resId,ok,pts);
   document.querySelectorAll(`#${qId} label`).forEach(l=>{
     const v=l.querySelector('input').value;
     if(v===correct)l.classList.add('correct');
     else if(l.querySelector('input').checked)l.classList.add('wrong');
   });
-  document.getElementById(resId).innerHTML=sel.value===correct
+  document.getElementById(resId).innerHTML=ok
     ?`<div class="alert alert-success">✅ إجابة صحيحة! +${pts} نقطة</div>`
     :`<div class="alert alert-warn">❌ إجابة خاطئة — راجع الشرح.</div>`;
 }
@@ -674,6 +709,7 @@ window.addEventListener('load',()=>{
   buildWipeDemo();
   renderTimeline(timelineData);
   showTimestamp('original');
+  loadProg();
 });
 </script>
 </body>

@@ -480,6 +480,10 @@ footer{
         <span class="stat-num">100%</span>
         <span class="stat-label">يعمل بدون إنترنت</span>
       </div>
+      <div class="stat">
+        <span class="stat-num" id="total-score" style="font-size:18px">0/490</span>
+        <span class="stat-label">نقاطك الكلية</span>
+      </div>
     </div>
   </header>
 
@@ -840,6 +844,76 @@ footer{
     }
   },false);
 })();
+
+// Progress tracking
+const LABS=[
+  {key:'chfi_lab1',   total:100, cardIdx:0},
+  {key:'chfi_crypto', total:0,   cardIdx:1},
+  {key:'chfi_web',    total:75,  cardIdx:2},
+  {key:'chfi_mobile', total:90,  cardIdx:3},
+  {key:'chfi_malware',total:75,  cardIdx:4},
+  {key:'chfi_ramdisk',total:90,  cardIdx:5},
+  {key:'chfi_antiforensics',total:60,cardIdx:6},
+];
+
+function getScore(lab){
+  const d=JSON.parse(localStorage.getItem(lab.key)||'{}');
+  if(lab.key==='chfi_crypto') return d.visited?{score:0,pct:100,visited:true}:{score:0,pct:0,visited:false};
+  if(lab.key==='chfi_lab1') return {score:d.score||0,pct:lab.total?Math.round((d.score||0)/lab.total*100):0};
+  const score=Object.values(d.q||{}).reduce((s,q)=>s+(q.pts||0),0);
+  return {score,pct:lab.total?Math.round(score/lab.total*100):0};
+}
+
+function buildProgressBars(){
+  const cards=document.querySelectorAll('.lab-card');
+  let totalScore=0,totalMax=0;
+  LABS.forEach(lab=>{
+    const card=cards[lab.cardIdx];
+    if(!card)return;
+    const {score,pct,visited}=getScore(lab);
+    totalScore+=score; totalMax+=lab.total;
+    // Add progress bar to card footer
+    const footer=card.querySelector('.lab-card-footer');
+    if(!footer)return;
+    let existing=card.querySelector('.prog-bar-wrap');
+    if(!existing){
+      const wrap=document.createElement('div');
+      wrap.className='prog-bar-wrap';
+      wrap.style.cssText='padding:0 24px 16px;';
+      const bar=document.createElement('div');
+      bar.style.cssText='background:rgba(255,255,255,.06);border-radius:20px;height:6px;overflow:hidden';
+      const fill=document.createElement('div');
+      fill.className='prog-fill';
+      fill.style.cssText='height:100%;border-radius:20px;transition:width .5s';
+      bar.appendChild(fill);
+      const label=document.createElement('div');
+      label.className='prog-label';
+      label.style.cssText='font-size:11px;color:#64748b;margin-top:4px';
+      wrap.appendChild(bar); wrap.appendChild(label);
+      card.insertBefore(wrap,footer);
+    }
+    const fill=card.querySelector('.prog-fill');
+    const label=card.querySelector('.prog-label');
+    if(lab.key==='chfi_crypto'){
+      fill.style.background=visited?'#10b981':'rgba(255,255,255,.1)';
+      fill.style.width=visited?'100%':'0%';
+      label.textContent=visited?'✅ تمت الزيارة':'لم تفتح بعد';
+    } else {
+      const color=pct===100?'#10b981':pct>0?'#00d4ff':'rgba(255,255,255,.1)';
+      fill.style.background=color;
+      fill.style.width=pct+'%';
+      label.textContent=pct===100?`✅ مكتمل — ${score}/${lab.total} نقطة`:pct>0?`${score}/${lab.total} نقطة (${pct}%)`:'لم تبدأ بعد';
+    }
+  });
+  // Update header stats
+  const statNums=document.querySelectorAll('.stat-num');
+  // find and update total score display if present
+  const totalPct=totalMax?Math.round(totalScore/totalMax*100):0;
+  const el=document.getElementById('total-score');
+  if(el)el.textContent=`${totalScore}/${totalMax} نقطة (${totalPct}%)`;
+}
+
+document.addEventListener('DOMContentLoaded',buildProgressBars);
 </script>
 
 </body>
