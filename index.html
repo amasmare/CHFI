@@ -466,6 +466,78 @@ footer{
 .site-footer-bar p{color:#475569;font-size:.8rem;line-height:2.2;margin:0}
 .site-footer-bar strong{color:#f59e0b}
 @media(max-width:600px){.site-author-block{border:none;padding:0;text-align:right}.site-header-bar{gap:12px}}
+
+/* ===== Share & Report ===== */
+.share-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,.12);border:1px solid rgba(0,212,255,.4);color:#00d4ff;border-radius:10px;padding:8px 20px;font-size:.84rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:18px}
+.share-btn:hover{background:rgba(0,212,255,.25);border-color:#00d4ff}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9000;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#0d1b2a;border:1px solid #1e3a5f;border-radius:18px;padding:32px 28px;max-width:480px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.modal-box h3{font-size:1.05rem;font-weight:800;color:#00d4ff;margin-bottom:8px}
+.modal-box p{font-size:.84rem;color:#94a3b8;line-height:1.7;margin-bottom:16px}
+.share-input{width:100%;background:#071020;border:1px solid #1e3a5c;border-radius:8px;color:#e0e6f0;padding:10px 14px;font-size:.9rem;margin:10px 0 14px;font-family:inherit;text-align:right}
+.modal-confirm{background:#1d4ed8;color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s;width:100%;margin-bottom:8px}
+.modal-confirm:hover{background:#1e40af}
+.modal-cancel{background:transparent;color:#64748b;border:1px solid #1e3a5c;border-radius:8px;padding:8px 24px;font-size:.84rem;font-weight:700;cursor:pointer;width:100%}
+.share-link-box{background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:10px 14px;font-size:.75rem;color:#93c5fd;word-break:break-all;margin-bottom:10px;direction:ltr;text-align:left}
+.copy-btn{background:#0891b2;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s;flex:1}
+.copy-btn:hover{background:#0e7490}
+.copy-btn.copied{background:#10b981}
+.tg-btn{flex:1;background:#2CA5E0;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s}
+.tg-btn:hover{background:#1a8fc0}
+/* Report overlay */
+.report-overlay{display:none;position:fixed;inset:0;background:#050c18;z-index:10000;overflow-y:auto;padding:24px 16px 60px}
+.report-overlay.open{display:block}
+.report-wrap{max-width:780px;margin:0 auto}
+.report-header{background:linear-gradient(135deg,#0a1628,#0d2145);border:1px solid #1e3a5f;border-radius:16px;padding:28px 32px;margin-bottom:20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.report-logo{width:64px;height:64px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0}
+.report-header-info{flex:1}
+.report-header-info h1{font-size:1.25rem;font-weight:800;color:#fff;margin:0 0 4px}
+.report-header-info p{font-size:.78rem;color:#93c5fd;margin:0}
+.report-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.report-meta-card{background:#0d1b2a;border:1px solid #1e3a5f;border-radius:12px;padding:16px 20px}
+.report-meta-card .rmc-label{font-size:.7rem;color:#64748b;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.report-meta-card .rmc-value{font-size:1rem;font-weight:700;color:#e0e6f0}
+.report-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.rsum-card{background:#0d1b2a;border:1px solid #1e3a5f;border-radius:12px;padding:16px;text-align:center}
+.rsum-card .rsum-num{font-size:1.6rem;font-weight:800;margin-bottom:4px}
+.rsum-card .rsum-label{font-size:.68rem;color:#64748b;line-height:1.4}
+.report-section{background:#0d1b2a;border:1px solid #1e3a5f;border-radius:14px;padding:20px 24px;margin-bottom:20px}
+.report-section h3{font-size:.86rem;font-weight:700;color:#7ab3d4;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid #1e3a5f;padding-bottom:10px}
+.overall-bar-track{background:#1e3a5c;border-radius:20px;height:14px;overflow:hidden}
+.overall-bar-fill{height:100%;border-radius:20px;transition:width .8s}
+.lab-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(30,58,95,.5)}
+.lab-row:last-child{border-bottom:none}
+.lab-row-icon{font-size:1.3rem;flex-shrink:0}
+.lab-row-name{flex:1;font-size:.85rem;font-weight:600;color:#e0e6f0}
+.lab-row-chapter{font-size:.7rem;color:#64748b;margin-top:2px}
+.lab-row-bar{width:90px;background:#1e3a5c;border-radius:10px;height:8px;overflow:hidden;flex-shrink:0}
+.lab-row-bar-fill{height:100%;border-radius:10px;transition:width .6s}
+.lab-row-score{font-size:.78rem;font-weight:700;flex-shrink:0;width:80px;text-align:left}
+.lab-grade-pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:700}
+.grade-pill-A{background:rgba(52,211,153,.15);color:#34d399}
+.grade-pill-B{background:rgba(0,212,255,.15);color:#00d4ff}
+.grade-pill-C{background:rgba(251,191,36,.15);color:#fbbf24}
+.grade-pill-D{background:rgba(248,113,113,.15);color:#f87171}
+.grade-pill-none{background:rgba(71,85,105,.15);color:#64748b}
+.grade-dist{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.grade-dist-item{flex:1;min-width:55px;background:#071020;border-radius:10px;padding:10px 8px;text-align:center;border:1px solid #1e3a5f}
+.grade-dist-item .gdi-num{font-size:1.3rem;font-weight:800}
+.grade-dist-item .gdi-label{font-size:.66rem;color:#64748b;margin-top:2px}
+.report-actions{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.print-btn{background:#1d4ed8;color:#fff;border:none;border-radius:10px;padding:12px 28px;font-size:.88rem;font-weight:700;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:8px}
+.print-btn:hover{background:#1e40af}
+.back-report-btn{background:transparent;color:#64748b;border:1px solid #1e3a5c;border-radius:10px;padding:12px 28px;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
+.back-report-btn:hover{border-color:#64748b;color:#94a3b8}
+@media(max-width:600px){.report-summary{grid-template-columns:repeat(2,1fr)}.report-meta{grid-template-columns:1fr}.lab-row-bar{width:60px}}
+@media print{
+  .report-overlay{background:#fff;color:#000;padding:0}
+  .report-actions,.back-report-btn,.print-btn{display:none!important}
+  .report-header,.report-section,.report-meta-card,.rsum-card{background:#f8fafc!important;border-color:#e2e8f0!important}
+  .rmc-value,.lab-row-name,.report-header-info h1{color:#1e293b!important}
+  .rmc-label,.lab-row-chapter,.rsum-label,.report-section h3{color:#64748b!important}
+  body > *:not(.report-overlay){display:none!important}
+}
 </style>
 </head>
 <body>
@@ -514,6 +586,7 @@ footer{
         <span class="stat-label">نقاطك الكلية</span>
       </div>
     </div>
+    <button class="share-btn" onclick="openShareModal()">📤 مشاركة نتائجي مع الأستاذ</button>
   </header>
 
   <!-- Book banner -->
@@ -841,6 +914,39 @@ footer{
     </div>
   </div>
 
+  <!-- Share modal -->
+  <div class="modal-overlay" id="share-modal">
+    <div class="modal-box">
+      <h3>📤 مشاركة نتائجي مع الأستاذ</h3>
+      <p>أدخل اسمك الكامل، ثم انسخ الرابط وأرسله لأستاذك عبر واتساب أو البريد الإلكتروني أو نظام الإدارة التعليمية.</p>
+      <input class="share-input" id="student-name-input" type="text" placeholder="الاسم الكامل (مثال: عبدالله محمد الأسمري)" maxlength="60" />
+      <button class="modal-confirm" onclick="generateShareLink()">🔗 إنشاء رابط التقرير</button>
+      <div id="share-link-area" style="display:none;margin-top:12px">
+        <div style="font-size:.78rem;color:#34d399;margin-bottom:6px;font-weight:700">✓ الرابط جاهز — انسخه وأرسله:</div>
+        <div class="share-link-box" id="share-link-box"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="copy-btn" id="copy-btn" onclick="copyShareLink()">📋 نسخ الرابط</button>
+          <button class="tg-btn" onclick="shareToTelegram()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+            إرسال عبر تيليغرام
+          </button>
+        </div>
+      </div>
+      <button class="modal-cancel" style="margin-top:12px" onclick="closeShareModal()">إلغاء</button>
+    </div>
+  </div>
+
+  <!-- Report Overlay -->
+  <div class="report-overlay" id="report-overlay">
+    <div class="report-wrap">
+      <div id="report-content"></div>
+      <div class="report-actions">
+        <button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+        <button class="back-report-btn" onclick="document.getElementById('report-overlay').classList.remove('open');history.replaceState(null,'',window.location.pathname)">← العودة للمختبرات</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <p>مختبرات التحليل الجنائي الرقمي — بيئة تدريبية تفاعلية مبنية على كتاب د. جميل حسين تويلح</p>
@@ -943,6 +1049,176 @@ function buildProgressBars(){
 }
 
 document.addEventListener('DOMContentLoaded',buildProgressBars);
+
+// ===== Lab metadata =====
+var LAB_META=[
+  {key:'chfi_lab1',       num:'01',name:'أساسيات التحليل الجنائي',    chapter:'الفصول 1، 3، 4',icon:'🔍',color:'#00d4ff',total:100},
+  {key:'chfi_crypto',     num:'02',name:'التشفير وأمن المعلومات',      chapter:'الفصل 2',        icon:'🔐',color:'#a78bfa',total:0,  noScore:true},
+  {key:'chfi_web',        num:'03',name:'الجرائم الإلكترونية والويب',  chapter:'الفصل 5',        icon:'🌐',color:'#34d399',total:75},
+  {key:'chfi_mobile',     num:'04',name:'الجنائيات المحمولة',          chapter:'الفصل 6',        icon:'📱',color:'#fbbf24',total:90},
+  {key:'chfi_malware',    num:'05',name:'تحليل البرمجيات الخبيثة',    chapter:'الفصل 7',        icon:'🦠',color:'#f87171',total:75},
+  {key:'chfi_ramdisk',    num:'06',name:'RAM والأقراص وLinux',          chapter:'الفصول 8، 9',   icon:'💾',color:'#22d3ee',total:90},
+  {key:'chfi_antiforensics',num:'07',name:'مضادات الجنائيات والجداول الزمنية',chapter:'الفصول 10، 11',icon:'🕵️',color:'#fb923c',total:60},
+];
+
+function getLabScore(lab){
+  var raw=localStorage.getItem(lab.key);
+  if(!raw)return null;
+  try{
+    var d=JSON.parse(raw);
+    if(lab.noScore)return{score:0,total:0,pct:d.visited?100:0,visited:!!d.visited};
+    if(lab.key==='chfi_lab1'){var s=d.score||0;return{score:s,total:lab.total,pct:lab.total?Math.round(s/lab.total*100):0};}
+    var s=Object.values(d.q||{}).reduce(function(a,q){return a+(q.pts||0);},0);
+    return{score:s,total:lab.total,pct:lab.total?Math.round(s/lab.total*100):0};
+  }catch(e){return null;}
+}
+
+// ===== Share modal =====
+function openShareModal(){
+  document.getElementById('share-modal').classList.add('open');
+  document.getElementById('share-link-area').style.display='none';
+  document.getElementById('student-name-input').value='';
+  var cb=document.getElementById('copy-btn');
+  if(cb){cb.textContent='📋 نسخ الرابط';cb.className='copy-btn';}
+}
+function closeShareModal(){document.getElementById('share-modal').classList.remove('open');}
+function generateShareLink(){
+  var name=document.getElementById('student-name-input').value.trim();
+  if(!name){
+    var inp=document.getElementById('student-name-input');
+    inp.focus();inp.style.borderColor='#f87171';return;
+  }
+  document.getElementById('student-name-input').style.borderColor='';
+  var scores={};
+  LAB_META.forEach(function(lab){
+    var s=getLabScore(lab);
+    if(s)scores[lab.key]=s;
+  });
+  var data={n:name,d:new Date().toLocaleDateString('ar-SA'),scores:scores,v:1};
+  var encoded=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+  var url=window.location.href.split('#')[0]+'#report='+encoded;
+  document.getElementById('share-link-box').textContent=url;
+  document.getElementById('share-link-area').style.display='block';
+}
+function copyShareLink(){
+  var link=document.getElementById('share-link-box').textContent;
+  var btn=document.getElementById('copy-btn');
+  var done=function(){btn.textContent='✅ تم النسخ!';btn.className='copy-btn copied';setTimeout(function(){btn.textContent='📋 نسخ الرابط';btn.className='copy-btn';},2500);};
+  if(navigator.clipboard){navigator.clipboard.writeText(link).then(done);}
+  else{var ta=document.createElement('textarea');ta.value=link;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}
+}
+function shareToTelegram(){
+  var link=document.getElementById('share-link-box').textContent;
+  var name=document.getElementById('student-name-input').value.trim()||'الطالب';
+  var text='تقرير أداء الطالب '+name+' — مختبرات التحليل الجنائي الرقمي CHFI';
+  window.open('https://t.me/share/url?url='+encodeURIComponent(link)+'&text='+encodeURIComponent(text),'_blank');
+}
+
+// ===== Report rendering =====
+function gradeInfo(pct){
+  if(pct>=90)return{g:'A',cls:'grade-pill-A',bar:'#34d399',label:'ممتاز'};
+  if(pct>=75)return{g:'B',cls:'grade-pill-B',bar:'#00d4ff',label:'جيد جداً'};
+  if(pct>=60)return{g:'C',cls:'grade-pill-C',bar:'#fbbf24',label:'جيد'};
+  return{g:'D',cls:'grade-pill-D',bar:'#f87171',label:'يحتاج مراجعة'};
+}
+function renderReport(data){
+  var scores=data.scores||{};
+  var scoredLabs=LAB_META.filter(function(l){return !l.noScore;});
+  var completed=scoredLabs.filter(function(l){return scores[l.key];}).length;
+  var cryptoDone=!!(scores['chfi_crypto']&&scores['chfi_crypto'].visited);
+  var donePcts=scoredLabs.map(function(l){return scores[l.key]?scores[l.key].pct:0;}).filter(function(p){return p>0;});
+  var avg=donePcts.length?Math.round(donePcts.reduce(function(a,b){return a+b;},0)/donePcts.length):0;
+  var totalPts=scoredLabs.reduce(function(a,l){return a+(scores[l.key]?scores[l.key].score:0);},0);
+  var totalMax=490;
+  var overallGi=avg>0?gradeInfo(avg):{g:'—',cls:'grade-pill-none',bar:'#475569',label:'لم يبدأ بعد'};
+  var dist={A:0,B:0,C:0,D:0};
+  scoredLabs.forEach(function(l){if(scores[l.key]){var gi=gradeInfo(scores[l.key].pct);if(dist[gi.g]!==undefined)dist[gi.g]++;}});
+  var pctDone=(completed/6*100).toFixed(0);
+
+  var labRows=LAB_META.map(function(l){
+    var d=scores[l.key];
+    if(l.noScore){
+      var vis=d&&d.visited;
+      return '<div class="lab-row">'
+        +'<div class="lab-row-icon">'+l.icon+'</div>'
+        +'<div style="flex:1"><div class="lab-row-name">'+l.num+'. '+l.name+'</div><div class="lab-row-chapter">'+l.chapter+'</div></div>'
+        +'<div class="lab-row-bar"><div class="lab-row-bar-fill" style="width:'+(vis?'100':'0')+'%;background:'+(vis?'#a78bfa':'#1e3a5c')+';"></div></div>'
+        +'<div class="lab-row-score" style="color:'+(vis?'#a78bfa':'#475569')+'">'+(vis?'✅ زيارة':'—')+'</div>'
+        +'</div>';
+    }
+    if(!d)return '<div class="lab-row">'
+      +'<div class="lab-row-icon">'+l.icon+'</div>'
+      +'<div style="flex:1"><div class="lab-row-name">'+l.num+'. '+l.name+'</div><div class="lab-row-chapter">'+l.chapter+'</div></div>'
+      +'<div class="lab-row-bar"><div class="lab-row-bar-fill" style="width:0%;background:#1e3a5c;"></div></div>'
+      +'<div class="lab-row-score" style="color:#475569">لم يبدأ</div>'
+      +'</div>';
+    var gi=gradeInfo(d.pct);
+    return '<div class="lab-row">'
+      +'<div class="lab-row-icon">'+l.icon+'</div>'
+      +'<div style="flex:1"><div class="lab-row-name">'+l.num+'. '+l.name+'</div><div class="lab-row-chapter">'+l.chapter+'</div></div>'
+      +'<div class="lab-row-bar"><div class="lab-row-bar-fill" style="width:'+d.pct+'%;background:'+gi.bar+';"></div></div>'
+      +'<div class="lab-row-score" style="color:'+gi.bar+'">'+d.score+'/'+d.total+' <span class="lab-grade-pill '+gi.cls+'">'+gi.g+'</span></div>'
+      +'</div>';
+  }).join('');
+
+  var html=''
+    +'<div class="report-header">'
+    +'<div class="report-logo">🔬</div>'
+    +'<div class="report-header-info">'
+    +'<h1>تقرير أداء الطالب — مختبرات التحليل الجنائي الرقمي</h1>'
+    +'<p>CHFI · Digital Forensics Interactive Labs · م. عبدالله الأسمري</p>'
+    +'</div></div>'
+    +'<div class="report-meta">'
+    +'<div class="report-meta-card"><div class="rmc-label">اسم الطالب</div><div class="rmc-value" style="font-size:1.15rem">'+data.n+'</div></div>'
+    +'<div class="report-meta-card"><div class="rmc-label">تاريخ التقرير</div><div class="rmc-value">'+data.d+'</div></div>'
+    +'</div>'
+    +'<div class="report-summary">'
+    +'<div class="rsum-card"><div class="rsum-num" style="color:#00d4ff">'+completed+'<span style="font-size:1rem;color:#475569">/6</span></div><div class="rsum-label">مختبرات مكتملة (بنقاط)</div></div>'
+    +'<div class="rsum-card"><div class="rsum-num" style="color:'+overallGi.bar+'">'+avg+'<span style="font-size:1rem;color:#475569">%</span></div><div class="rsum-label">متوسط النتيجة</div></div>'
+    +'<div class="rsum-card"><div class="rsum-num"><span class="lab-grade-pill '+overallGi.cls+'" style="font-size:1.3rem;padding:5px 16px">'+overallGi.g+'</span></div><div class="rsum-label" style="margin-top:6px">التقدير العام<br>'+overallGi.label+'</div></div>'
+    +'<div class="rsum-card"><div class="rsum-num" style="color:#fbbf24">'+totalPts+'<span style="font-size:1rem;color:#475569">/'+totalMax+'</span></div><div class="rsum-label">مجموع النقاط</div></div>'
+    +'</div>'
+    +'<div class="report-section">'
+    +'<h3>التقدم العام في المنهج</h3>'
+    +'<div style="display:flex;justify-content:space-between;font-size:.78rem;color:#7ab3d4;margin-bottom:6px"><span>اكتمال المختبرات (بنقاط)</span><span>'+completed+' / 6 ('+pctDone+'%)</span></div>'
+    +'<div class="overall-bar-track"><div class="overall-bar-fill" style="width:'+pctDone+'%;background:'+overallGi.bar+'"></div></div>'
+    +'<div style="margin-top:6px;font-size:.72rem;color:#64748b">مختبر التشفير (المختبر 2): '+(cryptoDone?'<span style="color:#a78bfa">✅ تمت الزيارة</span>':'<span style="color:#475569">لم يُفتح بعد</span>')+'</div>'
+    +'<div class="grade-dist">'
+    +'<div class="grade-dist-item"><div class="gdi-num" style="color:#34d399">'+dist.A+'</div><div class="gdi-label">ممتاز (A)<br>90%+</div></div>'
+    +'<div class="grade-dist-item"><div class="gdi-num" style="color:#00d4ff">'+dist.B+'</div><div class="gdi-label">جيد جداً (B)<br>75–89%</div></div>'
+    +'<div class="grade-dist-item"><div class="gdi-num" style="color:#fbbf24">'+dist.C+'</div><div class="gdi-label">جيد (C)<br>60–74%</div></div>'
+    +'<div class="grade-dist-item"><div class="gdi-num" style="color:#f87171">'+dist.D+'</div><div class="gdi-label">يحتاج مراجعة (D)<br>أقل من 60%</div></div>'
+    +'<div class="grade-dist-item"><div class="gdi-num" style="color:#475569">'+(6-completed)+'</div><div class="gdi-label">لم يُكمل<br>بعد</div></div>'
+    +'</div></div>'
+    +'<div class="report-section">'
+    +'<h3>تفاصيل نتائج كل مختبر</h3>'
+    +'<div style="display:flex;align-items:center;font-size:.68rem;color:#475569;padding:4px 0 10px;border-bottom:1px solid #1e3a5f;margin-bottom:4px">'
+    +'<div style="flex:1">المختبر والفصل</div>'
+    +'<div style="width:90px;text-align:center">التقدم</div>'
+    +'<div style="width:80px;text-align:left">النتيجة</div></div>'
+    +labRows
+    +'</div>'
+    +'<div style="background:#0d1b2a;border:1px solid #1e3a5f;border-radius:12px;padding:16px 20px;text-align:center;color:#475569;font-size:.78rem;line-height:2">'
+    +'صُمِّمت بواسطة <strong style="color:#f59e0b">م. عبدالله الأسمري — Eng. Abdullah Alasmari</strong><br>'
+    +'استناداً إلى كتاب: <strong style="color:#93c5fd">التحليل الجنائي الرقمي</strong> — د. جميل حسين تويلح<br>'
+    +'<span style="font-size:.7rem">هذا التقرير تم إنشاؤه تلقائياً من نتائج الطالب المحفوظة محلياً في المتصفح</span>'
+    +'</div>';
+
+  document.getElementById('report-content').innerHTML=html;
+  document.getElementById('report-overlay').classList.add('open');
+  window.scrollTo(0,0);
+}
+
+function checkForReport(){
+  var hash=window.location.hash;
+  if(!hash||hash.indexOf('#report=')<0)return;
+  try{
+    var encoded=hash.slice(8);
+    var data=JSON.parse(decodeURIComponent(escape(atob(encoded))));
+    renderReport(data);
+  }catch(e){console.error('Report parse error',e);}
+}
+checkForReport();
 </script>
 
 <div class="site-footer-bar">
