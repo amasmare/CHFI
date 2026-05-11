@@ -919,45 +919,45 @@ footer{
     </div>
   </div>
 
-  <!-- Share modal -->
-  <div class="modal-overlay" id="share-modal">
-    <div class="modal-box">
-      <h3>📤 مشاركة نتائجي مع الأستاذ</h3>
-      <p>أدخل اسمك الكامل، ثم انسخ الرابط وأرسله لأستاذك عبر واتساب أو البريد الإلكتروني أو نظام الإدارة التعليمية.</p>
-      <input class="share-input" id="student-name-input" type="text" placeholder="الاسم الكامل (مثال: عبدالله محمد الأسمري)" maxlength="60" />
-      <button class="modal-confirm" onclick="generateShareLink()">🔗 إنشاء رابط التقرير</button>
-      <div id="share-link-area" style="display:none;margin-top:12px">
-        <div style="font-size:.78rem;color:#34d399;margin-bottom:6px;font-weight:700">✓ الرابط جاهز — انسخه وأرسله:</div>
-        <div class="share-link-box" id="share-link-box"></div>
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="copy-btn" id="copy-btn" onclick="copyShareLink()">📋 نسخ الرابط</button>
-          <button class="tg-btn" onclick="shareToTelegram()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-            إرسال عبر تيليغرام
-          </button>
-        </div>
-      </div>
-      <button class="modal-cancel" style="margin-top:12px" onclick="closeShareModal()">إلغاء</button>
-    </div>
-  </div>
-
-  <!-- Report Overlay -->
-  <div class="report-overlay" id="report-overlay">
-    <div class="report-wrap">
-      <div id="report-content"></div>
-      <div class="report-actions">
-        <button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
-        <button class="back-report-btn" onclick="document.getElementById('report-overlay').classList.remove('open');history.replaceState(null,'',window.location.pathname)">← العودة للمختبرات</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer>
     <p>مختبرات التحليل الجنائي الرقمي — بيئة تدريبية تفاعلية مبنية على كتاب د. جميل حسين تويلح</p>
     <p style="margin-top:6px;font-size:11px;opacity:0.5">جميع المحاكاة لأغراض تعليمية فقط · All simulations are for educational purposes only</p>
   </footer>
 
+</div>
+
+<!-- Share modal (outside container so print CSS works) -->
+<div class="modal-overlay" id="share-modal">
+  <div class="modal-box">
+    <h3>📤 مشاركة نتائجي مع الأستاذ</h3>
+    <p>أدخل اسمك الكامل، ثم انسخ الرابط وأرسله لأستاذك عبر واتساب أو البريد الإلكتروني أو نظام الإدارة التعليمية.</p>
+    <input class="share-input" id="student-name-input" type="text" placeholder="الاسم الكامل (مثال: عبدالله محمد الأسمري)" maxlength="60" />
+    <button class="modal-confirm" onclick="generateShareLink()">🔗 إنشاء رابط التقرير</button>
+    <div id="share-link-area" style="display:none;margin-top:12px">
+      <div style="font-size:.78rem;color:#34d399;margin-bottom:6px;font-weight:700">✓ الرابط جاهز — انسخه وأرسله:</div>
+      <div class="share-link-box" id="share-link-box"></div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="copy-btn" id="copy-btn" onclick="copyShareLink()">📋 نسخ الرابط</button>
+        <button class="tg-btn" onclick="shareToTelegram()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+          إرسال عبر تيليغرام
+        </button>
+      </div>
+    </div>
+    <button class="modal-cancel" style="margin-top:12px" onclick="closeShareModal()">إلغاء</button>
+  </div>
+</div>
+
+<!-- Report Overlay (outside container so print CSS works) -->
+<div class="report-overlay" id="report-overlay">
+  <div class="report-wrap">
+    <div id="report-content"></div>
+    <div class="report-actions">
+      <button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+      <button class="back-report-btn" onclick="document.getElementById('report-overlay').classList.remove('open');history.replaceState(null,'',window.location.pathname)">← العودة للمختبرات</button>
+    </div>
+  </div>
 </div>
 
 <script>
