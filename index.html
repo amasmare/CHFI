@@ -1167,7 +1167,7 @@ function renderReport(data){
     +'<h3>التقدم العام في المنهج</h3>'
     +'<div style="display:flex;justify-content:space-between;font-size:.78rem;color:#4a7a5e;margin-bottom:6px"><span>اكتمال المختبرات (بنقاط)</span><span>'+completed+' / 6 ('+pctDone+'%)</span></div>'
     +'<div class="overall-bar-track"><div class="overall-bar-fill" style="width:'+pctDone+'%;background:'+overallGi.bar+'"></div></div>'
-    +'<div style="margin-top:6px;font-size:.72rem;color:#4a7a5e">مختبر التشفير (المختبر 2): '+(cryptoDone?'<span style="color:#a78bfa">✅ تمت الزيارة</span>':'<span style="color:#d4e8db">لم يُفتح بعد</span>')+'</div>'
+    +'<div style="margin-top:6px;font-size:.72rem;color:#4a7a5e">مختبر التشفير (المختبر 2): '+(cryptoDone?'<span style="color:#006633">✅ تمت الزيارة</span>':'<span style="color:#d4e8db">لم يُفتح بعد</span>')+'</div>'
     +'<div class="grade-dist">'
     +'<div class="grade-dist-item"><div class="gdi-num" style="color:#065f46">'+dist.A+'</div><div class="gdi-label">ممتاز (A)<br>90%+</div></div>'
     +'<div class="grade-dist-item"><div class="gdi-num" style="color:#006633">'+dist.B+'</div><div class="gdi-label">جيد جداً (B)<br>75–89%</div></div>'
@@ -1213,6 +1213,7 @@ checkForReport();
 </div>
 </body>
 </html>
+
 
 
 

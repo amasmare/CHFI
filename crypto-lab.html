@@ -30,7 +30,7 @@ input:focus{outline:none;border-color:#006633}
 .hash-label{color:#4a7a5e;font-size:.75rem;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
 .hash-value{color:#065f46;transition:color .3s}
 .hash-value.changed{color:#ff4444;animation:flash .4s}
-@keyframes flash{0%{color:#ff4444}50%{color:#ffaa00}100%{color:#065f46}}
+@keyframes flash{0%{color:#ff4444}50%{color:#92400e}100%{color:#065f46}}
 .btn{padding:9px 20px;border:none;border-radius:6px;font-size:.88rem;cursor:pointer;transition:all .2s;font-weight:600}
 .btn-purple{background:#006633;color:#fff}
 .btn-purple:hover{background:#9333ea}
@@ -40,7 +40,7 @@ input:focus{outline:none;border-color:#006633}
 .btn-red{background:#ff4444;color:#fff}
 .btn-green{background:#00ff88;color:#000}
 .alert{padding:12px 16px;border-radius:6px;margin:10px 0;font-size:.88rem;line-height:1.6}
-.alert-purple{background:rgba(0,102,51,.1);border:1px solid rgba(0,102,51,.3);color:#c084fc}
+.alert-purple{background:rgba(88,28,135,.06);border:1px solid rgba(88,28,135,.25);color:#6b21a8}
 .alert-info{background:rgba(0,102,51,.07);border:1px solid rgba(0,102,51,.25);color:#2d6a4a}
 .alert-success{background:rgba(6,95,70,.08);border:1px solid rgba(6,95,70,.25);color:#065f46}
 .alert-warn{background:rgba(120,85,0,.06);border:1px solid rgba(180,130,0,.3);color:#7a6010}
@@ -78,7 +78,7 @@ input:focus{outline:none;border-color:#006633}
 .rainbow-table{width:100%;border-collapse:collapse;font-size:.8rem;font-family:'Courier New',monospace}
 .rainbow-table th{background:#f0f7f3;color:#4a7a5e;padding:8px;text-align:right;border-bottom:2px solid #c8ddd2}
 .rainbow-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#4a7a5e}
-.rainbow-table tr.found td{background:rgba(255,68,68,.15);color:#ff8888}
+.rainbow-table tr.found td{background:rgba(255,68,68,.15);color:#991b1b}
 .rainbow-table tr.found td:first-child{color:#ff4444;font-weight:bold}
 .progress-wrap{background:#c8ddd2;border-radius:20px;height:10px;margin:8px 0;overflow:hidden}
 .progress-fill{height:100%;border-radius:20px;transition:width .3s;background:linear-gradient(90deg,#006633,#00843d)}
@@ -90,14 +90,14 @@ input:focus{outline:none;border-color:#006633}
 .strength-seg.strong{background:#00ff88}
 .steg-canvas-wrap{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
 .steg-canvas{border:2px solid #c8ddd2;border-radius:8px}
-.diff-highlight{background:rgba(255,68,68,.3);color:#ff8888}
+.diff-highlight{background:rgba(255,68,68,.3);color:#991b1b}
 .info-pill{display:inline-block;background:#c8ddd2;color:#4a7a5e;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:3px}
 .copy-btn{background:none;border:1px solid #c8ddd2;border-radius:4px;color:#4a7a5e;padding:3px 8px;font-size:.7rem;cursor:pointer;transition:all .2s}
 .copy-btn:hover{border-color:#006633;color:#006633}
 .avalanche-row{display:flex;gap:10px;align-items:center;margin:6px 0;flex-wrap:wrap}
 .avalanche-hash{font-family:'Courier New',monospace;font-size:.72rem;flex:1;min-width:200px}
 .char-diff{color:#ff4444;font-weight:bold;text-decoration:underline}
-.tag{display:inline-block;background:#1a0d2e;color:#c084fc;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
+.tag{display:inline-block;background:#1a0d2e;color:#6b21a8;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
 .site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#4a7a5e;flex-wrap:wrap;gap:6px}
 .site-topbar .author-tag{color:#c9a227;font-weight:700}
 .site-header-bar{background:linear-gradient(135deg,#0a1628 0%,#0d2145 100%);border-bottom:3px solid #2563eb;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -135,7 +135,7 @@ input:focus{outline:none;border-color:#006633}
   <div style="font-size:2rem">🔐</div>
   <div>
     <h1>مختبر التشفير وتوليد Hash التفاعلي</h1>
-    <div style="color:#c084fc;font-size:.82rem">Cryptography & Hashing Lab — الفصل السادس من كتاب التحليل الجنائي الرقمي</div>
+    <div style="color:#6b21a8;font-size:.82rem">Cryptography & Hashing Lab — الفصل السادس من كتاب التحليل الجنائي الرقمي</div>
   </div>
   <a href="index.html" style="margin-right:auto;color:#4a7a5e;font-size:.85rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 14px;border-radius:6px">← الصفحة الرئيسية</a>
 </div>
@@ -167,14 +167,14 @@ input:focus{outline:none;border-color:#006633}
     <div style="display:grid;gap:14px">
       <div>
         <div class="hash-label">
-          <span>MD5 <span class="info-pill">128 بت — 32 حرف hex</span> <span class="info-pill" style="background:rgba(255,68,68,.1);color:#ff8888">⚠️ غير آمن للتشفير</span></span>
+          <span>MD5 <span class="info-pill">128 بت — 32 حرف hex</span> <span class="info-pill" style="background:rgba(255,68,68,.1);color:#991b1b">⚠️ غير آمن للتشفير</span></span>
           <button class="copy-btn" onclick="copyHash('out-md5')">نسخ</button>
         </div>
         <div class="hash-output"><span class="hash-value" id="out-md5">—</span></div>
       </div>
       <div>
         <div class="hash-label">
-          <span>SHA-1 <span class="info-pill">160 بت — 40 حرف hex</span> <span class="info-pill" style="background:rgba(255,170,0,.1);color:#ffaa00">⚠️ مهجور</span></span>
+          <span>SHA-1 <span class="info-pill">160 بت — 40 حرف hex</span> <span class="info-pill" style="background:rgba(255,170,0,.1);color:#92400e">⚠️ مهجور</span></span>
           <button class="copy-btn" onclick="copyHash('out-sha1')">نسخ</button>
         </div>
         <div class="hash-output"><span class="hash-value" id="out-sha1">—</span></div>
@@ -362,8 +362,8 @@ input:focus{outline:none;border-color:#006633}
     <h3>📊 مقارنة خوارزميات التشفير المتماثل</h3>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
       <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">الخوارزمية</th><th style="padding:8px;color:#4a7a5e">طول المفتاح</th><th style="padding:8px;color:#4a7a5e">الحالة</th><th style="padding:8px;color:#4a7a5e">الاستخدام</th></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">DES</td><td style="padding:8px;text-align:center;color:#ff8888">56 بت</td><td style="padding:8px;text-align:center"><span style="color:#ff4444">مكسور</span></td><td style="padding:8px;color:#4a7a5e">تاريخي فقط</td></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">3DES</td><td style="padding:8px;text-align:center;color:#ffaa00">112 بت</td><td style="padding:8px;text-align:center"><span style="color:#ffaa00">مهجور</span></td><td style="padding:8px;color:#4a7a5e">أنظمة قديمة</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">DES</td><td style="padding:8px;text-align:center;color:#991b1b">56 بت</td><td style="padding:8px;text-align:center"><span style="color:#ff4444">مكسور</span></td><td style="padding:8px;color:#4a7a5e">تاريخي فقط</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">3DES</td><td style="padding:8px;text-align:center;color:#92400e">112 بت</td><td style="padding:8px;text-align:center"><span style="color:#92400e">مهجور</span></td><td style="padding:8px;color:#4a7a5e">أنظمة قديمة</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">AES-128</td><td style="padding:8px;text-align:center;color:#006633">128 بت</td><td style="padding:8px;text-align:center"><span style="color:#065f46">آمن</span></td><td style="padding:8px;color:#4a7a5e">WiFi, TLS</td></tr>
       <tr><td style="padding:8px">AES-256</td><td style="padding:8px;text-align:center;color:#065f46">256 بت</td><td style="padding:8px;text-align:center"><span style="color:#065f46">✅ الأقوى</span></td><td style="padding:8px;color:#4a7a5e">حكومي، عسكري</td></tr>
     </table>
@@ -570,9 +570,9 @@ input:focus{outline:none;border-color:#006633}
     <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">بافتراض كمبيوتر يجرب 10 مليار محاولة في الثانية (GPU حديث):</p>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
       <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">نوع كلمة المرور</th><th style="padding:8px;color:#4a7a5e">مثال</th><th style="padding:8px;color:#4a7a5e">عدد الاحتمالات</th><th style="padding:8px;color:#4a7a5e">زمن الكسر</th></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">6 أرقام</td><td style="padding:8px;font-family:monospace;color:#ff8888">123456</td><td style="padding:8px">10⁶ = مليون</td><td style="padding:8px;color:#ff4444">فوري</td></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 حروف صغيرة</td><td style="padding:8px;font-family:monospace;color:#ff8888">password</td><td style="padding:8px">26⁸ ≈ 209 مليار</td><td style="padding:8px;color:#ff4444">21 ثانية</td></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 أحرف مختلطة</td><td style="padding:8px;font-family:monospace;color:#ffaa00">P@ss123!</td><td style="padding:8px">95⁸ ≈ 6.6 × 10¹⁵</td><td style="padding:8px;color:#ffaa00">7.6 أيام</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">6 أرقام</td><td style="padding:8px;font-family:monospace;color:#991b1b">123456</td><td style="padding:8px">10⁶ = مليون</td><td style="padding:8px;color:#ff4444">فوري</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 حروف صغيرة</td><td style="padding:8px;font-family:monospace;color:#991b1b">password</td><td style="padding:8px">26⁸ ≈ 209 مليار</td><td style="padding:8px;color:#ff4444">21 ثانية</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 أحرف مختلطة</td><td style="padding:8px;font-family:monospace;color:#92400e">P@ss123!</td><td style="padding:8px">95⁸ ≈ 6.6 × 10¹⁵</td><td style="padding:8px;color:#92400e">7.6 أيام</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">12 حرف مختلط</td><td style="padding:8px;font-family:monospace;color:#006633">P@ssw0rd!23#</td><td style="padding:8px">95¹² ≈ 5.4 × 10²³</td><td style="padding:8px;color:#006633">1.7 مليون سنة</td></tr>
       <tr><td style="padding:8px">20 حرف عشوائي</td><td style="padding:8px;font-family:monospace;color:#065f46">Xk#9mP$...</td><td style="padding:8px">95²⁰ ≈ 3.6 × 10³⁹</td><td style="padding:8px;color:#065f46">أطول من عمر الكون</td></tr>
     </table>
@@ -583,7 +583,7 @@ input:focus{outline:none;border-color:#006633}
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
       <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">الخوارزمية</th><th style="padding:8px;color:#4a7a5e">السرعة</th><th style="padding:8px;color:#4a7a5e">مقاومة GPU</th><th style="padding:8px;color:#4a7a5e">التوصية</th></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">MD5</td><td style="padding:8px;text-align:center;color:#ff4444">سريع جداً</td><td style="padding:8px;text-align:center;color:#ff4444">لا</td><td style="padding:8px;color:#ff4444">❌ لا تستخدم أبداً</td></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">SHA-256</td><td style="padding:8px;text-align:center;color:#ff8844">سريع</td><td style="padding:8px;text-align:center;color:#ffaa00">ضعيف</td><td style="padding:8px;color:#ffaa00">⚠️ بدون Salt فقط</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">SHA-256</td><td style="padding:8px;text-align:center;color:#ff8844">سريع</td><td style="padding:8px;text-align:center;color:#92400e">ضعيف</td><td style="padding:8px;color:#92400e">⚠️ بدون Salt فقط</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">bcrypt</td><td style="padding:8px;text-align:center;color:#006633">بطيء مقصود</td><td style="padding:8px;text-align:center;color:#065f46">جيد</td><td style="padding:8px;color:#065f46">✅ موصى به</td></tr>
       <tr><td style="padding:8px">Argon2</td><td style="padding:8px;text-align:center;color:#006633">بطيء جداً</td><td style="padding:8px;text-align:center;color:#065f46">ممتاز</td><td style="padding:8px;color:#065f46">✅ الأفضل حالياً</td></tr>
     </table>
@@ -1072,6 +1072,7 @@ window.addEventListener('load',()=>{
 </div>
 </body>
 </html>
+
 
 
 

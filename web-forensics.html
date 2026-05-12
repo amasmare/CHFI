@@ -30,7 +30,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .db-table{width:100%;border-collapse:collapse;font-size:.82rem;font-family:'Courier New',monospace}
 .db-table th{background:#e8f0eb;color:#006633;padding:8px;text-align:right;border-bottom:2px solid #2d2d00}
 .db-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#1a2e22}
-.db-table tr.highlight td{background:rgba(255,68,68,.15);color:#ff8888}
+.db-table tr.highlight td{background:rgba(255,68,68,.15);color:#991b1b}
 .terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.82rem;margin:12px 0}
 .prompt{color:#065f46}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
 .alert{padding:12px 16px;border-radius:6px;margin:10px 0;font-size:.88rem;line-height:1.6}
@@ -62,13 +62,13 @@ input:focus{outline:none;border-color:#c9a227}
 .options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;transition:all .2s;font-size:.88rem}
 .options label:hover{border-color:#c9a227}
 .options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
-.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
+.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#991b1b}
 .options input{accent-color:#c9a227}
 .xss-demo{background:#fff;border-radius:6px;padding:16px;color:#000;min-height:60px;font-size:.9rem}
 .xss-safe{background:#e8f5e9;color:#1b5e20;padding:12px;border-radius:6px;font-size:.9rem}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
-.badge-red{background:rgba(255,68,68,.2);color:#ff8888}
-.badge-green{background:rgba(0,255,136,.2);color:#065f46}
+.badge-red{background:rgba(127,29,29,.1);color:#991b1b}
+.badge-green{background:rgba(6,95,70,.1);color:#065f46}
 .badge-orange{background:rgba(245,158,11,.2);color:#c9a227}
 .tag{display:inline-block;background:#1a1a0d;color:#d97706;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
 .ip-map{background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.82rem}
@@ -116,7 +116,7 @@ input:focus{outline:none;border-color:#c9a227}
   </div>
   <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span id="prog-badge" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#c9a227;white-space:nowrap">🏆 0/75 نقطة</span>
-    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap" title="إعادة تعيين التقدم">↺ إعادة</button>
+    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#991b1b;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap" title="إعادة تعيين التقدم">↺ إعادة</button>
     <a href="index.html" style="color:#4a7a5e;font-size:.85rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 14px;border-radius:6px">← الرئيسية</a>
   </div>
 </div>
@@ -320,7 +320,7 @@ div.textContent = userInput;</div>
         <td><span class="badge badge-green">آمن</span></td>
       </tr>
       <tr class="stolen">
-        <td>user_session</td><td style="color:#ff8888">eyJhbGciOiJub25lIn0.eyJ1c2VyIjoiYWRtaW4ifQ.</td><td>target-app.com</td>
+        <td>user_session</td><td style="color:#991b1b">eyJhbGciOiJub25lIn0.eyJ1c2VyIjoiYWRtaW4ifQ.</td><td>target-app.com</td>
         <td><span style="color:#ff4444">❌</span></td><td><span style="color:#ff4444">❌</span></td>
         <td><span class="badge badge-red">⚠️ خطر</span></td>
       </tr>
@@ -700,5 +700,6 @@ function computeXOR_sym(){}
 </div>
 </body>
 </html>
+
 
 

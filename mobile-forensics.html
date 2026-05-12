@@ -52,12 +52,12 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;transition:all .2s;font-size:.88rem}
 .options label:hover{border-color:#006633}
 .options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
-.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
+.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#991b1b}
 .options input{accent-color:#006633}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
 .badge-green{background:rgba(0,102,51,.2);color:#006633}
-.badge-red{background:rgba(255,68,68,.2);color:#ff8888}
-.badge-orange{background:rgba(255,170,0,.2);color:#ffaa00}
+.badge-red{background:rgba(127,29,29,.1);color:#991b1b}
+.badge-orange{background:rgba(120,53,15,.1);color:#92400e}
 .badge-blue{background:rgba(0,102,51,.2);color:#006633}
 .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .os-card{border-radius:10px;padding:18px}
@@ -77,7 +77,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .imei-part{display:inline-block}
 .imei-tac{color:#006633}
 .imei-snr{color:#006633}
-.imei-check{color:#ffaa00}
+.imei-check{color:#92400e}
 .artifact-row{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid #c8ddd2;border-radius:6px;margin:6px 0;cursor:pointer;transition:all .2s}
 .artifact-row:hover{border-color:#006633;background:rgba(0,102,51,.04)}
 .artifact-row.found{border-color:#065f46;background:rgba(0,255,136,.04)}
@@ -126,7 +126,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
   </div>
   <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span id="prog-badge" style="background:rgba(0,102,51,.1);border:1px solid rgba(0,102,51,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#065f46;white-space:nowrap">🏆 0/90 نقطة</span>
-    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
+    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#991b1b;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
     <a href="index.html" style="color:#4a7a5e;font-size:.85rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 14px;border-radius:6px">← الرئيسية</a>
   </div>
 </div>
@@ -193,7 +193,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
         <div style="flex:1;color:#4a7a5e;font-size:.85rem">استخراج البيانات عبر API النظام — سريع، يحتاج فتح USB debugging (Android)</div>
       </div>
       <div style="display:flex;gap:12px;align-items:center">
-        <div style="width:120px;text-align:center;background:#5c5c1a;border-radius:6px;padding:8px;font-size:.82rem;color:#ffaa00">File System</div>
+        <div style="width:120px;text-align:center;background:#5c5c1a;border-radius:6px;padding:8px;font-size:.82rem;color:#92400e">File System</div>
         <div style="flex:1;color:#4a7a5e;font-size:.85rem">استخراج نظام الملفات كاملاً — يشمل الملفات المخفية والمحذوفة جزئياً</div>
       </div>
       <div style="display:flex;gap:12px;align-items:center">
@@ -312,7 +312,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
     <div style="display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;font-size:.82rem">
       <div style="flex:1;min-width:160px"><span style="color:#006633">■</span> TAC (Type Allocation Code) — <span style="color:#4a7a5e">رمز نوع الجهاز وشركة التصنيع (أول 6 أرقام)</span></div>
       <div style="flex:1;min-width:160px"><span style="color:#006633">■</span> SNR (Serial Number) — <span style="color:#4a7a5e">الرقم التسلسلي الفريد (8 أرقام)</span></div>
-      <div style="flex:1;min-width:160px"><span style="color:#ffaa00">■</span> CD (Check Digit) — <span style="color:#4a7a5e">رقم تحقق Luhn (آخر رقم)</span></div>
+      <div style="flex:1;min-width:160px"><span style="color:#92400e">■</span> CD (Check Digit) — <span style="color:#4a7a5e">رقم تحقق Luhn (آخر رقم)</span></div>
     </div>
     <div style="margin-top:14px">
       <button class="btn btn-green btn-sm" onclick="lookupIMEI()">🔎 استعلام عن IMEI</button>
@@ -371,8 +371,8 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
       <div style="color:#4a7a5e;padding-right:20px">│&nbsp;&nbsp;└── databases/<span style="color:#006633">mmssms.db</span> ← SMS/MMS</div>
       <div style="color:#4a7a5e;padding-right:20px">├── com.android.browser/ ← سجل التصفح</div>
       <div style="color:#4a7a5e;padding-right:20px">│&nbsp;&nbsp;└── databases/<span style="color:#006633">browser.db</span></div>
-      <div style="color:#ffaa00;padding-right:20px">└── com.whatsapp/</div>
-      <div style="color:#ffaa00;padding-right:40px">└── databases/<span style="color:#ff8844">msgstore.db</span> ← رسائل واتساب!</div>
+      <div style="color:#92400e;padding-right:20px">└── com.whatsapp/</div>
+      <div style="color:#92400e;padding-right:40px">└── databases/<span style="color:#ff8844">msgstore.db</span> ← رسائل واتساب!</div>
       <div style="color:#006633;margin-top:6px">/sdcard/ ← التخزين الخارجي</div>
       <div style="color:#4a7a5e;padding-right:20px">├── DCIM/ ← الصور (بها EXIF)</div>
       <div style="color:#4a7a5e;padding-right:20px">└── WhatsApp/Media/ ← وسائط واتساب</div>
@@ -529,9 +529,9 @@ Top visited locations:
     <h3>🔧 مقارنة الأدوات</h3>
     <table class="data-table">
       <tr><th>الأداة</th><th>Android</th><th>iOS</th><th>السعر</th><th>مستوى الاستخراج</th></tr>
-      <tr><td><strong style="color:#006633">Cellebrite UFED</strong></td><td>✅</td><td>✅</td><td style="color:#ff8888">مرتفع جداً</td><td><span class="badge badge-green">Physical</span></td></tr>
-      <tr><td><strong style="color:#006633">Oxygen Forensics</strong></td><td>✅</td><td>✅</td><td style="color:#ffaa00">مرتفع</td><td><span class="badge badge-green">Physical + Logical</span></td></tr>
-      <tr><td><strong style="color:#006633">Magnet AXIOM</strong></td><td>✅</td><td>✅</td><td style="color:#ffaa00">مرتفع</td><td><span class="badge badge-blue">Logical + Cloud</span></td></tr>
+      <tr><td><strong style="color:#006633">Cellebrite UFED</strong></td><td>✅</td><td>✅</td><td style="color:#991b1b">مرتفع جداً</td><td><span class="badge badge-green">Physical</span></td></tr>
+      <tr><td><strong style="color:#006633">Oxygen Forensics</strong></td><td>✅</td><td>✅</td><td style="color:#92400e">مرتفع</td><td><span class="badge badge-green">Physical + Logical</span></td></tr>
+      <tr><td><strong style="color:#006633">Magnet AXIOM</strong></td><td>✅</td><td>✅</td><td style="color:#92400e">مرتفع</td><td><span class="badge badge-blue">Logical + Cloud</span></td></tr>
       <tr><td><strong style="color:#006633">Autopsy</strong></td><td>✅</td><td>محدود</td><td style="color:#065f46">مجاني</td><td><span class="badge badge-blue">Logical</span></td></tr>
       <tr><td><strong style="color:#006633">ADB (Android)</strong></td><td>✅</td><td>❌</td><td style="color:#065f46">مجاني</td><td><span class="badge badge-orange">Logical</span></td></tr>
       <tr><td><strong style="color:#006633">iBackup Viewer</strong></td><td>❌</td><td>✅</td><td style="color:#065f46">مجاني جزئياً</td><td><span class="badge badge-orange">Backup</span></td></tr>
@@ -623,7 +623,7 @@ function analyzeSIM(){
     <div class="sim-field"><span class="sim-key">ICCID</span><span class="sim-val">89966010123456789012</span></div>
     <div class="sim-field"><span class="sim-key">مشغّل الشبكة</span><span class="sim-val">STC — الاتصالات السعودية</span></div>
     <div class="sim-field"><span class="sim-key">نوع السيم</span><span class="sim-val">Nano SIM — 4G</span></div>
-    <div class="sim-field"><span class="sim-key">آخر رقم متصل</span><span class="sim-val" style="color:#ffaa00">+7903xxxxxxx ⚠️ رقم روسي</span></div>
+    <div class="sim-field"><span class="sim-key">آخر رقم متصل</span><span class="sim-val" style="color:#92400e">+7903xxxxxxx ⚠️ رقم روسي</span></div>
     <div class="sim-field" style="border:none"><span class="sim-key">عدد الرسائل المخزّنة</span><span class="sim-val">3 رسائل</span></div>
   </div>
   <div class="alert alert-warn" style="margin-top:10px">⚠️ آخر اتصال مع رقم روسي — يجب التحقيق في هذا الاتصال!</div>`;
@@ -665,7 +665,7 @@ function runSMSQuery(){
   document.getElementById('sms-table').innerHTML=`
   <div class="alert alert-danger">🚨 رسائل مشبوهة! تنسيق مع رقم روسي قبل الحادثة مباشرة!</div>
   <table class="data-table"><tr><th>الرقم</th><th>الوقت</th><th>الرسالة</th></tr>
-  <tr style="background:rgba(255,68,68,.08)"><td style="color:#ff8888">+7903xxxxxxxx</td><td>14:23:20</td><td style="color:#ffaa00">"Package received. Payment sent."</td></tr>
+  <tr style="background:rgba(255,68,68,.08)"><td style="color:#991b1b">+7903xxxxxxxx</td><td>14:23:20</td><td style="color:#92400e">"Package received. Payment sent."</td></tr>
   <tr><td>+966509876543</td><td>14:30:15</td><td>"تأكد من حذف كل شيء"</td></tr>
   <tr><td>+966501234567</td><td>14:33:10</td><td>"المهمة اكتملت، الملفات أُرسلت"</td></tr>
   </table>`;
@@ -677,7 +677,7 @@ function showEXIF(){
     <div style="color:#006633;margin-bottom:8px">── IMG_20240320_143218.jpg ──</div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">Make:</span> Samsung</div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">Model:</span> SM-A546E (Galaxy A54)</div>
-    <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">DateTime:</span> <span style="color:#ffaa00">2024:03:20 14:32:18</span></div>
+    <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">DateTime:</span> <span style="color:#92400e">2024:03:20 14:32:18</span></div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Latitude:</span> <span style="color:#ff4444">24° 43' 37.92" N</span></div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Longitude:</span> <span style="color:#ff4444">46° 40' 28.44" E</span></div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Altitude:</span> 614m</div>
@@ -694,7 +694,7 @@ function showBackupContent(){
     <div style="color:#4a7a5e">3d3d3d...→ SMS/sms.db (الرسائل)</div>
     <div style="color:#4a7a5e">1b1b1b...→ AddressBook.sqlitedb (جهات)</div>
     <div style="color:#4a7a5e">ca3456...→ callhistory.db (سجل المكالمات)</div>
-    <div style="color:#ffaa00">f8f8f8...→ Media/ (الصور — 1,247 ملف)</div>
+    <div style="color:#92400e">f8f8f8...→ Media/ (الصور — 1,247 ملف)</div>
     <div style="color:#ff4444">4e4e4e...→ Notes/notes.sqlite ← ملاحظات مشبوهة!</div>
   </div>
   <div class="alert alert-warn" style="margin-top:10px">📋 ملف الملاحظات يحتوي بيانات مشفّرة بشكل يدوي — يجب تحليلها!</div>`;
@@ -704,7 +704,7 @@ const artifactData={
   calls:{
     title:'📞 سجل المكالمات',
     content:`<table class="data-table"><tr><th>الرقم</th><th>النوع</th><th>التاريخ</th><th>المدة</th></tr>
-    <tr style="background:rgba(255,68,68,.08)"><td style="color:#ff8888">+7903xxxxxxxx</td><td>صادر</td><td>2024-03-19 22:15</td><td>4:23 دقيقة</td></tr>
+    <tr style="background:rgba(255,68,68,.08)"><td style="color:#991b1b">+7903xxxxxxxx</td><td>صادر</td><td>2024-03-19 22:15</td><td>4:23 دقيقة</td></tr>
     <tr><td>+966509876543</td><td>وارد</td><td>2024-03-20 09:10</td><td>1:05 دقيقة</td></tr>
     <tr><td>+966509876543</td><td>صادر</td><td>2024-03-20 14:35</td><td>0:45 دقيقة</td></tr>
     </table><div class="alert alert-danger">🚨 مكالمة مع رقم روسي ليلة ما قبل الحادثة!</div>`
@@ -729,7 +729,7 @@ const artifactData={
     title:'🌐 سجل التصفح',
     content:`<table class="data-table"><tr><th>الموقع</th><th>الوقت</th><th>عدد الزيارات</th></tr>
     <tr><td>google.com</td><td>09:00</td><td>12</td></tr>
-    <tr style="background:rgba(255,68,68,.08)"><td style="color:#ff8888">secretupload.ru</td><td>14:20</td><td style="color:#ff4444">1 ← مشبوه!</td></tr>
+    <tr style="background:rgba(255,68,68,.08)"><td style="color:#991b1b">secretupload.ru</td><td>14:20</td><td style="color:#ff4444">1 ← مشبوه!</td></tr>
     <tr><td>gmail.com</td><td>14:50</td><td>3</td></tr>
     </table><div class="alert alert-danger">🚨 الموقع المشبوه نفسه الذي اكتُشف في سجل الشبكة!</div>`
   },
@@ -817,5 +817,6 @@ document.addEventListener('DOMContentLoaded',loadProg);
 </div>
 </body>
 </html>
+
 
 

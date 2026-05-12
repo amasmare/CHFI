@@ -24,7 +24,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.78rem;margin:10px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .prompt{color:#065f46}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
 .alert{padding:11px 14px;border-radius:6px;margin:8px 0;font-size:.85rem;line-height:1.6}
-.alert-purple{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);color:#c084fc}
+.alert-purple{background:rgba(88,28,135,.06);border:1px solid rgba(88,28,135,.25);color:#6b21a8}
 .alert-info{background:rgba(0,102,51,.07);border:1px solid rgba(0,102,51,.25);color:#2d6a4a}
 .alert-warn{background:rgba(120,85,0,.06);border:1px solid rgba(180,130,0,.3);color:#7a6010}
 .alert-danger{background:rgba(127,29,29,.06);border:1px solid rgba(200,50,50,.25);color:#7f1d1d}
@@ -38,19 +38,19 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .data-table{width:100%;border-collapse:collapse;font-size:.8rem}
 .data-table th{background:#1a0d2e;color:#8b5cf6;padding:8px;text-align:right;border-bottom:2px solid #2d1a5c}
 .data-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#4a7a5e}
-.data-table tr.tampered td{background:rgba(255,68,68,.07);color:#ff8888}
+.data-table tr.tampered td{background:rgba(255,68,68,.07);color:#991b1b}
 .data-table tr.original td{background:rgba(0,255,136,.04);color:#065f46}
 .quiz-box{background:#ffffff;border:1px solid #c8ddd2;border-radius:8px;padding:16px;margin:12px 0}
 .quiz-box h4{color:#8b5cf6;margin-bottom:10px;font-size:.9rem}
 .options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
 .options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
-.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
+.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#991b1b}
 .options input{accent-color:#8b5cf6;flex-shrink:0}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
-.badge-red{background:rgba(255,68,68,.2);color:#ff8888}
-.badge-green{background:rgba(0,255,136,.2);color:#065f46}
-.badge-orange{background:rgba(255,170,0,.2);color:#ffaa00}
-.badge-purple{background:rgba(139,92,246,.2);color:#c084fc}
+.badge-red{background:rgba(127,29,29,.1);color:#991b1b}
+.badge-green{background:rgba(6,95,70,.1);color:#065f46}
+.badge-orange{background:rgba(120,53,15,.1);color:#92400e}
+.badge-purple{background:rgba(88,28,135,.1);color:#6b21a8}
 .technique-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
 .technique-card{background:#1a0d2e;border:1px solid #2d1a5c;border-radius:8px;padding:14px;cursor:pointer;transition:all .2s}
 .technique-card:hover{border-color:#8b5cf6;background:#200d3a}
@@ -64,13 +64,13 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .tl-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid #c8ddd2;box-shadow:0 0 0 2px currentColor}
 .tl-dot.normal{color:#22c55e;background:#22c55e}
 .tl-dot.suspicious{color:#ff4444;background:#ff4444}
-.tl-dot.warning{color:#ffaa00;background:#ffaa00}
+.tl-dot.warning{color:#92400e;background:#ffaa00}
 .tl-content{flex:1}
 .tl-time{font-family:monospace;font-size:.75rem;color:#4a7a5e}
 .tl-desc{font-size:.85rem;color:#4a7a5e;margin-top:2px}
 .tl-source{font-size:.72rem;color:#4a7a5e;margin-top:2px}
 .metadata-field{display:flex;justify-content:space-between;padding:7px 10px;border-bottom:1px solid #c8ddd2;font-size:.82rem;gap:10px}
-.metadata-field:hover{background:rgba(139,92,246,.04)}
+.metadata-field:hover{background:rgba(0,102,51,.04)}
 .mf-key{color:#8b5cf6;min-width:180px;font-size:.8rem}
 .mf-val{color:#4a7a5e;text-align:left;font-family:monospace;font-size:.76rem;word-break:break-all}
 .mf-val.suspicious{color:#ff4444}
@@ -83,7 +83,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .diff-view{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .diff-pane{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.8}
 .diff-added{background:rgba(0,255,136,.1);color:#065f46}
-.diff-removed{background:rgba(255,68,68,.1);color:#ff8888}
+.diff-removed{background:rgba(255,68,68,.1);color:#991b1b}
 .diff-same{color:#4a7a5e}
 .stepper{display:flex;gap:0;margin-bottom:16px;overflow-x:auto}
 .step-btn{padding:8px 14px;background:#c8ddd2;border:none;color:#4a7a5e;font-size:.82rem;cursor:pointer;white-space:nowrap;touch-action:manipulation;transition:all .2s}
@@ -129,8 +129,8 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
     <div style="color:#7c3aed;font-size:.82rem">Anti-Forensics · Metadata Analysis · Incident Timeline</div>
   </div>
   <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-    <span id="prog-badge" style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#a78bfa;white-space:nowrap">🏆 0/60 نقطة</span>
-    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
+    <span id="prog-badge" style="background:rgba(0,102,51,.08);border:1px solid rgba(0,102,51,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#006633;white-space:nowrap">🏆 0/60 نقطة</span>
+    <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#991b1b;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
     <a href="index.html" style="color:#4a7a5e;font-size:.82rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 12px;border-radius:6px">← الرئيسية</a>
   </div>
 </div>
@@ -186,32 +186,32 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
       <tr><th>تقنية Anti-Forensics</th><th>ما يفعله الجاني</th><th>كيف يكشفه المحقق</th></tr>
       <tr>
         <td>Timestomping</td>
-        <td style="color:#ff8888">يُعدّل تواريخ الملفات</td>
+        <td style="color:#991b1b">يُعدّل تواريخ الملفات</td>
         <td style="color:#065f46">يقارن MACE times بسجل MFT وأحداث USN Journal</td>
       </tr>
       <tr>
         <td>Log Clearing</td>
-        <td style="color:#ff8888">يحذف Windows Event Logs</td>
+        <td style="color:#991b1b">يحذف Windows Event Logs</td>
         <td style="color:#065f46">يُلاحظ ثغرة في تسلسل Event IDs + يفحص Shadow Copies</td>
       </tr>
       <tr>
         <td>Secure Delete</td>
-        <td style="color:#ff8888">يستخدم shred أو Eraser</td>
+        <td style="color:#991b1b">يستخدم shred أو Eraser</td>
         <td style="color:#065f46">يبحث في Slack Space والـ $LogFile وأجزاء لم تُكتب فوقها</td>
       </tr>
       <tr>
         <td>File Extension Spoofing</td>
-        <td style="color:#ff8888">يسمي malware.exe كـ report.docx</td>
+        <td style="color:#991b1b">يسمي malware.exe كـ report.docx</td>
         <td style="color:#065f46">يفحص Magic Bytes بدل الامتداد</td>
       </tr>
       <tr>
         <td>Encryption</td>
-        <td style="color:#ff8888">يشفّر القرص بـ VeraCrypt</td>
+        <td style="color:#991b1b">يشفّر القرص بـ VeraCrypt</td>
         <td style="color:#065f46">يستخرج مفتاح التشفير من صورة RAM</td>
       </tr>
       <tr>
         <td>Slack Space Hiding</td>
-        <td style="color:#ff8888">يخفي بيانات في File Slack</td>
+        <td style="color:#991b1b">يخفي بيانات في File Slack</td>
         <td style="color:#065f46">يفحص Slack Space بأدوات مثل Autopsy</td>
       </tr>
     </table>
@@ -292,7 +292,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
     <h3>🔬 الفرق بين الحذف العادي والـ Secure Wipe</h3>
     <div class="diff-view">
       <div>
-        <div style="color:#ffaa00;font-size:.82rem;margin-bottom:6px">🗑️ حذف عادي (Del / rm)</div>
+        <div style="color:#92400e;font-size:.82rem;margin-bottom:6px">🗑️ حذف عادي (Del / rm)</div>
         <div class="diff-pane">
 <span class="diff-same">القرص قبل الحذف:</span>
 <span class="diff-same">[████ INVOICE.pdf ████]</span>
@@ -748,6 +748,7 @@ window.addEventListener('load',()=>{
 </div>
 </body>
 </html>
+
 
 
 
