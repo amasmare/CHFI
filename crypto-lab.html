@@ -29,15 +29,15 @@ input:focus{outline:none;border-color:#006633}
 .hash-output{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.8rem;word-break:break-all;position:relative;min-height:40px;transition:all .3s}
 .hash-label{color:#4a7a5e;font-size:.75rem;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
 .hash-value{color:#065f46;transition:color .3s}
-.hash-value.changed{color:#ff4444;animation:flash .4s}
-@keyframes flash{0%{color:#ff4444}50%{color:#92400e}100%{color:#065f46}}
+.hash-value.changed{color:#b91c1c;animation:flash .4s}
+@keyframes flash{0%{color:#b91c1c}50%{color:#92400e}100%{color:#065f46}}
 .btn{padding:9px 20px;border:none;border-radius:6px;font-size:.88rem;cursor:pointer;transition:all .2s;font-weight:600}
 .btn-purple{background:#006633;color:#fff}
 .btn-purple:hover{background:#9333ea}
 .btn-outline{background:transparent;border:1px solid #006633;color:#006633}
 .btn-outline:hover{background:#006633;color:#fff}
 .btn-sm{padding:5px 12px;font-size:.78rem}
-.btn-red{background:#ff4444;color:#fff}
+.btn-red{background:#b91c1c;color:#fff}
 .btn-green{background:#00ff88;color:#000}
 .alert{padding:12px 16px;border-radius:6px;margin:10px 0;font-size:.88rem;line-height:1.6}
 .alert-purple{background:rgba(88,28,135,.06);border:1px solid rgba(88,28,135,.25);color:#6b21a8}
@@ -50,7 +50,7 @@ input:focus{outline:none;border-color:#006633}
 .bit{width:14px;height:14px;border-radius:2px;font-size:.5rem;display:flex;align-items:center;justify-content:center;transition:all .3s}
 .bit-0{background:#c8ddd2;color:#4a7a5e}
 .bit-1{background:#006633;color:#fff}
-.bit-changed{background:#ff4444!important;animation:bitFlash .5s}
+.bit-changed{background:#b91c1c!important;animation:bitFlash .5s}
 @keyframes bitFlash{0%{transform:scale(1.3)}100%{transform:scale(1)}}
 .cipher-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;margin:12px 0}
 .cipher-cell{background:#f0f7f3;border:1px solid #c8ddd2;border-radius:4px;padding:5px 2px;text-align:center;font-size:.7rem;font-family:'Courier New',monospace}
@@ -79,12 +79,12 @@ input:focus{outline:none;border-color:#006633}
 .rainbow-table th{background:#f0f7f3;color:#4a7a5e;padding:8px;text-align:right;border-bottom:2px solid #c8ddd2}
 .rainbow-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#4a7a5e}
 .rainbow-table tr.found td{background:rgba(255,68,68,.15);color:#991b1b}
-.rainbow-table tr.found td:first-child{color:#ff4444;font-weight:bold}
+.rainbow-table tr.found td:first-child{color:#b91c1c;font-weight:bold}
 .progress-wrap{background:#c8ddd2;border-radius:20px;height:10px;margin:8px 0;overflow:hidden}
 .progress-fill{height:100%;border-radius:20px;transition:width .3s;background:linear-gradient(90deg,#006633,#00843d)}
 .strength-bar{display:flex;gap:4px;margin:10px 0}
 .strength-seg{flex:1;height:8px;border-radius:4px;background:#c8ddd2;transition:background .3s}
-.strength-seg.weak{background:#ff4444}
+.strength-seg.weak{background:#b91c1c}
 .strength-seg.fair{background:#ffaa00}
 .strength-seg.good{background:#006633}
 .strength-seg.strong{background:#00ff88}
@@ -96,8 +96,8 @@ input:focus{outline:none;border-color:#006633}
 .copy-btn:hover{border-color:#006633;color:#006633}
 .avalanche-row{display:flex;gap:10px;align-items:center;margin:6px 0;flex-wrap:wrap}
 .avalanche-hash{font-family:'Courier New',monospace;font-size:.72rem;flex:1;min-width:200px}
-.char-diff{color:#ff4444;font-weight:bold;text-decoration:underline}
-.tag{display:inline-block;background:#1a0d2e;color:#6b21a8;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
+.char-diff{color:#b91c1c;font-weight:bold;text-decoration:underline}
+.tag{display:inline-block;background:#f0f7f3;color:#6b21a8;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
 .site-topbar{background:#004d28;border-bottom:1px solid #003d20;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#d4e8db;flex-wrap:wrap;gap:6px}
 .site-topbar .author-tag{color:#c9a227;font-weight:700}
 .site-header-bar{background:linear-gradient(135deg,#006633 0%,#00843d 60%,#004d28 100%);border-bottom:4px solid #c9a227;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -247,7 +247,7 @@ input:focus{outline:none;border-color:#006633}
   <div class="card">
     <h3>📊 تصور الاختلافات حرفاً حرفاً (SHA-256)</h3>
     <div id="av-char-diff" style="font-family:'Courier New',monospace;font-size:.78rem;line-height:2;word-break:break-all">أدخل نصين أعلاه لرؤية الاختلاف...</div>
-    <div style="margin-top:10px;color:#4a7a5e;font-size:.78rem"><span style="color:#ff4444">█</span> = حرف مختلف &nbsp;|&nbsp; <span style="color:#065f46">█</span> = حرف متطابق</div>
+    <div style="margin-top:10px;color:#4a7a5e;font-size:.78rem"><span style="color:#b91c1c">█</span> = حرف مختلف &nbsp;|&nbsp; <span style="color:#065f46">█</span> = حرف متطابق</div>
   </div>
 
   <div class="card">
@@ -336,7 +336,7 @@ input:focus{outline:none;border-color:#006633}
       <div class="step-arrow">→</div>
       <div class="step-box" id="sym-s3"><div class="icon">⚙️</div><h4>خوارزمية AES</h4></div>
       <div class="step-arrow">→</div>
-      <div class="step-box" id="sym-s4"><div class="icon">🔒</div><h4>النص المشفّر</h4><div style="color:#ff8844;font-size:.65rem;word-break:break-all;margin-top:4px" id="sym-cipher-show">—</div></div>
+      <div class="step-box" id="sym-s4"><div class="icon">🔒</div><h4>النص المشفّر</h4><div style="color:#b45309;font-size:.65rem;word-break:break-all;margin-top:4px" id="sym-cipher-show">—</div></div>
     </div>
   </div>
 
@@ -362,7 +362,7 @@ input:focus{outline:none;border-color:#006633}
     <h3>📊 مقارنة خوارزميات التشفير المتماثل</h3>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
       <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">الخوارزمية</th><th style="padding:8px;color:#4a7a5e">طول المفتاح</th><th style="padding:8px;color:#4a7a5e">الحالة</th><th style="padding:8px;color:#4a7a5e">الاستخدام</th></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">DES</td><td style="padding:8px;text-align:center;color:#991b1b">56 بت</td><td style="padding:8px;text-align:center"><span style="color:#ff4444">مكسور</span></td><td style="padding:8px;color:#4a7a5e">تاريخي فقط</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">DES</td><td style="padding:8px;text-align:center;color:#991b1b">56 بت</td><td style="padding:8px;text-align:center"><span style="color:#b91c1c">مكسور</span></td><td style="padding:8px;color:#4a7a5e">تاريخي فقط</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">3DES</td><td style="padding:8px;text-align:center;color:#92400e">112 بت</td><td style="padding:8px;text-align:center"><span style="color:#92400e">مهجور</span></td><td style="padding:8px;color:#4a7a5e">أنظمة قديمة</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">AES-128</td><td style="padding:8px;text-align:center;color:#006633">128 بت</td><td style="padding:8px;text-align:center"><span style="color:#065f46">آمن</span></td><td style="padding:8px;color:#4a7a5e">WiFi, TLS</td></tr>
       <tr><td style="padding:8px">AES-256</td><td style="padding:8px;text-align:center;color:#065f46">256 بت</td><td style="padding:8px;text-align:center"><span style="color:#065f46">✅ الأقوى</span></td><td style="padding:8px;color:#4a7a5e">حكومي، عسكري</td></tr>
@@ -445,7 +445,7 @@ input:focus{outline:none;border-color:#006633}
       <div>e = <span id="rsa-e" style="color:#065f46">7</span> &nbsp;← جزء من المفتاح العام</div>
       <div>d = <span id="rsa-d" style="color:#006633">23</span> &nbsp;← <strong>المفتاح الخاص (سري تماماً)</strong></div>
       <div style="margin-top:10px;color:#4a7a5e">الرسالة m = <input type="number" id="rsa-msg" value="65" min="2" max="100" oninput="computeRSA()" style="width:60px;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:4px;padding:3px 6px;color:#1a2e22"></div>
-      <div>التشفير: c = m<sup>e</sup> mod n = <span id="rsa-enc" style="color:#ff8844">—</span></div>
+      <div>التشفير: c = m<sup>e</sup> mod n = <span id="rsa-enc" style="color:#b45309">—</span></div>
       <div>فك التشفير: m = c<sup>d</sup> mod n = <span id="rsa-dec" style="color:#065f46">—</span></div>
     </div>
   </div>
@@ -493,7 +493,7 @@ input:focus{outline:none;border-color:#006633}
       </div>
     </div>
     <div style="margin-top:14px;font-family:'Courier New',monospace;font-size:.82rem;line-height:2">
-      <div>بدون Salt: MD5("password") = <span id="salt-without" style="color:#ff4444">—</span> ← في Rainbow Table!</div>
+      <div>بدون Salt: MD5("password") = <span id="salt-without" style="color:#b91c1c">—</span> ← في Rainbow Table!</div>
       <div>مع Salt: MD5("password" + "<span id="salt-show" style="color:#006633">x7mK#9pQ</span>") = <span id="salt-with" style="color:#065f46">—</span> ← غير موجود في أي جدول</div>
     </div>
   </div>
@@ -570,8 +570,8 @@ input:focus{outline:none;border-color:#006633}
     <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">بافتراض كمبيوتر يجرب 10 مليار محاولة في الثانية (GPU حديث):</p>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
       <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">نوع كلمة المرور</th><th style="padding:8px;color:#4a7a5e">مثال</th><th style="padding:8px;color:#4a7a5e">عدد الاحتمالات</th><th style="padding:8px;color:#4a7a5e">زمن الكسر</th></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">6 أرقام</td><td style="padding:8px;font-family:monospace;color:#991b1b">123456</td><td style="padding:8px">10⁶ = مليون</td><td style="padding:8px;color:#ff4444">فوري</td></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 حروف صغيرة</td><td style="padding:8px;font-family:monospace;color:#991b1b">password</td><td style="padding:8px">26⁸ ≈ 209 مليار</td><td style="padding:8px;color:#ff4444">21 ثانية</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">6 أرقام</td><td style="padding:8px;font-family:monospace;color:#991b1b">123456</td><td style="padding:8px">10⁶ = مليون</td><td style="padding:8px;color:#b91c1c">فوري</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 حروف صغيرة</td><td style="padding:8px;font-family:monospace;color:#991b1b">password</td><td style="padding:8px">26⁸ ≈ 209 مليار</td><td style="padding:8px;color:#b91c1c">21 ثانية</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 أحرف مختلطة</td><td style="padding:8px;font-family:monospace;color:#92400e">P@ss123!</td><td style="padding:8px">95⁸ ≈ 6.6 × 10¹⁵</td><td style="padding:8px;color:#92400e">7.6 أيام</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">12 حرف مختلط</td><td style="padding:8px;font-family:monospace;color:#006633">P@ssw0rd!23#</td><td style="padding:8px">95¹² ≈ 5.4 × 10²³</td><td style="padding:8px;color:#006633">1.7 مليون سنة</td></tr>
       <tr><td style="padding:8px">20 حرف عشوائي</td><td style="padding:8px;font-family:monospace;color:#065f46">Xk#9mP$...</td><td style="padding:8px">95²⁰ ≈ 3.6 × 10³⁹</td><td style="padding:8px;color:#065f46">أطول من عمر الكون</td></tr>
@@ -582,8 +582,8 @@ input:focus{outline:none;border-color:#006633}
     <h3>📊 مقارنة خوارزميات تخزين كلمات المرور</h3>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
       <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">الخوارزمية</th><th style="padding:8px;color:#4a7a5e">السرعة</th><th style="padding:8px;color:#4a7a5e">مقاومة GPU</th><th style="padding:8px;color:#4a7a5e">التوصية</th></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">MD5</td><td style="padding:8px;text-align:center;color:#ff4444">سريع جداً</td><td style="padding:8px;text-align:center;color:#ff4444">لا</td><td style="padding:8px;color:#ff4444">❌ لا تستخدم أبداً</td></tr>
-      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">SHA-256</td><td style="padding:8px;text-align:center;color:#ff8844">سريع</td><td style="padding:8px;text-align:center;color:#92400e">ضعيف</td><td style="padding:8px;color:#92400e">⚠️ بدون Salt فقط</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">MD5</td><td style="padding:8px;text-align:center;color:#b91c1c">سريع جداً</td><td style="padding:8px;text-align:center;color:#b91c1c">لا</td><td style="padding:8px;color:#b91c1c">❌ لا تستخدم أبداً</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">SHA-256</td><td style="padding:8px;text-align:center;color:#b45309">سريع</td><td style="padding:8px;text-align:center;color:#92400e">ضعيف</td><td style="padding:8px;color:#92400e">⚠️ بدون Salt فقط</td></tr>
       <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">bcrypt</td><td style="padding:8px;text-align:center;color:#006633">بطيء مقصود</td><td style="padding:8px;text-align:center;color:#065f46">جيد</td><td style="padding:8px;color:#065f46">✅ موصى به</td></tr>
       <tr><td style="padding:8px">Argon2</td><td style="padding:8px;text-align:center;color:#006633">بطيء جداً</td><td style="padding:8px;text-align:center;color:#065f46">ممتاز</td><td style="padding:8px;color:#065f46">✅ الأفضل حالياً</td></tr>
     </table>
@@ -894,7 +894,7 @@ function searchRainbow(){
   if(!q){res.innerHTML='';return}
   const match=rainbowData.find(([pw,hash])=>hash===q);
   if(match){
-    res.innerHTML=`<div class="alert alert-danger">💥 تم كسر الـ Hash! كلمة المرور هي: <strong style="color:#ff4444;font-size:1.1rem">${match[0]}</strong></div>`;
+    res.innerHTML=`<div class="alert alert-danger">💥 تم كسر الـ Hash! كلمة المرور هي: <strong style="color:#b91c1c;font-size:1.1rem">${match[0]}</strong></div>`;
     document.querySelectorAll('#rainbow-table tr').forEach(tr=>{
       if(tr.dataset.pw===match[0])tr.classList.add('found');
     });
@@ -948,7 +948,7 @@ function buildLSBDemo(){
       const diff=Math.abs(val-newVal);
       html+=`<tr style="border-bottom:1px solid #c8ddd2">`;
       html+=`<td style="padding:6px">بكسل ${pi+1} ${ch}</td>`;
-      html+=`<td style="padding:6px;font-family:monospace">${bin.slice(0,7)}<span style="color:#ff8844">${bin[7]}</span></td>`;
+      html+=`<td style="padding:6px;font-family:monospace">${bin.slice(0,7)}<span style="color:#b45309">${bin[7]}</span></td>`;
       html+=`<td style="padding:6px;text-align:center;color:#006633;font-weight:bold">${bits[bitIdx]}</td>`;
       html+=`<td style="padding:6px;font-family:monospace">${newBin.slice(0,7)}<span style="color:#065f46">${newBin[7]}</span> (${newVal})</td>`;
       html+=`<td style="padding:6px;color:${diff===0?'#00ff88':'#ffaa00'}">±${diff} (${diff===0?'لا فرق':'غير محسوس'})</td>`;
@@ -1072,6 +1072,7 @@ window.addEventListener('load',()=>{
 </div>
 </body>
 </html>
+
 
 
 

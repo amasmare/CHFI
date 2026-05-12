@@ -52,7 +52,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;transition:all .2s;font-size:.88rem}
 .options label:hover{border-color:#006633}
 .options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
-.options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#991b1b}
+.options label.wrong{border-color:#b91c1c;background:rgba(255,68,68,.08);color:#991b1b}
 .options input{accent-color:#006633}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
 .badge-green{background:rgba(0,102,51,.2);color:#006633}
@@ -63,7 +63,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
 .os-card{border-radius:10px;padding:18px}
 .os-android{background:rgba(61,220,132,.05);border:1px solid rgba(61,220,132,.2)}
 .os-ios{background:rgba(0,102,51,.05);border:1px solid rgba(0,102,51,.2)}
-.os-android h4{color:#3ddc84}
+.os-android h4{color:#15803d}
 .os-ios h4{color:#006633}
 .timeline-item{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid #c8ddd2;font-size:.85rem}
 .tl-time{color:#4a7a5e;font-family:monospace;min-width:140px;font-size:.78rem}
@@ -197,7 +197,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
         <div style="flex:1;color:#4a7a5e;font-size:.85rem">استخراج نظام الملفات كاملاً — يشمل الملفات المخفية والمحذوفة جزئياً</div>
       </div>
       <div style="display:flex;gap:12px;align-items:center">
-        <div style="width:120px;text-align:center;background:#5c1a1a;border-radius:6px;padding:8px;font-size:.82rem;color:#ff6644">Physical</div>
+        <div style="width:120px;text-align:center;background:#5c1a1a;border-radius:6px;padding:8px;font-size:.82rem;color:#b45309">Physical</div>
         <div style="flex:1;color:#4a7a5e;font-size:.85rem">نسخ كاملة بت-لبت من الذاكرة — الأشمل، يكتشف كل شيء محذوف، يحتاج تقنيات متقدمة</div>
       </div>
       <div style="display:flex;gap:12px;align-items:center">
@@ -274,7 +274,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
       <tr><th>الوقت</th><th>رقم البرج (Cell ID)</th><th>الشبكة (LAC)</th><th>المنطقة التقريبية</th></tr>
       <tr><td>2024-03-20 13:00</td><td>45821</td><td>1234</td><td>📍 الرياض — حي العليا</td></tr>
       <tr><td>2024-03-20 14:15</td><td>45899</td><td>1234</td><td>📍 الرياض — طريق الملك فهد</td></tr>
-      <tr><td>2024-03-20 14:32</td><td style="color:#ff4444">61200</td><td>5678</td><td>📍 <strong style="color:#ff4444">مبنى الشركة — الطابق الثالث</strong></td></tr>
+      <tr><td>2024-03-20 14:32</td><td style="color:#b91c1c">61200</td><td>5678</td><td>📍 <strong style="color:#b91c1c">مبنى الشركة — الطابق الثالث</strong></td></tr>
       <tr><td>2024-03-20 15:10</td><td>45821</td><td>1234</td><td>📍 الرياض — حي العليا</td></tr>
     </table>
     <div class="alert alert-warn" style="margin-top:10px">🚨 الهاتف كان في مبنى الشركة الساعة 14:32 — نفس وقت سرقة البيانات. هذا يربط المشتبه به بالحادثة!</div>
@@ -372,7 +372,7 @@ h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
       <div style="color:#4a7a5e;padding-right:20px">├── com.android.browser/ ← سجل التصفح</div>
       <div style="color:#4a7a5e;padding-right:20px">│&nbsp;&nbsp;└── databases/<span style="color:#006633">browser.db</span></div>
       <div style="color:#92400e;padding-right:20px">└── com.whatsapp/</div>
-      <div style="color:#92400e;padding-right:40px">└── databases/<span style="color:#ff8844">msgstore.db</span> ← رسائل واتساب!</div>
+      <div style="color:#92400e;padding-right:40px">└── databases/<span style="color:#b45309">msgstore.db</span> ← رسائل واتساب!</div>
       <div style="color:#006633;margin-top:6px">/sdcard/ ← التخزين الخارجي</div>
       <div style="color:#4a7a5e;padding-right:20px">├── DCIM/ ← الصور (بها EXIF)</div>
       <div style="color:#4a7a5e;padding-right:20px">└── WhatsApp/Media/ ← وسائط واتساب</div>
@@ -619,7 +619,7 @@ function analyzeSIM(){
   <div class="alert alert-green">✅ تم استخراج بيانات السيم بنجاح</div>
   <div style="background:#020a06;border:1px solid #1e5c3a;border-radius:8px;padding:14px;margin-top:10px">
     <div class="sim-field"><span class="sim-key">IMSI</span><span class="sim-val">420010123456789</span></div>
-    <div class="sim-field"><span class="sim-key">MSISDN (رقم الهاتف)</span><span class="sim-val" style="color:#ff4444">+966501234567</span></div>
+    <div class="sim-field"><span class="sim-key">MSISDN (رقم الهاتف)</span><span class="sim-val" style="color:#b91c1c">+966501234567</span></div>
     <div class="sim-field"><span class="sim-key">ICCID</span><span class="sim-val">89966010123456789012</span></div>
     <div class="sim-field"><span class="sim-key">مشغّل الشبكة</span><span class="sim-val">STC — الاتصالات السعودية</span></div>
     <div class="sim-field"><span class="sim-key">نوع السيم</span><span class="sim-val">Nano SIM — 4G</span></div>
@@ -678,8 +678,8 @@ function showEXIF(){
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">Make:</span> Samsung</div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">Model:</span> SM-A546E (Galaxy A54)</div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">DateTime:</span> <span style="color:#92400e">2024:03:20 14:32:18</span></div>
-    <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Latitude:</span> <span style="color:#ff4444">24° 43' 37.92" N</span></div>
-    <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Longitude:</span> <span style="color:#ff4444">46° 40' 28.44" E</span></div>
+    <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Latitude:</span> <span style="color:#b91c1c">24° 43' 37.92" N</span></div>
+    <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Longitude:</span> <span style="color:#b91c1c">46° 40' 28.44" E</span></div>
     <div><span style="color:#4a7a5e;min-width:200px;display:inline-block">GPS Altitude:</span> 614m</div>
     <div style="margin-top:8px;color:#006633">Google Maps: maps.google.com/maps?q=24.7272,46.6746</div>
   </div>
@@ -695,7 +695,7 @@ function showBackupContent(){
     <div style="color:#4a7a5e">1b1b1b...→ AddressBook.sqlitedb (جهات)</div>
     <div style="color:#4a7a5e">ca3456...→ callhistory.db (سجل المكالمات)</div>
     <div style="color:#92400e">f8f8f8...→ Media/ (الصور — 1,247 ملف)</div>
-    <div style="color:#ff4444">4e4e4e...→ Notes/notes.sqlite ← ملاحظات مشبوهة!</div>
+    <div style="color:#b91c1c">4e4e4e...→ Notes/notes.sqlite ← ملاحظات مشبوهة!</div>
   </div>
   <div class="alert alert-warn" style="margin-top:10px">📋 ملف الملاحظات يحتوي بيانات مشفّرة بشكل يدوي — يجب تحليلها!</div>`;
 }
@@ -729,7 +729,7 @@ const artifactData={
     title:'🌐 سجل التصفح',
     content:`<table class="data-table"><tr><th>الموقع</th><th>الوقت</th><th>عدد الزيارات</th></tr>
     <tr><td>google.com</td><td>09:00</td><td>12</td></tr>
-    <tr style="background:rgba(255,68,68,.08)"><td style="color:#991b1b">secretupload.ru</td><td>14:20</td><td style="color:#ff4444">1 ← مشبوه!</td></tr>
+    <tr style="background:rgba(255,68,68,.08)"><td style="color:#991b1b">secretupload.ru</td><td>14:20</td><td style="color:#b91c1c">1 ← مشبوه!</td></tr>
     <tr><td>gmail.com</td><td>14:50</td><td>3</td></tr>
     </table><div class="alert alert-danger">🚨 الموقع المشبوه نفسه الذي اكتُشف في سجل الشبكة!</div>`
   },
@@ -738,7 +738,7 @@ const artifactData={
     content:`<div class="alert alert-success">✅ مواقع مؤكّدة من Google Timeline:</div>
     <table class="data-table"><tr><th>الوقت</th><th>الموقع</th><th>المصدر</th></tr>
     <tr><td>08:30–13:00</td><td>مبنى الشركة — مدخل رئيسي</td><td>GPS</td></tr>
-    <tr style="background:rgba(255,68,68,.08)"><td style="color:#ff4444">14:28–14:40</td><td>غرفة الخوادم — الطابق B1</td><td>WiFi + Cell</td></tr>
+    <tr style="background:rgba(255,68,68,.08)"><td style="color:#b91c1c">14:28–14:40</td><td>غرفة الخوادم — الطابق B1</td><td>WiFi + Cell</td></tr>
     <tr><td>15:30</td><td>مواقف السيارات</td><td>GPS</td></tr>
     </table><div class="alert alert-danger">🚨 المشتبه به في غرفة الخوادم وقت الحادثة!</div>`
   }
@@ -817,6 +817,7 @@ document.addEventListener('DOMContentLoaded',loadProg);
 </div>
 </body>
 </html>
+
 
 
 
