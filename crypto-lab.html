@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -9,108 +9,108 @@
 [onclick]{cursor:pointer}
 input,select,textarea,button{font-size:16px;touch-action:manipulation}
 button{touch-action:manipulation}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
-.header{background:linear-gradient(135deg,#0d1b2a,#1a0d2e);padding:20px 30px;border-bottom:2px solid #a855f7;display:flex;align-items:center;gap:15px}
-.header h1{font-size:1.6rem;color:#a855f7;text-shadow:0 0 10px rgba(168,85,247,0.4)}
-.tabs{display:flex;gap:0;background:#071020;border-bottom:1px solid #1e3a5c;padding:0 20px;overflow-x:auto}
-.tab{padding:14px 22px;cursor:pointer;color:#7ab3d4;border-bottom:3px solid transparent;white-space:nowrap;font-size:.9rem;transition:all .2s}
-.tab:hover{color:#a855f7}
-.tab.active{color:#a855f7;border-bottom-color:#a855f7;background:rgba(168,85,247,.05)}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f0f4f0;color:#1a2e22;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#006633 0%,#00843d 60%,#004d28 100%);padding:20px 30px;border-bottom:4px solid #c9a227;display:flex;align-items:center;gap:15px}
+.header h1{font-size:1.5rem;color:#fff}
+.tabs{display:flex;gap:0;background:#e8f0eb;border-bottom:1px solid #c8ddd2;padding:0 20px;overflow-x:auto}
+.tab{padding:14px 22px;cursor:pointer;color:#4a7a5e;border-bottom:3px solid transparent;white-space:nowrap;font-size:.9rem;transition:all .2s}
+.tab:hover{color:#006633}
+.tab.active{color:#006633;border-bottom-color:#006633;background:rgba(0,102,51,.05)}
 .tab-panel{display:none;padding:30px;max-width:960px;margin:0 auto}
 .tab-panel.active{display:block}
-h2{color:#a855f7;margin-bottom:8px;font-size:1.2rem}
-.subtitle{color:#7ab3d4;font-size:.85rem;margin-bottom:20px;line-height:1.7}
-.card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:22px;margin-bottom:20px}
-.card h3{color:#a855f7;margin-bottom:12px;font-size:1rem}
-.input-area{width:100%;background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;color:#e0e6f0;font-size:.9rem;font-family:inherit;resize:vertical;min-height:80px}
-.input-area:focus{outline:none;border-color:#a855f7}
-input[type=text],input[type=number],input[type=password]{width:100%;background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:10px 12px;color:#e0e6f0;font-size:.9rem;font-family:inherit}
-input:focus{outline:none;border-color:#a855f7}
-.hash-output{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.8rem;word-break:break-all;position:relative;min-height:40px;transition:all .3s}
-.hash-label{color:#7ab3d4;font-size:.75rem;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
-.hash-value{color:#00ff88;transition:color .3s}
+h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
+.subtitle{color:#4a7a5e;font-size:.85rem;margin-bottom:20px;line-height:1.7}
+.card{background:#ffffff;border:1px solid #c8ddd2;border-radius:12px;padding:22px;margin-bottom:20px}
+.card h3{color:#006633;margin-bottom:12px;font-size:1rem}
+.input-area{width:100%;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:12px;color:#1a2e22;font-size:.9rem;font-family:inherit;resize:vertical;min-height:80px}
+.input-area:focus{outline:none;border-color:#006633}
+input[type=text],input[type=number],input[type=password]{width:100%;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:10px 12px;color:#1a2e22;font-size:.9rem;font-family:inherit}
+input:focus{outline:none;border-color:#006633}
+.hash-output{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.8rem;word-break:break-all;position:relative;min-height:40px;transition:all .3s}
+.hash-label{color:#4a7a5e;font-size:.75rem;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.hash-value{color:#065f46;transition:color .3s}
 .hash-value.changed{color:#ff4444;animation:flash .4s}
-@keyframes flash{0%{color:#ff4444}50%{color:#ffaa00}100%{color:#00ff88}}
+@keyframes flash{0%{color:#ff4444}50%{color:#ffaa00}100%{color:#065f46}}
 .btn{padding:9px 20px;border:none;border-radius:6px;font-size:.88rem;cursor:pointer;transition:all .2s;font-weight:600}
-.btn-purple{background:#a855f7;color:#fff}
+.btn-purple{background:#006633;color:#fff}
 .btn-purple:hover{background:#9333ea}
-.btn-outline{background:transparent;border:1px solid #a855f7;color:#a855f7}
-.btn-outline:hover{background:#a855f7;color:#fff}
+.btn-outline{background:transparent;border:1px solid #006633;color:#006633}
+.btn-outline:hover{background:#006633;color:#fff}
 .btn-sm{padding:5px 12px;font-size:.78rem}
 .btn-red{background:#ff4444;color:#fff}
 .btn-green{background:#00ff88;color:#000}
 .alert{padding:12px 16px;border-radius:6px;margin:10px 0;font-size:.88rem;line-height:1.6}
-.alert-purple{background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3);color:#c084fc}
-.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
-.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
-.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
-.alert-danger{background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);color:#ff8888}
+.alert-purple{background:rgba(0,102,51,.1);border:1px solid rgba(0,102,51,.3);color:#c084fc}
+.alert-info{background:rgba(0,102,51,.07);border:1px solid rgba(0,102,51,.25);color:#2d6a4a}
+.alert-success{background:rgba(6,95,70,.08);border:1px solid rgba(6,95,70,.25);color:#065f46}
+.alert-warn{background:rgba(120,85,0,.06);border:1px solid rgba(180,130,0,.3);color:#7a6010}
+.alert-danger{background:rgba(127,29,29,.06);border:1px solid rgba(200,50,50,.25);color:#7f1d1d}
 .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .bit-vis{display:flex;flex-wrap:wrap;gap:2px;margin:8px 0}
 .bit{width:14px;height:14px;border-radius:2px;font-size:.5rem;display:flex;align-items:center;justify-content:center;transition:all .3s}
-.bit-0{background:#1e3a5c;color:#556070}
-.bit-1{background:#a855f7;color:#fff}
+.bit-0{background:#c8ddd2;color:#4a7a5e}
+.bit-1{background:#006633;color:#fff}
 .bit-changed{background:#ff4444!important;animation:bitFlash .5s}
 @keyframes bitFlash{0%{transform:scale(1.3)}100%{transform:scale(1)}}
 .cipher-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;margin:12px 0}
-.cipher-cell{background:#071020;border:1px solid #1e3a5c;border-radius:4px;padding:5px 2px;text-align:center;font-size:.7rem;font-family:'Courier New',monospace}
-.cipher-cell .plain{color:#7ab3d4}
-.cipher-cell .enc{color:#a855f7;font-weight:bold}
-.cipher-cell.active{border-color:#a855f7;background:rgba(168,85,247,.1)}
+.cipher-cell{background:#f0f7f3;border:1px solid #c8ddd2;border-radius:4px;padding:5px 2px;text-align:center;font-size:.7rem;font-family:'Courier New',monospace}
+.cipher-cell .plain{color:#4a7a5e}
+.cipher-cell .enc{color:#006633;font-weight:bold}
+.cipher-cell.active{border-color:#006633;background:rgba(0,102,51,.1)}
 .wheel-wrap{display:flex;gap:30px;align-items:center;justify-content:center;margin:20px 0;flex-wrap:wrap}
-.wheel{width:160px;height:160px;border-radius:50%;border:3px solid #1e3a5c;position:relative;display:flex;align-items:center;justify-content:center;background:#071020}
-.wheel-inner{width:100px;height:100px;border-radius:50%;border:3px solid #a855f7;position:absolute;display:flex;align-items:center;justify-content:center;background:#0d1b2a;font-size:1.5rem;font-weight:bold;color:#a855f7}
-.wheel-label{text-align:center;font-size:.75rem;color:#7ab3d4;margin-top:8px}
+.wheel{width:160px;height:160px;border-radius:50%;border:3px solid #c8ddd2;position:relative;display:flex;align-items:center;justify-content:center;background:#f0f7f3}
+.wheel-inner{width:100px;height:100px;border-radius:50%;border:3px solid #006633;position:absolute;display:flex;align-items:center;justify-content:center;background:#ffffff;font-size:1.5rem;font-weight:bold;color:#006633}
+.wheel-label{text-align:center;font-size:.75rem;color:#4a7a5e;margin-top:8px}
 .process-steps{display:flex;gap:0;align-items:center;flex-wrap:wrap;margin:16px 0}
-.step-box{background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;flex:1;min-width:140px;text-align:center;transition:all .3s}
-.step-box.active{border-color:#a855f7;background:rgba(168,85,247,.1)}
+.step-box{background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:14px;flex:1;min-width:140px;text-align:center;transition:all .3s}
+.step-box.active{border-color:#006633;background:rgba(0,102,51,.1)}
 .step-box .icon{font-size:1.8rem;margin-bottom:6px}
-.step-box h4{font-size:.8rem;color:#7ab3d4}
-.step-arrow{color:#1e3a5c;font-size:1.5rem;padding:0 8px}
+.step-box h4{font-size:.8rem;color:#4a7a5e}
+.step-arrow{color:#c8ddd2;font-size:1.5rem;padding:0 8px}
 .sym-asym{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:16px 0}
 .method-card{border-radius:10px;padding:18px}
-.method-card.sym{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.2)}
-.method-card.asym{background:rgba(168,85,247,.05);border:1px solid rgba(168,85,247,.2)}
+.method-card.sym{background:rgba(0,102,51,.05);border:1px solid rgba(0,102,51,.2)}
+.method-card.asym{background:rgba(0,102,51,.05);border:1px solid rgba(0,102,51,.2)}
 .method-card h4{margin-bottom:10px;font-size:.95rem}
-.method-card.sym h4{color:#00d4ff}
-.method-card.asym h4{color:#a855f7}
+.method-card.sym h4{color:#006633}
+.method-card.asym h4{color:#006633}
 .key-icon{font-size:1.3rem;margin-left:6px}
 .rainbow-table{width:100%;border-collapse:collapse;font-size:.8rem;font-family:'Courier New',monospace}
-.rainbow-table th{background:#071020;color:#7ab3d4;padding:8px;text-align:right;border-bottom:2px solid #1e3a5c}
-.rainbow-table td{padding:8px;border-bottom:1px solid #1e3a5c;color:#aab8c8}
+.rainbow-table th{background:#f0f7f3;color:#4a7a5e;padding:8px;text-align:right;border-bottom:2px solid #c8ddd2}
+.rainbow-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#4a7a5e}
 .rainbow-table tr.found td{background:rgba(255,68,68,.15);color:#ff8888}
 .rainbow-table tr.found td:first-child{color:#ff4444;font-weight:bold}
-.progress-wrap{background:#1e3a5c;border-radius:20px;height:10px;margin:8px 0;overflow:hidden}
-.progress-fill{height:100%;border-radius:20px;transition:width .3s;background:linear-gradient(90deg,#a855f7,#00d4ff)}
+.progress-wrap{background:#c8ddd2;border-radius:20px;height:10px;margin:8px 0;overflow:hidden}
+.progress-fill{height:100%;border-radius:20px;transition:width .3s;background:linear-gradient(90deg,#006633,#00843d)}
 .strength-bar{display:flex;gap:4px;margin:10px 0}
-.strength-seg{flex:1;height:8px;border-radius:4px;background:#1e3a5c;transition:background .3s}
+.strength-seg{flex:1;height:8px;border-radius:4px;background:#c8ddd2;transition:background .3s}
 .strength-seg.weak{background:#ff4444}
 .strength-seg.fair{background:#ffaa00}
-.strength-seg.good{background:#00d4ff}
+.strength-seg.good{background:#006633}
 .strength-seg.strong{background:#00ff88}
 .steg-canvas-wrap{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
-.steg-canvas{border:2px solid #1e3a5c;border-radius:8px}
+.steg-canvas{border:2px solid #c8ddd2;border-radius:8px}
 .diff-highlight{background:rgba(255,68,68,.3);color:#ff8888}
-.info-pill{display:inline-block;background:#1e3a5c;color:#7ab3d4;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:3px}
-.copy-btn{background:none;border:1px solid #1e3a5c;border-radius:4px;color:#7ab3d4;padding:3px 8px;font-size:.7rem;cursor:pointer;transition:all .2s}
-.copy-btn:hover{border-color:#a855f7;color:#a855f7}
+.info-pill{display:inline-block;background:#c8ddd2;color:#4a7a5e;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:3px}
+.copy-btn{background:none;border:1px solid #c8ddd2;border-radius:4px;color:#4a7a5e;padding:3px 8px;font-size:.7rem;cursor:pointer;transition:all .2s}
+.copy-btn:hover{border-color:#006633;color:#006633}
 .avalanche-row{display:flex;gap:10px;align-items:center;margin:6px 0;flex-wrap:wrap}
 .avalanche-hash{font-family:'Courier New',monospace;font-size:.72rem;flex:1;min-width:200px}
 .char-diff{color:#ff4444;font-weight:bold;text-decoration:underline}
 .tag{display:inline-block;background:#1a0d2e;color:#c084fc;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
-.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#475569;flex-wrap:wrap;gap:6px}
-.site-topbar .author-tag{color:#f59e0b;font-weight:700}
+.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#4a7a5e;flex-wrap:wrap;gap:6px}
+.site-topbar .author-tag{color:#c9a227;font-weight:700}
 .site-header-bar{background:linear-gradient(135deg,#0a1628 0%,#0d2145 100%);border-bottom:3px solid #2563eb;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .site-logo-box{width:52px;height:52px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 4px 15px rgba(37,99,235,.35)}
 .site-lab-info{flex:1;min-width:0}
 .site-lab-info h2{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 2px;line-height:1.3}
 .site-lab-info span{font-size:.7rem;color:#93c5fd;letter-spacing:.5px}
 .site-author-block{text-align:left;border-right:1px solid rgba(255,255,255,.08);padding-right:18px;flex-shrink:0}
-.site-author-block .aname{font-size:.95rem;font-weight:700;color:#f59e0b;line-height:1.4}
-.site-author-block .abook{font-size:.68rem;color:#64748b;margin-top:1px}
+.site-author-block .aname{font-size:.95rem;font-weight:700;color:#c9a227;line-height:1.4}
+.site-author-block .abook{font-size:.68rem;color:#4a7a5e;margin-top:1px}
 .site-footer-bar{background:#04080f;border-top:2px solid #0f2040;padding:24px 30px;text-align:center;margin-top:30px}
-.site-footer-bar p{color:#475569;font-size:.78rem;line-height:2;margin:0}
-.site-footer-bar strong{color:#f59e0b}
+.site-footer-bar p{color:#4a7a5e;font-size:.78rem;line-height:2;margin:0}
+.site-footer-bar strong{color:#c9a227}
 @media(max-width:600px){.site-author-block{border:none;padding:0;text-align:right}.site-header-bar{gap:10px}}
 </style>
 </head>
@@ -137,7 +137,7 @@ input:focus{outline:none;border-color:#a855f7}
     <h1>مختبر التشفير وتوليد Hash التفاعلي</h1>
     <div style="color:#c084fc;font-size:.82rem">Cryptography & Hashing Lab — الفصل السادس من كتاب التحليل الجنائي الرقمي</div>
   </div>
-  <a href="index.html" style="margin-right:auto;color:#7ab3d4;font-size:.85rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 14px;border-radius:6px">← الصفحة الرئيسية</a>
+  <a href="index.html" style="margin-right:auto;color:#4a7a5e;font-size:.85rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 14px;border-radius:6px">← الصفحة الرئيسية</a>
 </div>
 
 <div class="tabs">
@@ -159,7 +159,7 @@ input:focus{outline:none;border-color:#a855f7}
   <div class="card">
     <h3>✏️ أدخل أي نص وشاهد Hash في الوقت الفعلي</h3>
     <textarea class="input-area" id="hash-input" placeholder="اكتب أي نص هنا..." oninput="computeAllHashes()">مرحباً بطلاب التحليل الجنائي الرقمي</textarea>
-    <div style="margin-top:6px;color:#556070;font-size:.78rem">الطول: <span id="char-count">0</span> حرف | <span id="byte-count">0</span> بايت</div>
+    <div style="margin-top:6px;color:#4a7a5e;font-size:.78rem">الطول: <span id="char-count">0</span> حرف | <span id="byte-count">0</span> بايت</div>
   </div>
 
   <div class="card">
@@ -181,14 +181,14 @@ input:focus{outline:none;border-color:#a855f7}
       </div>
       <div>
         <div class="hash-label">
-          <span>SHA-256 <span class="info-pill">256 بت — 64 حرف hex</span> <span class="info-pill" style="background:rgba(0,255,136,.1);color:#00ff88">✅ موصى به</span></span>
+          <span>SHA-256 <span class="info-pill">256 بت — 64 حرف hex</span> <span class="info-pill" style="background:rgba(0,255,136,.1);color:#065f46">✅ موصى به</span></span>
           <button class="copy-btn" onclick="copyHash('out-sha256')">نسخ</button>
         </div>
         <div class="hash-output"><span class="hash-value" id="out-sha256">—</span></div>
       </div>
       <div>
         <div class="hash-label">
-          <span>SHA-512 <span class="info-pill">512 بت — 128 حرف hex</span> <span class="info-pill" style="background:rgba(0,255,136,.1);color:#00ff88">✅ أقوى</span></span>
+          <span>SHA-512 <span class="info-pill">512 بت — 128 حرف hex</span> <span class="info-pill" style="background:rgba(0,255,136,.1);color:#065f46">✅ أقوى</span></span>
           <button class="copy-btn" onclick="copyHash('out-sha512')">نسخ</button>
         </div>
         <div class="hash-output"><span class="hash-value" id="out-sha512">—</span></div>
@@ -198,24 +198,24 @@ input:focus{outline:none;border-color:#a855f7}
 
   <div class="card">
     <h3>📐 تمثيل بصري لـ Hash كبيانات ثنائية</h3>
-    <p style="color:#7ab3d4;font-size:.82rem;margin-bottom:8px">كل مربع = بت واحد من MD5 (128 بت كاملة)</p>
+    <p style="color:#4a7a5e;font-size:.82rem;margin-bottom:8px">كل مربع = بت واحد من MD5 (128 بت كاملة)</p>
     <div class="bit-vis" id="bit-visual"></div>
-    <div style="margin-top:8px;color:#556070;font-size:.75rem">🟣 = 1 &nbsp;|&nbsp; 🔵 = 0 &nbsp;|&nbsp; تغيير حرف واحد يُغيّر نصف البتات تقريباً</div>
+    <div style="margin-top:8px;color:#4a7a5e;font-size:.75rem">🟣 = 1 &nbsp;|&nbsp; 🔵 = 0 &nbsp;|&nbsp; تغيير حرف واحد يُغيّر نصف البتات تقريباً</div>
   </div>
 
   <div class="card">
     <h3>🔬 مقارنة Hash لملفين</h3>
-    <p style="color:#7ab3d4;font-size:.82rem;margin-bottom:12px">في الجنائيات الرقمية نستخدم هذا للتحقق من أن نسخة الدليل مطابقة للأصل تماماً</p>
+    <p style="color:#4a7a5e;font-size:.82rem;margin-bottom:12px">في الجنائيات الرقمية نستخدم هذا للتحقق من أن نسخة الدليل مطابقة للأصل تماماً</p>
     <div class="compare-grid">
       <div>
         <div class="hash-label">الملف الأصلي (Original)</div>
         <textarea class="input-area" id="cmp-a" placeholder="محتوى الملف الأصلي..." oninput="compareHashes()" style="min-height:60px">هذا دليل رقمي مهم — لا تعبث به</textarea>
-        <div class="hash-output" style="margin-top:6px"><span style="color:#556070;font-size:.72rem">SHA-256: </span><span class="hash-value" id="cmp-out-a" style="font-size:.72rem">—</span></div>
+        <div class="hash-output" style="margin-top:6px"><span style="color:#4a7a5e;font-size:.72rem">SHA-256: </span><span class="hash-value" id="cmp-out-a" style="font-size:.72rem">—</span></div>
       </div>
       <div>
         <div class="hash-label">الملف المشبوه (Suspect Copy)</div>
         <textarea class="input-area" id="cmp-b" placeholder="محتوى النسخة المشبوهة..." oninput="compareHashes()" style="min-height:60px">هذا دليل رقمي مهم — لا تعبث به</textarea>
-        <div class="hash-output" style="margin-top:6px"><span style="color:#556070;font-size:.72rem">SHA-256: </span><span class="hash-value" id="cmp-out-b" style="font-size:.72rem">—</span></div>
+        <div class="hash-output" style="margin-top:6px"><span style="color:#4a7a5e;font-size:.72rem">SHA-256: </span><span class="hash-value" id="cmp-out-b" style="font-size:.72rem">—</span></div>
       </div>
     </div>
     <div id="cmp-result" style="margin-top:12px"></div>
@@ -247,15 +247,15 @@ input:focus{outline:none;border-color:#a855f7}
   <div class="card">
     <h3>📊 تصور الاختلافات حرفاً حرفاً (SHA-256)</h3>
     <div id="av-char-diff" style="font-family:'Courier New',monospace;font-size:.78rem;line-height:2;word-break:break-all">أدخل نصين أعلاه لرؤية الاختلاف...</div>
-    <div style="margin-top:10px;color:#556070;font-size:.78rem"><span style="color:#ff4444">█</span> = حرف مختلف &nbsp;|&nbsp; <span style="color:#00ff88">█</span> = حرف متطابق</div>
+    <div style="margin-top:10px;color:#4a7a5e;font-size:.78rem"><span style="color:#ff4444">█</span> = حرف مختلف &nbsp;|&nbsp; <span style="color:#065f46">█</span> = حرف متطابق</div>
   </div>
 
   <div class="card">
     <h3>📈 نسبة البتات المتغيرة</h3>
     <div id="av-bits-wrap">
-      <div style="color:#7ab3d4;font-size:.85rem">البتات المتغيرة: <span id="av-bits-changed" style="color:#a855f7;font-weight:bold">—</span> من 256</div>
+      <div style="color:#4a7a5e;font-size:.85rem">البتات المتغيرة: <span id="av-bits-changed" style="color:#006633;font-weight:bold">—</span> من 256</div>
       <div class="progress-wrap"><div class="progress-fill" id="av-progress" style="width:0%"></div></div>
-      <div style="color:#556070;font-size:.78rem">النسبة المثالية لـ Hash الجيد: قريبة من 50%</div>
+      <div style="color:#4a7a5e;font-size:.78rem">النسبة المثالية لـ Hash الجيد: قريبة من 50%</div>
     </div>
   </div>
 
@@ -273,13 +273,13 @@ input:focus{outline:none;border-color:#a855f7}
     <h3>⚙️ اضبط الإزاحة (Shift)</h3>
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
       <div style="flex:1">
-        <input type="range" id="caesar-shift" min="1" max="25" value="3" oninput="updateCaesar()" style="width:100%;accent-color:#a855f7">
-        <div style="text-align:center;color:#a855f7;font-size:1.5rem;font-weight:bold" id="shift-label">الإزاحة: 3</div>
+        <input type="range" id="caesar-shift" min="1" max="25" value="3" oninput="updateCaesar()" style="width:100%;accent-color:#006633">
+        <div style="text-align:center;color:#006633;font-size:1.5rem;font-weight:bold" id="shift-label">الإزاحة: 3</div>
       </div>
       <div class="wheel-wrap" style="margin:0">
         <div style="text-align:center">
           <div class="wheel">
-            <div style="color:#7ab3d4;font-size:.65rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;text-align:center" id="wheel-letters">A→D</div>
+            <div style="color:#4a7a5e;font-size:.65rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;text-align:center" id="wheel-letters">A→D</div>
           </div>
           <div class="wheel-label">مثال على الإزاحة</div>
         </div>
@@ -308,7 +308,7 @@ input:focus{outline:none;border-color:#a855f7}
 
   <div class="card">
     <h3>🔓 كسر تشفير قيصر بالقوة الغاشمة (Brute Force)</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">تشفير قيصر ضعيف جداً — هناك 25 احتمالاً فقط! يمكن تجربة جميع الإزاحات خلال ثوانٍ.</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">تشفير قيصر ضعيف جداً — هناك 25 احتمالاً فقط! يمكن تجربة جميع الإزاحات خلال ثوانٍ.</p>
     <div>
       <div class="hash-label">أدخل النص المشفّر لكسره:</div>
       <input type="text" id="brute-input" value="" placeholder="الصق نصاً مشفراً هنا...">
@@ -330,9 +330,9 @@ input:focus{outline:none;border-color:#a855f7}
   <div class="card">
     <h3>🔄 كيف يعمل التشفير المتماثل</h3>
     <div class="process-steps" id="sym-steps">
-      <div class="step-box" id="sym-s1"><div class="icon">📄</div><h4>النص الأصلي</h4><div style="color:#a855f7;font-size:.75rem;margin-top:4px" id="sym-plain-show">—</div></div>
+      <div class="step-box" id="sym-s1"><div class="icon">📄</div><h4>النص الأصلي</h4><div style="color:#006633;font-size:.75rem;margin-top:4px" id="sym-plain-show">—</div></div>
       <div class="step-arrow">→</div>
-      <div class="step-box" id="sym-s2"><div class="icon">🔑</div><h4>المفتاح السري</h4><div style="color:#00d4ff;font-size:.7rem;margin-top:4px" id="sym-key-show">—</div></div>
+      <div class="step-box" id="sym-s2"><div class="icon">🔑</div><h4>المفتاح السري</h4><div style="color:#006633;font-size:.7rem;margin-top:4px" id="sym-key-show">—</div></div>
       <div class="step-arrow">→</div>
       <div class="step-box" id="sym-s3"><div class="icon">⚙️</div><h4>خوارزمية AES</h4></div>
       <div class="step-arrow">→</div>
@@ -342,7 +342,7 @@ input:focus{outline:none;border-color:#a855f7}
 
   <div class="card">
     <h3>🧪 محاكاة XOR — قلب التشفير المتماثل</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">XOR هو العملية الأساسية في معظم خوارزميات التشفير. A XOR B XOR B = A (التشفير وفك التشفير بنفس المفتاح)</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">XOR هو العملية الأساسية في معظم خوارزميات التشفير. A XOR B XOR B = A (التشفير وفك التشفير بنفس المفتاح)</p>
     <div style="display:grid;gap:10px">
       <div><div class="hash-label">النص الأصلي (بالإنجليزية)</div><input type="text" id="xor-plain" value="SECRET" oninput="computeXOR()" maxlength="12"></div>
       <div><div class="hash-label">المفتاح</div><input type="text" id="xor-key" value="KEY" oninput="computeXOR()" maxlength="12"></div>
@@ -354,18 +354,18 @@ input:focus{outline:none;border-color:#a855f7}
     </div>
     <div style="margin-top:10px">
       <div class="hash-label">فك التشفير (XOR مرة أخرى بنفس المفتاح → النص الأصلي)</div>
-      <div class="hash-output"><span class="hash-value" id="xor-decrypted" style="color:#00ff88">—</span></div>
+      <div class="hash-output"><span class="hash-value" id="xor-decrypted" style="color:#065f46">—</span></div>
     </div>
   </div>
 
   <div class="card">
     <h3>📊 مقارنة خوارزميات التشفير المتماثل</h3>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
-      <tr style="background:#071020"><th style="padding:8px;text-align:right;color:#7ab3d4">الخوارزمية</th><th style="padding:8px;color:#7ab3d4">طول المفتاح</th><th style="padding:8px;color:#7ab3d4">الحالة</th><th style="padding:8px;color:#7ab3d4">الاستخدام</th></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">DES</td><td style="padding:8px;text-align:center;color:#ff8888">56 بت</td><td style="padding:8px;text-align:center"><span style="color:#ff4444">مكسور</span></td><td style="padding:8px;color:#556070">تاريخي فقط</td></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">3DES</td><td style="padding:8px;text-align:center;color:#ffaa00">112 بت</td><td style="padding:8px;text-align:center"><span style="color:#ffaa00">مهجور</span></td><td style="padding:8px;color:#556070">أنظمة قديمة</td></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">AES-128</td><td style="padding:8px;text-align:center;color:#00d4ff">128 بت</td><td style="padding:8px;text-align:center"><span style="color:#00ff88">آمن</span></td><td style="padding:8px;color:#556070">WiFi, TLS</td></tr>
-      <tr><td style="padding:8px">AES-256</td><td style="padding:8px;text-align:center;color:#00ff88">256 بت</td><td style="padding:8px;text-align:center"><span style="color:#00ff88">✅ الأقوى</span></td><td style="padding:8px;color:#556070">حكومي، عسكري</td></tr>
+      <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">الخوارزمية</th><th style="padding:8px;color:#4a7a5e">طول المفتاح</th><th style="padding:8px;color:#4a7a5e">الحالة</th><th style="padding:8px;color:#4a7a5e">الاستخدام</th></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">DES</td><td style="padding:8px;text-align:center;color:#ff8888">56 بت</td><td style="padding:8px;text-align:center"><span style="color:#ff4444">مكسور</span></td><td style="padding:8px;color:#4a7a5e">تاريخي فقط</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">3DES</td><td style="padding:8px;text-align:center;color:#ffaa00">112 بت</td><td style="padding:8px;text-align:center"><span style="color:#ffaa00">مهجور</span></td><td style="padding:8px;color:#4a7a5e">أنظمة قديمة</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">AES-128</td><td style="padding:8px;text-align:center;color:#006633">128 بت</td><td style="padding:8px;text-align:center"><span style="color:#065f46">آمن</span></td><td style="padding:8px;color:#4a7a5e">WiFi, TLS</td></tr>
+      <tr><td style="padding:8px">AES-256</td><td style="padding:8px;text-align:center;color:#065f46">256 بت</td><td style="padding:8px;text-align:center"><span style="color:#065f46">✅ الأقوى</span></td><td style="padding:8px;color:#4a7a5e">حكومي، عسكري</td></tr>
     </table>
   </div>
 </div>
@@ -373,27 +373,27 @@ input:focus{outline:none;border-color:#a855f7}
 <!-- TAB: Asymmetric -->
 <div class="tab-panel" id="tab-asymmetric">
   <h2>🗝️ التشفير غير المتماثل (Asymmetric / Public Key)</h2>
-  <p class="subtitle">زوج من المفاتيح: <strong style="color:#00ff88">مفتاح عام (Public)</strong> للتشفير — يُعطى للجميع، و<strong style="color:#a855f7">مفتاح خاص (Private)</strong> لفك التشفير — يبقى سراً. يحل مشكلة توزيع المفتاح في التشفير المتماثل.</p>
+  <p class="subtitle">زوج من المفاتيح: <strong style="color:#065f46">مفتاح عام (Public)</strong> للتشفير — يُعطى للجميع، و<strong style="color:#006633">مفتاح خاص (Private)</strong> لفك التشفير — يبقى سراً. يحل مشكلة توزيع المفتاح في التشفير المتماثل.</p>
 
   <div class="sym-asym">
     <div class="method-card sym">
       <h4>🔑 التشفير المتماثل</h4>
-      <div style="font-size:.85rem;color:#7ab3d4;line-height:1.8">
+      <div style="font-size:.85rem;color:#4a7a5e;line-height:1.8">
         <div>✅ سريع جداً</div>
         <div>✅ مناسب للبيانات الكبيرة</div>
         <div>❌ مشكلة توزيع المفتاح</div>
         <div>❌ مفتاح واحد = خطر واحد</div>
-        <div style="margin-top:8px;color:#00d4ff">📦 مثال: AES, DES, 3DES</div>
+        <div style="margin-top:8px;color:#006633">📦 مثال: AES, DES, 3DES</div>
       </div>
     </div>
     <div class="method-card asym">
       <h4>🗝️ التشفير غير المتماثل</h4>
-      <div style="font-size:.85rem;color:#7ab3d4;line-height:1.8">
+      <div style="font-size:.85rem;color:#4a7a5e;line-height:1.8">
         <div>✅ لا توجد مشكلة توزيع</div>
         <div>✅ التوقيع الرقمي</div>
         <div>❌ بطيء نسبياً</div>
         <div>❌ غير مناسب للبيانات الضخمة</div>
-        <div style="margin-top:8px;color:#a855f7">📦 مثال: RSA, ECC, DSA</div>
+        <div style="margin-top:8px;color:#006633">📦 مثال: RSA, ECC, DSA</div>
       </div>
     </div>
   </div>
@@ -402,25 +402,25 @@ input:focus{outline:none;border-color:#a855f7}
     <h3>📬 تدفق التشفير غير المتماثل — مثال عملي</h3>
     <div id="asym-scenario" style="font-size:.88rem;line-height:2">
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0">
-        <span style="color:#00d4ff;min-width:80px">أحمد 👤</span>
-        <span>لديه: <span style="color:#00ff88">Public Key</span> لسارة + <span style="color:#a855f7">Private Key</span> خاص به</span>
+        <span style="color:#006633;min-width:80px">أحمد 👤</span>
+        <span>لديه: <span style="color:#065f46">Public Key</span> لسارة + <span style="color:#006633">Private Key</span> خاص به</span>
       </div>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0">
-        <span style="color:#00d4ff;min-width:80px">سارة 👤</span>
-        <span>لديها: <span style="color:#00ff88">Public Key</span> خاص بها (معلن) + <span style="color:#a855f7">Private Key</span> (سري)</span>
+        <span style="color:#006633;min-width:80px">سارة 👤</span>
+        <span>لديها: <span style="color:#065f46">Public Key</span> خاص بها (معلن) + <span style="color:#006633">Private Key</span> (سري)</span>
       </div>
       <div class="alert alert-purple" style="margin-top:12px">
         <strong>عملية الإرسال الآمن:</strong><br>
-        1️⃣ أحمد يشفر الرسالة بـ <span style="color:#00ff88">Public Key</span> سارة المعلن<br>
+        1️⃣ أحمد يشفر الرسالة بـ <span style="color:#065f46">Public Key</span> سارة المعلن<br>
         2️⃣ الرسالة المشفرة تُرسل عبر الإنترنت — ولو اعترضها أحد لن يستطيع فكها<br>
-        3️⃣ سارة وحدها تستطيع فك التشفير بـ <span style="color:#a855f7">Private Key</span> الخاص بها<br>
+        3️⃣ سارة وحدها تستطيع فك التشفير بـ <span style="color:#006633">Private Key</span> الخاص بها<br>
       </div>
     </div>
   </div>
 
   <div class="card">
     <h3>✍️ التوقيع الرقمي (Digital Signature)</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:14px">التوقيع الرقمي = تشفير Hash الوثيقة بالمفتاح الخاص. يثبت هوية المرسل وسلامة الوثيقة.</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:14px">التوقيع الرقمي = تشفير Hash الوثيقة بالمفتاح الخاص. يثبت هوية المرسل وسلامة الوثيقة.</p>
     <div class="process-steps" style="flex-wrap:wrap;gap:8px">
       <div class="step-box" style="min-width:110px"><div class="icon">📄</div><h4>الوثيقة</h4></div>
       <div class="step-arrow">→</div>
@@ -437,16 +437,16 @@ input:focus{outline:none;border-color:#a855f7}
 
   <div class="card">
     <h3>🧮 محاكاة RSA — المبدأ الرياضي</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">RSA يعتمد على صعوبة تحليل الأعداد الأولية الكبيرة إلى عواملها. مثال مبسّط:</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">RSA يعتمد على صعوبة تحليل الأعداد الأولية الكبيرة إلى عواملها. مثال مبسّط:</p>
     <div id="rsa-demo" style="font-family:'Courier New',monospace;font-size:.82rem;line-height:2">
-      <div>اختر عددين أوليين: p = <span id="rsa-p" style="color:#a855f7">17</span> &nbsp;q = <span id="rsa-q" style="color:#a855f7">11</span></div>
-      <div>n = p × q = <span id="rsa-n" style="color:#00d4ff">187</span> &nbsp;← <strong>المفتاح العام (يُعلن للعموم)</strong></div>
-      <div>φ(n) = (p-1)(q-1) = <span id="rsa-phi" style="color:#556070">160</span></div>
-      <div>e = <span id="rsa-e" style="color:#00ff88">7</span> &nbsp;← جزء من المفتاح العام</div>
-      <div>d = <span id="rsa-d" style="color:#a855f7">23</span> &nbsp;← <strong>المفتاح الخاص (سري تماماً)</strong></div>
-      <div style="margin-top:10px;color:#7ab3d4">الرسالة m = <input type="number" id="rsa-msg" value="65" min="2" max="100" oninput="computeRSA()" style="width:60px;background:#071020;border:1px solid #1e3a5c;border-radius:4px;padding:3px 6px;color:#e0e6f0"></div>
+      <div>اختر عددين أوليين: p = <span id="rsa-p" style="color:#006633">17</span> &nbsp;q = <span id="rsa-q" style="color:#006633">11</span></div>
+      <div>n = p × q = <span id="rsa-n" style="color:#006633">187</span> &nbsp;← <strong>المفتاح العام (يُعلن للعموم)</strong></div>
+      <div>φ(n) = (p-1)(q-1) = <span id="rsa-phi" style="color:#4a7a5e">160</span></div>
+      <div>e = <span id="rsa-e" style="color:#065f46">7</span> &nbsp;← جزء من المفتاح العام</div>
+      <div>d = <span id="rsa-d" style="color:#006633">23</span> &nbsp;← <strong>المفتاح الخاص (سري تماماً)</strong></div>
+      <div style="margin-top:10px;color:#4a7a5e">الرسالة m = <input type="number" id="rsa-msg" value="65" min="2" max="100" oninput="computeRSA()" style="width:60px;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:4px;padding:3px 6px;color:#1a2e22"></div>
       <div>التشفير: c = m<sup>e</sup> mod n = <span id="rsa-enc" style="color:#ff8844">—</span></div>
-      <div>فك التشفير: m = c<sup>d</sup> mod n = <span id="rsa-dec" style="color:#00ff88">—</span></div>
+      <div>فك التشفير: m = c<sup>d</sup> mod n = <span id="rsa-dec" style="color:#065f46">—</span></div>
     </div>
   </div>
 </div>
@@ -458,12 +458,12 @@ input:focus{outline:none;border-color:#a855f7}
 
   <div class="card">
     <h3>📖 جدول قوس قزح — Rainbow Table (محاكاة)</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">هذا الجدول يحتوي على MD5 لكلمات مرور شائعة. أدخل MD5 للبحث عنه:</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">هذا الجدول يحتوي على MD5 لكلمات مرور شائعة. أدخل MD5 للبحث عنه:</p>
     <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
       <input type="text" id="crack-input" placeholder="أدخل MD5 للبحث..." style="flex:1" oninput="searchRainbow()">
       <button class="btn btn-red" onclick="searchRainbow()">🔍 ابحث</button>
     </div>
-    <div id="crack-hint" style="color:#7ab3d4;font-size:.82rem;margin-bottom:10px">
+    <div id="crack-hint" style="color:#4a7a5e;font-size:.82rem;margin-bottom:10px">
       جرّب هذه الـ MD5 للتجربة: &nbsp;
       <button class="copy-btn" onclick="document.getElementById('crack-input').value='5f4dcc3b5aa765d61d8327deb882cf99';searchRainbow()">password</button>
       <button class="copy-btn" onclick="document.getElementById('crack-input').value='e10adc3949ba59abbe56e057f20f883e';searchRainbow()">123456</button>
@@ -478,7 +478,7 @@ input:focus{outline:none;border-color:#a855f7}
 
   <div class="card">
     <h3>🧂 الحماية بـ Salt — الحل الصحيح</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">Salt هو سلسلة عشوائية تُضاف لكلمة المرور قبل تشفيرها. يجعل Rainbow Tables عديمة الجدوى.</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">Salt هو سلسلة عشوائية تُضاف لكلمة المرور قبل تشفيرها. يجعل Rainbow Tables عديمة الجدوى.</p>
     <div style="display:grid;gap:10px">
       <div>
         <div class="hash-label">كلمة المرور</div>
@@ -494,7 +494,7 @@ input:focus{outline:none;border-color:#a855f7}
     </div>
     <div style="margin-top:14px;font-family:'Courier New',monospace;font-size:.82rem;line-height:2">
       <div>بدون Salt: MD5("password") = <span id="salt-without" style="color:#ff4444">—</span> ← في Rainbow Table!</div>
-      <div>مع Salt: MD5("password" + "<span id="salt-show" style="color:#a855f7">x7mK#9pQ</span>") = <span id="salt-with" style="color:#00ff88">—</span> ← غير موجود في أي جدول</div>
+      <div>مع Salt: MD5("password" + "<span id="salt-show" style="color:#006633">x7mK#9pQ</span>") = <span id="salt-with" style="color:#065f46">—</span> ← غير موجود في أي جدول</div>
     </div>
   </div>
 
@@ -510,9 +510,9 @@ input:focus{outline:none;border-color:#a855f7}
 
   <div class="card">
     <h3>🎨 كيف تعمل تقنية LSB (أقل بت ذي قيمة)</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:14px">كل بكسل في الصورة يتكون من 3 قيم (R,G,B). نغير أصغر بت فيها لتخزين بيانات سرية — الفرق في اللون لا يُرى بالعين.</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:14px">كل بكسل في الصورة يتكون من 3 قيم (R,G,B). نغير أصغر بت فيها لتخزين بيانات سرية — الفرق في اللون لا يُرى بالعين.</p>
     <div id="lsb-demo" style="font-family:'Courier New',monospace;font-size:.82rem">
-      <div style="margin-bottom:12px;color:#a855f7">مثال: إخفاء الحرف 'A' (01000001) في 3 بكسلات:</div>
+      <div style="margin-bottom:12px;color:#006633">مثال: إخفاء الحرف 'A' (01000001) في 3 بكسلات:</div>
       <div id="lsb-table"></div>
     </div>
   </div>
@@ -529,7 +529,7 @@ input:focus{outline:none;border-color:#a855f7}
       <canvas id="steg-canvas-orig" width="200" height="80" class="steg-canvas"></canvas>
       <canvas id="steg-canvas-hidden" width="200" height="80" class="steg-canvas" style="margin-right:16px"></canvas>
     </div>
-    <div style="margin-top:8px;color:#556070;font-size:.78rem">اليسار: صورة بدون إخفاء &nbsp;|&nbsp; اليمين: صورة مع رسالة مخفية — لا فرق مرئي!</div>
+    <div style="margin-top:8px;color:#4a7a5e;font-size:.78rem">اليسار: صورة بدون إخفاء &nbsp;|&nbsp; اليمين: صورة مع رسالة مخفية — لا فرق مرئي!</div>
     <div id="steg-info" style="margin-top:12px"></div>
   </div>
 
@@ -553,7 +553,7 @@ input:focus{outline:none;border-color:#a855f7}
     <h3>🔒 محلل قوة كلمة المرور الحية</h3>
     <div style="position:relative">
       <input type="password" id="pw-input" placeholder="اكتب كلمة مرور للتحليل..." oninput="analyzePW()" style="padding-left:40px">
-      <button onclick="togglePW()" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#7ab3d4;cursor:pointer;font-size:1rem" id="pw-eye">👁</button>
+      <button onclick="togglePW()" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#4a7a5e;cursor:pointer;font-size:1rem" id="pw-eye">👁</button>
     </div>
     <div class="strength-bar" style="margin-top:12px" id="strength-bar">
       <div class="strength-seg" id="seg1"></div>
@@ -561,31 +561,31 @@ input:focus{outline:none;border-color:#a855f7}
       <div class="strength-seg" id="seg3"></div>
       <div class="strength-seg" id="seg4"></div>
     </div>
-    <div id="pw-label" style="color:#556070;font-size:.85rem;margin-top:4px">أدخل كلمة مرور للتحليل</div>
+    <div id="pw-label" style="color:#4a7a5e;font-size:.85rem;margin-top:4px">أدخل كلمة مرور للتحليل</div>
     <div id="pw-details" style="margin-top:14px;font-size:.85rem;line-height:2"></div>
   </div>
 
   <div class="card">
     <h3>⏱️ زمن الكسر بالقوة الغاشمة</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">بافتراض كمبيوتر يجرب 10 مليار محاولة في الثانية (GPU حديث):</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">بافتراض كمبيوتر يجرب 10 مليار محاولة في الثانية (GPU حديث):</p>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
-      <tr style="background:#071020"><th style="padding:8px;text-align:right;color:#7ab3d4">نوع كلمة المرور</th><th style="padding:8px;color:#7ab3d4">مثال</th><th style="padding:8px;color:#7ab3d4">عدد الاحتمالات</th><th style="padding:8px;color:#7ab3d4">زمن الكسر</th></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">6 أرقام</td><td style="padding:8px;font-family:monospace;color:#ff8888">123456</td><td style="padding:8px">10⁶ = مليون</td><td style="padding:8px;color:#ff4444">فوري</td></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">8 حروف صغيرة</td><td style="padding:8px;font-family:monospace;color:#ff8888">password</td><td style="padding:8px">26⁸ ≈ 209 مليار</td><td style="padding:8px;color:#ff4444">21 ثانية</td></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">8 أحرف مختلطة</td><td style="padding:8px;font-family:monospace;color:#ffaa00">P@ss123!</td><td style="padding:8px">95⁸ ≈ 6.6 × 10¹⁵</td><td style="padding:8px;color:#ffaa00">7.6 أيام</td></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">12 حرف مختلط</td><td style="padding:8px;font-family:monospace;color:#00d4ff">P@ssw0rd!23#</td><td style="padding:8px">95¹² ≈ 5.4 × 10²³</td><td style="padding:8px;color:#00d4ff">1.7 مليون سنة</td></tr>
-      <tr><td style="padding:8px">20 حرف عشوائي</td><td style="padding:8px;font-family:monospace;color:#00ff88">Xk#9mP$...</td><td style="padding:8px">95²⁰ ≈ 3.6 × 10³⁹</td><td style="padding:8px;color:#00ff88">أطول من عمر الكون</td></tr>
+      <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">نوع كلمة المرور</th><th style="padding:8px;color:#4a7a5e">مثال</th><th style="padding:8px;color:#4a7a5e">عدد الاحتمالات</th><th style="padding:8px;color:#4a7a5e">زمن الكسر</th></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">6 أرقام</td><td style="padding:8px;font-family:monospace;color:#ff8888">123456</td><td style="padding:8px">10⁶ = مليون</td><td style="padding:8px;color:#ff4444">فوري</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 حروف صغيرة</td><td style="padding:8px;font-family:monospace;color:#ff8888">password</td><td style="padding:8px">26⁸ ≈ 209 مليار</td><td style="padding:8px;color:#ff4444">21 ثانية</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">8 أحرف مختلطة</td><td style="padding:8px;font-family:monospace;color:#ffaa00">P@ss123!</td><td style="padding:8px">95⁸ ≈ 6.6 × 10¹⁵</td><td style="padding:8px;color:#ffaa00">7.6 أيام</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">12 حرف مختلط</td><td style="padding:8px;font-family:monospace;color:#006633">P@ssw0rd!23#</td><td style="padding:8px">95¹² ≈ 5.4 × 10²³</td><td style="padding:8px;color:#006633">1.7 مليون سنة</td></tr>
+      <tr><td style="padding:8px">20 حرف عشوائي</td><td style="padding:8px;font-family:monospace;color:#065f46">Xk#9mP$...</td><td style="padding:8px">95²⁰ ≈ 3.6 × 10³⁹</td><td style="padding:8px;color:#065f46">أطول من عمر الكون</td></tr>
     </table>
   </div>
 
   <div class="card">
     <h3>📊 مقارنة خوارزميات تخزين كلمات المرور</h3>
     <table style="width:100%;border-collapse:collapse;font-size:.83rem">
-      <tr style="background:#071020"><th style="padding:8px;text-align:right;color:#7ab3d4">الخوارزمية</th><th style="padding:8px;color:#7ab3d4">السرعة</th><th style="padding:8px;color:#7ab3d4">مقاومة GPU</th><th style="padding:8px;color:#7ab3d4">التوصية</th></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">MD5</td><td style="padding:8px;text-align:center;color:#ff4444">سريع جداً</td><td style="padding:8px;text-align:center;color:#ff4444">لا</td><td style="padding:8px;color:#ff4444">❌ لا تستخدم أبداً</td></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">SHA-256</td><td style="padding:8px;text-align:center;color:#ff8844">سريع</td><td style="padding:8px;text-align:center;color:#ffaa00">ضعيف</td><td style="padding:8px;color:#ffaa00">⚠️ بدون Salt فقط</td></tr>
-      <tr style="border-bottom:1px solid #1e3a5c"><td style="padding:8px">bcrypt</td><td style="padding:8px;text-align:center;color:#00d4ff">بطيء مقصود</td><td style="padding:8px;text-align:center;color:#00ff88">جيد</td><td style="padding:8px;color:#00ff88">✅ موصى به</td></tr>
-      <tr><td style="padding:8px">Argon2</td><td style="padding:8px;text-align:center;color:#00d4ff">بطيء جداً</td><td style="padding:8px;text-align:center;color:#00ff88">ممتاز</td><td style="padding:8px;color:#00ff88">✅ الأفضل حالياً</td></tr>
+      <tr style="background:#f0f7f3"><th style="padding:8px;text-align:right;color:#4a7a5e">الخوارزمية</th><th style="padding:8px;color:#4a7a5e">السرعة</th><th style="padding:8px;color:#4a7a5e">مقاومة GPU</th><th style="padding:8px;color:#4a7a5e">التوصية</th></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">MD5</td><td style="padding:8px;text-align:center;color:#ff4444">سريع جداً</td><td style="padding:8px;text-align:center;color:#ff4444">لا</td><td style="padding:8px;color:#ff4444">❌ لا تستخدم أبداً</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">SHA-256</td><td style="padding:8px;text-align:center;color:#ff8844">سريع</td><td style="padding:8px;text-align:center;color:#ffaa00">ضعيف</td><td style="padding:8px;color:#ffaa00">⚠️ بدون Salt فقط</td></tr>
+      <tr style="border-bottom:1px solid #c8ddd2"><td style="padding:8px">bcrypt</td><td style="padding:8px;text-align:center;color:#006633">بطيء مقصود</td><td style="padding:8px;text-align:center;color:#065f46">جيد</td><td style="padding:8px;color:#065f46">✅ موصى به</td></tr>
+      <tr><td style="padding:8px">Argon2</td><td style="padding:8px;text-align:center;color:#006633">بطيء جداً</td><td style="padding:8px;text-align:center;color:#065f46">ممتاز</td><td style="padding:8px;color:#065f46">✅ الأفضل حالياً</td></tr>
     </table>
   </div>
 </div>
@@ -746,12 +746,12 @@ async function computeAvalanche(){
   let diffHtml='<div>A: ';
   for(let i=0;i<ha.length;i++){
     if(ha[i]!==hb[i])diffHtml+=`<span class="char-diff">${ha[i]}</span>`;
-    else diffHtml+=`<span style="color:#00ff88">${ha[i]}</span>`;
+    else diffHtml+=`<span style="color:#065f46">${ha[i]}</span>`;
   }
   diffHtml+='</div><div style="margin-top:4px">B: ';
   for(let i=0;i<hb.length;i++){
     if(ha[i]!==hb[i])diffHtml+=`<span class="char-diff">${hb[i]}</span>`;
-    else diffHtml+=`<span style="color:#00ff88">${hb[i]}</span>`;
+    else diffHtml+=`<span style="color:#065f46">${hb[i]}</span>`;
   }
   diffHtml+='</div>';
   document.getElementById('av-char-diff').innerHTML=diffHtml;
@@ -807,13 +807,13 @@ function caesarEncrypt(){
 
 function bruteForce(){
   const input=document.getElementById('brute-input').value||document.getElementById('caesar-cipher-out').textContent;
-  let html='<div style="color:#7ab3d4;margin-bottom:8px">جميع الاحتمالات (25 إزاحة):</div>';
+  let html='<div style="color:#4a7a5e;margin-bottom:8px">جميع الاحتمالات (25 إزاحة):</div>';
   for(let s=1;s<=25;s++){
     const dec=input.toUpperCase().split('').map(c=>{
       if(c>='A'&&c<='Z') return String.fromCharCode(((c.charCodeAt(0)-65+26-s)%26)+65);
       return c;
     }).join('');
-    html+=`<div style="padding:3px 0;border-bottom:1px solid #1e3a5c"><span style="color:#556070;min-width:90px;display:inline-block">إزاحة ${s}:</span> <span style="color:#e0e6f0">${dec}</span></div>`;
+    html+=`<div style="padding:3px 0;border-bottom:1px solid #c8ddd2"><span style="color:#4a7a5e;min-width:90px;display:inline-block">إزاحة ${s}:</span> <span style="color:#1a2e22">${dec}</span></div>`;
   }
   document.getElementById('brute-result').innerHTML=html;
 }
@@ -825,17 +825,17 @@ function computeXOR(){
   if(!plain||!key){return}
   let cipherBytes=[];
   let tableHtml='<table style="border-collapse:collapse;width:100%"><tr>';
-  tableHtml+='<td style="padding:4px 6px;color:#7ab3d4">حرف النص</td>';
-  for(let i=0;i<plain.length;i++) tableHtml+=`<td style="padding:4px 8px;border:1px solid #1e3a5c;color:#e0e6f0">${plain[i]}</td>`;
-  tableHtml+='</tr><tr><td style="padding:4px 6px;color:#7ab3d4">ASCII</td>';
-  for(let i=0;i<plain.length;i++) tableHtml+=`<td style="padding:4px 8px;border:1px solid #1e3a5c;color:#7ab3d4">${plain.charCodeAt(i)}</td>`;
-  tableHtml+='</tr><tr><td style="padding:4px 6px;color:#7ab3d4">حرف المفتاح</td>';
-  for(let i=0;i<plain.length;i++) tableHtml+=`<td style="padding:4px 8px;border:1px solid #1e3a5c;color:#00d4ff">${key[i%key.length]}</td>`;
-  tableHtml+='</tr><tr><td style="padding:4px 6px;color:#7ab3d4">XOR (hex)</td>';
+  tableHtml+='<td style="padding:4px 6px;color:#4a7a5e">حرف النص</td>';
+  for(let i=0;i<plain.length;i++) tableHtml+=`<td style="padding:4px 8px;border:1px solid #c8ddd2;color:#1a2e22">${plain[i]}</td>`;
+  tableHtml+='</tr><tr><td style="padding:4px 6px;color:#4a7a5e">ASCII</td>';
+  for(let i=0;i<plain.length;i++) tableHtml+=`<td style="padding:4px 8px;border:1px solid #c8ddd2;color:#4a7a5e">${plain.charCodeAt(i)}</td>`;
+  tableHtml+='</tr><tr><td style="padding:4px 6px;color:#4a7a5e">حرف المفتاح</td>';
+  for(let i=0;i<plain.length;i++) tableHtml+=`<td style="padding:4px 8px;border:1px solid #c8ddd2;color:#006633">${key[i%key.length]}</td>`;
+  tableHtml+='</tr><tr><td style="padding:4px 6px;color:#4a7a5e">XOR (hex)</td>';
   for(let i=0;i<plain.length;i++){
     const xored=plain.charCodeAt(i)^key.charCodeAt(i%key.length);
     cipherBytes.push(xored);
-    tableHtml+=`<td style="padding:4px 8px;border:1px solid #1e3a5c;color:#a855f7">${xored.toString(16).padStart(2,'0')}</td>`;
+    tableHtml+=`<td style="padding:4px 8px;border:1px solid #c8ddd2;color:#006633">${xored.toString(16).padStart(2,'0')}</td>`;
   }
   tableHtml+='</tr></table>';
   document.getElementById('xor-table').innerHTML=tableHtml;
@@ -882,7 +882,7 @@ function buildRainbowTable(){
   rainbowData.forEach(([pw,hash])=>{
     const tr=document.createElement('tr');
     tr.dataset.pw=pw;tr.dataset.hash=hash;
-    tr.innerHTML=`<td style="padding:8px;color:#aab8c8">${pw}</td><td style="padding:8px;font-family:monospace;font-size:.75rem;color:#556070">${hash}</td>`;
+    tr.innerHTML=`<td style="padding:8px;color:#4a7a5e">${pw}</td><td style="padding:8px;font-family:monospace;font-size:.75rem;color:#4a7a5e">${hash}</td>`;
     tb.appendChild(tr);
   });
 }
@@ -932,11 +932,11 @@ function buildLSBDemo(){
     {r:200,g:100,b:150},{r:180,g:90,b:130},{r:210,g:110,b:160}
   ];
   let html='<table style="border-collapse:collapse;font-size:.78rem;width:100%">';
-  html+='<tr><th style="padding:6px;color:#7ab3d4;border-bottom:1px solid #1e3a5c">بكسل</th>';
-  html+='<th style="padding:6px;color:#7ab3d4;border-bottom:1px solid #1e3a5c">القيمة الأصلية (ثنائي)</th>';
-  html+='<th style="padding:6px;color:#7ab3d4;border-bottom:1px solid #1e3a5c">بت مخفي</th>';
-  html+='<th style="padding:6px;color:#7ab3d4;border-bottom:1px solid #1e3a5c">القيمة الجديدة</th>';
-  html+='<th style="padding:6px;color:#7ab3d4;border-bottom:1px solid #1e3a5c">فرق اللون</th></tr>';
+  html+='<tr><th style="padding:6px;color:#4a7a5e;border-bottom:1px solid #c8ddd2">بكسل</th>';
+  html+='<th style="padding:6px;color:#4a7a5e;border-bottom:1px solid #c8ddd2">القيمة الأصلية (ثنائي)</th>';
+  html+='<th style="padding:6px;color:#4a7a5e;border-bottom:1px solid #c8ddd2">بت مخفي</th>';
+  html+='<th style="padding:6px;color:#4a7a5e;border-bottom:1px solid #c8ddd2">القيمة الجديدة</th>';
+  html+='<th style="padding:6px;color:#4a7a5e;border-bottom:1px solid #c8ddd2">فرق اللون</th></tr>';
   let bitIdx=0;
   pixels.forEach((px,pi)=>{
     ['R','G','B'].forEach((ch,ci)=>{
@@ -946,11 +946,11 @@ function buildLSBDemo(){
       const newBin=bin.slice(0,7)+bits[bitIdx];
       const newVal=parseInt(newBin,2);
       const diff=Math.abs(val-newVal);
-      html+=`<tr style="border-bottom:1px solid #1e3a5c">`;
+      html+=`<tr style="border-bottom:1px solid #c8ddd2">`;
       html+=`<td style="padding:6px">بكسل ${pi+1} ${ch}</td>`;
       html+=`<td style="padding:6px;font-family:monospace">${bin.slice(0,7)}<span style="color:#ff8844">${bin[7]}</span></td>`;
-      html+=`<td style="padding:6px;text-align:center;color:#a855f7;font-weight:bold">${bits[bitIdx]}</td>`;
-      html+=`<td style="padding:6px;font-family:monospace">${newBin.slice(0,7)}<span style="color:#00ff88">${newBin[7]}</span> (${newVal})</td>`;
+      html+=`<td style="padding:6px;text-align:center;color:#006633;font-weight:bold">${bits[bitIdx]}</td>`;
+      html+=`<td style="padding:6px;font-family:monospace">${newBin.slice(0,7)}<span style="color:#065f46">${newBin[7]}</span> (${newVal})</td>`;
       html+=`<td style="padding:6px;color:${diff===0?'#00ff88':'#ffaa00'}">±${diff} (${diff===0?'لا فرق':'غير محسوس'})</td>`;
       html+='</tr>';
       bitIdx++;
@@ -978,7 +978,7 @@ function drawStegCanvas(msgBytes){
   const g1=ctx1.createLinearGradient(0,0,200,80);
   g1.addColorStop(0,'#1a3a5c');g1.addColorStop(1,'#2d1b69');
   ctx1.fillStyle=g1;ctx1.fillRect(0,0,200,80);
-  ctx1.fillStyle='rgba(168,85,247,0.3)';
+  ctx1.fillStyle='rgba(0,102,51,0.3)';
   for(let i=0;i<5;i++){ctx1.beginPath();ctx1.arc(Math.random()*200,Math.random()*80,20+Math.random()*20,0,Math.PI*2);ctx1.fill()}
   ctx1.fillStyle='#a855f7';ctx1.font='12px Arial';ctx1.fillText('صورة عادية',10,40);
   // copy and embed LSB
@@ -1032,7 +1032,7 @@ function analyzePW(){
       <div>${hasDigit?'✅':'❌'} أرقام (0-9)</div>
       <div>${hasSpecial?'✅':'❌'} رموز خاصة (!@#...)</div>
       <div>${pw.length>=12?'✅':'❌'} الطول 12 حرف أو أكثر (الحالي: ${pw.length})</div>
-      <div style="margin-top:8px;color:#7ab3d4">حجم المجموعة: ${charsetSize} حرف | الاحتمالات: ~${Math.pow(charsetSize,pw.length).toExponential(2)}</div>
+      <div style="margin-top:8px;color:#4a7a5e">حجم المجموعة: ${charsetSize} حرف | الاحتمالات: ~${Math.pow(charsetSize,pw.length).toExponential(2)}</div>
     </div>`;
 }
 
@@ -1072,3 +1072,5 @@ window.addEventListener('load',()=>{
 </div>
 </body>
 </html>
+
+

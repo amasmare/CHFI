@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -9,86 +9,86 @@
 [onclick]{cursor:pointer}
 input,select,textarea,button{font-size:16px;touch-action:manipulation}
 button{touch-action:manipulation}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
-.header{background:linear-gradient(135deg,#0d1b2a,#1a1a0d);padding:20px 30px;border-bottom:2px solid #f59e0b;display:flex;align-items:center;gap:15px}
-.header h1{font-size:1.5rem;color:#f59e0b}
-.tabs{display:flex;gap:0;background:#071020;border-bottom:1px solid #1e3a5c;padding:0 20px;overflow-x:auto}
-.tab{padding:13px 20px;cursor:pointer;color:#7ab3d4;border-bottom:3px solid transparent;white-space:nowrap;font-size:.88rem;transition:all .2s}
-.tab:hover{color:#f59e0b}
-.tab.active{color:#f59e0b;border-bottom-color:#f59e0b}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f0f4f0;color:#1a2e22;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#006633 0%,#00843d 60%,#004d28 100%);padding:20px 30px;border-bottom:4px solid #c9a227;display:flex;align-items:center;gap:15px}
+.header h1{font-size:1.5rem;color:#fff}
+.tabs{display:flex;gap:0;background:#e8f0eb;border-bottom:1px solid #c8ddd2;padding:0 20px;overflow-x:auto}
+.tab{padding:14px 22px;cursor:pointer;color:#4a7a5e;border-bottom:3px solid transparent;white-space:nowrap;font-size:.9rem;transition:all .2s}
+.tab:hover{color:#006633}
+.tab.active{color:#006633;border-bottom-color:#006633;background:rgba(0,102,51,.05)}
 .panel{display:none;padding:28px;max-width:980px;margin:0 auto}
 .panel.active{display:block}
-h2{color:#f59e0b;margin-bottom:6px;font-size:1.2rem}
-.sub{color:#7ab3d4;font-size:.85rem;margin-bottom:20px;line-height:1.7}
-.card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:22px;margin-bottom:18px}
-.card h3{color:#f59e0b;margin-bottom:12px;font-size:.98rem}
+h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
+.sub{color:#4a7a5e;font-size:.85rem;margin-bottom:20px;line-height:1.7}
+.card{background:#ffffff;border:1px solid #c8ddd2;border-radius:12px;padding:22px;margin-bottom:18px}
+.card h3{color:#006633;margin-bottom:12px;font-size:1rem}
 .browser-bar{background:#1a1a0d;border:1px solid #2d2d00;border-radius:8px;padding:0;overflow:hidden;margin-bottom:4px}
 .browser-top{background:#0f0f00;padding:8px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2d2d00}
 .browser-dot{width:10px;height:10px;border-radius:50%}
-.url-bar{flex:1;background:#1a1a0d;border:1px solid #2d2d00;border-radius:4px;padding:5px 10px;color:#e0e6f0;font-family:'Courier New',monospace;font-size:.82rem}
+.url-bar{flex:1;background:#1a1a0d;border:1px solid #2d2d00;border-radius:4px;padding:5px 10px;color:#1a2e22;font-family:'Courier New',monospace;font-size:.82rem}
 .browser-body{padding:16px;min-height:100px}
 .db-table{width:100%;border-collapse:collapse;font-size:.82rem;font-family:'Courier New',monospace}
-.db-table th{background:#1a0d00;color:#f59e0b;padding:8px;text-align:right;border-bottom:2px solid #2d2d00}
-.db-table td{padding:8px;border-bottom:1px solid #1e3a5c;color:#aab8c8}
+.db-table th{background:#e8f0eb;color:#006633;padding:8px;text-align:right;border-bottom:2px solid #2d2d00}
+.db-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#1a2e22}
 .db-table tr.highlight td{background:rgba(255,68,68,.15);color:#ff8888}
 .terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.82rem;margin:12px 0}
-.prompt{color:#00ff88}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
+.prompt{color:#065f46}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
 .alert{padding:12px 16px;border-radius:6px;margin:10px 0;font-size:.88rem;line-height:1.6}
-.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
-.alert-danger{background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);color:#ff8888}
-.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
-.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
-.alert-orange{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#f59e0b}
+.alert-warn{background:rgba(120,85,0,.06);border:1px solid rgba(180,130,0,.3);color:#7a6010}
+.alert-danger{background:rgba(127,29,29,.06);border:1px solid rgba(200,50,50,.25);color:#7f1d1d}
+.alert-success{background:rgba(6,95,70,.08);border:1px solid rgba(6,95,70,.25);color:#065f46}
+.alert-info{background:rgba(0,102,51,.07);border:1px solid rgba(0,102,51,.25);color:#2d6a4a}
+.alert-orange{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#c9a227}
 .btn{padding:9px 18px;border:none;border-radius:6px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s}
 .btn-orange{background:#f59e0b;color:#000}.btn-orange:hover{background:#d97706}
 .btn-red{background:#ff4444;color:#fff}.btn-green{background:#00ff88;color:#000}
-.btn-outline{background:transparent;border:1px solid #f59e0b;color:#f59e0b}
+.btn-outline{background:transparent;border:1px solid #f59e0b;color:#c9a227}
 .btn-outline:hover{background:#f59e0b;color:#000}
 .btn-sm{padding:5px 12px;font-size:.78rem}
-input[type=text]{width:100%;background:#071020;border:1px solid #1e3a5c;border-radius:6px;padding:9px 12px;color:#e0e6f0;font-size:.88rem;font-family:inherit}
-input:focus{outline:none;border-color:#f59e0b}
-.code-block{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.8rem;line-height:1.8;overflow-x:auto}
-.kw{color:#f59e0b}.str{color:#00ff88}.comment{color:#556070}.danger{color:#ff4444;font-weight:bold}.safe{color:#00d4ff}
-.email-header{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:2}
-.eh-key{color:#f59e0b;min-width:200px;display:inline-block}.eh-val{color:#aab8c8}
-.eh-suspicious{color:#ff4444!important}.eh-ok{color:#00ff88!important}
-.hop-row{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #1e3a5c;font-size:.82rem}
-.hop-num{width:24px;height:24px;border-radius:50%;background:#1e3a5c;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#f59e0b;flex-shrink:0}
-.hop-ip{color:#00d4ff;min-width:130px;font-family:monospace}
-.hop-loc{color:#7ab3d4;flex:1}
-.hop-time{color:#a855f7;font-family:monospace;font-size:.75rem}
-.quiz-box{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:18px;margin:14px 0}
-.quiz-box h4{color:#f59e0b;margin-bottom:12px}
-.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#071020;border:1px solid #1e3a5c;border-radius:6px;cursor:pointer;transition:all .2s;font-size:.88rem}
-.options label:hover{border-color:#f59e0b}
-.options label.correct{border-color:#00ff88;background:rgba(0,255,136,.08);color:#00ff88}
+input[type=text]{width:100%;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;padding:9px 12px;color:#1a2e22;font-size:.88rem;font-family:inherit}
+input:focus{outline:none;border-color:#c9a227}
+.code-block{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.8rem;line-height:1.8;overflow-x:auto}
+.kw{color:#c9a227}.str{color:#065f46}.comment{color:#4a7a5e}.danger{color:#ff4444;font-weight:bold}.safe{color:#006633}
+.email-header{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:2}
+.eh-key{color:#c9a227;min-width:200px;display:inline-block}.eh-val{color:#4a7a5e}
+.eh-suspicious{color:#ff4444!important}.eh-ok{color:#065f46!important}
+.hop-row{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #c8ddd2;font-size:.82rem}
+.hop-num{width:24px;height:24px;border-radius:50%;background:#c8ddd2;display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#c9a227;flex-shrink:0}
+.hop-ip{color:#006633;min-width:130px;font-family:monospace}
+.hop-loc{color:#4a7a5e;flex:1}
+.hop-time{color:#006633;font-family:monospace;font-size:.75rem}
+.quiz-box{background:#ffffff;border:1px solid #c8ddd2;border-radius:8px;padding:18px;margin:14px 0}
+.quiz-box h4{color:#c9a227;margin-bottom:12px}
+.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;transition:all .2s;font-size:.88rem}
+.options label:hover{border-color:#c9a227}
+.options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
 .options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
-.options input{accent-color:#f59e0b}
+.options input{accent-color:#c9a227}
 .xss-demo{background:#fff;border-radius:6px;padding:16px;color:#000;min-height:60px;font-size:.9rem}
 .xss-safe{background:#e8f5e9;color:#1b5e20;padding:12px;border-radius:6px;font-size:.9rem}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
 .badge-red{background:rgba(255,68,68,.2);color:#ff8888}
-.badge-green{background:rgba(0,255,136,.2);color:#00ff88}
-.badge-orange{background:rgba(245,158,11,.2);color:#f59e0b}
+.badge-green{background:rgba(0,255,136,.2);color:#065f46}
+.badge-orange{background:rgba(245,158,11,.2);color:#c9a227}
 .tag{display:inline-block;background:#1a1a0d;color:#d97706;padding:3px 10px;border-radius:4px;font-size:.75rem;margin-left:6px}
-.ip-map{background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.82rem}
+.ip-map{background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:16px;font-family:'Courier New',monospace;font-size:.82rem}
 .session-table{width:100%;border-collapse:collapse;font-size:.82rem}
-.session-table th{background:#1a0d00;color:#f59e0b;padding:8px;border-bottom:2px solid #2d2d00;text-align:right}
-.session-table td{padding:8px;border-bottom:1px solid #1e3a5c;font-family:monospace;font-size:.78rem}
+.session-table th{background:#1a0d00;color:#c9a227;padding:8px;border-bottom:2px solid #2d2d00;text-align:right}
+.session-table td{padding:8px;border-bottom:1px solid #c8ddd2;font-family:monospace;font-size:.78rem}
 .stolen{color:#ff4444!important;background:rgba(255,68,68,.05)}
-.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#475569;flex-wrap:wrap;gap:6px}
-.site-topbar .author-tag{color:#f59e0b;font-weight:700}
+.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#4a7a5e;flex-wrap:wrap;gap:6px}
+.site-topbar .author-tag{color:#c9a227;font-weight:700}
 .site-header-bar{background:linear-gradient(135deg,#0a1628 0%,#0d2145 100%);border-bottom:3px solid #2563eb;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .site-logo-box{width:52px;height:52px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 4px 15px rgba(37,99,235,.35)}
 .site-lab-info{flex:1;min-width:0}
 .site-lab-info h2{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 2px;line-height:1.3}
 .site-lab-info span{font-size:.7rem;color:#93c5fd;letter-spacing:.5px}
 .site-author-block{text-align:left;border-right:1px solid rgba(255,255,255,.08);padding-right:18px;flex-shrink:0}
-.site-author-block .aname{font-size:.95rem;font-weight:700;color:#f59e0b;line-height:1.4}
-.site-author-block .abook{font-size:.68rem;color:#64748b;margin-top:1px}
+.site-author-block .aname{font-size:.95rem;font-weight:700;color:#c9a227;line-height:1.4}
+.site-author-block .abook{font-size:.68rem;color:#4a7a5e;margin-top:1px}
 .site-footer-bar{background:#04080f;border-top:2px solid #0f2040;padding:24px 30px;text-align:center;margin-top:30px}
-.site-footer-bar p{color:#475569;font-size:.78rem;line-height:2;margin:0}
-.site-footer-bar strong{color:#f59e0b}
+.site-footer-bar p{color:#4a7a5e;font-size:.78rem;line-height:2;margin:0}
+.site-footer-bar strong{color:#c9a227}
 @media(max-width:600px){.site-author-block{border:none;padding:0;text-align:right}.site-header-bar{gap:10px}}
 </style>
 </head>
@@ -115,9 +115,9 @@ input:focus{outline:none;border-color:#f59e0b}
     <div style="color:#d97706;font-size:.82rem">Web & Email Forensics — الفصل الخامس</div>
   </div>
   <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-    <span id="prog-badge" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#f59e0b;white-space:nowrap">🏆 0/75 نقطة</span>
+    <span id="prog-badge" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#c9a227;white-space:nowrap">🏆 0/75 نقطة</span>
     <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap" title="إعادة تعيين التقدم">↺ إعادة</button>
-    <a href="index.html" style="color:#7ab3d4;font-size:.85rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 14px;border-radius:6px">← الرئيسية</a>
+    <a href="index.html" style="color:#4a7a5e;font-size:.85rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 14px;border-radius:6px">← الرئيسية</a>
   </div>
 </div>
 
@@ -147,16 +147,16 @@ input:focus{outline:none;border-color:#f59e0b}
 
   <div class="card">
     <h3>🔓 السيناريو الأول — تجاوز تسجيل الدخول</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">الكود الأصلي في الخادم:</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">الكود الأصلي في الخادم:</p>
     <div class="code-block"><span class="kw">SELECT</span> * <span class="kw">FROM</span> users <span class="kw">WHERE</span> username = '<span class="str">[USERNAME]</span>' <span class="kw">AND</span> password = '<span class="str">[PASSWORD]</span>'</div>
     <div style="margin-top:14px">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
         <div>
-          <div style="color:#7ab3d4;font-size:.8rem;margin-bottom:4px">اسم المستخدم</div>
+          <div style="color:#4a7a5e;font-size:.8rem;margin-bottom:4px">اسم المستخدم</div>
           <input type="text" id="sqli-user" value="admin" placeholder="اسم المستخدم">
         </div>
         <div>
-          <div style="color:#7ab3d4;font-size:.8rem;margin-bottom:4px">كلمة المرور</div>
+          <div style="color:#4a7a5e;font-size:.8rem;margin-bottom:4px">كلمة المرور</div>
           <input type="text" id="sqli-pass" value="" placeholder="كلمة المرور">
         </div>
       </div>
@@ -167,7 +167,7 @@ input:focus{outline:none;border-color:#f59e0b}
         <button class="btn btn-orange" onclick="runSQLi()">تنفيذ الاستعلام</button>
       </div>
     </div>
-    <div id="sqli-query" class="code-block" style="margin-top:12px;color:#556070">الاستعلام يظهر هنا...</div>
+    <div id="sqli-query" class="code-block" style="margin-top:12px;color:#4a7a5e">الاستعلام يظهر هنا...</div>
     <div id="sqli-result" style="margin-top:10px"></div>
   </div>
 
@@ -212,7 +212,7 @@ input:focus{outline:none;border-color:#f59e0b}
 
   <div class="card">
     <h3>🧪 Reflected XSS — محاكاة حية</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">موقع البحث يعرض ما كتبه المستخدم مباشرة دون تنظيف:</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">موقع البحث يعرض ما كتبه المستخدم مباشرة دون تنظيف:</p>
     <div class="browser-bar">
       <div class="browser-top">
         <div class="browser-dot" style="background:#ff5f57"></div>
@@ -222,7 +222,7 @@ input:focus{outline:none;border-color:#f59e0b}
         <span id="xss-url-param" style="color:#ff4444;font-family:monospace;font-size:.8rem"></span>
       </div>
       <div class="browser-body">
-        <div style="color:#1e3a5c;font-size:.9rem;margin-bottom:8px">نتائج البحث عن: <strong id="xss-display" style="color:#333"></strong></div>
+        <div style="color:#c8ddd2;font-size:.9rem;margin-bottom:8px">نتائج البحث عن: <strong id="xss-display" style="color:#333"></strong></div>
         <div id="xss-output" class="xss-demo">أدخل نصاً في الحقل أدناه...</div>
       </div>
     </div>
@@ -262,7 +262,7 @@ echo $_GET['q'];
 div.innerHTML = userInput;</div>
       </div>
       <div>
-        <div style="color:#00ff88;font-size:.85rem;margin-bottom:8px">✅ كود آمن:</div>
+        <div style="color:#065f46;font-size:.85rem;margin-bottom:8px">✅ كود آمن:</div>
         <div class="code-block"><span class="comment">// PHP — آمن</span>
 echo htmlspecialchars($_GET['q']);
 
@@ -292,20 +292,20 @@ div.textContent = userInput;</div>
   <div class="card">
     <h3>🔄 كيف تعمل جلسة الويب (Session)</h3>
     <div style="display:flex;gap:0;align-items:center;flex-wrap:wrap;margin:14px 0;gap:8px">
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
-        <div style="font-size:1.5rem">👤</div><div style="color:#7ab3d4;font-size:.8rem;margin-top:6px">المستخدم يسجّل دخول</div>
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">👤</div><div style="color:#4a7a5e;font-size:.8rem;margin-top:6px">المستخدم يسجّل دخول</div>
       </div>
-      <div style="color:#f59e0b;font-size:1.2rem">→</div>
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
-        <div style="font-size:1.5rem">🖥️</div><div style="color:#7ab3d4;font-size:.8rem;margin-top:6px">الخادم يُنشئ Session ID</div>
+      <div style="color:#c9a227;font-size:1.2rem">→</div>
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">🖥️</div><div style="color:#4a7a5e;font-size:.8rem;margin-top:6px">الخادم يُنشئ Session ID</div>
       </div>
-      <div style="color:#f59e0b;font-size:1.2rem">→</div>
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
-        <div style="font-size:1.5rem">🍪</div><div style="color:#7ab3d4;font-size:.8rem;margin-top:6px">يُرسَل كـ Cookie</div>
+      <div style="color:#c9a227;font-size:1.2rem">→</div>
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">🍪</div><div style="color:#4a7a5e;font-size:.8rem;margin-top:6px">يُرسَل كـ Cookie</div>
       </div>
-      <div style="color:#f59e0b;font-size:1.2rem">→</div>
-      <div style="background:#071020;border:1px solid #f59e0b;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
-        <div style="font-size:1.5rem">⚠️</div><div style="color:#f59e0b;font-size:.8rem;margin-top:6px">إذا سُرق → اختطاف الحساب!</div>
+      <div style="color:#c9a227;font-size:1.2rem">→</div>
+      <div style="background:#f0f7f3;border:1px solid #f59e0b;border-radius:8px;padding:14px;flex:1;min-width:130px;text-align:center">
+        <div style="font-size:1.5rem">⚠️</div><div style="color:#c9a227;font-size:.8rem;margin-top:6px">إذا سُرق → اختطاف الحساب!</div>
       </div>
     </div>
   </div>
@@ -315,8 +315,8 @@ div.textContent = userInput;</div>
     <table class="session-table">
       <tr><th>اسم الـ Cookie</th><th>القيمة</th><th>الخادم</th><th>Secure</th><th>HttpOnly</th><th>الحكم</th></tr>
       <tr>
-        <td>PHPSESSID</td><td style="color:#aab8c8">a1b2c3d4e5f6789abc</td><td>bank.sa</td>
-        <td><span style="color:#00ff88">✅</span></td><td><span style="color:#00ff88">✅</span></td>
+        <td>PHPSESSID</td><td style="color:#4a7a5e">a1b2c3d4e5f6789abc</td><td>bank.sa</td>
+        <td><span style="color:#065f46">✅</span></td><td><span style="color:#065f46">✅</span></td>
         <td><span class="badge badge-green">آمن</span></td>
       </tr>
       <tr class="stolen">
@@ -325,8 +325,8 @@ div.textContent = userInput;</div>
         <td><span class="badge badge-red">⚠️ خطر</span></td>
       </tr>
       <tr>
-        <td>remember_me</td><td style="color:#aab8c8">3f8a...hash...</td><td>forum.net</td>
-        <td><span style="color:#00ff88">✅</span></td><td><span style="color:#ff4444">❌</span></td>
+        <td>remember_me</td><td style="color:#4a7a5e">3f8a...hash...</td><td>forum.net</td>
+        <td><span style="color:#065f46">✅</span></td><td><span style="color:#ff4444">❌</span></td>
         <td><span class="badge badge-orange">تحقق</span></td>
       </tr>
     </table>
@@ -383,7 +383,7 @@ div.textContent = userInput;</div>
 
   <div class="card">
     <h3>🗺️ تتبع مسار الرسالة Hop by Hop</h3>
-    <p style="color:#7ab3d4;font-size:.85rem;margin-bottom:12px">الرسالة تمر بعدة خوادم — كل خطوة تُسجَّل في الـ Received headers (تُقرأ من الأسفل للأعلى)</p>
+    <p style="color:#4a7a5e;font-size:.85rem;margin-bottom:12px">الرسالة تمر بعدة خوادم — كل خطوة تُسجَّل في الـ Received headers (تُقرأ من الأسفل للأعلى)</p>
     <div class="hop-row">
       <div class="hop-num">1</div>
       <div class="hop-ip">192.168.1.1</div>
@@ -535,10 +535,10 @@ function buildStats(entries){
     const isSusp=ip==='185.220.101.42';
     html+=`<div style="display:flex;align-items:center;gap:10px;margin:4px 0">
       <span style="min-width:130px;color:${isSusp?'#ff4444':'#7ab3d4'}">${ip}</span>
-      <div style="background:#1e3a5c;border-radius:4px;height:16px;flex:1">
+      <div style="background:#c8ddd2;border-radius:4px;height:16px;flex:1">
         <div style="background:${isSusp?'#ff4444':'#7ab3d4'};width:${w}%;height:100%;border-radius:4px"></div>
       </div>
-      <span style="color:#aab8c8">${count} طلب</span>
+      <span style="color:#4a7a5e">${count} طلب</span>
       ${isSusp?'<span class="badge badge-red">⚠️ مشبوه</span>':''}
     </div>`;
   });
@@ -548,13 +548,13 @@ function buildStats(entries){
 
 function buildTimeline(){
   const susp=logData.filter(e=>e.ip==='185.220.101.42');
-  let html='<div style="font-size:.85rem"><div style="color:#f59e0b;margin-bottom:10px;font-weight:bold">🕒 Timeline للـ IP المشبوه: 185.220.101.42</div>';
+  let html='<div style="font-size:.85rem"><div style="color:#c9a227;margin-bottom:10px;font-weight:bold">🕒 Timeline للـ IP المشبوه: 185.220.101.42</div>';
   susp.forEach(e=>{
     const icons={'sql':'💉','scan':'🔍','xss':'📜','normal':'📄'};
-    html+=`<div style="display:flex;gap:12px;align-items:flex-start;padding:6px 0;border-bottom:1px solid #1e3a5c">
-      <span style="color:#7ab3d4;font-family:monospace;min-width:70px">${e.time}</span>
+    html+=`<div style="display:flex;gap:12px;align-items:flex-start;padding:6px 0;border-bottom:1px solid #c8ddd2">
+      <span style="color:#4a7a5e;font-family:monospace;min-width:70px">${e.time}</span>
       <span style="min-width:20px">${icons[e.type]||'📄'}</span>
-      <span style="color:#aab8c8">${e.method} ${e.path}</span>
+      <span style="color:#4a7a5e">${e.method} ${e.path}</span>
       <span style="color:${e.code===200?'#ff4444':'#ffaa00'}">${e.code}</span>
     </div>`;
   });
@@ -573,7 +573,7 @@ function runSQLi(){
   const u=document.getElementById('sqli-user').value;
   const p=document.getElementById('sqli-pass').value;
   const query=`SELECT * FROM users WHERE username = '${u}' AND password = '${p}'`;
-  document.getElementById('sqli-query').innerHTML=`<span style="color:#7ab3d4">الاستعلام المنفَّذ:</span>\n<span style="color:#f59e0b">${query.replace(/</g,'&lt;')}</span>`;
+  document.getElementById('sqli-query').innerHTML=`<span style="color:#4a7a5e">الاستعلام المنفَّذ:</span>\n<span style="color:#c9a227">${query.replace(/</g,'&lt;')}</span>`;
   const res=document.getElementById('sqli-result');
   if(u==="admin'--"||p.includes("' OR '1'='1")||p.includes("OR 1=1")){
     res.innerHTML=`<div class="alert alert-danger">🚨 تم تجاوز تسجيل الدخول! المهاجم دخل بصلاحية admin دون معرفة كلمة المرور.<br>الحقن غيّر منطق الاستعلام ليعود بنتائج دائماً.</div>`;
@@ -700,3 +700,4 @@ function computeXOR_sym(){}
 </div>
 </body>
 </html>
+

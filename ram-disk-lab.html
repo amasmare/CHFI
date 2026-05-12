@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -9,26 +9,26 @@
 [onclick]{cursor:pointer}
 input,select,textarea,button{font-size:16px;touch-action:manipulation}
 button{touch-action:manipulation}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
-.header{background:linear-gradient(135deg,#0d1b2a,#1a2a0d);padding:20px 30px;border-bottom:2px solid #22c55e;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
-.header h1{font-size:1.4rem;color:#22c55e}
-.tabs{display:flex;gap:0;background:#071020;border-bottom:1px solid #1e3a5c;padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tab{padding:12px 16px;cursor:pointer;color:#7ab3d4;border-bottom:3px solid transparent;white-space:nowrap;font-size:.85rem;transition:all .2s;user-select:none}
-.tab.active{color:#22c55e;border-bottom-color:#22c55e}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f0f4f0;color:#1a2e22;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#006633 0%,#00843d 60%,#004d28 100%);padding:20px 30px;border-bottom:4px solid #c9a227;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.header h1{font-size:1.5rem;color:#fff}
+.tabs{display:flex;gap:0;background:#f0f7f3;border-bottom:1px solid #c8ddd2;padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:12px 16px;cursor:pointer;color:#4a7a5e;border-bottom:3px solid transparent;white-space:nowrap;font-size:.85rem;transition:all .2s;user-select:none}
+.tab.active{color:#006633;border-bottom-color:#006633;background:rgba(0,102,51,.05)}
 .panel{display:none;padding:20px;max-width:960px;margin:0 auto}
 .panel.active{display:block}
-h2{color:#22c55e;margin-bottom:6px;font-size:1.15rem}
-.sub{color:#7ab3d4;font-size:.85rem;margin-bottom:18px;line-height:1.7}
-.card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:20px;margin-bottom:16px}
-.card h3{color:#22c55e;margin-bottom:12px;font-size:.95rem}
+h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
+.sub{color:#4a7a5e;font-size:.85rem;margin-bottom:18px;line-height:1.7}
+.card{background:#ffffff;border:1px solid #c8ddd2;border-radius:12px;padding:20px;margin-bottom:16px}
+.card h3{color:#006633;margin-bottom:12px;font-size:1rem}
 .terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.78rem;margin:10px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.prompt{color:#00ff88}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
+.prompt{color:#065f46}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
 .alert{padding:11px 14px;border-radius:6px;margin:8px 0;font-size:.85rem;line-height:1.6}
 .alert-green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#22c55e}
-.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
-.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
-.alert-danger{background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);color:#ff8888}
-.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
+.alert-info{background:rgba(0,102,51,.07);border:1px solid rgba(0,102,51,.25);color:#2d6a4a}
+.alert-warn{background:rgba(120,85,0,.06);border:1px solid rgba(180,130,0,.3);color:#7a6010}
+.alert-danger{background:rgba(127,29,29,.06);border:1px solid rgba(200,50,50,.25);color:#7f1d1d}
+.alert-success{background:rgba(6,95,70,.08);border:1px solid rgba(6,95,70,.25);color:#065f46}
 .btn{padding:9px 18px;border:none;border-radius:6px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s;touch-action:manipulation}
 .btn-green{background:#22c55e;color:#000}.btn-green:hover{background:#16a34a}
 .btn-outline{background:transparent;border:1px solid #22c55e;color:#22c55e}
@@ -36,72 +36,72 @@ h2{color:#22c55e;margin-bottom:6px;font-size:1.15rem}
 .btn-sm{padding:6px 12px;font-size:.78rem}
 .data-table{width:100%;border-collapse:collapse;font-size:.8rem}
 .data-table th{background:#0d2a1a;color:#22c55e;padding:8px;text-align:right;border-bottom:2px solid #1e5c3a}
-.data-table td{padding:8px;border-bottom:1px solid #1e3a5c;color:#aab8c8;font-family:monospace;font-size:.76rem}
+.data-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#4a7a5e;font-family:monospace;font-size:.76rem}
 .data-table tr.highlight td{background:rgba(255,68,68,.08);color:#ff8888}
 .data-table tr:hover td{background:rgba(34,197,94,.04)}
-.quiz-box{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:16px;margin:12px 0}
+.quiz-box{background:#ffffff;border:1px solid #c8ddd2;border-radius:8px;padding:16px;margin:12px 0}
 .quiz-box h4{color:#22c55e;margin-bottom:10px;font-size:.9rem}
-.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#071020;border:1px solid #1e3a5c;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
-.options label.correct{border-color:#00ff88;background:rgba(0,255,136,.08);color:#00ff88}
+.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
+.options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
 .options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
 .options input{accent-color:#22c55e;flex-shrink:0}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
 .badge-green{background:rgba(34,197,94,.2);color:#22c55e}
 .badge-red{background:rgba(255,68,68,.2);color:#ff8888}
 .badge-orange{background:rgba(255,170,0,.2);color:#ffaa00}
-.badge-blue{background:rgba(0,212,255,.2);color:#00d4ff}
+.badge-blue{background:rgba(0,102,51,.2);color:#006633}
 .disk-visual{display:flex;flex-direction:column;gap:3px;font-family:'Courier New',monospace;font-size:.78rem}
 .disk-sector{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:4px;transition:all .2s}
 .disk-sector:hover{opacity:.85}
-.sector-addr{color:#556070;min-width:80px}
+.sector-addr{color:#4a7a5e;min-width:80px}
 .sector-label{flex:1}
 .sector-bar{height:18px;border-radius:3px;min-width:20px}
 .mem-map{display:grid;gap:3px}
 .mem-row{display:flex;gap:3px;align-items:center}
-.mem-addr{color:#556070;font-family:monospace;font-size:.7rem;min-width:80px}
+.mem-addr{color:#4a7a5e;font-family:monospace;font-size:.7rem;min-width:80px}
 .mem-block{height:20px;border-radius:2px;flex:1;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:rgba(255,255,255,.7)}
 .mem-block:hover{opacity:.8;transform:scaleY(1.1)}
-.code-block{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.8;overflow-x:auto;white-space:pre}
-.kw{color:#22c55e}.str{color:#00ff88}.comment{color:#556070}
+.code-block{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.8;overflow-x:auto;white-space:pre}
+.kw{color:#22c55e}.str{color:#065f46}.comment{color:#4a7a5e}
 .ext4-map{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin:10px 0}
 .ext4-block{height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.65rem;text-align:center;cursor:pointer;transition:all .2s;padding:2px}
 .ext4-block:hover{opacity:.8}
-.process-row{display:flex;gap:8px;padding:7px 10px;border-bottom:1px solid #1e3a5c;font-family:monospace;font-size:.76rem;align-items:center}
+.process-row{display:flex;gap:8px;padding:7px 10px;border-bottom:1px solid #c8ddd2;font-family:monospace;font-size:.76rem;align-items:center}
 .process-row.malicious{background:rgba(255,68,68,.07)}
-.p-pid{min-width:40px;color:#7ab3d4}
-.p-name{min-width:150px;color:#e0e6f0}
-.p-ppid{min-width:50px;color:#556070}
-.p-path{flex:1;color:#556070;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.7rem}
+.p-pid{min-width:40px;color:#4a7a5e}
+.p-name{min-width:150px;color:#1a2e22}
+.p-ppid{min-width:50px;color:#4a7a5e}
+.p-path{flex:1;color:#4a7a5e;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.7rem}
 .p-flag{font-size:.75rem}
-.volatility-plugin{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid #1e3a5c;border-radius:6px;margin:5px 0;cursor:pointer;transition:all .2s}
+.volatility-plugin{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid #c8ddd2;border-radius:6px;margin:5px 0;cursor:pointer;transition:all .2s}
 .volatility-plugin:hover{border-color:#22c55e;background:rgba(34,197,94,.04)}
 .volatility-plugin.run{border-color:#22c55e;background:rgba(34,197,94,.04)}
 .vp-name{color:#22c55e;font-family:monospace;min-width:160px;font-size:.85rem}
-.vp-desc{color:#7ab3d4;flex:1;font-size:.82rem}
+.vp-desc{color:#4a7a5e;flex:1;font-size:.82rem}
 .vp-btn{font-size:.75rem;padding:4px 10px}
-.linux-log{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.9;max-height:280px;overflow-y:auto}
-.log-time{color:#7ab3d4}
+.linux-log{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.9;max-height:280px;overflow-y:auto}
+.log-time{color:#4a7a5e}
 .log-host{color:#22c55e}
 .log-service{color:#ffaa00}
-.log-msg{color:#aab8c8}
+.log-msg{color:#4a7a5e}
 .log-alert{color:#ff4444;font-weight:bold}
 .partition-row{display:flex;gap:0;height:44px;border-radius:6px;overflow:hidden;margin:10px 0}
 .part{display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:bold;transition:all .2s;cursor:pointer;flex-direction:column;gap:2px}
 .part:hover{opacity:.85}
 .part span{font-size:.62rem;opacity:.8}
-.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#475569;flex-wrap:wrap;gap:6px}
-.site-topbar .author-tag{color:#f59e0b;font-weight:700}
+.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#4a7a5e;flex-wrap:wrap;gap:6px}
+.site-topbar .author-tag{color:#c9a227;font-weight:700}
 .site-header-bar{background:linear-gradient(135deg,#0a1628 0%,#0d2145 100%);border-bottom:3px solid #2563eb;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .site-logo-box{width:52px;height:52px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 4px 15px rgba(37,99,235,.35)}
 .site-lab-info{flex:1;min-width:0}
 .site-lab-info h2{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 2px;line-height:1.3}
 .site-lab-info span{font-size:.7rem;color:#93c5fd;letter-spacing:.5px}
 .site-author-block{text-align:left;border-right:1px solid rgba(255,255,255,.08);padding-right:18px;flex-shrink:0}
-.site-author-block .aname{font-size:.95rem;font-weight:700;color:#f59e0b;line-height:1.4}
-.site-author-block .abook{font-size:.68rem;color:#64748b;margin-top:1px}
+.site-author-block .aname{font-size:.95rem;font-weight:700;color:#c9a227;line-height:1.4}
+.site-author-block .abook{font-size:.68rem;color:#4a7a5e;margin-top:1px}
 .site-footer-bar{background:#04080f;border-top:2px solid #0f2040;padding:24px 30px;text-align:center;margin-top:30px}
-.site-footer-bar p{color:#475569;font-size:.78rem;line-height:2;margin:0}
-.site-footer-bar strong{color:#f59e0b}
+.site-footer-bar p{color:#4a7a5e;font-size:.78rem;line-height:2;margin:0}
+.site-footer-bar strong{color:#c9a227}
 @media(max-width:600px){.site-author-block{border:none;padding:0;text-align:right}.site-header-bar{gap:10px}}
 </style>
 </head>
@@ -130,7 +130,7 @@ h2{color:#22c55e;margin-bottom:6px;font-size:1.15rem}
   <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span id="prog-badge" style="background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#22d3ee;white-space:nowrap">🏆 0/90 نقطة</span>
     <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
-    <a href="index.html" style="color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← الرئيسية</a>
+    <a href="index.html" style="color:#4a7a5e;font-size:.82rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 12px;border-radius:6px">← الرئيسية</a>
   </div>
 </div>
 
@@ -151,35 +151,35 @@ h2{color:#22c55e;margin-bottom:6px;font-size:1.15rem}
   <div class="card">
     <h3>⚡ ما يوجد في RAM ولا يوجد على القرص</h3>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px">
-      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'passwords')">
+      <div style="background:#f0f7f3;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'passwords')">
         <div style="font-size:1.6rem;margin-bottom:6px">🔑</div>
         <div style="color:#22c55e;font-size:.82rem;font-weight:bold">كلمات المرور</div>
-        <div style="color:#556070;font-size:.72rem;margin-top:3px">مفكوكة في الذاكرة</div>
+        <div style="color:#4a7a5e;font-size:.72rem;margin-top:3px">مفكوكة في الذاكرة</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'processes')">
+      <div style="background:#f0f7f3;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'processes')">
         <div style="font-size:1.6rem;margin-bottom:6px">⚙️</div>
         <div style="color:#22c55e;font-size:.82rem;font-weight:bold">العمليات الجارية</div>
-        <div style="color:#556070;font-size:.72rem;margin-top:3px">حتى المخفية</div>
+        <div style="color:#4a7a5e;font-size:.72rem;margin-top:3px">حتى المخفية</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'network')">
+      <div style="background:#f0f7f3;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'network')">
         <div style="font-size:1.6rem;margin-bottom:6px">🌐</div>
         <div style="color:#22c55e;font-size:.82rem;font-weight:bold">الاتصالات الشبكية</div>
-        <div style="color:#556070;font-size:.72rem;margin-top:3px">الجلسات المفتوحة</div>
+        <div style="color:#4a7a5e;font-size:.72rem;margin-top:3px">الجلسات المفتوحة</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'encryption')">
+      <div style="background:#f0f7f3;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'encryption')">
         <div style="font-size:1.6rem;margin-bottom:6px">🔐</div>
         <div style="color:#22c55e;font-size:.82rem;font-weight:bold">مفاتيح التشفير</div>
-        <div style="color:#556070;font-size:.72rem;margin-top:3px">BitLocker / VeraCrypt</div>
+        <div style="color:#4a7a5e;font-size:.72rem;margin-top:3px">BitLocker / VeraCrypt</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'clipboard')">
+      <div style="background:#f0f7f3;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'clipboard')">
         <div style="font-size:1.6rem;margin-bottom:6px">📋</div>
         <div style="color:#22c55e;font-size:.82rem;font-weight:bold">الحافظة (Clipboard)</div>
-        <div style="color:#556070;font-size:.72rem;margin-top:3px">ما تم نسخه</div>
+        <div style="color:#4a7a5e;font-size:.72rem;margin-top:3px">ما تم نسخه</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'malware')">
+      <div style="background:#f0f7f3;border:1px solid #1e5c3a;border-radius:8px;padding:12px;text-align:center;cursor:pointer" onclick="showRAMItem(this,'malware')">
         <div style="font-size:1.6rem;margin-bottom:6px">🦠</div>
         <div style="color:#22c55e;font-size:.82rem;font-weight:bold">Fileless Malware</div>
-        <div style="color:#556070;font-size:.72rem;margin-top:3px">لا أثر على القرص</div>
+        <div style="color:#4a7a5e;font-size:.72rem;margin-top:3px">لا أثر على القرص</div>
       </div>
     </div>
     <div id="ram-item-detail"></div>
@@ -189,10 +189,10 @@ h2{color:#22c55e;margin-bottom:6px;font-size:1.15rem}
     <h3>🗺️ خريطة الذاكرة — ما يحتله كل منطقة</h3>
     <div class="mem-map" id="mem-map"></div>
     <div style="margin-top:10px;display:flex;gap:12px;flex-wrap:wrap;font-size:.75rem">
-      <span><span style="display:inline-block;width:12px;height:12px;background:#1e3a5c;border-radius:2px;margin-left:4px"></span>فارغ</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#c8ddd2;border-radius:2px;margin-left:4px"></span>فارغ</span>
       <span><span style="display:inline-block;width:12px;height:12px;background:#22c55e;border-radius:2px;margin-left:4px"></span>نظام التشغيل</span>
-      <span><span style="display:inline-block;width:12px;height:12px;background:#00d4ff;border-radius:2px;margin-left:4px"></span>تطبيقات</span>
-      <span><span style="display:inline-block;width:12px;height:12px;background:#a855f7;border-radius:2px;margin-left:4px"></span>مشبوه</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#0369a1;border-radius:2px;margin-left:4px"></span>تطبيقات</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#7c3aed;border-radius:2px;margin-left:4px"></span>مشبوه</span>
       <span><span style="display:inline-block;width:12px;height:12px;background:#ffaa00;border-radius:2px;margin-left:4px"></span>مخزن مؤقت</span>
     </div>
     <div id="mem-detail" style="margin-top:10px"></div>
@@ -207,7 +207,7 @@ Dumping memory to: memdump.raw
 <span style="color:#22c55e">Imaging memory (16,384 MB)...</span>
 [████████████████████] 100% — 16.0 GB written
 MD5: a3f7c9d2e1b845f0123456789abcdef0
-<span style="color:#00ff88">Memory dump complete. File: memdump.raw (16,384 MB)</span></div>
+<span style="color:#065f46">Memory dump complete. File: memdump.raw (16,384 MB)</span></div>
     </div>
     <div class="alert alert-warn">⚠️ <strong>ترتيب الأولوية للأدلة المتطايرة (RFC 3227):</strong><br>
     1. سجلات CPU والـ Cache | 2. RAM | 3. حالة الشبكة | 4. العمليات الجارية | 5. القرص الصلب
@@ -278,8 +278,8 @@ MD5: a3f7c9d2e1b845f0123456789abcdef0
 
   <div class="card">
     <h3>🚨 تحليل العمليات المشبوهة</h3>
-    <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;overflow:hidden">
-      <div style="display:flex;gap:8px;padding:8px 10px;background:#0d1b2a;color:#7ab3d4;font-size:.75rem;font-family:monospace">
+    <div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;overflow:hidden">
+      <div style="display:flex;gap:8px;padding:8px 10px;background:#ffffff;color:#4a7a5e;font-size:.75rem;font-family:monospace">
         <span style="min-width:40px">PID</span>
         <span style="min-width:150px">الاسم</span>
         <span style="min-width:50px">PPID</span>
@@ -311,7 +311,7 @@ MD5: a3f7c9d2e1b845f0123456789abcdef0
   <div class="card">
     <h3>📐 MBR — Master Boot Record (أول 512 بايت)</h3>
     <div class="partition-row">
-      <div class="part" style="background:#1e3a5c;flex:0 0 180px;color:#7ab3d4" onclick="showMBRSection('bootcode')">
+      <div class="part" style="background:#c8ddd2;flex:0 0 180px;color:#4a7a5e" onclick="showMBRSection('bootcode')">
         Bootstrap Code<span>446 بايت</span>
       </div>
       <div class="part" style="background:#1e5c3a;flex:1;color:#22c55e" onclick="showMBRSection('parttable')">
@@ -378,20 +378,20 @@ khalid_disk.img2          206848 943720447 943513600   450G  Microsoft basic dat
   <div class="card">
     <h3>🗂️ بنية NTFS الأساسية</h3>
     <div class="disk-visual">
-      <div class="disk-sector" style="background:#1e3a5c">
+      <div class="disk-sector" style="background:#c8ddd2">
         <div class="sector-addr">Cluster 0</div>
         <div class="sector-bar" style="width:80px;background:#22c55e"></div>
         <div class="sector-label" style="color:#22c55e">VBR — Volume Boot Record (أول قطاع)</div>
       </div>
       <div class="disk-sector" style="background:#1e3a1a" onclick="showMFTDetail()">
         <div class="sector-addr">Cluster 4</div>
-        <div class="sector-bar" style="width:120px;background:#00d4ff"></div>
-        <div class="sector-label" style="color:#00d4ff">$MFT — Master File Table ← اضغط 👆</div>
+        <div class="sector-bar" style="width:120px;background:#0369a1"></div>
+        <div class="sector-label" style="color:#006633">$MFT — Master File Table ← اضغط 👆</div>
       </div>
       <div class="disk-sector" style="background:#1e3a1a">
         <div class="sector-addr">Cluster 6</div>
         <div class="sector-bar" style="width:60px;background:#7ab3d4"></div>
-        <div class="sector-label" style="color:#7ab3d4">$MFTMirr — نسخة احتياطية من أول 4 إدخالات MFT</div>
+        <div class="sector-label" style="color:#4a7a5e">$MFTMirr — نسخة احتياطية من أول 4 إدخالات MFT</div>
       </div>
       <div class="disk-sector" style="background:#1e3a1a">
         <div class="sector-addr">Cluster 8</div>
@@ -401,7 +401,7 @@ khalid_disk.img2          206848 943720447 943513600   450G  Microsoft basic dat
       <div class="disk-sector" style="background:#1e3a1a">
         <div class="sector-addr">...</div>
         <div class="sector-bar" style="width:100%;background:#1e5c3a"></div>
-        <div class="sector-label" style="color:#7ab3d4">Data Area — بيانات الملفات الفعلية</div>
+        <div class="sector-label" style="color:#4a7a5e">Data Area — بيانات الملفات الفعلية</div>
       </div>
     </div>
     <div id="mft-detail" style="margin-top:12px"></div>
@@ -450,20 +450,20 @@ Interesting deleted files found:
 
   <div class="card">
     <h3>📁 خريطة الأدلة الجنائية في Linux</h3>
-    <div style="font-family:'Courier New',monospace;font-size:.78rem;background:#020a06;border-radius:8px;padding:14px;border:1px solid #1e3a5c;line-height:2">
-      <div style="color:#22c55e">/var/log/ ← <span style="color:#7ab3d4">كنز الأدلة الأول</span></div>
-      <div style="padding-right:20px"><span class="log-service">auth.log</span> <span style="color:#7ab3d4">← تسجيلات الدخول، sudo، SSH</span></div>
-      <div style="padding-right:20px"><span class="log-service">syslog</span> <span style="color:#7ab3d4">← أحداث النظام العامة</span></div>
-      <div style="padding-right:20px"><span class="log-service">apache2/access.log</span> <span style="color:#7ab3d4">← طلبات الويب</span></div>
+    <div style="font-family:'Courier New',monospace;font-size:.78rem;background:#020a06;border-radius:8px;padding:14px;border:1px solid #c8ddd2;line-height:2">
+      <div style="color:#22c55e">/var/log/ ← <span style="color:#4a7a5e">كنز الأدلة الأول</span></div>
+      <div style="padding-right:20px"><span class="log-service">auth.log</span> <span style="color:#4a7a5e">← تسجيلات الدخول، sudo، SSH</span></div>
+      <div style="padding-right:20px"><span class="log-service">syslog</span> <span style="color:#4a7a5e">← أحداث النظام العامة</span></div>
+      <div style="padding-right:20px"><span class="log-service">apache2/access.log</span> <span style="color:#4a7a5e">← طلبات الويب</span></div>
       <div style="padding-right:20px"><span class="log-service">cron.log</span> <span style="color:#ffaa00">← المهام المجدولة ⚠️</span></div>
-      <div style="padding-right:20px"><span class="log-service">wtmp / btmp</span> <span style="color:#7ab3d4">← سجل كل جلسات الدخول</span></div>
-      <div style="color:#22c55e;margin-top:4px">/home/user/ ← <span style="color:#7ab3d4">بيانات المستخدم</span></div>
-      <div style="padding-right:20px"><span style="color:#ff4444">.bash_history</span> <span style="color:#7ab3d4">← سجل كل الأوامر المنفذة ⭐</span></div>
-      <div style="padding-right:20px"><span style="color:#ffaa00">.ssh/known_hosts</span> <span style="color:#7ab3d4">← الخوادم التي اتصل بها</span></div>
-      <div style="padding-right:20px"><span style="color:#ffaa00">.bash_profile / .bashrc</span> <span style="color:#7ab3d4">← قد يحتوي أوامر خبيثة</span></div>
-      <div style="color:#22c55e;margin-top:4px">/etc/ ← <span style="color:#7ab3d4">إعدادات النظام</span></div>
-      <div style="padding-right:20px"><span style="color:#ffaa00">crontab / cron.d/</span> <span style="color:#7ab3d4">← مهام مجدولة — Persistence!</span></div>
-      <div style="padding-right:20px"><span style="color:#ff4444">passwd / shadow</span> <span style="color:#7ab3d4">← حسابات المستخدمين وكلمات المرور</span></div>
+      <div style="padding-right:20px"><span class="log-service">wtmp / btmp</span> <span style="color:#4a7a5e">← سجل كل جلسات الدخول</span></div>
+      <div style="color:#22c55e;margin-top:4px">/home/user/ ← <span style="color:#4a7a5e">بيانات المستخدم</span></div>
+      <div style="padding-right:20px"><span style="color:#ff4444">.bash_history</span> <span style="color:#4a7a5e">← سجل كل الأوامر المنفذة ⭐</span></div>
+      <div style="padding-right:20px"><span style="color:#ffaa00">.ssh/known_hosts</span> <span style="color:#4a7a5e">← الخوادم التي اتصل بها</span></div>
+      <div style="padding-right:20px"><span style="color:#ffaa00">.bash_profile / .bashrc</span> <span style="color:#4a7a5e">← قد يحتوي أوامر خبيثة</span></div>
+      <div style="color:#22c55e;margin-top:4px">/etc/ ← <span style="color:#4a7a5e">إعدادات النظام</span></div>
+      <div style="padding-right:20px"><span style="color:#ffaa00">crontab / cron.d/</span> <span style="color:#4a7a5e">← مهام مجدولة — Persistence!</span></div>
+      <div style="padding-right:20px"><span style="color:#ff4444">passwd / shadow</span> <span style="color:#4a7a5e">← حسابات المستخدمين وكلمات المرور</span></div>
       <div style="color:#22c55e;margin-top:4px">/tmp/ و /dev/shm/ ← <span style="color:#ff4444">يُستخدمان لإخفاء الملفات الخبيثة ⚠️</span></div>
     </div>
   </div>
@@ -507,10 +507,10 @@ Interesting deleted files found:
     <h3>🏗️ بنية ext4 — Block Groups</h3>
     <div class="ext4-map" id="ext4-map"></div>
     <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;font-size:.75rem">
-      <span><span style="display:inline-block;width:12px;height:12px;background:#1e3a5c;border-radius:2px;margin-left:4px"></span>Superblock</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#c8ddd2;border-radius:2px;margin-left:4px"></span>Superblock</span>
       <span><span style="display:inline-block;width:12px;height:12px;background:#22c55e;border-radius:2px;margin-left:4px"></span>Group Descriptor</span>
-      <span><span style="display:inline-block;width:12px;height:12px;background:#00d4ff;border-radius:2px;margin-left:4px"></span>Inode Table</span>
-      <span><span style="display:inline-block;width:12px;height:12px;background:#a855f7;border-radius:2px;margin-left:4px"></span>Data Blocks</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#0369a1;border-radius:2px;margin-left:4px"></span>Inode Table</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#7c3aed;border-radius:2px;margin-left:4px"></span>Data Blocks</span>
       <span><span style="display:inline-block;width:12px;height:12px;background:#ffaa00;border-radius:2px;margin-left:4px"></span>Bitmap</span>
       <span><span style="display:inline-block;width:12px;height:12px;background:#ff4444;border-radius:2px;margin-left:4px"></span>محذوف</span>
     </div>
@@ -584,9 +584,9 @@ Mar 20 09:15:23 server sshd[2341]: pam_unix(sshd:session): session opened for us
 // RAM Items
 const ramItems={
   passwords:{title:'🔑 كلمات المرور في الذاكرة',content:'أدوات مثل <strong>Mimikatz</strong> تستطيع استخراج كلمات المرور من LSASS process في الذاكرة — حتى لو كانت Windows Hello أو BitLocker. في Volatility: <code>windows.hashdump</code>',color:'#22c55e'},
-  processes:{title:'⚙️ العمليات الجارية',content:'حتى العمليات التي تُخفي نفسها من Task Manager (Rootkits) يمكن رؤيتها في RAM dump عبر مقارنة EPROCESS linked list بـ PspCidTable. في Volatility: <code>windows.pslist</code> و <code>windows.psscan</code>',color:'#00d4ff'},
+  processes:{title:'⚙️ العمليات الجارية',content:'حتى العمليات التي تُخفي نفسها من Task Manager (Rootkits) يمكن رؤيتها في RAM dump عبر مقارنة EPROCESS linked list بـ PspCidTable. في Volatility: <code>windows.pslist</code> و <code>windows.psscan</code>',color:'#0369a1'},
   network:{title:'🌐 الاتصالات الشبكية',content:'نرى كل TCP/UDP connections المفتوحة بما فيها اتصالات C2 المشفّرة — نعرف الـ IP والـ Port والـ Process المسؤول. في Volatility: <code>windows.netscan</code>',color:'#7ab3d4'},
-  encryption:{title:'🔐 مفاتيح التشفير',content:'BitLocker يُخزّن مفتاح فك التشفير في الذاكرة طوال وقت تشغيل الجهاز. أداة <strong>Elcomsoft Forensic Disk Decryptor</strong> تستخرجه من الـ RAM dump لفك تشفير القرص.',color:'#a855f7'},
+  encryption:{title:'🔐 مفاتيح التشفير',content:'BitLocker يُخزّن مفتاح فك التشفير في الذاكرة طوال وقت تشغيل الجهاز. أداة <strong>Elcomsoft Forensic Disk Decryptor</strong> تستخرجه من الـ RAM dump لفك تشفير القرص.',color:'#7c3aed'},
   clipboard:{title:'📋 محتوى الحافظة',content:'ما نسخه المستخدم قبل الإيقاف مخزّن في الذاكرة — قد يكون كلمة مرور أو نص سري. في Volatility: <code>windows.clipboard</code>',color:'#ffaa00'},
   malware:{title:'🦠 Fileless Malware',content:'بعض البرمجيات الخبيثة تعمل بالكامل في الذاكرة دون كتابة أي ملف على القرص — لا يكتشفها مكافح الفيروسات التقليدي. الـ RAM dump هو الطريقة الوحيدة لاكتشافها.',color:'#ff4444'},
 };
@@ -595,9 +595,9 @@ function showRAMItem(el,type){
   document.querySelectorAll('#tab-ram [onclick]').forEach(e=>{e.style.borderColor='#1e5c3a'});
   el.style.borderColor=ramItems[type].color;
   document.getElementById('ram-item-detail').innerHTML=`
-  <div style="background:#071020;border:1px solid #1e5c3a;border-radius:8px;padding:14px;margin-top:4px">
+  <div style="background:#f0f7f3;border:1px solid #1e5c3a;border-radius:8px;padding:14px;margin-top:4px">
     <h4 style="color:${ramItems[type].color};margin-bottom:8px">${ramItems[type].title}</h4>
-    <p style="color:#aab8c8;font-size:.85rem;line-height:1.8">${ramItems[type].content}</p>
+    <p style="color:#4a7a5e;font-size:.85rem;line-height:1.8">${ramItems[type].content}</p>
   </div>`;
 }
 
@@ -606,12 +606,12 @@ function buildMemMap(){
   const blocks=[
     {addr:'0x0000',label:'نواة OS',color:'#22c55e',tip:'نظام التشغيل — محمي'},
     {addr:'0x2000',label:'OS Drivers',color:'#16a34a',tip:'تعريفات الأجهزة'},
-    {addr:'0x4000',label:'فارغ',color:'#1e3a5c',tip:'ذاكرة غير مستخدمة'},
-    {addr:'0x6000',label:'Chrome',color:'#00d4ff',tip:'متصفح Chrome — 412MB'},
+    {addr:'0x4000',label:'فارغ',color:'#c8ddd2',tip:'ذاكرة غير مستخدمة'},
+    {addr:'0x6000',label:'Chrome',color:'#0369a1',tip:'متصفح Chrome — 412MB'},
     {addr:'0x8000',label:'Office',color:'#0284c7',tip:'Microsoft Office'},
-    {addr:'0xA000',label:'⚠️ مجهول',color:'#a855f7',tip:'منطقة ذاكرة مجهولة — مشبوه! قد تكون Shellcode'},
+    {addr:'0xA000',label:'⚠️ مجهول',color:'#7c3aed',tip:'منطقة ذاكرة مجهولة — مشبوه! قد تكون Shellcode'},
     {addr:'0xC000',label:'Cache',color:'#ffaa00',tip:'ذاكرة مؤقتة للنظام'},
-    {addr:'0xE000',label:'فارغ',color:'#1e3a5c',tip:'ذاكرة غير مستخدمة'},
+    {addr:'0xE000',label:'فارغ',color:'#c8ddd2',tip:'ذاكرة غير مستخدمة'},
   ];
   const map=document.getElementById('mem-map');
   blocks.forEach(b=>{
@@ -731,13 +731,13 @@ function showMBRSection(sec){
 
 function showMBRHex(){
   document.getElementById('mbr-hex').innerHTML=`
-  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.72rem;overflow-x:auto">
-    <div style="color:#7ab3d4;margin-bottom:6px">── أول 64 بايت من MBR ──</div>
+  <div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.72rem;overflow-x:auto">
+    <div style="color:#4a7a5e;margin-bottom:6px">── أول 64 بايت من MBR ──</div>
     <div style="color:#22c55e">0000: 33 C0 8E D0 BC 00 7C 8E C0 8E D8 BE 00 7C BF 00</div>
     <div style="color:#22c55e">0010: 06 B9 00 01 F3 A5 EA 1D 06 00 00 FF FF 00 00 00</div>
-    <div style="color:#7ab3d4">...Bootstrap Code (446 بايت)...</div>
-    <div style="color:#00d4ff">01BE: 80 20 21 00 0B FE FF FF 00 08 00 00 00 20 03 00</div>
-    <div style="color:#00d4ff">01CE: 00 FE FF FF 0C FE FF FF 00 28 03 00 00 00 00 04</div>
+    <div style="color:#4a7a5e">...Bootstrap Code (446 بايت)...</div>
+    <div style="color:#006633">01BE: 80 20 21 00 0B FE FF FF 00 08 00 00 00 20 03 00</div>
+    <div style="color:#006633">01CE: 00 FE FF FF 0C FE FF FF 00 28 03 00 00 00 00 04</div>
     <div style="color:#ff4444">01DE: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ← قسم مخفي بدون نوع!</div>
     <div style="color:#ffaa00">01FE: <strong>55 AA</strong>  ← Boot Signature</div>
   </div>`;
@@ -764,16 +764,16 @@ function showMFTDetail(){
 
 function showMFTEntry(){
   document.getElementById('mft-entry').innerHTML=`
-  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.76rem;line-height:2">
+  <div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.76rem;line-height:2">
     <div style="color:#22c55e;margin-bottom:8px">── MFT Entry #48291 — secret_transfer.xlsx ──</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Signature:</span> FILE (valid)</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Allocated:</span> <span style="color:#ff4444">No ← محذوف!</span></div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Filename:</span> secret_transfer.xlsx</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Size:</span> 88,241,152 bytes (84.1 MB)</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Created:</span> 2024-03-15 09:22:11</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Modified:</span> <span style="color:#ffaa00">2024-03-20 14:28:44</span></div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Deleted:</span> <span style="color:#ff4444">2024-03-20 14:30:22</span></div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:200px">Data Runs:</span> Cluster 841200–841643 (يمكن استرداده!)</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Signature:</span> FILE (valid)</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Allocated:</span> <span style="color:#ff4444">No ← محذوف!</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Filename:</span> secret_transfer.xlsx</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Size:</span> 88,241,152 bytes (84.1 MB)</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Created:</span> 2024-03-15 09:22:11</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Modified:</span> <span style="color:#ffaa00">2024-03-20 14:28:44</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Deleted:</span> <span style="color:#ff4444">2024-03-20 14:30:22</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:200px">Data Runs:</span> Cluster 841200–841643 (يمكن استرداده!)</div>
   </div>
   <div class="alert alert-success" style="margin-top:10px">✅ البيانات الفعلية لا تزال في Clusters 841200–841643 — يمكن استرداد الملف!</div>`;
 }
@@ -782,8 +782,8 @@ function showMFTEntry(){
 function showBashHistory(){
   document.getElementById('bash-history').innerHTML=`
   <div class="linux-log">
-    <div><span class="log-time">2024-03-20 08:15</span> <span style="color:#7ab3d4">ls -la /home/khalid/Documents/</span></div>
-    <div><span class="log-time">2024-03-20 08:22</span> <span style="color:#7ab3d4">cat /etc/passwd</span></div>
+    <div><span class="log-time">2024-03-20 08:15</span> <span style="color:#4a7a5e">ls -la /home/khalid/Documents/</span></div>
+    <div><span class="log-time">2024-03-20 08:22</span> <span style="color:#4a7a5e">cat /etc/passwd</span></div>
     <div><span class="log-time">2024-03-20 13:55</span> <span style="color:#ffaa00">ssh root@185.220.101.42</span></div>
     <div><span class="log-time">2024-03-20 14:20</span> <span style="color:#ff4444">scp secret_transfer.xlsx root@185.220.101.42:/uploads/</span></div>
     <div><span class="log-time">2024-03-20 14:25</span> <span style="color:#ff4444">scp company_data_full.zip root@185.220.101.42:/uploads/</span></div>
@@ -825,14 +825,14 @@ function analyzeLog(entries){
 // ext4 map
 function buildExt4Map(){
   const blocks=[
-    {label:'Super\nblock',color:'#1e3a5c'},{label:'Group\nDesc',color:'#22c55e'},
+    {label:'Super\nblock',color:'#c8ddd2'},{label:'Group\nDesc',color:'#22c55e'},
     {label:'Block\nBitmap',color:'#ffaa00'},{label:'Inode\nBitmap',color:'#ffaa00'},
-    {label:'Inode\nTable',color:'#00d4ff'},{label:'Inode\nTable',color:'#00d4ff'},
-    {label:'Data\nBlocks',color:'#a855f7'},{label:'Data\nBlocks',color:'#a855f7'},
-    {label:'Data\nBlocks',color:'#a855f7'},{label:'Data\nBlocks',color:'#a855f7'},
-    {label:'Data\n[محذوف]',color:'#ff4444'},{label:'Data\nBlocks',color:'#a855f7'},
-    {label:'Data\nBlocks',color:'#a855f7'},{label:'Super\nblock',color:'#1e3a5c'},
-    {label:'Group\nDesc',color:'#22c55e'},{label:'...',color:'#1e3a5c'},
+    {label:'Inode\nTable',color:'#0369a1'},{label:'Inode\nTable',color:'#0369a1'},
+    {label:'Data\nBlocks',color:'#7c3aed'},{label:'Data\nBlocks',color:'#7c3aed'},
+    {label:'Data\nBlocks',color:'#7c3aed'},{label:'Data\nBlocks',color:'#7c3aed'},
+    {label:'Data\n[محذوف]',color:'#ff4444'},{label:'Data\nBlocks',color:'#7c3aed'},
+    {label:'Data\nBlocks',color:'#7c3aed'},{label:'Super\nblock',color:'#c8ddd2'},
+    {label:'Group\nDesc',color:'#22c55e'},{label:'...',color:'#c8ddd2'},
   ];
   const map=document.getElementById('ext4-map');
   blocks.forEach((b,i)=>{
@@ -853,17 +853,17 @@ function getExt4Desc(label){
 
 function showInode(){
   document.getElementById('inode-detail').innerHTML=`
-  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.76rem;line-height:2">
+  <div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.76rem;line-height:2">
     <div style="color:#22c55e;margin-bottom:6px">── Inode 48291 — /home/khalid/transfer_log.txt ──</div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">File type:</span> Regular file</div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Permissions:</span> -rw------- (600)</div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Owner UID:</span> 1001 (khalid)</div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Size:</span> 4,281 bytes</div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">atime (last access):</span> 2024-03-20 14:28:33</div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">mtime (last modify):</span> <span style="color:#ffaa00">2024-03-20 14:25:11</span></div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">ctime (inode change):</span> 2024-03-20 14:30:05</div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Link count:</span> <span style="color:#ff4444">0 ← محذوف (لا روابط)</span></div>
-    <div><span style="color:#7ab3d4;min-width:180px;display:inline-block">Data blocks:</span> 841200, 841201 (قابل للاسترداد)</div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">File type:</span> Regular file</div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Permissions:</span> -rw------- (600)</div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Owner UID:</span> 1001 (khalid)</div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Size:</span> 4,281 bytes</div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">atime (last access):</span> 2024-03-20 14:28:33</div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">mtime (last modify):</span> <span style="color:#ffaa00">2024-03-20 14:25:11</span></div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">ctime (inode change):</span> 2024-03-20 14:30:05</div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Link count:</span> <span style="color:#ff4444">0 ← محذوف (لا روابط)</span></div>
+    <div><span style="color:#4a7a5e;min-width:180px;display:inline-block">Data blocks:</span> 841200, 841201 (قابل للاسترداد)</div>
   </div>
   <div class="alert alert-warn" style="margin-top:10px">⏰ التواريخ الثلاثة (atime/mtime/ctime) تُشكّل جدولاً زمنياً دقيقاً لكل ما حدث للملف!</div>`;
 }
@@ -938,3 +938,5 @@ window.addEventListener('load',()=>{
 </div>
 </body>
 </html>
+
+

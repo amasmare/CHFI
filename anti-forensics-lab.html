@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -9,26 +9,26 @@
 [onclick]{cursor:pointer}
 input,select,textarea,button{font-size:16px;touch-action:manipulation}
 button{touch-action:manipulation}
-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#0a0f1e;color:#e0e6f0;min-height:100vh;-webkit-text-size-adjust:100%}
-.header{background:linear-gradient(135deg,#0d1b2a,#1a0d2e);padding:20px 30px;border-bottom:2px solid #8b5cf6;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
-.header h1{font-size:1.4rem;color:#8b5cf6}
-.tabs{display:flex;gap:0;background:#071020;border-bottom:1px solid #1e3a5c;padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tab{padding:12px 16px;cursor:pointer;color:#7ab3d4;border-bottom:3px solid transparent;white-space:nowrap;font-size:.85rem;transition:all .2s;user-select:none}
-.tab.active{color:#8b5cf6;border-bottom-color:#8b5cf6}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f0f4f0;color:#1a2e22;min-height:100vh;-webkit-text-size-adjust:100%}
+.header{background:linear-gradient(135deg,#006633 0%,#00843d 60%,#004d28 100%);padding:20px 30px;border-bottom:4px solid #c9a227;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.header h1{font-size:1.5rem;color:#fff}
+.tabs{display:flex;gap:0;background:#f0f7f3;border-bottom:1px solid #c8ddd2;padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:12px 16px;cursor:pointer;color:#4a7a5e;border-bottom:3px solid transparent;white-space:nowrap;font-size:.85rem;transition:all .2s;user-select:none}
+.tab.active{color:#006633;border-bottom-color:#006633;background:rgba(0,102,51,.05)}
 .panel{display:none;padding:20px;max-width:960px;margin:0 auto}
 .panel.active{display:block}
-h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
-.sub{color:#7ab3d4;font-size:.85rem;margin-bottom:18px;line-height:1.7}
-.card{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:12px;padding:20px;margin-bottom:16px}
-.card h3{color:#8b5cf6;margin-bottom:12px;font-size:.95rem}
+h2{color:#006633;margin-bottom:8px;font-size:1.2rem}
+.sub{color:#4a7a5e;font-size:.85rem;margin-bottom:18px;line-height:1.7}
+.card{background:#ffffff;border:1px solid #c8ddd2;border-radius:12px;padding:20px;margin-bottom:16px}
+.card h3{color:#006633;margin-bottom:12px;font-size:1rem}
 .terminal{background:#020a06;border:1px solid #1e5c1e;border-radius:8px;padding:14px;font-family:'Courier New',monospace;font-size:.78rem;margin:10px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.prompt{color:#00ff88}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
+.prompt{color:#065f46}.cmd{color:#fff}.out{color:#7fbb7f;white-space:pre-wrap}
 .alert{padding:11px 14px;border-radius:6px;margin:8px 0;font-size:.85rem;line-height:1.6}
 .alert-purple{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.3);color:#c084fc}
-.alert-info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#7ab3d4}
-.alert-warn{background:rgba(255,170,0,.1);border:1px solid rgba(255,170,0,.3);color:#ffaa00}
-.alert-danger{background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);color:#ff8888}
-.alert-success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88}
+.alert-info{background:rgba(0,102,51,.07);border:1px solid rgba(0,102,51,.25);color:#2d6a4a}
+.alert-warn{background:rgba(120,85,0,.06);border:1px solid rgba(180,130,0,.3);color:#7a6010}
+.alert-danger{background:rgba(127,29,29,.06);border:1px solid rgba(200,50,50,.25);color:#7f1d1d}
+.alert-success{background:rgba(6,95,70,.08);border:1px solid rgba(6,95,70,.25);color:#065f46}
 .btn{padding:9px 18px;border:none;border-radius:6px;font-size:.86rem;cursor:pointer;font-weight:600;transition:all .2s;touch-action:manipulation}
 .btn-purple{background:#8b5cf6;color:#fff}.btn-purple:hover{background:#7c3aed}
 .btn-outline{background:transparent;border:1px solid #8b5cf6;color:#8b5cf6}
@@ -37,18 +37,18 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
 .btn-red{background:#ff4444;color:#fff}
 .data-table{width:100%;border-collapse:collapse;font-size:.8rem}
 .data-table th{background:#1a0d2e;color:#8b5cf6;padding:8px;text-align:right;border-bottom:2px solid #2d1a5c}
-.data-table td{padding:8px;border-bottom:1px solid #1e3a5c;color:#aab8c8}
+.data-table td{padding:8px;border-bottom:1px solid #c8ddd2;color:#4a7a5e}
 .data-table tr.tampered td{background:rgba(255,68,68,.07);color:#ff8888}
-.data-table tr.original td{background:rgba(0,255,136,.04);color:#00ff88}
-.quiz-box{background:#0d1b2a;border:1px solid #1e3a5c;border-radius:8px;padding:16px;margin:12px 0}
+.data-table tr.original td{background:rgba(0,255,136,.04);color:#065f46}
+.quiz-box{background:#ffffff;border:1px solid #c8ddd2;border-radius:8px;padding:16px;margin:12px 0}
 .quiz-box h4{color:#8b5cf6;margin-bottom:10px;font-size:.9rem}
-.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#071020;border:1px solid #1e3a5c;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
-.options label.correct{border-color:#00ff88;background:rgba(0,255,136,.08);color:#00ff88}
+.options label{display:flex;align-items:center;gap:10px;padding:9px 12px;margin:5px 0;background:#f0f7f3;border:1px solid #c8ddd2;border-radius:6px;cursor:pointer;font-size:.86rem;-webkit-tap-highlight-color:transparent}
+.options label.correct{border-color:#065f46;background:rgba(0,255,136,.08);color:#065f46}
 .options label.wrong{border-color:#ff4444;background:rgba(255,68,68,.08);color:#ff8888}
 .options input{accent-color:#8b5cf6;flex-shrink:0}
 .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:bold}
 .badge-red{background:rgba(255,68,68,.2);color:#ff8888}
-.badge-green{background:rgba(0,255,136,.2);color:#00ff88}
+.badge-green{background:rgba(0,255,136,.2);color:#065f46}
 .badge-orange{background:rgba(255,170,0,.2);color:#ffaa00}
 .badge-purple{background:rgba(139,92,246,.2);color:#c084fc}
 .technique-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
@@ -57,52 +57,52 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
 .technique-card.selected{border-color:#8b5cf6;background:#200d3a}
 .technique-card .ticon{font-size:1.8rem;margin-bottom:6px}
 .technique-card h4{color:#8b5cf6;font-size:.85rem;margin-bottom:4px}
-.technique-card p{color:#7ab3d4;font-size:.75rem;line-height:1.4}
+.technique-card p{color:#4a7a5e;font-size:.75rem;line-height:1.4}
 .timeline-wrap{position:relative;padding-right:20px}
 .timeline-line{position:absolute;right:0;top:0;bottom:0;width:2px;background:#2d1a5c}
 .tl-item{display:flex;gap:14px;margin-bottom:14px;position:relative}
-.tl-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid #0d1b2a;box-shadow:0 0 0 2px currentColor}
+.tl-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid #c8ddd2;box-shadow:0 0 0 2px currentColor}
 .tl-dot.normal{color:#22c55e;background:#22c55e}
 .tl-dot.suspicious{color:#ff4444;background:#ff4444}
 .tl-dot.warning{color:#ffaa00;background:#ffaa00}
 .tl-content{flex:1}
-.tl-time{font-family:monospace;font-size:.75rem;color:#7ab3d4}
-.tl-desc{font-size:.85rem;color:#aab8c8;margin-top:2px}
-.tl-source{font-size:.72rem;color:#556070;margin-top:2px}
-.metadata-field{display:flex;justify-content:space-between;padding:7px 10px;border-bottom:1px solid #1e3a5c;font-size:.82rem;gap:10px}
+.tl-time{font-family:monospace;font-size:.75rem;color:#4a7a5e}
+.tl-desc{font-size:.85rem;color:#4a7a5e;margin-top:2px}
+.tl-source{font-size:.72rem;color:#4a7a5e;margin-top:2px}
+.metadata-field{display:flex;justify-content:space-between;padding:7px 10px;border-bottom:1px solid #c8ddd2;font-size:.82rem;gap:10px}
 .metadata-field:hover{background:rgba(139,92,246,.04)}
 .mf-key{color:#8b5cf6;min-width:180px;font-size:.8rem}
-.mf-val{color:#aab8c8;text-align:left;font-family:monospace;font-size:.76rem;word-break:break-all}
+.mf-val{color:#4a7a5e;text-align:left;font-family:monospace;font-size:.76rem;word-break:break-all}
 .mf-val.suspicious{color:#ff4444}
-.mf-val.ok{color:#00ff88}
+.mf-val.ok{color:#065f46}
 .wipe-demo{display:grid;grid-template-columns:repeat(16,1fr);gap:2px;margin:12px 0}
 .wipe-block{height:20px;border-radius:2px;cursor:pointer;transition:all .3s}
 .wipe-block.data{background:#8b5cf6}
-.wipe-block.wiped{background:#1e3a5c}
+.wipe-block.wiped{background:#c8ddd2}
 .wipe-block.residual{background:#ff4444}
 .diff-view{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.diff-pane{background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.8}
-.diff-added{background:rgba(0,255,136,.1);color:#00ff88}
+.diff-pane{background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.8}
+.diff-added{background:rgba(0,255,136,.1);color:#065f46}
 .diff-removed{background:rgba(255,68,68,.1);color:#ff8888}
-.diff-same{color:#aab8c8}
+.diff-same{color:#4a7a5e}
 .stepper{display:flex;gap:0;margin-bottom:16px;overflow-x:auto}
-.step-btn{padding:8px 14px;background:#1e3a5c;border:none;color:#7ab3d4;font-size:.82rem;cursor:pointer;white-space:nowrap;touch-action:manipulation;transition:all .2s}
+.step-btn{padding:8px 14px;background:#c8ddd2;border:none;color:#4a7a5e;font-size:.82rem;cursor:pointer;white-space:nowrap;touch-action:manipulation;transition:all .2s}
 .step-btn.active{background:#8b5cf6;color:#fff}
 .step-btn:first-child{border-radius:6px 0 0 6px}
 .step-btn:last-child{border-radius:0 6px 6px 0}
-.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#475569;flex-wrap:wrap;gap:6px}
-.site-topbar .author-tag{color:#f59e0b;font-weight:700}
+.site-topbar{background:#04080f;border-bottom:1px solid #0f2040;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:#4a7a5e;flex-wrap:wrap;gap:6px}
+.site-topbar .author-tag{color:#c9a227;font-weight:700}
 .site-header-bar{background:linear-gradient(135deg,#0a1628 0%,#0d2145 100%);border-bottom:3px solid #2563eb;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .site-logo-box{width:52px;height:52px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;box-shadow:0 4px 15px rgba(37,99,235,.35)}
 .site-lab-info{flex:1;min-width:0}
 .site-lab-info h2{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 2px;line-height:1.3}
 .site-lab-info span{font-size:.7rem;color:#93c5fd;letter-spacing:.5px}
 .site-author-block{text-align:left;border-right:1px solid rgba(255,255,255,.08);padding-right:18px;flex-shrink:0}
-.site-author-block .aname{font-size:.95rem;font-weight:700;color:#f59e0b;line-height:1.4}
-.site-author-block .abook{font-size:.68rem;color:#64748b;margin-top:1px}
+.site-author-block .aname{font-size:.95rem;font-weight:700;color:#c9a227;line-height:1.4}
+.site-author-block .abook{font-size:.68rem;color:#4a7a5e;margin-top:1px}
 .site-footer-bar{background:#04080f;border-top:2px solid #0f2040;padding:24px 30px;text-align:center;margin-top:30px}
-.site-footer-bar p{color:#475569;font-size:.78rem;line-height:2;margin:0}
-.site-footer-bar strong{color:#f59e0b}
+.site-footer-bar p{color:#4a7a5e;font-size:.78rem;line-height:2;margin:0}
+.site-footer-bar strong{color:#c9a227}
 @media(max-width:600px){.site-author-block{border:none;padding:0;text-align:right}.site-header-bar{gap:10px}}
 </style>
 </head>
@@ -131,7 +131,7 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
   <div style="margin-right:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
     <span id="prog-badge" style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:20px;padding:5px 14px;font-size:.8rem;color:#a78bfa;white-space:nowrap">🏆 0/60 نقطة</span>
     <button onclick="resetProg()" style="background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:6px;color:#ff8888;padding:5px 10px;font-size:.75rem;cursor:pointer;white-space:nowrap">↺ إعادة</button>
-    <a href="index.html" style="color:#7ab3d4;font-size:.82rem;text-decoration:none;border:1px solid #1e3a5c;padding:6px 12px;border-radius:6px">← الرئيسية</a>
+    <a href="index.html" style="color:#4a7a5e;font-size:.82rem;text-decoration:none;border:1px solid #c8ddd2;padding:6px 12px;border-radius:6px">← الرئيسية</a>
   </div>
 </div>
 
@@ -187,32 +187,32 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
       <tr>
         <td>Timestomping</td>
         <td style="color:#ff8888">يُعدّل تواريخ الملفات</td>
-        <td style="color:#00ff88">يقارن MACE times بسجل MFT وأحداث USN Journal</td>
+        <td style="color:#065f46">يقارن MACE times بسجل MFT وأحداث USN Journal</td>
       </tr>
       <tr>
         <td>Log Clearing</td>
         <td style="color:#ff8888">يحذف Windows Event Logs</td>
-        <td style="color:#00ff88">يُلاحظ ثغرة في تسلسل Event IDs + يفحص Shadow Copies</td>
+        <td style="color:#065f46">يُلاحظ ثغرة في تسلسل Event IDs + يفحص Shadow Copies</td>
       </tr>
       <tr>
         <td>Secure Delete</td>
         <td style="color:#ff8888">يستخدم shred أو Eraser</td>
-        <td style="color:#00ff88">يبحث في Slack Space والـ $LogFile وأجزاء لم تُكتب فوقها</td>
+        <td style="color:#065f46">يبحث في Slack Space والـ $LogFile وأجزاء لم تُكتب فوقها</td>
       </tr>
       <tr>
         <td>File Extension Spoofing</td>
         <td style="color:#ff8888">يسمي malware.exe كـ report.docx</td>
-        <td style="color:#00ff88">يفحص Magic Bytes بدل الامتداد</td>
+        <td style="color:#065f46">يفحص Magic Bytes بدل الامتداد</td>
       </tr>
       <tr>
         <td>Encryption</td>
         <td style="color:#ff8888">يشفّر القرص بـ VeraCrypt</td>
-        <td style="color:#00ff88">يستخرج مفتاح التشفير من صورة RAM</td>
+        <td style="color:#065f46">يستخرج مفتاح التشفير من صورة RAM</td>
       </tr>
       <tr>
         <td>Slack Space Hiding</td>
         <td style="color:#ff8888">يخفي بيانات في File Slack</td>
-        <td style="color:#00ff88">يفحص Slack Space بأدوات مثل Autopsy</td>
+        <td style="color:#065f46">يفحص Slack Space بأدوات مثل Autopsy</td>
       </tr>
     </table>
     </div>
@@ -277,7 +277,7 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
       <div class="out">Checking timestamps for inconsistencies...
 <span style="color:#ff4444">[ALERT] secret_transfer.xlsx: $SI Created=2024-03-20 but $FN Created=2024-03-15 → TIMESTOMPED!</span>
 <span style="color:#ff4444">[ALERT] payload.exe: $SI nanoseconds=000000000 (zeroed) → Classic Timestomp signature!</span>
-<span style="color:#00ff88">[OK] report.docx: timestamps consistent</span></div>
+<span style="color:#065f46">[OK] report.docx: timestamps consistent</span></div>
     </div>
     <div class="alert alert-warn">💡 أداة Timestomp الشهيرة تُصفّر nanoseconds — الـ NTFS يحفظ الوقت بدقة 100 نانوثانية، وجود أصفار كاملة نادر جداً ويدل على التزوير.</div>
   </div>
@@ -301,7 +301,7 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
 <span class="diff-same">بعد: rm SECRET.xlsx</span>
 <span class="diff-removed">[████ SECRET.xlsx ████] ← يُعلَّم "حر"</span>
 <span class="diff-same">لكن البيانات لا تزال موجودة!</span>
-<span style="color:#00ff88">→ قابل للاسترداد بـ Autopsy</span>
+<span style="color:#065f46">→ قابل للاسترداد بـ Autopsy</span>
         </div>
       </div>
       <div>
@@ -317,7 +317,7 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
 <span class="diff-same">التمريرة الثالثة (أصفار):</span>
 <span class="diff-removed">[0000000000000000000000]</span>
 <span style="color:#ff4444">→ صعب الاسترداد على HDD</span>
-<span style="color:#00ff88">→ SSD: بقايا في NAND!</span>
+<span style="color:#065f46">→ SSD: بقايا في NAND!</span>
         </div>
       </div>
     </div>
@@ -380,9 +380,9 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
   <div class="card">
     <h3>📸 EXIF Metadata في الصور — من التقط هذه الصورة؟</h3>
     <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
-      <div style="background:#071020;border-radius:8px;padding:10px;text-align:center">
-        <div style="width:140px;height:100px;background:linear-gradient(135deg,#1e3a5c,#2d1a5c);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:8px">🌃</div>
-        <div style="font-size:.72rem;color:#556070">image_evidence.jpg</div>
+      <div style="background:#f0f7f3;border-radius:8px;padding:10px;text-align:center">
+        <div style="width:140px;height:100px;background:linear-gradient(135deg,#c8ddd2,#2d1a5c);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:8px">🌃</div>
+        <div style="font-size:.72rem;color:#4a7a5e">image_evidence.jpg</div>
       </div>
       <div style="flex:1;min-width:200px">
         <button class="btn btn-purple btn-sm" onclick="showImageEXIF()">🔍 فحص EXIF</button>
@@ -421,29 +421,29 @@ h2{color:#8b5cf6;margin-bottom:6px;font-size:1.15rem}
   <div class="card">
     <h3>📚 مصادر الأحداث للجدول الزمني</h3>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px">
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-size:.82rem">
         <div style="color:#8b5cf6;margin-bottom:6px">🗂️ MFT / USN Journal</div>
-        <div style="color:#7ab3d4">إنشاء/تعديل/حذف الملفات بدقة 100ns</div>
+        <div style="color:#4a7a5e">إنشاء/تعديل/حذف الملفات بدقة 100ns</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-size:.82rem">
         <div style="color:#8b5cf6;margin-bottom:6px">📋 Windows Event Log</div>
-        <div style="color:#7ab3d4">تسجيل دخول، تشغيل برامج، أخطاء النظام</div>
+        <div style="color:#4a7a5e">تسجيل دخول، تشغيل برامج، أخطاء النظام</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-size:.82rem">
         <div style="color:#8b5cf6;margin-bottom:6px">🌐 Firewall / Proxy Logs</div>
-        <div style="color:#7ab3d4">الاتصالات الشبكية الداخلة والخارجة</div>
+        <div style="color:#4a7a5e">الاتصالات الشبكية الداخلة والخارجة</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-size:.82rem">
         <div style="color:#8b5cf6;margin-bottom:6px">📶 Cell Tower Records</div>
-        <div style="color:#7ab3d4">موقع الهاتف بالتقريب كل دقيقة</div>
+        <div style="color:#4a7a5e">موقع الهاتف بالتقريب كل دقيقة</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-size:.82rem">
         <div style="color:#8b5cf6;margin-bottom:6px">📸 CCTV / بطاقة الدخول</div>
-        <div style="color:#7ab3d4">من دخل الغرفة ومتى بالضبط</div>
+        <div style="color:#4a7a5e">من دخل الغرفة ومتى بالضبط</div>
       </div>
-      <div style="background:#071020;border:1px solid #1e3a5c;border-radius:8px;padding:12px;font-size:.82rem">
+      <div style="background:#f0f7f3;border:1px solid #c8ddd2;border-radius:8px;padding:12px;font-size:.82rem">
         <div style="color:#8b5cf6;margin-bottom:6px">💬 WhatsApp / Email</div>
-        <div style="color:#7ab3d4">توقيت الرسائل والاتصالات</div>
+        <div style="color:#4a7a5e">توقيت الرسائل والاتصالات</div>
       </div>
     </div>
   </div>
@@ -515,7 +515,7 @@ function showTechnique(el,type){
   document.getElementById('technique-detail').innerHTML=`
   <div style="background:#1a0d2e;border:1px solid #2d1a5c;border-radius:8px;padding:16px">
     <h4 style="color:#8b5cf6;margin-bottom:10px">${d.title}</h4>
-    <p style="color:#aab8c8;font-size:.85rem;line-height:1.8;margin-bottom:10px">${d.desc}</p>
+    <p style="color:#4a7a5e;font-size:.85rem;line-height:1.8;margin-bottom:10px">${d.desc}</p>
     <div class="alert alert-success" style="font-size:.82rem">🔍 <strong>كيف يكتشفه المحقق:</strong> ${d.detect}</div>
   </div>`;
 }
@@ -523,24 +523,24 @@ function showTechnique(el,type){
 // Timestomping
 function showTimestamp(mode){
   const views={
-    original:`<div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:monospace;font-size:.78rem;line-height:2">
+    original:`<div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px;font-family:monospace;font-size:.78rem;line-height:2">
     <div style="color:#8b5cf6;margin-bottom:8px">── $STANDARD_INFORMATION (قابل للتعديل) ──</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> 2024-03-15 09:22:11.4829831</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Modified:</span> 2024-03-20 14:28:44.1234567</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Accessed:</span> 2024-03-20 14:28:50.9876543</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">MFT Modified:</span> 2024-03-20 14:30:22.5432198</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Created:</span> 2024-03-15 09:22:11.4829831</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Modified:</span> 2024-03-20 14:28:44.1234567</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Accessed:</span> 2024-03-20 14:28:50.9876543</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">MFT Modified:</span> 2024-03-20 14:30:22.5432198</div>
     <div style="color:#8b5cf6;margin-top:10px;margin-bottom:8px">── $FILE_NAME (أصعب تعديلاً) ──</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> 2024-03-15 09:22:11.4829831</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Modified:</span> 2024-03-20 14:28:44.1234567</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Created:</span> 2024-03-15 09:22:11.4829831</div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Modified:</span> 2024-03-20 14:28:44.1234567</div>
     </div><div class="alert alert-success" style="margin-top:10px">✅ التواريخ متطابقة — لا يوجد Timestomping</div>`,
-    tampered:`<div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:monospace;font-size:.78rem;line-height:2">
+    tampered:`<div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px;font-family:monospace;font-size:.78rem;line-height:2">
     <div style="color:#8b5cf6;margin-bottom:8px">── $STANDARD_INFORMATION (بعد Timestomping) ──</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Modified:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Accessed:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Nanoseconds:</span> <span style="color:#ff4444">000000000 ← كلها أصفار — علامة Timestomp!</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Created:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Modified:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Accessed:</span> <span style="color:#ff4444">2020-01-01 00:00:00.0000000 ← مزوّر!</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Nanoseconds:</span> <span style="color:#ff4444">000000000 ← كلها أصفار — علامة Timestomp!</span></div>
     <div style="color:#8b5cf6;margin-top:10px;margin-bottom:8px">── $FILE_NAME (لم يتغير) ──</div>
-    <div><span style="color:#7ab3d4;display:inline-block;min-width:180px">Created:</span> <span style="color:#00ff88">2024-03-15 09:22:11.4829831 ← الحقيقي</span></div>
+    <div><span style="color:#4a7a5e;display:inline-block;min-width:180px">Created:</span> <span style="color:#065f46">2024-03-15 09:22:11.4829831 ← الحقيقي</span></div>
     </div><div class="alert alert-danger" style="margin-top:10px">🚨 تناقض واضح بين $SI و $FN = Timestomping مؤكد!</div>`,
     detection:`<div class="terminal">
     <div class="prompt">analyst@forensics:~$ <span class="cmd">python3 MFTECmd.py -f $MFT --csv mft_output.csv && python3 detect_timestomp.py mft_output.csv</span></div>
@@ -549,7 +549,7 @@ function showTimestamp(mode){
   $FN Created:  2024-03-15 09:22:11 ← حقيقي
   Nanoseconds:  000000000 ← Timestomp signature
   VERDICT: File was created 2024-03-15, timestamps tampered on 2024-03-20 14:29</span>
-<span style="color:#00ff88">[OK] quarterly_report.docx — timestamps consistent</span></div>
+<span style="color:#065f46">[OK] quarterly_report.docx — timestamps consistent</span></div>
     </div>`
   };
   document.getElementById('timestamp-display').innerHTML=views[mode]||'';
@@ -580,17 +580,17 @@ function wipeStep(step,btn){
     3:'<div class="alert alert-warn">🔀 التمريرة الثالثة: بيانات عشوائية — يجعل الاسترداد شبه مستحيل على HDD</div>',
     4:'<div class="alert alert-danger">💾 SSD خصوصية: رغم الـ Wipe، قد تبقى بيانات في Over-Provisioned NAND. <span style="color:#ff4444">البقايا المحمّرة = بيانات قابلة للاسترداد من Chip-Off!</span></div>',
   };
-  const colors={0:'#8b5cf6',1:'#1e3a5c',2:'#7ab3d4',3:'#556070',4:'mixed'};
+  const colors={0:'#8b5cf6',1:'#c8ddd2',2:'#7ab3d4',3:'#556070',4:'mixed'};
   wipeBlocks.forEach((b,i)=>{
     b.className='wipe-block';
     if(step===0){b.style.background='#8b5cf6'}
-    else if(step===1){b.style.background='#1e3a5c'}
+    else if(step===1){b.style.background='#c8ddd2'}
     else if(step===2){b.style.background='#7ab3d4'}
     else if(step===3){b.style.background='#556070'}
     else{
       // SSD — some blocks residual
       if(i%5===0||i%7===0){b.style.background='#ff4444';b.className='wipe-block residual'}
-      else{b.style.background='#1e3a5c'}
+      else{b.style.background='#c8ddd2'}
     }
   });
   document.getElementById('wipe-desc').innerHTML=desc[step];
@@ -599,7 +599,7 @@ function wipeStep(step,btn){
 // Metadata
 function showWordMeta(){
   document.getElementById('word-meta').innerHTML=`
-  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px">
+  <div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px">
     <div style="color:#8b5cf6;margin-bottom:8px">── report_final.docx — Office Metadata ──</div>
     <div class="metadata-field"><span class="mf-key">Author:</span><span class="mf-val suspicious">DESKTOP-KH4L1D\khalid ← اسم الجهاز والمستخدم!</span></div>
     <div class="metadata-field"><span class="mf-key">Last Modified By:</span><span class="mf-val suspicious">khalid.ahmed@company.sa</span></div>
@@ -616,7 +616,7 @@ function showWordMeta(){
 
 function showImageEXIF(){
   document.getElementById('exif-meta').innerHTML=`
-  <div style="background:#020a06;border:1px solid #1e3a5c;border-radius:8px;padding:14px;font-family:monospace;font-size:.76rem;line-height:1.9">
+  <div style="background:#020a06;border:1px solid #c8ddd2;border-radius:8px;padding:14px;font-family:monospace;font-size:.76rem;line-height:1.9">
     <div style="color:#8b5cf6;margin-bottom:8px">── image_evidence.jpg — EXIF Data ──</div>
     <div class="metadata-field"><span class="mf-key">Camera Make:</span><span class="mf-val ok">Samsung</span></div>
     <div class="metadata-field"><span class="mf-key">Camera Model:</span><span class="mf-val ok">SM-A546E (Galaxy A54)</span></div>
@@ -748,3 +748,5 @@ window.addEventListener('load',()=>{
 </div>
 </body>
 </html>
+
+
